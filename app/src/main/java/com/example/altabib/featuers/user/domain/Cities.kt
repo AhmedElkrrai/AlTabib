@@ -1,0 +1,31 @@
+package com.example.altabib.featuers.user.domain
+
+enum class Governorate(val capital: String) {
+    Alexandria("Alexandria"),
+    Aswan("Aswan"),
+    Asyut("Asyut"),
+    Beheira("Damanhur"),
+    BeniSuef("Beni Suef"),
+    Cairo("Cairo"),
+    Dakahlia("Mansoura"),
+    Damietta("Damietta"),
+    Faiyum("Faiyum"),
+    Gharbia("Tanta"),
+    Giza("Giza"),
+    Ismailia("Ismailia"),
+    KafrElSheikh("Kafr El-Sheikh"),
+    Luxor("Luxor"),
+    Matrouh("Marsa Matrouh"),
+    Minya("Minya"),
+    Monufia("Shibin El Kom"),
+    NewValley("Kharga"),
+    NorthSinai("Arish"),
+    PortSaid("Port Said"),
+    Qalyubia("Banha"),
+    Qena("Qena"),
+    RedSea("Hurghada"),
+    Sharqia("Zagazig"),
+    Sohag("Sohag"),
+    SouthSinai("El Tor"),
+    Suez("Suez")
+}
