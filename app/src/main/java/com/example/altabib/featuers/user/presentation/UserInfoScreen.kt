@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -17,6 +19,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -110,28 +113,45 @@ fun UserInfoScreen(navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // Select City
-            OutlinedButton(
-                onClick = { expanded = true },
+            // City Selection
+            Box(
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
-                border = BorderStroke(1.dp, Mauve)
+                contentAlignment = Alignment.Center
             ) {
-                Text(text = city, color = Color.Black)
-            }
+                Column {
+                    OutlinedButton(
+                        onClick = { expanded = true },
+                        modifier = Modifier
+                            .width(250.dp)
+                            .align(Alignment.CenterHorizontally)
+                    ) {
+                        Text(
+                            text = city.ifEmpty { "Select City" },
+                            fontSize = 16.sp,
+                            color = Mauve
+                        )
+                    }
 
-            DropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false }
-            ) {
-                Governorate.entries.forEach { governorate ->
-                    DropdownMenuItem(
-                        text = { Text(text = governorate.capital) },
-                        onClick = {
-                            city = governorate.capital
-                            expanded = false
+                    DropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false },
+                        modifier = Modifier
+                            .width(250.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(Color.White)
+                            .heightIn(max = 250.dp)
+                    ) {
+                        Governorate.entries.forEach { governorate ->
+                            DropdownMenuItem(
+                                text = { Text(text = governorate.capital, color = Color.Black) },
+                                onClick = {
+                                    city = governorate.capital
+                                    expanded = false
+                                },
+                                modifier = Modifier.fillMaxWidth()
+                            )
                         }
-                    )
+                    }
                 }
             }
 
