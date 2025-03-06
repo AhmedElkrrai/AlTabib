@@ -1,21 +1,23 @@
 package com.example.altabib.featuers.user.presentation
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +25,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
@@ -35,6 +39,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.altabib.R
 import com.example.altabib.featuers.user.domain.Governorate
 import com.example.altabib.featuers.user.domain.UserType
 import com.example.altabib.navigation.Screen
@@ -50,42 +60,70 @@ fun UserInfoScreen(navController: NavController) {
     var userType by remember { mutableStateOf(UserType.Patient.key) }
     var expanded by remember { mutableStateOf(false) }
 
-    Column(modifier = Modifier.padding(16.dp)) {
+    // Load Lottie Animation
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.doctor))
+    val progress by animateLottieCompositionAsState(
+        composition,
+        iterations = LottieConstants.IterateForever
+    )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // User Name
-        OutlinedTextField(
-            value = name,
-            onValueChange = { name = it },
-            label = {
-                Text(
-                    text = "Name",
-                    fontSize = 16.sp,
-                    color = Mauve,
-                )
-            },
-            textStyle = TextStyle(color = Color.Black),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Go
-            ),
-            keyboardActions = KeyboardActions(
-                onGo = { keyboardController?.hide() },
-            ),
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // Animation
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
-        )
+                .weight(1f)
+        ) {
+            LottieAnimation(
+                composition = composition,
+                progress = { progress }
+            )
+        }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            // User Name
+            OutlinedTextField(
+                value = name,
+                onValueChange = { name = it },
+                label = { Text(text = "Name", fontSize = 16.sp, color = Mauve) },
+                textStyle = TextStyle(color = Color.Black),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Go
+                ),
+                keyboardActions = KeyboardActions(
+                    onGo = {
+                        keyboardController?.hide()
+                    }
+                ),
+                modifier = Modifier.fillMaxWidth()
+            )
 
-        // Select City
-        Box(modifier = Modifier.fillMaxWidth()) {
-            Button(onClick = { expanded = true }, modifier = Modifier.fillMaxWidth()) {
-                Text(text = city)
+            // Select City
+            OutlinedButton(
+                onClick = { expanded = true },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                border = BorderStroke(1.dp, Mauve)
+            ) {
+                Text(text = city, color = Color.Black)
             }
-            DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
                 Governorate.entries.forEach { governorate ->
                     DropdownMenuItem(
                         text = { Text(text = governorate.capital) },
@@ -96,65 +134,52 @@ fun UserInfoScreen(navController: NavController) {
                     )
                 }
             }
-        }
-        Spacer(modifier = Modifier.height(8.dp))
 
-        // Select User Type
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(8.dp)
-                    .background(if (userType == UserType.Doctor.key) Mauve else LightBlue)
-                    .clickable { userType = UserType.Doctor.key }
-                    .padding(vertical = 12.dp),
-                contentAlignment = androidx.compose.ui.Alignment.Center
+            // User Type Selection
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                listOf(UserType.Doctor, UserType.Patient).forEach { type ->
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(if (userType == type.key) Mauve else LightBlue)
+                            .clickable {
+                                userType = type.key
+                                keyboardController?.hide()
+                            }
+                            .padding(vertical = 16.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = type.name,
+                            fontSize = 16.sp,
+                            color = Color.White,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+
+            // Continue Button
+            Button(
+                onClick = {
+                    navController.navigate(Screen.Auth.createRoute(name, city, userType))
+                    keyboardController?.hide()
+                },
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(containerColor = Mauve),
+                shape = RoundedCornerShape(50)
             ) {
                 Text(
-                    text = "Doctor",
+                    text = "Continue",
                     fontSize = 16.sp,
                     color = Color.White,
-                    textAlign = TextAlign.Center
+                    modifier = Modifier.padding(vertical = 12.dp)
                 )
             }
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(8.dp)
-                    .background(if (userType == UserType.Patient.key) Mauve else LightBlue)
-                    .clickable { userType = UserType.Patient.key }
-                    .padding(vertical = 12.dp),
-                contentAlignment = androidx.compose.ui.Alignment.Center
-            ) {
-                Text(
-                    text = "Patient",
-                    fontSize = 16.sp,
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Continue Button
-        Button(
-            onClick = {
-                // Navigate to Firebase Auth Screen, passing user data
-                navController.navigate(Screen.Auth.createRoute(name, city, userType))
-            },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = Mauve)
-        ) {
-            Text(
-                text = "Continue",
-                fontSize = 16.sp,
-                color = Color.White,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(vertical = 8.dp)
-            )
         }
     }
 }
