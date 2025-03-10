@@ -1,6 +1,5 @@
 package com.example.altabib.featuers.user.presentation
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,9 +18,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -51,8 +49,9 @@ import com.example.altabib.R
 import com.example.altabib.featuers.user.domain.Governorate
 import com.example.altabib.featuers.user.domain.UserType
 import com.example.altabib.navigation.Screen
-import com.example.altabib.ui.theme.LightBlue
+import com.example.altabib.ui.theme.Gray
 import com.example.altabib.ui.theme.Mauve
+import com.example.altabib.ui.theme.Primary
 
 @Composable
 fun UserInfoScreen(navController: NavController) {
@@ -99,11 +98,15 @@ fun UserInfoScreen(navController: NavController) {
             OutlinedTextField(
                 value = name,
                 onValueChange = { name = it },
-                label = { Text(text = "Name", fontSize = 16.sp, color = Mauve) },
+                label = { Text(text = "Name", fontSize = 16.sp, color = Primary) },
                 textStyle = TextStyle(color = Color.Black),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Text,
                     imeAction = ImeAction.Go
+                ),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Primary,
+                    unfocusedBorderColor = Gray
                 ),
                 keyboardActions = KeyboardActions(
                     onGo = {
@@ -119,8 +122,9 @@ fun UserInfoScreen(navController: NavController) {
                 contentAlignment = Alignment.Center
             ) {
                 Column {
-                    OutlinedButton(
+                    Button(
                         onClick = { expanded = true },
+                        colors = ButtonDefaults.buttonColors(containerColor = Primary),
                         modifier = Modifier
                             .width(250.dp)
                             .align(Alignment.CenterHorizontally)
@@ -128,7 +132,7 @@ fun UserInfoScreen(navController: NavController) {
                         Text(
                             text = city.ifEmpty { "Select City" },
                             fontSize = 16.sp,
-                            color = Mauve
+                            color = Color.White
                         )
                     }
 
@@ -137,13 +141,12 @@ fun UserInfoScreen(navController: NavController) {
                         onDismissRequest = { expanded = false },
                         modifier = Modifier
                             .width(250.dp)
-                            .clip(RoundedCornerShape(4.dp))
-                            .background(Color.White)
+                            .background(Mauve, shape = RoundedCornerShape(8.dp))
                             .heightIn(max = 250.dp)
                     ) {
                         Governorate.entries.forEach { governorate ->
                             DropdownMenuItem(
-                                text = { Text(text = governorate.capital, color = Color.Black) },
+                                text = { Text(text = governorate.capital, color = Color.White) },
                                 onClick = {
                                     city = governorate.capital
                                     expanded = false
@@ -165,7 +168,7 @@ fun UserInfoScreen(navController: NavController) {
                         modifier = Modifier
                             .weight(1f)
                             .clip(RoundedCornerShape(12.dp))
-                            .background(if (userType == type.key) Mauve else LightBlue)
+                            .background(if (userType == type.key) Primary else Gray)
                             .clickable {
                                 userType = type.key
                                 keyboardController?.hide()
@@ -190,7 +193,7 @@ fun UserInfoScreen(navController: NavController) {
                     keyboardController?.hide()
                 },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Mauve),
+                colors = ButtonDefaults.buttonColors(containerColor = Primary),
                 shape = RoundedCornerShape(50)
             ) {
                 Text(
