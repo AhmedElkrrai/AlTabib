@@ -11,19 +11,19 @@ sealed class BottomNavDestination(
     val label: String,
     val icon: ImageVector
 ) {
-    object Favorites : BottomNavDestination(
+    data object Favorites : BottomNavDestination(
         route = "favorites",
         label = "Favorites",
         icon = Icons.Filled.Restaurant
     )
 
-    object Home : BottomNavDestination(
+    data object Home : BottomNavDestination(
         route = "home",
         label = "Home",
         icon = Icons.Filled.MenuBook
     )
 
-    object Settings : BottomNavDestination(
+    data object Settings : BottomNavDestination(
         route = "settings",
         label = "Settings",
         icon = Icons.Filled.Settings

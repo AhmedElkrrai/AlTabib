@@ -11,10 +11,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.altabib.featuers.user.domain.UserType
+import com.example.altabib.featuers.user.presentation.AuthScreen
 import com.example.altabib.featuers.user.presentation.UserInfoScreen
 import com.example.altabib.navigation.CITY
 import com.example.altabib.navigation.NAME
@@ -33,15 +36,24 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
+
                     NavHost(navController, startDestination = Screen.UserInfo.route) {
-                        composable(Screen.UserInfo.route) { UserInfoScreen(navController) }
-                        composable(Screen.Auth.route) { backStackEntry ->
+                        composable(Screen.UserInfo.route) {
+                            UserInfoScreen(navController)
+                        }
+                        composable(
+                            route = Screen.Auth.route,
+                            arguments = listOf(
+                                navArgument(NAME) { type = NavType.StringType },
+                                navArgument(CITY) { type = NavType.StringType },
+                                navArgument(USER_TYPE) { type = NavType.StringType }
+                            )
+                        ) { backStackEntry ->
                             val name = backStackEntry.arguments?.getString(NAME) ?: ""
                             val city = backStackEntry.arguments?.getString(CITY) ?: ""
-                            val userType =
-                                backStackEntry.arguments?.getString(USER_TYPE)
-                                    ?: UserType.Patient.key
-                            // FirebaseAuthScreen(navController, name, city, userType) // (Create this screen next)
+                            val userType = backStackEntry.arguments?.getString(USER_TYPE) ?: UserType.Patient.key
+
+                            AuthScreen(navController, name, city, userType)
                         }
                     }
                 }
