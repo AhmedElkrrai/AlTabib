@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -60,6 +61,8 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.lottie.compose)
+    implementation(libs.firebase.auth)
+    implementation(libs.google.play.services.auth)
 
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)

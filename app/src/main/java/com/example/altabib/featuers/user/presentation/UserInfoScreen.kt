@@ -1,5 +1,6 @@
 package com.example.altabib.featuers.user.presentation
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -30,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
@@ -53,8 +55,11 @@ import com.example.altabib.ui.theme.Gray
 import com.example.altabib.ui.theme.Mauve
 import com.example.altabib.ui.theme.Primary
 
+private const val SELECT_CITY ="Select City"
+
 @Composable
 fun UserInfoScreen(navController: NavController) {
+    val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
 
     var name by remember { mutableStateOf("") }
@@ -130,7 +135,7 @@ fun UserInfoScreen(navController: NavController) {
                             .align(Alignment.CenterHorizontally)
                     ) {
                         Text(
-                            text = city.ifEmpty { "Select City" },
+                            text = city.ifEmpty { SELECT_CITY },
                             fontSize = 16.sp,
                             color = Color.White
                         )
@@ -189,8 +194,12 @@ fun UserInfoScreen(navController: NavController) {
             // Continue Button
             Button(
                 onClick = {
-                    navController.navigate(Screen.Auth.createRoute(name, city, userType))
-                    keyboardController?.hide()
+                    if (name.isNotBlank() && city != SELECT_CITY) {
+                        navController.navigate(Screen.Auth.createRoute(name, city, userType))
+                        keyboardController?.hide()
+                    } else {
+                        Toast.makeText(context, "Please enter your name and select a city", Toast.LENGTH_SHORT).show()
+                    }
                 },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(containerColor = Primary),
