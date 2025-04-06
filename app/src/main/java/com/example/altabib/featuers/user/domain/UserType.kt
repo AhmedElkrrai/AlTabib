@@ -5,6 +5,6 @@ enum class UserType(val key: String) {
     Patient("Patient");
 
     companion object {
-        fun fromKey(key: String): UserType? = entries.find { it.key == key }
+        fun fromKey(key: String): UserType = entries.find { it.key == key } ?: Patient
     }
 }

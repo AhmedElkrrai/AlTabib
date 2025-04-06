@@ -1,14 +1,11 @@
-package com.example.altabib.featuers.user.presentation
+package com.example.altabib.featuers.user.presentation.auth
 
-import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -17,16 +14,12 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -39,17 +32,15 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
+import com.example.altabib.featuers.user.domain.User
 import com.example.altabib.ui.theme.Primary
 
 @Composable
 fun AuthScreen(
-    navController: NavController,
-    name: String,
-    city: String,
-    userType: String
+    state: AuthState,
+    user: User,
+    onAction: (AuthenticationAction) -> Unit
 ) {
-    val context = LocalContext.current
-    val isLoading = remember { mutableStateOf(false) }
 
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.appointment))
     val progress by animateLottieCompositionAsState(
@@ -100,9 +91,7 @@ fun AuthScreen(
         ) {
             Button(
                 onClick = {
-                    isLoading.value = true
-                    Toast.makeText(context, "Signed in!", Toast.LENGTH_SHORT).show()
-                    // TODO: Add actual Google Sign-In logic
+                    onAction(AuthenticationAction.OnRegister(user))
                 },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(containerColor = Primary),
@@ -125,7 +114,7 @@ fun AuthScreen(
         }
 
         // Loading overlay
-        if (isLoading.value) {
+        if (state.isLoading) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()

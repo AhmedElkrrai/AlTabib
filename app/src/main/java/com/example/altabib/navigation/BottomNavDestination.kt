@@ -17,9 +17,9 @@ sealed class BottomNavDestination(
         icon = Icons.Filled.Restaurant
     )
 
-    data object Home : BottomNavDestination(
-        route = "home",
-        label = "Home",
+    data object Dashboard : BottomNavDestination(
+        route = "dashboard",
+        label = "Dashboard",
         icon = Icons.Filled.MenuBook
     )
 

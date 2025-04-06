@@ -7,4 +7,5 @@ sealed class Screen(val route: String) {
             return "auth_screen/$name/$city/$userType"
         }
     }
+    data object Home : Screen("home_screen")
 }

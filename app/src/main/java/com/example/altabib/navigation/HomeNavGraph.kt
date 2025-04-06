@@ -5,23 +5,24 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.altabib.navigation.BottomNavDestination
 
 @Composable
-fun BottomNavGraph(
+fun HomeNavGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,
-        startDestination = BottomNavDestination.Favorites.route
+        startDestination = BottomNavDestination.Dashboard.route
     ) {
+        composable(BottomNavDestination.Dashboard.route) {
+
+        }
+
         composable(BottomNavDestination.Favorites.route) {
 
         }
-        composable(BottomNavDestination.Home.route) {
 
-        }
         composable(BottomNavDestination.Settings.route) {
 
         }

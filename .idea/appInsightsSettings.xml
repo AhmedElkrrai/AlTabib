@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.altabib" />
+                  <option name="mobileSdkAppId" value="1:458416682788:android:3cb69e67e055685f6965b1" />
+                  <option name="projectId" value="altabib-e4ce9" />
+                  <option name="projectNumber" value="458416682788" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.presentation
+package com.example.altabib.featuers.user.presentation.info
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -214,10 +214,4 @@ fun UserInfoScreen(navController: NavController) {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewUserInfoScreen() {
-    UserInfoScreen(navController = rememberNavController())
 }

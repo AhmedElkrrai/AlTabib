@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.lottie.compose)
     implementation(libs.firebase.auth)
     implementation(libs.google.play.services.auth)
+    implementation(libs.firebase.firestore.ktx)
 
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)

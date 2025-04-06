@@ -16,7 +16,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 fun BottomNavBar(navController: NavHostController) {
     val items = listOf(
         BottomNavDestination.Favorites,
-        BottomNavDestination.Home,
+        BottomNavDestination.Dashboard,
         BottomNavDestination.Settings
     )
 
