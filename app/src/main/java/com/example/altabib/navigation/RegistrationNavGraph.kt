@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.altabib.featuers.home.presentation.HomeScreen
 import com.example.altabib.featuers.user.presentation.auth.AuthScreenRoot
 import com.example.altabib.featuers.user.presentation.info.UserInfoScreen
 
@@ -33,7 +34,7 @@ fun RegistrationNavGraph(
         }
 
         composable(Screen.Home.route) {
-            HomeNavGraph(navController)
+            HomeScreen()
         }
     }
 }

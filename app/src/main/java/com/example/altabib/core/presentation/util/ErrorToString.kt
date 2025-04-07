@@ -3,8 +3,6 @@ package com.example.altabib.core.presentation.util
 import android.content.Context
 import com.example.altabib.R
 import com.example.altabib.core.domain.util.DataError
-import com.example.altabib.featuers.user.data.source.remote.TAG
-import java.util.logging.Logger
 
 /**
  * Extension function for [DataError] to get a user-friendly error message.
