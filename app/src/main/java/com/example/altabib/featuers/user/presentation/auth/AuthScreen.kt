@@ -1,5 +1,8 @@
 package com.example.altabib.featuers.user.presentation.auth
 
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,23 +20,27 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
+import com.example.altabib.featuers.user.data.source.remote.GoogleSignInHelper
 import com.example.altabib.featuers.user.domain.User
 import com.example.altabib.ui.theme.Primary
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.common.api.ApiException
 
 @Composable
 fun AuthScreen(
@@ -41,7 +48,31 @@ fun AuthScreen(
     user: User,
     onAction: (AuthenticationAction) -> Unit
 ) {
+    val context = LocalContext.current
+    val helper = remember { GoogleSignInHelper(context) }
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        try {
+            val account = task.getResult(ApiException::class.java)
+            val idToken = account.idToken
+            if (idToken != null) {
+                onAction(AuthenticationAction.OnGoogleSignIn(user, idToken))
+            }
+        } catch (e: ApiException) {
+            Toast.makeText(
+                context,
+                "Google Sign-In failed: ${e.localizedMessage}",
+                Toast.LENGTH_SHORT
+            ).show()
+        } catch (e: Exception) {
+            Toast.makeText(context, "An unexpected error occurred.", Toast.LENGTH_SHORT).show()
+        }
 
+    }
+
+    val googleSignInClient = helper.getGoogleSignInClient()
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.appointment))
     val progress by animateLottieCompositionAsState(
         composition,
@@ -50,26 +81,20 @@ fun AuthScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
 
-        // Main Content
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Animation
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
             ) {
-                LottieAnimation(
-                    composition = composition,
-                    progress = { progress }
-                )
+                LottieAnimation(composition = composition, progress = { progress })
             }
 
-            // Welcome Text
             Text(
                 text = "Welcome to Tabib, Your Tabib Finder App!",
                 fontSize = 24.sp,
@@ -91,7 +116,7 @@ fun AuthScreen(
         ) {
             Button(
                 onClick = {
-                    onAction(AuthenticationAction.OnRegister(user))
+                    launcher.launch(googleSignInClient.signInIntent)
                 },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(containerColor = Primary),

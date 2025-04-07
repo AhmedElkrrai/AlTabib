@@ -2,7 +2,6 @@ package com.example.altabib.featuers.user.presentation.auth
 
 import android.widget.Toast
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavBackStackEntry

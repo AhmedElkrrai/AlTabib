@@ -43,12 +43,14 @@ sealed interface DataError {
     }
 
     /**
-     * Represents an error when no search results are found.
-     */
-    data object NoSearchResult : DataError
-
-    /**
      * Represents a general error that occurs during local data operations (e.g., database access).
      */
     data object LocalError : DataError
+
+    /**
+     * Represents an error from Firebase authentication.
+     */
+    sealed interface FirebaseError : DataError {
+        data class FetchError(val message: String) : FirebaseError
+    }
 }

@@ -3,6 +3,8 @@ package com.example.altabib.core.presentation.util
 import android.content.Context
 import com.example.altabib.R
 import com.example.altabib.core.domain.util.DataError
+import com.example.altabib.featuers.user.data.source.remote.TAG
+import java.util.logging.Logger
 
 /**
  * Extension function for [DataError] to get a user-friendly error message.
@@ -13,15 +15,15 @@ import com.example.altabib.core.domain.util.DataError
  * @return A user-friendly error message string.
  */
 fun DataError.getMessage(context: Context): String {
-    val resId = when (this) {
-        DataError.NetworkError.NoInternet -> R.string.error_no_internet
-        DataError.NetworkError.RequestTimeout -> R.string.error_request_timeout
-        DataError.NetworkError.Serialization -> R.string.error_serialization
-        DataError.NetworkError.ServerError -> R.string.error_unknown
-        DataError.NetworkError.TooManyRequests -> R.string.error_too_many_requests
-        DataError.NetworkError.Unknown -> R.string.error_unknown
-        DataError.NoSearchResult -> R.string.no_search_result
-        DataError.LocalError -> R.string.local_data_error
+
+    return when (this) {
+        is DataError.NetworkError.NoInternet -> context.getString(R.string.error_no_internet)
+        is DataError.NetworkError.RequestTimeout -> context.getString(R.string.error_request_timeout)
+        is DataError.NetworkError.Serialization -> context.getString(R.string.error_serialization)
+        is DataError.NetworkError.ServerError -> context.getString(R.string.error_unknown)
+        is DataError.NetworkError.TooManyRequests -> context.getString(R.string.error_too_many_requests)
+        is DataError.NetworkError.Unknown -> context.getString(R.string.error_unknown)
+        is DataError.LocalError -> context.getString(R.string.local_data_error)
+        is DataError.FirebaseError.FetchError -> this.message
     }
-    return context.getString(resId)
 }
