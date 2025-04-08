@@ -1,7 +1,8 @@
-package com.example.altabib.featuers.user.domain
+package com.example.altabib.featuers.user.domain.usecases
 
 import com.example.altabib.core.domain.util.DataError
 import com.example.altabib.core.domain.util.Result
+import com.example.altabib.featuers.user.domain.AuthRepository
 import com.google.firebase.auth.FirebaseUser
 
 class GoogleSignInUseCase(

@@ -22,6 +22,6 @@ fun DataError.getMessage(context: Context): String {
         is DataError.NetworkError.TooManyRequests -> context.getString(R.string.error_too_many_requests)
         is DataError.NetworkError.Unknown -> context.getString(R.string.error_unknown)
         is DataError.LocalError -> context.getString(R.string.local_data_error)
-        is DataError.FirebaseError.FetchError -> this.message
+        is DataError.AuthError.RetrievalError -> this.message
     }
 }

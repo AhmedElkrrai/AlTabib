@@ -8,8 +8,8 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import com.example.altabib.core.presentation.util.ObserveEvents
 import com.example.altabib.core.presentation.util.getMessage
-import com.example.altabib.featuers.user.domain.User
-import com.example.altabib.featuers.user.domain.UserType
+import com.example.altabib.featuers.user.domain.entities.User
+import com.example.altabib.featuers.user.domain.entities.UserType
 import com.example.altabib.navigation.CITY
 import com.example.altabib.navigation.NAME
 import com.example.altabib.navigation.Screen

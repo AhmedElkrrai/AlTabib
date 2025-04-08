@@ -34,7 +34,7 @@ fun RegistrationNavGraph(
         }
 
         composable(Screen.Home.route) {
-            HomeScreen()
+            HomeScreen(navController)
         }
     }
 }

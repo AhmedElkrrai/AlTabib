@@ -50,7 +50,7 @@ sealed interface DataError {
     /**
      * Represents an error from Firebase authentication.
      */
-    sealed interface FirebaseError : DataError {
-        data class FetchError(val message: String) : FirebaseError
+    sealed interface AuthError : DataError {
+        data class RetrievalError(val message: String) : AuthError
     }
 }

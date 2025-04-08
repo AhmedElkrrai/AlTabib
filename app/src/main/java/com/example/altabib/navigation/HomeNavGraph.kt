@@ -8,11 +8,16 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.altabib.featuers.dashboard.presentation.DashboardScreen
+import com.example.altabib.featuers.favorites.presentation.FavoritesScreen
+import com.example.altabib.featuers.settings.presentation.SettingsScreen
+import com.example.altabib.featuers.settings.presentation.SettingsScreenRoot
 
 @Composable
 fun HomeNavGraph(
+    rootNavController: NavHostController,
     navController: NavHostController,
-    padding: PaddingValues
+    padding: PaddingValues,
 ) {
     NavHost(
         navController = navController,
@@ -27,22 +32,7 @@ fun HomeNavGraph(
         }
 
         composable(BottomNavDestination.Settings.route) {
-            SettingsScreen()
+            SettingsScreenRoot(rootNavController)
         }
     }
-}
-
-@Composable
-fun DashboardScreen() {
-    Text("Welcome to the Dashboard", modifier = Modifier.fillMaxSize())
-}
-
-@Composable
-fun FavoritesScreen() {
-    Text("Your Favorite Doctors", modifier = Modifier.fillMaxSize())
-}
-
-@Composable
-fun SettingsScreen() {
-    Text("Settings", modifier = Modifier.fillMaxSize())
 }

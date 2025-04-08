@@ -37,7 +37,7 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
 import com.example.altabib.featuers.user.data.source.remote.GoogleSignInHelper
-import com.example.altabib.featuers.user.domain.User
+import com.example.altabib.featuers.user.domain.entities.User
 import com.example.altabib.ui.theme.Primary
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException

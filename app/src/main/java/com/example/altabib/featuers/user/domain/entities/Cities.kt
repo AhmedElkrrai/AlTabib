@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.domain
+package com.example.altabib.featuers.user.domain.entities
 
 enum class Governorate(val capital: String) {
     Alexandria("Alexandria"),
