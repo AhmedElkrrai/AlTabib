@@ -13,11 +13,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.altabib.featuers.user.data.source.local.UserManager
+import com.example.altabib.featuers.user.domain.entities.UserType
 import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
-import com.example.altabib.navigation.LocalNavController
-import com.example.altabib.navigation.RegistrationNavGraph
-import com.example.altabib.navigation.Screen
+import com.example.altabib.navigation.utils.LocalNavController
+import com.example.altabib.navigation.graph.RegistrationNavGraph
+import com.example.altabib.navigation.screen.Screen
 import com.example.altabib.ui.theme.AlTabibTheme
 import org.koin.android.ext.android.inject
 
@@ -30,15 +30,20 @@ class MainActivity : ComponentActivity() {
         setContent {
             AlTabibTheme {
                 val rootNavController = rememberNavController()
+                val user = getUser()
                 val startDestination =
-                    if (getUser() != null) Screen.Home else Screen.UserInfo
+                    if (user != null) Screen.Home else Screen.UserInfo
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     CompositionLocalProvider(LocalNavController provides rootNavController) {
-                        RegistrationNavGraph(rootNavController, startDestination)
+                        RegistrationNavGraph(
+                            navController = rootNavController,
+                            startDestination = startDestination,
+                            getUser = getUser
+                        )
                     }
                 }
             }

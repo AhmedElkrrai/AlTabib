@@ -1,4 +1,4 @@
-package com.example.altabib.navigation
+package com.example.altabib.navigation.utils
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.navigation.NavHostController

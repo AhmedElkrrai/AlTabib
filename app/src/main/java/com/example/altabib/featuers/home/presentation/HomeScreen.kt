@@ -3,18 +3,29 @@ package com.example.altabib.featuers.home.presentation
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
-import com.example.altabib.navigation.BottomNavBar
-import com.example.altabib.navigation.HomeNavGraph
+import com.example.altabib.featuers.user.domain.entities.UserType
+import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
+import com.example.altabib.navigation.bar.DoctorBottomBar
+import com.example.altabib.navigation.bar.PatientBottomBar
+import com.example.altabib.navigation.graph.DoctorNavGraph
+import com.example.altabib.navigation.graph.PatientNavGraph
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(getUser: GetUserUseCase) {
     val navController = rememberNavController()
+    val userType = getUser.invoke()?.type ?: UserType.Patient
+
     Scaffold(
         bottomBar = {
-            BottomNavBar(navController)
+            when (userType) {
+                UserType.Patient -> PatientBottomBar(navController)
+                UserType.Doctor -> DoctorBottomBar(navController)
+            }
         }
     ) { padding ->
-
-        HomeNavGraph(navController, padding)
+        when (userType) {
+            UserType.Patient -> PatientNavGraph(navController, padding)
+            UserType.Doctor -> DoctorNavGraph(navController, padding)
+        }
     }
 }

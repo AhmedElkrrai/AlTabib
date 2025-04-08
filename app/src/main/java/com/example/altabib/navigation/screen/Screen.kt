@@ -1,4 +1,8 @@
-package com.example.altabib.navigation
+package com.example.altabib.navigation.screen
+
+import com.example.altabib.navigation.utils.CITY
+import com.example.altabib.navigation.utils.NAME
+import com.example.altabib.navigation.utils.USER_TYPE
 
 sealed class Screen(val route: String) {
     data object UserInfo : Screen("user_info_screen")

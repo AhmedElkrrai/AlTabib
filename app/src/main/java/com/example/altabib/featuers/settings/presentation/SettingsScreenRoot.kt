@@ -5,25 +5,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.altabib.core.presentation.util.ObserveEvents
 import com.example.altabib.core.presentation.util.getMessage
-import com.example.altabib.navigation.LocalNavController
-import com.example.altabib.navigation.Screen
+import com.example.altabib.navigation.utils.LocalNavController
+import com.example.altabib.navigation.screen.Screen
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SettingsScreenRoot(
+    navController: NavHostController,
     viewModel: SettingsViewModel = koinViewModel()
 ) {
     val context = LocalContext.current
     val state by viewModel.state.collectAsStateWithLifecycle()
-    val navController = LocalNavController.current
+    val rootNavController = LocalNavController.current
 
     ObserveEvents(events = viewModel.event) { event ->
         when (event) {
             is SettingsEvent.LoggedOut -> {
-                navController.navigate(Screen.UserInfo.route) {
+                rootNavController.navigate(Screen.UserInfo.route) {
                     popUpTo(0) { inclusive = true }
                 }
             }

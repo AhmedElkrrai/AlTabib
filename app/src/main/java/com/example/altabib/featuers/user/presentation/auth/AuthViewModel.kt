@@ -8,7 +8,7 @@ import com.example.altabib.featuers.user.domain.usecases.GoogleSignInUseCase
 import com.example.altabib.featuers.user.domain.usecases.RegisterUseCase
 import com.example.altabib.featuers.user.domain.entities.User
 import com.example.altabib.featuers.user.domain.usecases.SaveUserUseCase
-import com.example.altabib.navigation.Screen
+import com.example.altabib.navigation.screen.Screen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow

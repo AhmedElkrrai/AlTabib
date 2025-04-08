@@ -1,0 +1,35 @@
+package com.example.altabib.navigation.bar
+
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ShowChart
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
+import com.example.altabib.navigation.screen.DoctorScreen
+
+@Composable
+fun DoctorBottomBar(navController: NavController) {
+    val items = listOf(
+        BottomNavItem(
+            label = "Analytics",
+            icon = Icons.Default.ShowChart,
+            route = DoctorScreen.Analytics.route
+        ),
+        BottomNavItem(
+            label = "Appointments",
+            icon = Icons.Default.DateRange,
+            route = DoctorScreen.Appointments.route
+        ),
+        BottomNavItem(
+            label = "Settings",
+            icon = Icons.Default.Settings,
+            route = DoctorScreen.Settings.route
+        )
+    )
+
+    BottomNavBar(
+        items = items,
+        navController = navController
+    )
+}

@@ -39,7 +39,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
@@ -48,8 +47,8 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
 import com.example.altabib.featuers.user.domain.entities.Governorate
 import com.example.altabib.featuers.user.domain.entities.UserType
-import com.example.altabib.navigation.LocalNavController
-import com.example.altabib.navigation.Screen
+import com.example.altabib.navigation.utils.LocalNavController
+import com.example.altabib.navigation.screen.Screen
 import com.example.altabib.ui.theme.Gray
 import com.example.altabib.ui.theme.Mauve
 import com.example.altabib.ui.theme.Primary
