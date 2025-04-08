@@ -13,13 +13,14 @@ import com.example.altabib.featuers.user.presentation.info.UserInfoScreen
 @Composable
 fun RegistrationNavGraph(
     navController: NavHostController,
+    startDestination: Screen
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.UserInfo.route
+        startDestination = startDestination.route
     ) {
         composable(Screen.UserInfo.route) {
-            UserInfoScreen(navController)
+            UserInfoScreen()
         }
 
         composable(
@@ -30,11 +31,11 @@ fun RegistrationNavGraph(
                 navArgument(USER_TYPE) { type = NavType.StringType }
             )
         ) { backStackEntry ->
-            AuthScreenRoot(backStackEntry, navController)
+            AuthScreenRoot(backStackEntry)
         }
 
         composable(Screen.Home.route) {
-            HomeScreen(navController)
+            HomeScreen()
         }
     }
 }

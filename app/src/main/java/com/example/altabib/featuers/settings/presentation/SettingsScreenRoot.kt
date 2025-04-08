@@ -8,16 +8,17 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.altabib.core.presentation.util.ObserveEvents
 import com.example.altabib.core.presentation.util.getMessage
+import com.example.altabib.navigation.LocalNavController
 import com.example.altabib.navigation.Screen
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SettingsScreenRoot(
-    navController: NavController,
     viewModel: SettingsViewModel = koinViewModel()
 ) {
     val context = LocalContext.current
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val navController = LocalNavController.current
 
     ObserveEvents(events = viewModel.event) { event ->
         when (event) {

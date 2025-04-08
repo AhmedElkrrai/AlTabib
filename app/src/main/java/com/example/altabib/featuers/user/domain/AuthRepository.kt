@@ -9,4 +9,6 @@ interface AuthRepository {
     suspend fun registerUser(user: User): Result<User, DataError>
     suspend fun signInWithGoogle(idToken: String): Result<FirebaseUser, DataError>
     fun logout()
+    fun saveUser(user: User)
+    fun getUser(): User?
 }

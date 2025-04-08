@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.google.play.services.auth)
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.gson)
 
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)

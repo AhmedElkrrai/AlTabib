@@ -10,22 +10,36 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.example.altabib.featuers.user.data.source.local.UserManager
+import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
+import com.example.altabib.navigation.LocalNavController
 import com.example.altabib.navigation.RegistrationNavGraph
+import com.example.altabib.navigation.Screen
 import com.example.altabib.ui.theme.AlTabibTheme
+import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
+    private val getUser: GetUserUseCase by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideSystemBars()
         setContent {
             AlTabibTheme {
+                val rootNavController = rememberNavController()
+                val startDestination =
+                    if (getUser() != null) Screen.Home else Screen.UserInfo
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    RegistrationNavGraph(rememberNavController())
+                    CompositionLocalProvider(LocalNavController provides rootNavController) {
+                        RegistrationNavGraph(rootNavController, startDestination)
+                    }
                 }
             }
         }

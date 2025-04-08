@@ -48,17 +48,19 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
 import com.example.altabib.featuers.user.domain.entities.Governorate
 import com.example.altabib.featuers.user.domain.entities.UserType
+import com.example.altabib.navigation.LocalNavController
 import com.example.altabib.navigation.Screen
 import com.example.altabib.ui.theme.Gray
 import com.example.altabib.ui.theme.Mauve
 import com.example.altabib.ui.theme.Primary
 
-private const val SELECT_CITY ="Select City"
+private const val SELECT_CITY = "Select City"
 
 @Composable
-fun UserInfoScreen(navController: NavController) {
+fun UserInfoScreen() {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
+    val navController = LocalNavController.current
 
     var name by remember { mutableStateOf("") }
     var city by remember { mutableStateOf("Select City") }
@@ -196,7 +198,11 @@ fun UserInfoScreen(navController: NavController) {
                         navController.navigate(Screen.Auth.createRoute(name, city, userType))
                         keyboardController?.hide()
                     } else {
-                        Toast.makeText(context, "Please enter your name and select a city", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Please enter your name and select a city",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 },
                 modifier = Modifier.fillMaxWidth(),

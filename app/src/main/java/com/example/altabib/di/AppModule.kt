@@ -1,14 +1,20 @@
-import com.example.altabib.di.provideGoogleSignInClient
+package com.example.altabib.di
+
+import android.content.Context
 import com.example.altabib.featuers.settings.presentation.SettingsViewModel
-import com.example.altabib.featuers.user.data.source.remote.AuthRepositoryImpl
+import com.example.altabib.featuers.user.data.source.AuthRepositoryImpl
+import com.example.altabib.featuers.user.data.source.local.UserManager
 import com.example.altabib.featuers.user.data.source.remote.AuthenticationService
 import com.example.altabib.featuers.user.domain.AuthRepository
 import com.example.altabib.featuers.user.domain.usecases.GoogleSignInUseCase
 import com.example.altabib.featuers.user.domain.usecases.RegisterUseCase
 import com.example.altabib.featuers.user.domain.usecases.LogoutUseCase
+import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
+import com.example.altabib.featuers.user.domain.usecases.SaveUserUseCase
 import com.example.altabib.featuers.user.presentation.auth.AuthViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.Gson
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModel
@@ -22,14 +28,21 @@ import org.koin.dsl.module
  * It uses the Koin dependency injection framework to manage the creation and lifecycle of objects.
  */
 val appModule = module {
+    single { Gson() }
+    single {
+        androidContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+    }
+    single { UserManager(get()) }
     single { provideGoogleSignInClient(androidContext()) }
     single { FirebaseAuth.getInstance() }
     singleOf(::AuthenticationService)
     single { FirebaseFirestore.getInstance() }
-    singleOf(::AuthRepositoryImpl).bind<AuthRepository>()
     singleOf(::GoogleSignInUseCase)
     singleOf(::RegisterUseCase)
     singleOf(::LogoutUseCase)
-    viewModel { AuthViewModel(get(), get()) }
+    singleOf(::GetUserUseCase)
+    singleOf(::SaveUserUseCase)
+    viewModel { AuthViewModel(get(), get(), get()) }
     viewModel { SettingsViewModel(get()) }
+    singleOf(::AuthRepositoryImpl).bind<AuthRepository>()
 }

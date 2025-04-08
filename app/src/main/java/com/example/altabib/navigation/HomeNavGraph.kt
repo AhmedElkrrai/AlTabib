@@ -15,7 +15,6 @@ import com.example.altabib.featuers.settings.presentation.SettingsScreenRoot
 
 @Composable
 fun HomeNavGraph(
-    rootNavController: NavHostController,
     navController: NavHostController,
     padding: PaddingValues,
 ) {
@@ -32,7 +31,7 @@ fun HomeNavGraph(
         }
 
         composable(BottomNavDestination.Settings.route) {
-            SettingsScreenRoot(rootNavController)
+            SettingsScreenRoot()
         }
     }
 }

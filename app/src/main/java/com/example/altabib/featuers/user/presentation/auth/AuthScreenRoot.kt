@@ -11,6 +11,7 @@ import com.example.altabib.core.presentation.util.getMessage
 import com.example.altabib.featuers.user.domain.entities.User
 import com.example.altabib.featuers.user.domain.entities.UserType
 import com.example.altabib.navigation.CITY
+import com.example.altabib.navigation.LocalNavController
 import com.example.altabib.navigation.NAME
 import com.example.altabib.navigation.Screen
 import com.example.altabib.navigation.USER_TYPE
@@ -19,12 +20,12 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun AuthScreenRoot(
     backStackEntry: NavBackStackEntry,
-    navController: NavController,
     viewModel: AuthViewModel = koinViewModel()
 ) {
 
     val context = LocalContext.current
     val state = viewModel.state.collectAsStateWithLifecycle()
+    val navController = LocalNavController.current
 
     val name = backStackEntry.arguments?.getString(NAME) ?: ""
     val city = backStackEntry.arguments?.getString(CITY) ?: ""
