@@ -48,6 +48,11 @@ sealed interface DataError {
     data object LocalError : DataError
 
     /**
+     * Represents an error when no search results are found.
+     */
+    data object NoSearchResult : DataError
+
+    /**
      * Represents an error from Firebase authentication.
      */
     sealed interface AuthError : DataError {

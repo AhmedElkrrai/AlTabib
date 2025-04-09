@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.altabib.featuers.dashboard.presentation.DashboardScreen
+import com.example.altabib.featuers.dashboard.presentation.DashboardScreenRoot
 import com.example.altabib.featuers.favorites.presentation.FavoritesScreen
 import com.example.altabib.featuers.settings.presentation.SettingsScreenRoot
 import com.example.altabib.featuers.specialization.presentation.SpecializationScreenRoot
@@ -19,7 +20,7 @@ fun PatientNavGraph(
 ) {
     NavHost(navController, startDestination = PatientScreen.Dashboard.route) {
         composable(PatientScreen.Dashboard.route) {
-            DashboardScreen(navController)
+            DashboardScreenRoot(navController)
         }
         composable(PatientScreen.Favorites.route) {
             FavoritesScreen()

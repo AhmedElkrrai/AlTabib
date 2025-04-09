@@ -1,15 +1,86 @@
 package com.example.altabib.featuers.dashboard.presentation
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import com.example.altabib.R
 
 @Composable
 fun DashboardScreen(
-    navController: NavHostController,
+    state: DashboardState,
+    onAction: (DashboardAction) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Text("Welcome to the Dashboard", modifier = Modifier.fillMaxSize())
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(top = 16.dp)
+    ) {
+        SearchBar(
+            searchQuery = state.searchQuery,
+            onSearchQueryChange = { query ->
+                onAction(DashboardAction.OnSearchQueryChanged(query))
+            },
+            onImeSearch = {
+                // No-op: handled by debounce
+            },
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        AnimatedContent(
+            targetState = Triple(state.searchQuery, state.isLoading, state.searchResult),
+            label = "dashboard_content"
+        ) { (query, isLoading, result) ->
+            when {
+                isLoading -> {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                }
+
+                query.isNotBlank() -> {
+                    if (result.isNotEmpty()) {
+//                        DoctorList(
+//                            doctors = result,
+//                            modifier = Modifier.padding(horizontal = 16.dp)
+//                        )
+                    } else {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = stringResource(R.string.no_results),
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                        }
+                    }
+                }
+
+                else -> {
+                    SpecializationGrid(
+                        specializations = state.specializations,
+                        onClick = { onAction(DashboardAction.OpenSpecializationScreen(it)) }
+                    )
+                }
+            }
+        }
+    }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">طبيب</string>
+    <string name="error_request_timeout">انتهت مهلة الطلب.</string>
+    <string name="error_too_many_requests">تم إرسال عدد كبير من الطلبات إلى الخادم.</string>
+    <string name="error_no_internet">تعذر الاتصال بالخادم، يرجى التحقق من اتصالك بالإنترنت.</string>
+    <string name="error_unknown">حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.</string>
+    <string name="error_serialization">تعذر تسلسل أو إلغاء تسلسل البيانات.</string>
+    <string name="search_hint">ابحث عن طبيب.</string>
+    <string name="no_results">لم يتم العثور على نتائج.</string>
+    <string name="local_data_error">تعذر جلب البيانات من قاعدة البيانات المحلية.</string>
+    <string name="firebase_error">تعذر جلب البيانات من Firebase.</string>
+    <!-- ... medical specializations ... -->
+    <string name="general_practice">ممارسة عامة</string>
+    <string name="pediatrics">الأطفال</string>
+    <string name="cardiology">القلب</string>
+    <string name="dermatology">الجلدية</string>
+    <string name="orthopedics">العظام</string>
+    <string name="gynecology">طب النساء</string>
+    <string name="ophthalmology">العيون</string>
+    <string name="psychiatry">الطب النفسي</string>
+    <string name="gastroenterology">الجهاز الهضمي</string>
+    <string name="neurology">الأعصاب</string>
+    <string name="endocrinology">الغدد الصماء</string>
+    <string name="urology">المسالك البولية</string>
+    <string name="oncology">الأورام</string>
+    <string name="otolaryngologies">الأنف والأذن والحنجرة</string>
+    <string name="dentistry">أسنان</string>
+    <string name="radiology">الأشعة</string>
+</resources>
