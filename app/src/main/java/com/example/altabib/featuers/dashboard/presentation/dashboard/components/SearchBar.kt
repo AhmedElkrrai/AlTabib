@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.dashboard.presentation
+package com.example.altabib.featuers.dashboard.presentation.dashboard.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.fillMaxSize

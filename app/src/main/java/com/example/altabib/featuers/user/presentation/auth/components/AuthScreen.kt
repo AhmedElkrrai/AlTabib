@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.presentation.auth
+package com.example.altabib.featuers.user.presentation.auth.components
 
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -38,6 +38,8 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
 import com.example.altabib.featuers.user.data.source.remote.GoogleSignInHelper
 import com.example.altabib.featuers.user.domain.entities.User
+import com.example.altabib.featuers.user.presentation.auth.AuthState
+import com.example.altabib.featuers.user.presentation.auth.AuthAction
 import com.example.altabib.ui.theme.Primary
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
@@ -46,7 +48,7 @@ import com.google.android.gms.common.api.ApiException
 fun AuthScreen(
     state: AuthState,
     user: User,
-    onAction: (AuthenticationAction) -> Unit
+    onAction: (AuthAction) -> Unit
 ) {
     val context = LocalContext.current
     val helper = remember { GoogleSignInHelper(context) }
@@ -58,7 +60,7 @@ fun AuthScreen(
             val account = task.getResult(ApiException::class.java)
             val idToken = account.idToken
             if (idToken != null) {
-                onAction(AuthenticationAction.OnGoogleSignIn(user, idToken))
+                onAction(AuthAction.OnGoogleSignIn(user, idToken))
             }
         } catch (e: ApiException) {
             Toast.makeText(

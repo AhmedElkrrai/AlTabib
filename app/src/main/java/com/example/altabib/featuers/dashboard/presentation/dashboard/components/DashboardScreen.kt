@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.dashboard.presentation
+package com.example.altabib.featuers.dashboard.presentation.dashboard.components
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Box
@@ -16,6 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.altabib.R
+import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardAction
+import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardState
+import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorList
+import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationGrid
 
 @Composable
 fun DashboardScreen(
@@ -57,10 +61,10 @@ fun DashboardScreen(
 
                 query.isNotBlank() -> {
                     if (result.isNotEmpty()) {
-//                        DoctorList(
-//                            doctors = result,
-//                            modifier = Modifier.padding(horizontal = 16.dp)
-//                        )
+                        DoctorList(
+                            doctors = result,
+                            modifier = Modifier.padding(horizontal = 16.dp)
+                        )
                     } else {
                         Box(
                             modifier = Modifier.fillMaxSize(),

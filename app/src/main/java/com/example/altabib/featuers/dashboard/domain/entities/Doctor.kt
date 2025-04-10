@@ -1,9 +1,10 @@
-package com.example.altabib.featuers.specialization.domain.entities
+package com.example.altabib.featuers.dashboard.domain.entities
 
 data class Doctor(
     val name: String,
     val specialization: Specialization,
     val rating: Float,
+    val reviews: Int,
     val bio: String,
     val availability: String, // eg 06PM - 09PM
     val inQueue: Int,

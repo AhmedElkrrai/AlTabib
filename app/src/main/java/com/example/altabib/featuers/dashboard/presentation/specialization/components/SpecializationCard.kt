@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.dashboard.presentation
+package com.example.altabib.featuers.dashboard.presentation.specialization.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.altabib.featuers.specialization.domain.entities.Specialization
+import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 import com.example.altabib.ui.theme.LightBlue
 
 @Composable

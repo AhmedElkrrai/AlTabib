@@ -1,9 +1,11 @@
 package com.example.altabib.featuers.home.presentation
 
 import androidx.activity.compose.LocalActivity
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.altabib.featuers.user.domain.entities.UserType
 import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
@@ -33,8 +35,15 @@ fun HomeScreen(getUser: GetUserUseCase) {
         }
     ) { padding ->
         when (userType) {
-            UserType.Patient -> PatientNavGraph(navController, padding)
-            UserType.Doctor -> DoctorNavGraph(navController, padding)
+            UserType.Patient -> PatientNavGraph(
+                navController = navController,
+                modifier = Modifier.padding(padding)
+            )
+
+            UserType.Doctor -> DoctorNavGraph(
+                navController = navController,
+                modifier = Modifier.padding(padding)
+            )
         }
     }
 }

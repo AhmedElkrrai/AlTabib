@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.dashboard.presentation
+package com.example.altabib.featuers.dashboard.presentation.specialization.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -10,7 +10,7 @@ import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.altabib.featuers.specialization.domain.entities.Specialization
+import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 
 @Composable
 fun SpecializationGrid(

@@ -1,10 +1,11 @@
-package com.example.altabib.featuers.dashboard.presentation
+package com.example.altabib.featuers.dashboard.presentation.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.domain.util.DataError
-import com.example.altabib.featuers.specialization.domain.usecases.SearchDoctorsUseCase
-import com.example.altabib.featuers.specialization.domain.entities.Specialization
+import com.example.altabib.featuers.dashboard.domain.usecases.SearchDoctorsUseCase
+import com.example.altabib.featuers.dashboard.domain.entities.Specialization
+import com.example.altabib.navigation.screen.PatientScreen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
@@ -53,7 +54,15 @@ class DashboardViewModel(
             }
 
             is DashboardAction.OpenSpecializationScreen -> {
-                // navigate to specialization screen
+                viewModelScope.launch {
+                    _event.emit(
+                        DashboardEvent.Navigate(
+                            PatientScreen.Specialization.createRoute(
+                                specialization = action.specialization.key
+                            )
+                        )
+                    )
+                }
             }
         }
     }

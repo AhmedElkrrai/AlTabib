@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.dashboard.presentation
+package com.example.altabib.featuers.dashboard.presentation.dashboard
 
 import com.example.altabib.core.domain.util.DataError
 

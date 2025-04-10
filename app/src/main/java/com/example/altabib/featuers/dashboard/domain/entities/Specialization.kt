@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.specialization.domain.entities
+package com.example.altabib.featuers.dashboard.domain.entities
 
 import android.content.Context
 import androidx.compose.material.icons.Icons

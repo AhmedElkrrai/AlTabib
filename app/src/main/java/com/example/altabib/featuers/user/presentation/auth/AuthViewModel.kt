@@ -28,9 +28,9 @@ class AuthViewModel(
     private val _event = MutableSharedFlow<AuthEvent>()
     val event: SharedFlow<AuthEvent> = _event
 
-    fun onAction(action: AuthenticationAction) {
+    fun onAction(action: AuthAction) {
         when (action) {
-            is AuthenticationAction.OnGoogleSignIn -> {
+            is AuthAction.OnGoogleSignIn -> {
                 onGoogleSignIn(action.idToken, action.user)
             }
         }

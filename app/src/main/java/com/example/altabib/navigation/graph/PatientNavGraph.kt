@@ -1,26 +1,25 @@
 package com.example.altabib.navigation.graph
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.altabib.featuers.dashboard.presentation.DashboardScreen
-import com.example.altabib.featuers.dashboard.presentation.DashboardScreenRoot
+import com.example.altabib.featuers.dashboard.presentation.dashboard.components.DashboardScreenRoot
 import com.example.altabib.featuers.favorites.presentation.FavoritesScreen
 import com.example.altabib.featuers.settings.presentation.SettingsScreenRoot
-import com.example.altabib.featuers.specialization.presentation.SpecializationScreenRoot
-import com.example.altabib.navigation.utils.SPECIALIZATION
+import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationScreenRoot
 import com.example.altabib.navigation.screen.PatientScreen
+import com.example.altabib.navigation.utils.SPECIALIZATION
 
 @Composable
 fun PatientNavGraph(
     navController: NavHostController,
-    paddingValues: PaddingValues
+    modifier: Modifier = Modifier
 ) {
     NavHost(navController, startDestination = PatientScreen.Dashboard.route) {
         composable(PatientScreen.Dashboard.route) {
-            DashboardScreenRoot(navController)
+            DashboardScreenRoot(navController, modifier)
         }
         composable(PatientScreen.Favorites.route) {
             FavoritesScreen()

@@ -1,7 +1,7 @@
 package com.example.altabib.di
 
 import android.content.Context
-import com.example.altabib.featuers.dashboard.presentation.DashboardViewModel
+import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardViewModel
 import com.example.altabib.featuers.settings.presentation.SettingsViewModel
 import com.example.altabib.featuers.user.data.source.AuthRepositoryImpl
 import com.example.altabib.featuers.user.data.source.local.UserManager
@@ -12,7 +12,7 @@ import com.example.altabib.featuers.user.domain.usecases.RegisterUseCase
 import com.example.altabib.featuers.user.domain.usecases.LogoutUseCase
 import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
 import com.example.altabib.featuers.user.domain.usecases.SaveUserUseCase
-import com.example.altabib.featuers.specialization.domain.usecases.SearchDoctorsUseCase
+import com.example.altabib.featuers.dashboard.domain.usecases.SearchDoctorsUseCase
 import com.example.altabib.featuers.user.presentation.auth.AuthViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

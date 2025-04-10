@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.dashboard.presentation
+package com.example.altabib.featuers.dashboard.presentation.dashboard.components
 
 import android.widget.Toast
 import androidx.compose.runtime.Composable
@@ -9,6 +9,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.example.altabib.core.presentation.util.ObserveEvents
 import com.example.altabib.core.presentation.util.getMessage
+import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardEvent
+import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
