@@ -13,6 +13,7 @@ class SearchDoctorsUseCase {
 val dummyDoctors: List<Doctor> =
     listOf(
         Doctor(
+            id = "asds",
             name = "Ahmed Eltaher",
             specialization = Specialization.DERMATOLOGY,
             rating = 9.1f,
@@ -24,6 +25,7 @@ val dummyDoctors: List<Doctor> =
         ),
 
         Doctor(
+            id = "sdsda",
             name = "Mohamed Trabies",
             specialization = Specialization.UROLOGY,
             rating = 1.5f,
@@ -35,6 +37,7 @@ val dummyDoctors: List<Doctor> =
         ),
 
         Doctor(
+            id = "sdfsdf",
             name = "Ali Aloka",
             specialization = Specialization.CARDIOLOGY,
             rating = 8.5f,

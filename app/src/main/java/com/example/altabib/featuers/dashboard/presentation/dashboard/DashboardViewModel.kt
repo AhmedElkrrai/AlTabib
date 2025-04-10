@@ -53,6 +53,18 @@ class DashboardViewModel(
                 }
             }
 
+            is DashboardAction.OpenDoctorDetails -> {
+                viewModelScope.launch {
+                    _event.emit(
+                        DashboardEvent.Navigate(
+                            PatientScreen.DoctorDetails.createRoute(
+                                doctorId = action.doctor.id
+                            )
+                        )
+                    )
+                }
+            }
+
             is DashboardAction.OpenSpecializationScreen -> {
                 viewModelScope.launch {
                     _event.emit(

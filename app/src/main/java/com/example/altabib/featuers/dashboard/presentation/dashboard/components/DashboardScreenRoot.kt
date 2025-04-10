@@ -25,7 +25,7 @@ fun DashboardScreenRoot(
     ObserveEvents(events = viewModel.event) { event ->
         when (event) {
             is DashboardEvent.Navigate -> {
-                // navigate to specialization screen
+                navController.navigate(event.route)
             }
 
             is DashboardEvent.ShowToast -> {

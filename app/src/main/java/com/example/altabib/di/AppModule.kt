@@ -13,6 +13,8 @@ import com.example.altabib.featuers.user.domain.usecases.LogoutUseCase
 import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
 import com.example.altabib.featuers.user.domain.usecases.SaveUserUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.SearchDoctorsUseCase
+import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorsBySpecializationUseCase
+import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationViewModel
 import com.example.altabib.featuers.user.presentation.auth.AuthViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,6 +42,7 @@ val appModule = module {
     singleOf(::AuthenticationService)
     single { FirebaseFirestore.getInstance() }
     singleOf(::SearchDoctorsUseCase)
+    singleOf(::GetDoctorsBySpecializationUseCase)
     singleOf(::GoogleSignInUseCase)
     singleOf(::RegisterUseCase)
     singleOf(::LogoutUseCase)
@@ -48,5 +51,6 @@ val appModule = module {
     viewModel { AuthViewModel(get(), get(), get()) }
     viewModel { SettingsViewModel(get()) }
     viewModel { DashboardViewModel(get()) }
+    viewModel { SpecializationViewModel(get()) }
     singleOf(::AuthRepositoryImpl).bind<AuthRepository>()
 }

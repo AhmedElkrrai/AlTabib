@@ -12,6 +12,7 @@ import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 @Composable
 fun DoctorList(
     doctors: List<Doctor>,
+    onDoctorClick: (Doctor) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -20,7 +21,10 @@ fun DoctorList(
         contentPadding = PaddingValues(bottom = 16.dp)
     ) {
         itemsIndexed(doctors) { _, doctor ->
-            DoctorCard(doctor = doctor)
+            DoctorCard(
+                doctor = doctor,
+                onDoctorClick = onDoctorClick
+            )
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.altabib.featuers.dashboard.presentation.doctor.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,10 +35,12 @@ import com.example.altabib.ui.theme.LightBlue
 @Composable
 fun DoctorCard(
     doctor: Doctor,
+    onDoctorClick: (Doctor) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
+            .clickable { onDoctorClick(doctor) }
             .fillMaxWidth()
             .padding(vertical = 4.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),

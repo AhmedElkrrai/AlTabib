@@ -63,6 +63,9 @@ fun DashboardScreen(
                     if (result.isNotEmpty()) {
                         DoctorList(
                             doctors = result,
+                            onDoctorClick = { doctor ->
+                                onAction(DashboardAction.OpenDoctorDetails(doctor))
+                            },
                             modifier = Modifier.padding(horizontal = 16.dp)
                         )
                     } else {

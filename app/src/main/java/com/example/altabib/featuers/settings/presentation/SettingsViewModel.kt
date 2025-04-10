@@ -38,7 +38,7 @@ class SettingsViewModel(
             } catch (e: Exception) {
                 _event.emit(
                     SettingsEvent.ShowToast(
-                        DataError.AuthError.RetrievalError("Logout failed: ${e.message}")
+                        DataError.RetrievalError("Logout failed: ${e.message}")
                     )
                 )
             } finally {

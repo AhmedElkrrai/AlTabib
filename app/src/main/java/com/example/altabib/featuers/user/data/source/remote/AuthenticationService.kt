@@ -27,10 +27,10 @@ class AuthenticationService(
                 val authResult = firebaseAuth.signInWithCredential(credential).await()
                 val user = authResult.user
                 if (user != null) Result.Success(user)
-                else Result.Error(DataError.AuthError.RetrievalError("User is null"))
+                else Result.Error(DataError.RetrievalError("User is null"))
             } catch (e: Exception) {
                 Result.Error(
-                    DataError.AuthError.RetrievalError(
+                    DataError.RetrievalError(
                         e.message ?: "Could not sign in with Google"
                     )
                 )
@@ -40,7 +40,7 @@ class AuthenticationService(
     suspend fun registerUser(user: User): Result<User, DataError> = withContext(Dispatchers.IO) {
         try {
             val currentUser = firebaseAuth.currentUser
-                ?: return@withContext Result.Error(DataError.AuthError.RetrievalError("Not signed in"))
+                ?: return@withContext Result.Error(DataError.RetrievalError("Not signed in"))
 
             val userDoc = firestore.collection(USERS_PATH).document(currentUser.uid)
             val snapshot = userDoc.get().await()
@@ -56,7 +56,7 @@ class AuthenticationService(
 
         } catch (e: Exception) {
             Result.Error(
-                DataError.AuthError.RetrievalError(
+                DataError.RetrievalError(
                     e.message ?: "Could not sign in with Google"
                 )
             )

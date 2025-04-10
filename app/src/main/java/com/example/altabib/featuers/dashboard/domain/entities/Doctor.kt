@@ -1,6 +1,7 @@
 package com.example.altabib.featuers.dashboard.domain.entities
 
 data class Doctor(
+    val id: String,
     val name: String,
     val specialization: Specialization,
     val rating: Float,

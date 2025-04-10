@@ -8,6 +8,8 @@
     <string name="error_serialization">تعذر تسلسل أو إلغاء تسلسل البيانات.</string>
     <string name="search_hint">ابحث عن طبيب.</string>
     <string name="no_results">لم يتم العثور على نتائج.</string>
+    <string name="no_doctors_available">لا يوجد أطباء متاحون لهذا التخصص.</string>
+    <string name="unknown_specialization">تخصص غير معروف.</string>
     <string name="local_data_error">تعذر جلب البيانات من قاعدة البيانات المحلية.</string>
     <string name="firebase_error">تعذر جلب البيانات من Firebase.</string>
     <!-- ... medical specializations ... -->

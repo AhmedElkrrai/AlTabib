@@ -30,8 +30,14 @@ fun PatientNavGraph(
         composable(PatientScreen.Specialization.route) { backStackEntry ->
             val specialization = backStackEntry.arguments?.getString(SPECIALIZATION)
             specialization?.let {
-                SpecializationScreenRoot(specialization)
+                SpecializationScreenRoot(
+                    key = specialization,
+                    navController = navController
+                )
             }
+        }
+        composable(PatientScreen.DoctorDetails.route) {
+           // DoctorDetailsScreen()
         }
     }
 }

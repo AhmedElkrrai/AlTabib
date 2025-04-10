@@ -52,10 +52,7 @@ sealed interface DataError {
      */
     data object NoSearchResult : DataError
 
-    /**
-     * Represents an error from Firebase authentication.
-     */
-    sealed interface AuthError : DataError {
-        data class RetrievalError(val message: String) : AuthError
-    }
+    data class RetrievalError(val message: String) : DataError
+
+    data object GeneralError : DataError
 }
