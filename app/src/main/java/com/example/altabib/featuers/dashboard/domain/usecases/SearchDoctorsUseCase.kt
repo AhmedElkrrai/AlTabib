@@ -1,12 +1,14 @@
 package com.example.altabib.featuers.dashboard.domain.usecases
 
+import com.example.altabib.core.domain.util.DataError
+import com.example.altabib.core.domain.util.Result
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 
 class SearchDoctorsUseCase {
-    operator fun invoke(query: String): List<Doctor> {
+    operator fun invoke(query: String): Result<List<Doctor>, DataError> {
         // TODO: Implement search logic
-        return dummyDoctors
+        return Result.Success(dummyDoctors)
     }
 }
 
@@ -21,7 +23,9 @@ val dummyDoctors: List<Doctor> =
             availability = "6AM - 11PM",
             inQueue = 4,
             price = 100,
-            reviews = 3200
+            reviews = 3200,
+            premium = true,
+            address = "Giza, Cairo, Egypt"
         ),
 
         Doctor(
@@ -33,7 +37,9 @@ val dummyDoctors: List<Doctor> =
             availability = "6PM - 7PM",
             inQueue = 0,
             price = 300,
-            reviews = 188
+            reviews = 188,
+            premium = false,
+            address = "Giza, Cairo, Egypt"
         ),
 
         Doctor(
@@ -45,6 +51,8 @@ val dummyDoctors: List<Doctor> =
             availability = "1PM - 9PM",
             inQueue = 300,
             price = 200,
-            reviews = 2000
+            reviews = 2000,
+            premium = true,
+            address = "Giza, Cairo, Egypt"
         ),
     )

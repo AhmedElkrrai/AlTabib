@@ -10,4 +10,6 @@ data class Doctor(
     val availability: String, // eg 06PM - 09PM
     val inQueue: Int,
     val price: Int,
+    val premium: Boolean,
+    val address: String,
 )

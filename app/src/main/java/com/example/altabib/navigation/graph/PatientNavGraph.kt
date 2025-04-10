@@ -6,10 +6,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.altabib.featuers.dashboard.presentation.dashboard.components.DashboardScreenRoot
+import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorDetailsScreenRoot
 import com.example.altabib.featuers.favorites.presentation.FavoritesScreen
 import com.example.altabib.featuers.settings.presentation.SettingsScreenRoot
 import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationScreenRoot
 import com.example.altabib.navigation.screen.PatientScreen
+import com.example.altabib.navigation.utils.DOCTOR_ID
 import com.example.altabib.navigation.utils.SPECIALIZATION
 
 @Composable
@@ -36,8 +38,14 @@ fun PatientNavGraph(
                 )
             }
         }
-        composable(PatientScreen.DoctorDetails.route) {
-           // DoctorDetailsScreen()
+        composable(PatientScreen.DoctorDetails.route) { backStackEntry ->
+            val doctorId = backStackEntry.arguments?.getString(DOCTOR_ID)
+            doctorId?.let {
+                DoctorDetailsScreenRoot(
+                    doctorId = it,
+                    navController = navController
+                )
+            }
         }
     }
 }

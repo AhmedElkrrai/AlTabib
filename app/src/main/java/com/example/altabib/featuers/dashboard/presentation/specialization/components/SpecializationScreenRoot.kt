@@ -51,7 +51,6 @@ fun SpecializationScreenRoot(
         }
     }
 
-
     SpecializationScreen(
         specialization = Specialization.fromKey(key)?.getDisplayName(context)
             ?: stringResource(R.string.unknown_specialization),

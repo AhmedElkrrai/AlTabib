@@ -3,6 +3,8 @@ package com.example.altabib.featuers.dashboard.presentation.dashboard
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.domain.util.DataError
+import com.example.altabib.core.domain.util.onError
+import com.example.altabib.core.domain.util.onSuccess
 import com.example.altabib.featuers.dashboard.domain.usecases.SearchDoctorsUseCase
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 import com.example.altabib.navigation.screen.PatientScreen
@@ -120,14 +122,20 @@ class DashboardViewModel(
             searchDoctorsUseCase(_state.value.searchQuery)
         }
 
-        if (searchResult.isEmpty())
-            _event.emit(DashboardEvent.ShowToast(DataError.NoSearchResult))
+        searchResult
+            .onSuccess { doctors ->
+                if (doctors.isEmpty())
+                    _event.emit(DashboardEvent.ShowToast(DataError.NoSearchResult))
 
-        _state.update { state ->
-            state.copy(
-                searchResult = searchResult,
-                isLoading = false
-            )
-        }
+                _state.update { state ->
+                    state.copy(
+                        searchResult = doctors,
+                        isLoading = false
+                    )
+                }
+            }
+            .onError {
+                _event.emit(DashboardEvent.ShowToast(it))
+            }
     }
 }

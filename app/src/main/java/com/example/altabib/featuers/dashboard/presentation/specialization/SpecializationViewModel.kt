@@ -57,7 +57,6 @@ class SpecializationViewModel(
         }
     }
 
-
     private fun loadDoctors(key: String) {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
