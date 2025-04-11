@@ -4,7 +4,6 @@ import com.example.altabib.featuers.dashboard.domain.DoctorRepository
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 import com.example.altabib.core.domain.util.Result
-import com.example.altabib.utils.roundToDecimal
 import kotlin.random.Random
 
 suspend fun seedDoctors(doctorRepository: DoctorRepository) {
@@ -55,8 +54,7 @@ suspend fun seedDoctors(doctorRepository: DoctorRepository) {
             city = cities.random(),
             rating = Random
                 .nextDouble(2.5, 5.0)
-                .toFloat()
-                .roundToDecimal(1),
+                .toFloat(),
             reviews = Random.nextInt(50, 1000),
             bio = bios[index % bios.size],
             availability = availabilities.random(),

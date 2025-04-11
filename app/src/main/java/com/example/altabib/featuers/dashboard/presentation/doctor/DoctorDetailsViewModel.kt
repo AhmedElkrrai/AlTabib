@@ -1,5 +1,6 @@
 package com.example.altabib.featuers.dashboard.presentation.doctor
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.domain.util.onError
@@ -82,13 +83,11 @@ class DoctorDetailsViewModel(
     }
 
     private fun handleSubmitRating(rating: Int) {
-        if (_state.value.hasRated) return
-
         viewModelScope.launch {
             val currentDoctor = _state.value.doctor
             currentDoctor?.let {
                 val newAverageRating =
-                    (it.rating * it.reviews + rating) / (it.reviews + 1).toFloat()
+                    ((it.rating * it.reviews) + rating) / (it.reviews + 1).toFloat()
 
                 val updatedDoctor = it.copy(
                     rating = newAverageRating,
@@ -103,14 +102,12 @@ class DoctorDetailsViewModel(
                             state.copy(
                                 doctor = updatedDoctor,
                                 userRating = rating,
-                                hasRated = true
                             )
                         }
                     }
                     .onError { error ->
                         _event.emit(DoctorDetailsEvent.ShowToast(error))
                     }
-
             }
         }
     }

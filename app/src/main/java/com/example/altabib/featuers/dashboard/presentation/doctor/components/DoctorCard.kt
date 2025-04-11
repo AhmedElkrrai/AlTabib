@@ -77,7 +77,7 @@ fun DoctorCard(
                     )
                     Spacer(modifier = Modifier.width(2.dp))
                     Text(
-                        text = "${doctor.rating}",
+                        text = "%.1f".format(doctor.rating),
                         style = MaterialTheme.typography.labelSmall
                     )
                 }

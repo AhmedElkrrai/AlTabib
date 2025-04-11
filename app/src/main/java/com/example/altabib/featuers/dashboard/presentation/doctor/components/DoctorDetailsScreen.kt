@@ -165,9 +165,7 @@ fun DoctorDetailsScreen(
                     Spacer(modifier = Modifier.height(24.dp))
 
                     // Rating Section
-                    if (!state.hasRated) {
-                        ReviewSection { onAction(it) }
-                    }
+                    ReviewSection { onAction(it) }
 
                     Spacer(modifier = Modifier.height(16.dp))
 
