@@ -50,6 +50,10 @@ class DoctorDetailsViewModel(
             is DoctorDetailsAction.OnAddressClick -> {
                 // Handle address click action
             }
+
+            is DoctorDetailsAction.OnSubmitRating -> {
+                // Handle submit rating action
+            }
         }
     }
 

@@ -6,4 +6,5 @@ sealed class DoctorDetailsAction {
     data object OnBookAppointmentClick : DoctorDetailsAction()
     data object OnAddToFavoritesClick : DoctorDetailsAction()
     data class OnAddressClick(val address: String) : DoctorDetailsAction()
+    data class OnSubmitRating(val rating: Int) : DoctorDetailsAction()
 }
