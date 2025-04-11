@@ -33,7 +33,7 @@ enum class Specialization(
     ENDOCRINOLOGY("endocrinology", R.string.endocrinology, Icons.Filled.Palette),
     UROLOGY("urology", R.string.urology, Icons.Filled.LocalHospital),
     ONCOLOGY("oncology", R.string.oncology, Icons.Filled.MedicalServices),
-    OTOLARYNGOLOGIES("otolaryngologies", R.string.oncology, Icons.Filled.MedicalServices),
+    OTOLARYNGOLOGIES("otolaryngologies", R.string.otolaryngologies, Icons.Filled.MedicalServices),
     DENTISTRY("dentistry", R.string.dentistry, Icons.Filled.MedicalServices),
     RADIOLOGY("radiology", R.string.radiology, Icons.Filled.Science);
 

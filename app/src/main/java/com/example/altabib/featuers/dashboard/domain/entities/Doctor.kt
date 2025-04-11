@@ -12,4 +12,5 @@ data class Doctor(
     val price: Int,
     val premium: Boolean,
     val address: String,
+    val city: String,
 )

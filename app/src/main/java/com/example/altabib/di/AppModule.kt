@@ -1,6 +1,8 @@
 package com.example.altabib.di
 
 import android.content.Context
+import com.example.altabib.featuers.dashboard.domain.DoctorRepository
+import com.example.altabib.featuers.dashboard.data.source.DoctorRepositoryImpl
 import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardViewModel
 import com.example.altabib.featuers.settings.presentation.SettingsViewModel
 import com.example.altabib.featuers.user.data.source.AuthRepositoryImpl
@@ -57,4 +59,5 @@ val appModule = module {
     viewModel { SpecializationViewModel(get()) }
     viewModel { DoctorDetailsViewModel(get()) }
     singleOf(::AuthRepositoryImpl).bind<AuthRepository>()
+    singleOf(::DoctorRepositoryImpl).bind<DoctorRepository>()
 }

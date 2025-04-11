@@ -23,7 +23,8 @@ fun DataError.getMessage(context: Context): String {
         is DataError.NetworkError.Unknown -> context.getString(R.string.error_unknown)
         is DataError.LocalError -> context.getString(R.string.local_data_error)
         is DataError.NoSearchResult -> context.getString(R.string.no_results)
-        is DataError.RetrievalError -> this.message
         is DataError.GeneralError -> context.getString(R.string.error_unknown)
+        is DataError.RetrievalError -> this.message
+        is DataError.WriteError -> this.message
     }
 }

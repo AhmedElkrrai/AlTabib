@@ -52,7 +52,18 @@ sealed interface DataError {
      */
     data object NoSearchResult : DataError
 
+    /**
+     * Represents an error when data retrieval fails.
+     */
     data class RetrievalError(val message: String) : DataError
 
+    /**
+     * Represents an error when data writing fails.
+     */
+    data class WriteError(val message: String) : DataError
+
+    /**
+     * Represents an unknown or unexpected error.
+     */
     data object GeneralError : DataError
 }
