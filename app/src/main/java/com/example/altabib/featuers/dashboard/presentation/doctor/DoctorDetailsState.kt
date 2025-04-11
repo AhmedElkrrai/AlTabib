@@ -5,4 +5,7 @@ import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 data class DoctorDetailsState(
     val isLoading: Boolean = false,
     val doctor: Doctor? = null,
+    val userRating: Int? = null,
+    val hasRated: Boolean = false,
+    val error: String? = null
 )

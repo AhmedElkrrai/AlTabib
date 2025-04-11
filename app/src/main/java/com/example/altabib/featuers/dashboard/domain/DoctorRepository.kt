@@ -8,6 +8,7 @@ interface DoctorRepository {
     suspend fun searchDoctors(city: String, query: String): Result<List<Doctor>, DataError>
     suspend fun getDoctorById(doctorId: String): Result<Doctor, DataError>
     suspend fun addDoctor(doctor: Doctor): Result<Unit, DataError>
+    suspend fun updateDoctor(doctor: Doctor): Result<Unit, DataError>
     suspend fun getDoctorsBySpecialization(
         specialization: String,
         city: String

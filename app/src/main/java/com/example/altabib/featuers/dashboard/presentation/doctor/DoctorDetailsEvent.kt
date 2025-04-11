@@ -5,4 +5,5 @@ import com.example.altabib.core.domain.util.DataError
 sealed class DoctorDetailsEvent {
     data object Back : DoctorDetailsEvent()
     data class ShowToast(val error: DataError) : DoctorDetailsEvent()
+    data class ShowMessage(val message: String) : DoctorDetailsEvent()
 }

@@ -39,6 +39,10 @@ fun DoctorDetailsScreenRoot(
             is DoctorDetailsEvent.ShowToast -> {
                 Toast.makeText(context, event.error.getMessage(context), Toast.LENGTH_SHORT).show()
             }
+
+            is DoctorDetailsEvent.ShowMessage -> {
+                Toast.makeText(context, event.message, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

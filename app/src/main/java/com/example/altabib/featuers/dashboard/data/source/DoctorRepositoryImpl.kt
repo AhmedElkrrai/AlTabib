@@ -88,6 +88,21 @@ class DoctorRepositoryImpl(
         }
     }
 
+    override suspend fun updateDoctor(doctor: Doctor): Result<Unit, DataError> {
+        return try {
+            val dto = doctor.toDto()
+            firestore.collection(DOCTORS_PATH)
+                .document(dto.id)
+                .set(dto)
+                .await()
+
+            Result.Success(Unit)
+        } catch (e: Exception) {
+            Log.e("DoctorRepo", "Error in updateDoctor", e)
+            Result.Error(DataError.WriteError(e.message ?: "Could not update doctor"))
+        }
+    }
+
     override suspend fun addDoctor(doctor: Doctor): Result<Unit, DataError> {
         return try {
             val dto = doctor.toDto()

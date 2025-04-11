@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.domain.util.onError
 import com.example.altabib.core.domain.util.onSuccess
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
+import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -15,7 +16,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DoctorDetailsViewModel(
-    private val useCase: GetDoctorByIdUseCase,
+    private val getDoctorUseCase: GetDoctorByIdUseCase,
+    private val updateDoctorUseCase: UpdateDoctorUseCase,
 ) : ViewModel() {
     private val initialState = DoctorDetailsState()
     private val _state: MutableStateFlow<DoctorDetailsState> = MutableStateFlow(initialState)
@@ -52,7 +54,7 @@ class DoctorDetailsViewModel(
             }
 
             is DoctorDetailsAction.OnSubmitRating -> {
-                // Handle submit rating action
+                handleSubmitRating(action.rating)
             }
         }
     }
@@ -61,7 +63,7 @@ class DoctorDetailsViewModel(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
 
-            val result = useCase(doctorId)
+            val result = getDoctorUseCase(doctorId)
 
             result
                 .onSuccess { doctor ->
@@ -76,6 +78,40 @@ class DoctorDetailsViewModel(
                     _event.emit(DoctorDetailsEvent.ShowToast(it))
                     _state.update { state -> state.copy(isLoading = false) }
                 }
+        }
+    }
+
+    private fun handleSubmitRating(rating: Int) {
+        if (_state.value.hasRated) return
+
+        viewModelScope.launch {
+            val currentDoctor = _state.value.doctor
+            currentDoctor?.let {
+                val newAverageRating =
+                    (it.rating * it.reviews + rating) / (it.reviews + 1).toFloat()
+
+                val updatedDoctor = it.copy(
+                    rating = newAverageRating,
+                    reviews = it.reviews + 1
+                )
+
+                val result = updateDoctorUseCase(updatedDoctor)
+                result
+                    .onSuccess {
+                        _event.emit(DoctorDetailsEvent.ShowMessage("Rating submitted successfully"))
+                        _state.update { state ->
+                            state.copy(
+                                doctor = updatedDoctor,
+                                userRating = rating,
+                                hasRated = true
+                            )
+                        }
+                    }
+                    .onError { error ->
+                        _event.emit(DoctorDetailsEvent.ShowToast(error))
+                    }
+
+            }
         }
     }
 }

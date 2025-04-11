@@ -16,6 +16,7 @@ import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
 import com.example.altabib.featuers.user.domain.usecases.SaveUserUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.SearchDoctorsUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorsBySpecializationUseCase
+import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsViewModel
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationViewModel
@@ -51,13 +52,14 @@ val appModule = module {
     singleOf(::GoogleSignInUseCase)
     singleOf(::RegisterUseCase)
     singleOf(::LogoutUseCase)
+    singleOf(::UpdateDoctorUseCase)
     singleOf(::GetUserUseCase)
     singleOf(::SaveUserUseCase)
     viewModel { AuthViewModel(get(), get(), get()) }
     viewModel { SettingsViewModel(get()) }
     viewModel { DashboardViewModel(get()) }
     viewModel { SpecializationViewModel(get()) }
-    viewModel { DoctorDetailsViewModel(get()) }
+    viewModel { DoctorDetailsViewModel(get(), get()) }
     singleOf(::AuthRepositoryImpl).bind<AuthRepository>()
     singleOf(::DoctorRepositoryImpl).bind<DoctorRepository>()
 }
