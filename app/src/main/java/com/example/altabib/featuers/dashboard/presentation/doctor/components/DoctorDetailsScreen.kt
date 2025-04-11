@@ -21,6 +21,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AttachMoney
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Schedule
@@ -178,9 +179,8 @@ fun DoctorDetailsScreen(
                     Spacer(modifier = Modifier.height(padding))
 
                     ClickableInfoRow(
-                        icon = Icons.Default.Place,
+                        icon = Icons.Default.LocationOn,
                         text = doctor.address,
-                        style = textStyle,
                         onClick = { onAction(DoctorDetailsAction.OnAddressClick(doctor.address)) }
                     )
 
