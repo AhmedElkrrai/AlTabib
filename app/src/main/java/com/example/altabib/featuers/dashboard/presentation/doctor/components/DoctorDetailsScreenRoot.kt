@@ -1,5 +1,8 @@
 package com.example.altabib.featuers.dashboard.presentation.doctor.components
 
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -34,6 +37,22 @@ fun DoctorDetailsScreenRoot(
         when (event) {
             is DoctorDetailsEvent.Back -> {
                 navController.popBackStack()
+            }
+
+            is DoctorDetailsEvent.NavigateToAddress -> {
+                val gmmIntentUri = Uri.parse("geo:0,0?q=${Uri.encode(event.address)}")
+                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri).apply {
+                    setPackage("com.google.android.apps.maps")
+                }
+                if (mapIntent.resolveActivity(context.packageManager) != null) {
+                    context.startActivity(mapIntent)
+                } else {
+                    Toast.makeText(context, "Google Maps not installed", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            is DoctorDetailsEvent.Navigate -> {
+                navController.navigate(event.route)
             }
 
             is DoctorDetailsEvent.ShowToast -> {

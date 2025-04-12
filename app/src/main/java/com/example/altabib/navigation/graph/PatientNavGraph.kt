@@ -47,5 +47,15 @@ fun PatientNavGraph(
                 )
             }
         }
+
+        composable(PatientScreen.Booking.route) { backStackEntry ->
+            val doctorId = backStackEntry.arguments?.getString(DOCTOR_ID)
+            doctorId?.let {
+//                BookingScreenRoot(
+//                    doctorId = it,
+//                    navController = navController
+//                )
+            }
+        }
     }
 }

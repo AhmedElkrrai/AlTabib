@@ -1,12 +1,12 @@
 package com.example.altabib.featuers.dashboard.presentation.doctor
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.domain.util.onError
 import com.example.altabib.core.domain.util.onSuccess
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
+import com.example.altabib.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -43,7 +43,17 @@ class DoctorDetailsViewModel(
             }
 
             is DoctorDetailsAction.OnBookAppointmentClick -> {
-                // Handle book appointment action
+                viewModelScope.launch {
+                    viewModelScope.launch {
+                        _event.emit(
+                            DoctorDetailsEvent.Navigate(
+                                PatientScreen.Booking.createRoute(
+                                    doctorId = action.doctorId
+                                )
+                            )
+                        )
+                    }
+                }
             }
 
             is DoctorDetailsAction.OnAddToFavoritesClick -> {
@@ -51,7 +61,9 @@ class DoctorDetailsViewModel(
             }
 
             is DoctorDetailsAction.OnAddressClick -> {
-                // Handle address click action
+                viewModelScope.launch {
+                    _event.emit(DoctorDetailsEvent.NavigateToAddress(action.address))
+                }
             }
 
             is DoctorDetailsAction.OnSubmitRating -> {

@@ -178,7 +178,11 @@ fun DoctorDetailsScreen(
                     ) {
 
                         OutlinedButton(
-                            onClick = { onAction(DoctorDetailsAction.OnBookAppointmentClick) },
+                            onClick = {
+                                onAction(
+                                    DoctorDetailsAction.OnBookAppointmentClick(state.doctor.id)
+                                )
+                            },
                             modifier = Modifier.weight(1f),
                             colors = ButtonDefaults.outlinedButtonColors(
                                 contentColor = Color.White,

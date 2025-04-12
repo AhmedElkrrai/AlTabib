@@ -17,4 +17,10 @@ sealed class PatientScreen(val route: String) {
             return "doctor_details/$doctorId"
         }
     }
+
+    data object Booking : PatientScreen("booking/{$DOCTOR_ID}") {
+        fun createRoute(doctorId: String): String {
+            return "booking/$doctorId"
+        }
+    }
 }
