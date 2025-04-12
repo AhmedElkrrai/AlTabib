@@ -164,11 +164,6 @@ fun DoctorDetailsScreen(
 
                     Spacer(modifier = Modifier.height(24.dp))
 
-                    // Rating Section
-                    ReviewSection { onAction(it) }
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
                     // Action buttons
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(16.dp),

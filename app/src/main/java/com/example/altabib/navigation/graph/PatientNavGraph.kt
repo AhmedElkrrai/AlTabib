@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.altabib.featuers.dashboard.presentation.booking.components.BookingScreenRoot
 import com.example.altabib.featuers.dashboard.presentation.dashboard.components.DashboardScreenRoot
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorDetailsScreenRoot
 import com.example.altabib.featuers.favorites.presentation.FavoritesScreen
@@ -51,10 +52,10 @@ fun PatientNavGraph(
         composable(PatientScreen.Booking.route) { backStackEntry ->
             val doctorId = backStackEntry.arguments?.getString(DOCTOR_ID)
             doctorId?.let {
-//                BookingScreenRoot(
-//                    doctorId = it,
-//                    navController = navController
-//                )
+                BookingScreenRoot(
+                    doctorId = it,
+                    navController = navController
+                )
             }
         }
     }
