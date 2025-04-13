@@ -1,10 +1,13 @@
 package com.example.altabib.di
 
 import android.content.Context
+import com.example.altabib.featuers.dashboard.data.source.AppointmentRepositoryImpl
 import com.example.altabib.featuers.dashboard.data.source.DoctorRepositoryImpl
+import com.example.altabib.featuers.dashboard.domain.AppointmentRepository
 import com.example.altabib.featuers.dashboard.domain.DoctorRepository
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorsBySpecializationUseCase
+import com.example.altabib.featuers.dashboard.domain.usecases.SaveAppointmentUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.SearchDoctorsUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingViewModel
@@ -49,6 +52,7 @@ val appModule = module {
     single { FirebaseFirestore.getInstance() }
     singleOf(::SearchDoctorsUseCase)
     singleOf(::GetDoctorsBySpecializationUseCase)
+    singleOf(::SaveAppointmentUseCase)
     singleOf(::GetDoctorByIdUseCase)
     singleOf(::GoogleSignInUseCase)
     singleOf(::RegisterUseCase)
@@ -60,8 +64,9 @@ val appModule = module {
     viewModel { SettingsViewModel(get()) }
     viewModel { DashboardViewModel(get()) }
     viewModel { SpecializationViewModel(get()) }
-    viewModel { BookingViewModel(get(), get(), get()) }
+    viewModel { BookingViewModel(get(), get(), get(), get()) }
     viewModel { DoctorDetailsViewModel(get()) }
     singleOf(::AuthRepositoryImpl).bind<AuthRepository>()
     singleOf(::DoctorRepositoryImpl).bind<DoctorRepository>()
+    singleOf(::AppointmentRepositoryImpl).bind<AppointmentRepository>()
 }

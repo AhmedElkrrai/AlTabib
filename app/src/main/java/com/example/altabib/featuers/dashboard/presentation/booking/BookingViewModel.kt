@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.domain.util.onError
 import com.example.altabib.core.domain.util.onSuccess
+import com.example.altabib.featuers.dashboard.domain.entities.Appointment
 import com.example.altabib.featuers.dashboard.domain.entities.Review
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
+import com.example.altabib.featuers.dashboard.domain.usecases.SaveAppointmentUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
 import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -14,11 +16,13 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 class BookingViewModel(
     private val getDoctorUseCase: GetDoctorByIdUseCase,
     private val updateDoctorUseCase: UpdateDoctorUseCase,
     private val getUserUseCase: GetUserUseCase,
+    private val saveAppointmentUseCase: SaveAppointmentUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(BookingState())
     val state: StateFlow<BookingState> = _state
@@ -150,12 +154,43 @@ class BookingViewModel(
     }
 
     private fun confirmBooking() {
-        if (state.value.selectedDate == null) {
+        val selectedDate = state.value.selectedDate
+        val doctor = state.value.doctor
+
+        if (selectedDate == null) {
             viewModelScope.launch {
                 _event.emit(BookingEvent.ShowMessage("Please select a date"))
             }
             return
         }
 
+        if (doctor == null) return
+
+        viewModelScope.launch {
+            val patient = getUserUseCase()
+            if (patient == null) {
+                _event.emit(BookingEvent.ShowMessage("User not found"))
+                return@launch
+            }
+
+            val dateString = selectedDate.toString()
+            val appointment = Appointment(
+                id = UUID.randomUUID().toString(),
+                doctorId = doctor.id,
+                patientId = patient.uid,
+                date = dateString
+            )
+
+            val result = saveAppointmentUseCase(appointment)
+
+            result
+                .onSuccess {
+                    _event.emit(BookingEvent.ShowMessage("Appointment booked successfully"))
+                    _event.emit(BookingEvent.Back)
+                }
+                .onError {
+                    _event.emit(BookingEvent.ShowToast(it))
+                }
+        }
     }
 }
