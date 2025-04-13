@@ -12,5 +12,6 @@ data class DoctorDto(
     val price: Int = 0,
     val premium: Boolean = false,
     val address: String = "",
-    val city: String = ""
+    val city: String = "",
+    val reviewsList: List<ReviewDto> = emptyList()
 )

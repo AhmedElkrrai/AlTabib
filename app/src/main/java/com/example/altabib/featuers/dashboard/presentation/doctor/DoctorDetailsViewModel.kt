@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 
 class DoctorDetailsViewModel(
     private val getDoctorUseCase: GetDoctorByIdUseCase,
-    private val updateDoctorUseCase: UpdateDoctorUseCase,
 ) : ViewModel() {
     private val initialState = DoctorDetailsState()
     private val _state: MutableStateFlow<DoctorDetailsState> = MutableStateFlow(initialState)
@@ -65,10 +64,6 @@ class DoctorDetailsViewModel(
                     _event.emit(DoctorDetailsEvent.NavigateToAddress(action.address))
                 }
             }
-
-            is DoctorDetailsAction.OnSubmitRating -> {
-                handleSubmitRating(action.rating)
-            }
         }
     }
 
@@ -91,36 +86,6 @@ class DoctorDetailsViewModel(
                     _event.emit(DoctorDetailsEvent.ShowToast(it))
                     _state.update { state -> state.copy(isLoading = false) }
                 }
-        }
-    }
-
-    private fun handleSubmitRating(rating: Int) {
-        viewModelScope.launch {
-            val currentDoctor = _state.value.doctor
-            currentDoctor?.let {
-                val newAverageRating =
-                    ((it.rating * it.reviews) + rating) / (it.reviews + 1).toFloat()
-
-                val updatedDoctor = it.copy(
-                    rating = newAverageRating,
-                    reviews = it.reviews + 1
-                )
-
-                val result = updateDoctorUseCase(updatedDoctor)
-                result
-                    .onSuccess {
-                        _event.emit(DoctorDetailsEvent.ShowMessage("Rating submitted successfully"))
-                        _state.update { state ->
-                            state.copy(
-                                doctor = updatedDoctor,
-                                userRating = rating,
-                            )
-                        }
-                    }
-                    .onError { error ->
-                        _event.emit(DoctorDetailsEvent.ShowToast(error))
-                    }
-            }
         }
     }
 }

@@ -4,6 +4,7 @@ import com.example.altabib.featuers.dashboard.domain.DoctorRepository
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 import com.example.altabib.core.domain.util.Result
+import com.example.altabib.featuers.dashboard.domain.entities.Review
 import kotlin.random.Random
 
 suspend fun seedDoctors(doctorRepository: DoctorRepository) {
@@ -46,6 +47,41 @@ suspend fun seedDoctors(doctorRepository: DoctorRepository) {
         "Nasr City, Cairo", "Maadi, Cairo", "Downtown, Tanta", "Talkha, Mansoura"
     )
 
+    val reviewList = listOf(
+        Review(
+            id = "review_1",
+            userName = "John Doe",
+            text = "Great doctor, highly recommended!",
+            rating = 5
+        ),
+        Review(
+            id = "review_2",
+            userName = "Jane Smith",
+            text = "I had a wonderful experience with this doctor.",
+            rating = 4
+        ),
+        Review(
+            id = "review_3",
+            userName = "Bob Johnson",
+            text = "The doctor was knowledgeable and helpful.",
+            rating = 4
+        ),
+        Review(
+            id = "review_4",
+            userName = "Alice Brown",
+            text = "I couldn't be happier with the treatment.",
+            rating = 5
+        ),
+
+        Review(
+            id = "review_5",
+            userName = "Emily Davis",
+            text = "The doctor's attention to detail was impressive.",
+            rating = 4
+
+        )
+    )
+
     val dummyDoctors = (0 until 20).map { index ->
         Doctor(
             id = "doc_${index + 1}",
@@ -61,7 +97,8 @@ suspend fun seedDoctors(doctorRepository: DoctorRepository) {
             inQueue = Random.nextInt(0, 20),
             price = Random.nextInt(100, 500),
             premium = Random.nextBoolean(),
-            address = addresses.random()
+            address = addresses.random(),
+            reviewsList = reviewList
         )
     }
 

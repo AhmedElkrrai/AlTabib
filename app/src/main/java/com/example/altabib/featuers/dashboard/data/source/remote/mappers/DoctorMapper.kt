@@ -1,7 +1,9 @@
 package com.example.altabib.featuers.dashboard.data.source.remote.mappers
 
 import com.example.altabib.featuers.dashboard.data.source.remote.models.DoctorDto
+import com.example.altabib.featuers.dashboard.data.source.remote.models.ReviewDto
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
+import com.example.altabib.featuers.dashboard.domain.entities.Review
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 
 fun DoctorDto.toDomain(): Doctor {
@@ -19,7 +21,8 @@ fun DoctorDto.toDomain(): Doctor {
         price = price,
         premium = premium,
         address = address,
-        city = city
+        city = city,
+        reviewsList = reviewsList.map { it.toDomain() }
     )
 }
 
@@ -36,6 +39,27 @@ fun Doctor.toDto(): DoctorDto {
         price = price,
         premium = premium,
         address = address,
-        city = city
+        city = city,
+        reviewsList = reviewsList.map { it.toDto() }
+    )
+}
+
+fun ReviewDto.toDomain(): Review {
+    return Review(
+        id = id,
+        userName = userName,
+        text = text,
+        rating = rating,
+        createdAt = createdAt
+    )
+}
+
+fun Review.toDto(): ReviewDto {
+    return ReviewDto(
+        id = id,
+        userName = userName,
+        text = text,
+        rating = rating,
+        createdAt = createdAt
     )
 }

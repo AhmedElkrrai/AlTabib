@@ -13,4 +13,5 @@ data class Doctor(
     val premium: Boolean,
     val address: String,
     val city: String,
+    val reviewsList: List<Review>
 )

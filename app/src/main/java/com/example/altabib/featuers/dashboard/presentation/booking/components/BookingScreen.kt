@@ -60,6 +60,9 @@ fun BookingScreen(
                         .padding(horizontal = 16.dp)
                         .verticalScroll(rememberScrollState()),
                 ) {
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
                     // Available time
                     Text(
                         text = doctor.availability,
@@ -76,29 +79,15 @@ fun BookingScreen(
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(16.dp))
 
-                    // Reviews
-                    if (state.reviews.isNotEmpty()) {
-                        Text(
-                            text = "What others are saying:",
-                            style = MaterialTheme.typography.titleMedium
-                        )
+                    // Rating section
+                    RatingSection(
+                        rating = state.userRating,
+                        onRatingSelected = { onAction(BookingAction.OnSubmitRating(it)) }
+                    )
 
-                        Spacer(modifier = Modifier.height(8.dp))
-
-                        LazyColumn(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(1f)
-                        ) {
-                            itemsIndexed(state.reviews) { _, review ->
-                                ReviewCard(review)
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(16.dp))
-                    }
+                    Spacer(modifier = Modifier.height(16.dp))
 
                     // User review input
                     OutlinedTextField(
@@ -110,38 +99,89 @@ fun BookingScreen(
                         maxLines = 3
                     )
 
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = Modifier.height(24.dp))
 
-                    // Rating section
-                    RatingSection(
-                        rating = state.userRating,
-                        onRatingSelected = { onAction(BookingAction.OnRatingChanged(it)) }
-                    )
+                    // Leave review button
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Button(
+                            onClick = {
+                                onAction(
+                                    BookingAction.OnSubmitReview
+                                )
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth(0.6f)
+                                .height(48.dp)
+                        ) {
+                            Text("Leave a review")
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    // Reviews
+                    if (state.doctor.reviewsList.isEmpty()) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(170.dp),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text(
+                                text = "No reviews yet",
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                        }
+                    } else {
+                        Text(
+                            text = "What others are saying:",
+                            style = MaterialTheme.typography.titleMedium
+                        )
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        LazyColumn(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(150.dp)
+                        ) {
+                            itemsIndexed(state.doctor.reviewsList) { _, review ->
+                                ReviewCard(review)
+                            }
+                        }
+                    }
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     // Submit button
-                    Button(
-                        onClick = {
-                            val review = Review(
-                                id = "", // get from UseCase
-                                userName = "", // get from UseCase
-                                text = state.userReview,
-                                rating = state.userRating
-                            )
-
-                            onAction(
-                                BookingAction.OnSubmitReview(
-                                    doctorId = doctor.id,
-                                    review = review
-                                )
-                            )
-                        },
+                    Box(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(48.dp)
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Text("Confirm Booking")
+                        Button(
+                            onClick = {
+                                val review = Review(
+                                    id = "", // get from UseCase
+                                    userName = "", // get from UseCase
+                                    text = state.userReview,
+                                    rating = state.userRating
+                                )
+
+                                onAction(
+                                    BookingAction.OnConfirmBooking(review)
+                                )
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth(0.6f)
+                                .height(48.dp)
+                        ) {
+                            Text("Confirm Booking")
+                        }
                     }
 
                     Spacer(modifier = Modifier.height(8.dp))

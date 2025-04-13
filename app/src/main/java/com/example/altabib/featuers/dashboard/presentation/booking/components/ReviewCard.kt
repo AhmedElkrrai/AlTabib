@@ -26,7 +26,9 @@ fun ReviewCard(review: Review) {
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             Text(review.userName, style = MaterialTheme.typography.labelLarge)
-            Text("⭐ ${review.rating}/10", style = MaterialTheme.typography.bodySmall)
+            if (review.rating > 0) {
+                Text("⭐ ${review.rating}/5", style = MaterialTheme.typography.bodySmall)
+            }
             Spacer(modifier = Modifier.height(4.dp))
             Text(review.text, style = MaterialTheme.typography.bodyMedium)
         }
