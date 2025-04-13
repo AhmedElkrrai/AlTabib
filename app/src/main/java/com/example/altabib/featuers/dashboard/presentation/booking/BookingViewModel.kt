@@ -36,6 +36,10 @@ class BookingViewModel(
                 }
             }
 
+            is BookingAction.OnDateSelected -> {
+                _state.update { it.copy(selectedDate = action.date) }
+            }
+
             is BookingAction.OnReviewTextChanged -> {
                 _state.update { it.copy(userReview = action.text) }
             }
@@ -49,7 +53,7 @@ class BookingViewModel(
             }
 
             is BookingAction.OnConfirmBooking -> {
-                confirmBooking(action.date)
+                confirmBooking()
             }
         }
     }
@@ -145,7 +149,13 @@ class BookingViewModel(
         }
     }
 
-    private fun confirmBooking(date: String) {
+    private fun confirmBooking() {
+        if (state.value.selectedDate == null) {
+            viewModelScope.launch {
+                _event.emit(BookingEvent.ShowMessage("Please select a date"))
+            }
+            return
+        }
 
     }
 }

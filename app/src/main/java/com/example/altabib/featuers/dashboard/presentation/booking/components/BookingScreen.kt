@@ -60,25 +60,14 @@ fun BookingScreen(
                         .verticalScroll(rememberScrollState()),
                 ) {
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
 
-                    // Available time
-                    Text(
-                        text = doctor.availability,
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    DatePicker(
+                        state = state,
+                        onAction = onAction
                     )
 
                     Spacer(modifier = Modifier.height(8.dp))
-
-                    // Queue info
-                    Text(
-                        text = "Current patients in queue: ${doctor.inQueue}",
-                        style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.align(Alignment.CenterHorizontally)
-                    )
-
-                    Spacer(modifier = Modifier.height(16.dp))
 
                     // Rating section
                     RatingSection {
@@ -163,9 +152,7 @@ fun BookingScreen(
                     ) {
                         Button(
                             onClick = {
-                                onAction(
-                                    BookingAction.OnConfirmBooking("12/5/2025")
-                                )
+                                onAction(BookingAction.OnConfirmBooking)
                             },
                             modifier = Modifier
                                 .fillMaxWidth(0.6f)
