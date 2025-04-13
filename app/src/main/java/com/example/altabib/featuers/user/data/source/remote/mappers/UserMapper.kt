@@ -17,7 +17,7 @@ fun FirebaseUser.toDomain(): User {
 
 fun Patient.toUser(): User {
     return User(
-        uid = id,
+        uid = uid,
         name = name,
         city = city,
         type = UserType.Patient

@@ -14,6 +14,10 @@ import com.example.altabib.featuers.dashboard.presentation.booking.BookingViewMo
 import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardViewModel
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsViewModel
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationViewModel
+import com.example.altabib.featuers.settings.data.source.PatientRepositoryImpl
+import com.example.altabib.featuers.settings.domain.PatientRepository
+import com.example.altabib.featuers.settings.domain.usecases.GetPatientUseCase
+import com.example.altabib.featuers.settings.domain.usecases.UpdatePatientUseCase
 import com.example.altabib.featuers.settings.presentation.SettingsViewModel
 import com.example.altabib.featuers.user.data.source.AuthRepositoryImpl
 import com.example.altabib.featuers.user.data.source.local.UserManager
@@ -58,15 +62,18 @@ val appModule = module {
     singleOf(::RegisterUseCase)
     singleOf(::LogoutUseCase)
     singleOf(::UpdateDoctorUseCase)
+    singleOf(::UpdatePatientUseCase)
+    singleOf(::GetPatientUseCase)
     singleOf(::GetUserUseCase)
     singleOf(::CacheUserUseCase)
     viewModel { AuthViewModel(get(), get(), get()) }
     viewModel { SettingsViewModel(get()) }
     viewModel { DashboardViewModel(get()) }
     viewModel { SpecializationViewModel(get()) }
-    viewModel { BookingViewModel(get(), get(), get(), get()) }
+    viewModel { BookingViewModel(get(), get(), get(), get(), get()) }
     viewModel { DoctorDetailsViewModel(get()) }
     singleOf(::AuthRepositoryImpl).bind<AuthRepository>()
     singleOf(::DoctorRepositoryImpl).bind<DoctorRepository>()
     singleOf(::AppointmentRepositoryImpl).bind<AppointmentRepository>()
+    singleOf(::PatientRepositoryImpl).bind<PatientRepository>()
 }

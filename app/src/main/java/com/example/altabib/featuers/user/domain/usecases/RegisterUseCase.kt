@@ -14,7 +14,7 @@ class RegisterUseCase(
     suspend operator fun invoke(user: User): Result<User, DataError> {
         return if (user.type == UserType.Patient) {
             val patient = Patient(
-                id = user.uid,
+                uid = user.uid,
                 name = user.name,
                 city = user.city
             )

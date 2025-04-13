@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-private const val PATIENTS_PATH = "patients"
+const val PATIENTS_PATH = "patients"
 const val DOCTORS_PATH = "doctors"
 
 class AuthenticationService(

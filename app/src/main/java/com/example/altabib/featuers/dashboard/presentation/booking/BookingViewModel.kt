@@ -9,19 +9,23 @@ import com.example.altabib.featuers.dashboard.domain.entities.Review
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.SaveAppointmentUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
-import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
+import com.example.altabib.featuers.settings.domain.entities.Patient
+import com.example.altabib.featuers.settings.domain.usecases.GetPatientUseCase
+import com.example.altabib.featuers.settings.domain.usecases.UpdatePatientUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.format.DateTimeFormatter
 import java.util.UUID
 
 class BookingViewModel(
     private val getDoctorUseCase: GetDoctorByIdUseCase,
     private val updateDoctorUseCase: UpdateDoctorUseCase,
-    private val getUserUseCase: GetUserUseCase,
+    private val updatePatientUseCase: UpdatePatientUseCase,
+    private val getPatientUseCase: GetPatientUseCase,
     private val saveAppointmentUseCase: SaveAppointmentUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(BookingState())
@@ -66,50 +70,74 @@ class BookingViewModel(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
 
-            val result = getDoctorUseCase(doctorId)
+            val doctorResult = getDoctorUseCase(doctorId)
+            val patientResult = getPatientUseCase()
 
-            result
-                .onSuccess { doctor ->
-                    _state.update {
-                        it.copy(
-                            isLoading = false,
-                            doctor = doctor
-                        )
-                    }
+            doctorResult.onSuccess { doctor ->
+                var existingRating: Int? = null
+
+                patientResult?.onSuccess { patient ->
+                    existingRating = patient.ratings
+                        .firstOrNull { it.doctorId == doctorId }
+                        ?.rating
                 }
-                .onError {
-                    _event.emit(BookingEvent.ShowToast(it))
-                    _state.update { state -> state.copy(isLoading = false) }
+
+                _state.update {
+                    it.copy(
+                        isLoading = false,
+                        doctor = doctor,
+                        userRating = existingRating ?: 0
+                    )
                 }
+            }.onError {
+                _event.emit(BookingEvent.ShowToast(it))
+                _state.update { state -> state.copy(isLoading = false) }
+            }
         }
     }
 
     private fun submitRating(rating: Int) {
         viewModelScope.launch {
-            val currentDoctor = _state.value.doctor
-            currentDoctor?.let {
-                val newAverageRating =
-                    ((it.rating * it.reviews) + rating) / (it.reviews + 1).toFloat()
+            getPatientUseCase.invoke()?.onSuccess { patient ->
+                val currentDoctor = _state.value.doctor
+                currentDoctor?.let {
+                    val newAverageRating =
+                        ((it.rating * it.reviews) + rating) / (it.reviews + 1).toFloat()
 
-                val updatedDoctor = it.copy(
-                    rating = newAverageRating,
-                    reviews = it.reviews + 1
-                )
+                    val updatedDoctor = it.copy(
+                        rating = newAverageRating,
+                        reviews = it.reviews + 1
+                    )
 
-                val result = updateDoctorUseCase(updatedDoctor)
-                result
-                    .onSuccess {
-                        _event.emit(BookingEvent.ShowMessage("Rating submitted successfully"))
-                        _state.update { state ->
-                            state.copy(
-                                doctor = updatedDoctor,
-                                userRating = rating,
-                            )
+                    val patientRating = Patient.Rating(
+                        doctorId = updatedDoctor.id,
+                        rating = rating
+                    )
+
+                    val updatedPatient = patient.copy(
+                        ratings = patient.ratings + patientRating
+                    )
+
+                    updatePatientUseCase(updatedPatient)
+                        .onError { error ->
+                            _event.emit(BookingEvent.ShowToast(error))
                         }
-                    }
-                    .onError { error ->
-                        _event.emit(BookingEvent.ShowToast(error))
-                    }
+
+                    val result = updateDoctorUseCase(updatedDoctor)
+                    result
+                        .onSuccess {
+                            _event.emit(BookingEvent.ShowMessage("Rating submitted successfully"))
+                            _state.update { state ->
+                                state.copy(
+                                    doctor = updatedDoctor,
+                                    userRating = rating,
+                                )
+                            }
+                        }
+                        .onError { error ->
+                            _event.emit(BookingEvent.ShowToast(error))
+                        }
+                }
             }
         }
     }
@@ -120,35 +148,35 @@ class BookingViewModel(
                 _event.emit(BookingEvent.ShowMessage("Review cannot be empty"))
                 return@launch
             }
-            val patient = getUserUseCase() ?: return@launch
-
-            val review = Review(
-                id = patient.uid,
-                userName = patient.name,
-                text = _state.value.userReview,
-                rating = _state.value.userRating
-            )
-
-            val currentDoctor = _state.value.doctor
-
-            currentDoctor?.let {
-                val updatedDoctor = it.copy(
-                    reviewsList = it.reviewsList + review
+            getPatientUseCase.invoke()?.onSuccess { patient ->
+                val review = Review(
+                    id = patient.uid,
+                    userName = patient.name,
+                    text = _state.value.userReview,
+                    rating = _state.value.userRating
                 )
-                val result = updateDoctorUseCase(updatedDoctor)
-                result
-                    .onSuccess {
-                        _event.emit(BookingEvent.ShowMessage("Review submitted successfully"))
-                        _state.update { state ->
-                            state.copy(
-                                doctor = updatedDoctor,
-                                userReview = "",
-                            )
+
+                val currentDoctor = _state.value.doctor
+
+                currentDoctor?.let {
+                    val updatedDoctor = it.copy(
+                        reviewsList = it.reviewsList + review
+                    )
+                    val result = updateDoctorUseCase(updatedDoctor)
+                    result
+                        .onSuccess {
+                            _event.emit(BookingEvent.ShowMessage("Review submitted successfully"))
+                            _state.update { state ->
+                                state.copy(
+                                    doctor = updatedDoctor,
+                                    userReview = "",
+                                )
+                            }
                         }
-                    }
-                    .onError { error ->
-                        _event.emit(BookingEvent.ShowToast(error))
-                    }
+                        .onError { error ->
+                            _event.emit(BookingEvent.ShowToast(error))
+                        }
+                }
             }
         }
     }
@@ -167,29 +195,30 @@ class BookingViewModel(
         if (doctor == null) return
 
         viewModelScope.launch {
-            val patient = getUserUseCase()
-            if (patient == null) {
-                _event.emit(BookingEvent.ShowMessage("User not found"))
-                return@launch
-            }
+            getPatientUseCase.invoke()
+                ?.onSuccess { patient ->
+                    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                    val dateString = selectedDate.format(formatter)
+                    val appointment = Appointment(
+                        id = UUID.randomUUID().toString(),
+                        doctorId = doctor.id,
+                        patientId = patient.uid,
+                        date = dateString
+                    )
 
-            val dateString = selectedDate.toString()
-            val appointment = Appointment(
-                id = UUID.randomUUID().toString(),
-                doctorId = doctor.id,
-                patientId = patient.uid,
-                date = dateString
-            )
+                    val result = saveAppointmentUseCase(appointment)
 
-            val result = saveAppointmentUseCase(appointment)
-
-            result
-                .onSuccess {
-                    _event.emit(BookingEvent.ShowMessage("Appointment booked successfully"))
-                    _event.emit(BookingEvent.Back)
+                    result
+                        .onSuccess {
+                            _event.emit(BookingEvent.ShowMessage("Appointment booked successfully"))
+                            _event.emit(BookingEvent.Back)
+                        }
+                        .onError {
+                            _event.emit(BookingEvent.ShowToast(it))
+                        }
                 }
-                .onError {
-                    _event.emit(BookingEvent.ShowToast(it))
+                ?.onError {
+                    _event.emit(BookingEvent.ShowMessage("User not found"))
                 }
         }
     }

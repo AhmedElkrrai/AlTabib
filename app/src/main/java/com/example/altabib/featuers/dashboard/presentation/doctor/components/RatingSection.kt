@@ -16,6 +16,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -27,10 +28,12 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun RatingSection(
+    currentRating: Int,
     modifier: Modifier = Modifier,
     onRatingSelected: (Int) -> Unit,
 ) {
-    var userRating by remember { mutableStateOf<Int?>(null) }
+    var userRating by remember { mutableIntStateOf(currentRating) }
+
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -55,7 +58,7 @@ fun RatingSection(
                     modifier = modifier
                         .size(32.dp)
                         .graphicsLayer(scaleX = scale, scaleY = scale)
-                        .clickable(enabled = userRating == null) {
+                        .clickable(enabled = userRating == 0) {
                             userRating = star
                             onRatingSelected(star)
                         }

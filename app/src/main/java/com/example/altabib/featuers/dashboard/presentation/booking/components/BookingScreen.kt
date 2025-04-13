@@ -70,7 +70,7 @@ fun BookingScreen(
                     Spacer(modifier = Modifier.height(8.dp))
 
                     // Rating section
-                    RatingSection {
+                    RatingSection(state.userRating) {
                         onAction(BookingAction.OnSubmitRating(it))
                     }
 
