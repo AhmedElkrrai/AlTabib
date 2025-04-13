@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsAction
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsState
+import com.example.altabib.ui.components.Loading
 import com.example.altabib.ui.components.TopAppBarWithBackButton
 import com.example.altabib.ui.theme.LightBlue
 
@@ -72,14 +73,7 @@ fun DoctorDetailsScreen(
         modifier = modifier
     ) { innerPadding ->
         if (state.isLoading) {
-            Box(
-                modifier = Modifier
-                    .padding(innerPadding)
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator()
-            }
+            Loading(innerPadding)
         } else {
             state.doctor?.let { doctor ->
                 Column(

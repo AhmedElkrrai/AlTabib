@@ -16,6 +16,7 @@ import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorList
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationAction
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationState
+import com.example.altabib.ui.components.Loading
 import com.example.altabib.ui.components.TopAppBarWithBackButton
 
 @Composable
@@ -35,14 +36,7 @@ fun SpecializationScreen(
         modifier = modifier
     ) { innerPadding ->
         if (state.isLoading) {
-            Box(
-                modifier = Modifier
-                    .padding(innerPadding)
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator()
-            }
+            Loading(innerPadding)
         } else if (state.doctors.isEmpty()) {
             Box(
                 modifier = Modifier

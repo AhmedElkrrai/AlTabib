@@ -101,6 +101,12 @@ class DoctorDetailsViewModel(
                 _event.emit(DoctorDetailsEvent.ShowMessage("Doctor already in favorites"))
             } else {
                 addFavoriteUseCase.invoke(state.value.doctor!!)
+                    .onSuccess {
+                        _event.emit(DoctorDetailsEvent.ShowMessage("Doctor added to favorites"))
+                    }
+                    .onError {
+                        _event.emit(DoctorDetailsEvent.ShowToast(it))
+                    }
             }
         }
     }

@@ -8,9 +8,9 @@ import androidx.navigation.compose.composable
 import com.example.altabib.featuers.dashboard.presentation.booking.components.BookingScreenRoot
 import com.example.altabib.featuers.dashboard.presentation.dashboard.components.DashboardScreenRoot
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorDetailsScreenRoot
-import com.example.altabib.featuers.favorites.presentation.FavoritesScreen
-import com.example.altabib.featuers.settings.presentation.SettingsScreenRoot
 import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationScreenRoot
+import com.example.altabib.featuers.favorites.presentation.components.FavoritesScreenRoot
+import com.example.altabib.featuers.settings.presentation.SettingsScreenRoot
 import com.example.altabib.navigation.screen.PatientScreen
 import com.example.altabib.navigation.utils.DOCTOR_ID
 import com.example.altabib.navigation.utils.SPECIALIZATION
@@ -25,7 +25,7 @@ fun PatientNavGraph(
             DashboardScreenRoot(navController, modifier)
         }
         composable(PatientScreen.Favorites.route) {
-            FavoritesScreen()
+            FavoritesScreenRoot(navController)
         }
         composable(PatientScreen.Settings.route) {
             SettingsScreenRoot(navController)

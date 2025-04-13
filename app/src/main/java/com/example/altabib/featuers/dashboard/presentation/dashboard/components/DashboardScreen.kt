@@ -20,6 +20,7 @@ import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardAc
 import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardState
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorList
 import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationGrid
+import com.example.altabib.ui.components.Loading
 
 @Composable
 fun DashboardScreen(
@@ -51,12 +52,7 @@ fun DashboardScreen(
         ) { (query, isLoading, result) ->
             when {
                 isLoading -> {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        CircularProgressIndicator()
-                    }
+                    Loading()
                 }
 
                 query.isNotBlank() -> {
