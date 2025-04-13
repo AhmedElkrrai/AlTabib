@@ -6,6 +6,8 @@ import com.example.altabib.core.domain.util.onError
 import com.example.altabib.core.domain.util.onSuccess
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
+import com.example.altabib.featuers.favorites.domain.usecases.AddFavoriteUseCase
+import com.example.altabib.featuers.favorites.domain.usecases.IsFavoriteUseCase
 import com.example.altabib.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +20,8 @@ import kotlinx.coroutines.launch
 
 class DoctorDetailsViewModel(
     private val getDoctorUseCase: GetDoctorByIdUseCase,
+    private val isFavoriteUseCase: IsFavoriteUseCase,
+    private val addFavoriteUseCase: AddFavoriteUseCase,
 ) : ViewModel() {
     private val initialState = DoctorDetailsState()
     private val _state: MutableStateFlow<DoctorDetailsState> = MutableStateFlow(initialState)
@@ -56,7 +60,7 @@ class DoctorDetailsViewModel(
             }
 
             is DoctorDetailsAction.OnAddToFavoritesClick -> {
-                // Handle add to favorites action
+                addToFavorites()
             }
 
             is DoctorDetailsAction.OnAddressClick -> {
@@ -86,6 +90,18 @@ class DoctorDetailsViewModel(
                     _event.emit(DoctorDetailsEvent.ShowToast(it))
                     _state.update { state -> state.copy(isLoading = false) }
                 }
+        }
+    }
+
+    private fun addToFavorites() {
+        viewModelScope.launch {
+            val doctor = state.value.doctor ?: return@launch
+            val result = isFavoriteUseCase(doctor.id)
+            if (result) {
+                _event.emit(DoctorDetailsEvent.ShowMessage("Doctor already in favorites"))
+            } else {
+                addFavoriteUseCase.invoke(state.value.doctor!!)
+            }
         }
     }
 }

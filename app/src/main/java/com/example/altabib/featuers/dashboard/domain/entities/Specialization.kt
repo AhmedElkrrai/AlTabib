@@ -38,7 +38,8 @@ enum class Specialization(
     RADIOLOGY("radiology", R.string.radiology, Icons.Filled.Science);
 
     companion object {
-        fun fromKey(key: String): Specialization? = entries.find { it.key == key }
+        fun fromKey(key: String): Specialization =
+            entries.find { it.key == key } ?: GENERAL_PRACTICE
     }
 }
 
