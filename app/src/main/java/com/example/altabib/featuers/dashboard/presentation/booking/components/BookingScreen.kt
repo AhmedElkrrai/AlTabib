@@ -111,7 +111,7 @@ fun BookingScreen(
                     Spacer(modifier = Modifier.height(24.dp))
 
                     // Reviews
-                    if (state.doctor.reviewsList.isEmpty()) {
+                    if (doctor.reviewsList.isEmpty()) {
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -136,7 +136,11 @@ fun BookingScreen(
                                 .fillMaxWidth()
                                 .height(150.dp)
                         ) {
-                            itemsIndexed(state.doctor.reviewsList) { _, review ->
+                            itemsIndexed(
+                                doctor
+                                    .reviewsList
+                                    .sortedByDescending { it.createdAt })
+                            { _, review ->
                                 ReviewCard(review)
                             }
                         }

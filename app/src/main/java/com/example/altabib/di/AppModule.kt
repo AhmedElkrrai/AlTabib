@@ -19,11 +19,11 @@ import com.example.altabib.featuers.user.data.source.AuthRepositoryImpl
 import com.example.altabib.featuers.user.data.source.local.UserManager
 import com.example.altabib.featuers.user.data.source.remote.AuthenticationService
 import com.example.altabib.featuers.user.domain.AuthRepository
+import com.example.altabib.featuers.user.domain.usecases.CacheUserUseCase
 import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
 import com.example.altabib.featuers.user.domain.usecases.GoogleSignInUseCase
 import com.example.altabib.featuers.user.domain.usecases.LogoutUseCase
 import com.example.altabib.featuers.user.domain.usecases.RegisterUseCase
-import com.example.altabib.featuers.user.domain.usecases.SaveUserUseCase
 import com.example.altabib.featuers.user.presentation.auth.AuthViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -59,7 +59,7 @@ val appModule = module {
     singleOf(::LogoutUseCase)
     singleOf(::UpdateDoctorUseCase)
     singleOf(::GetUserUseCase)
-    singleOf(::SaveUserUseCase)
+    singleOf(::CacheUserUseCase)
     viewModel { AuthViewModel(get(), get(), get()) }
     viewModel { SettingsViewModel(get()) }
     viewModel { DashboardViewModel(get()) }

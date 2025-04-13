@@ -2,13 +2,15 @@ package com.example.altabib.featuers.user.domain
 
 import com.example.altabib.core.domain.util.DataError
 import com.example.altabib.core.domain.util.Result
+import com.example.altabib.featuers.dashboard.domain.entities.Doctor
+import com.example.altabib.featuers.settings.domain.entities.Patient
 import com.example.altabib.featuers.user.domain.entities.User
-import com.google.firebase.auth.FirebaseUser
 
 interface AuthRepository {
-    suspend fun registerUser(user: User): Result<User, DataError>
-    suspend fun signInWithGoogle(idToken: String): Result<FirebaseUser, DataError>
+    suspend fun registerPatient(patient: Patient): Result<User, DataError>
+    suspend fun registerDoctor(doctor: Doctor): Result<User, DataError>
+    suspend fun signInWithGoogle(idToken: String): Result<User, DataError>
     fun logout()
-    fun saveUser(user: User)
+    fun cacheUser(user: User)
     fun getUser(): User?
 }

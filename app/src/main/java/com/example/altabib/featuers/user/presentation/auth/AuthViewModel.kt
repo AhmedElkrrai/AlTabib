@@ -7,7 +7,7 @@ import com.example.altabib.core.domain.util.onSuccess
 import com.example.altabib.featuers.user.domain.usecases.GoogleSignInUseCase
 import com.example.altabib.featuers.user.domain.usecases.RegisterUseCase
 import com.example.altabib.featuers.user.domain.entities.User
-import com.example.altabib.featuers.user.domain.usecases.SaveUserUseCase
+import com.example.altabib.featuers.user.domain.usecases.CacheUserUseCase
 import com.example.altabib.navigation.screen.Screen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 class AuthViewModel(
     private val googleSignInUseCase: GoogleSignInUseCase,
     private val registerUseCase: RegisterUseCase,
-    private val saveUserUseCase: SaveUserUseCase
+    private val cacheUserUseCase: CacheUserUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(AuthState())
@@ -42,7 +42,7 @@ class AuthViewModel(
 
             googleSignInUseCase.invoke(idToken)
                 .onSuccess { signInResult ->
-                    saveUserUseCase.invoke(user.copy(uid = signInResult.uid))
+                    cacheUserUseCase.invoke(user.copy(uid = signInResult.uid))
                     registerUseCase.invoke(user.copy(uid = signInResult.uid))
                         .onSuccess {
                             _state.update { it.copy(isLoading = false) }

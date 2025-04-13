@@ -2,18 +2,17 @@ package com.example.altabib.featuers.dashboard.data.source
 
 import android.util.Log
 import com.example.altabib.core.domain.util.DataError
-import com.example.altabib.featuers.dashboard.domain.DoctorRepository
-import com.example.altabib.featuers.dashboard.domain.entities.Doctor
-import com.google.firebase.firestore.FirebaseFirestore
 import com.example.altabib.core.domain.util.Result
 import com.example.altabib.featuers.dashboard.data.source.remote.mappers.toDomain
 import com.example.altabib.featuers.dashboard.data.source.remote.mappers.toDto
 import com.example.altabib.featuers.dashboard.data.source.remote.models.DoctorDto
-import com.example.altabib.navigation.utils.NAME
+import com.example.altabib.featuers.dashboard.domain.DoctorRepository
+import com.example.altabib.featuers.dashboard.domain.entities.Doctor
+import com.example.altabib.featuers.user.data.source.remote.DOCTORS_PATH
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.tasks.await
 
-private const val DOCTORS_PATH = "doctors"
 private const val CITY_FIELD = "city"
 private const val REVIEWS_FIELD = "reviews"
 private const val SPECIALIZATION_FIELD = "specialization"

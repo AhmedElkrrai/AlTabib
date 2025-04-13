@@ -9,7 +9,7 @@ class UserManager(
 ) {
     private val userKey = "user_key"
 
-    fun saveUser(user: User) {
+    fun cacheUser(user: User) {
         val json = Gson().toJson(user)
         sharedPreferences.edit().putString(userKey, json).apply()
     }
