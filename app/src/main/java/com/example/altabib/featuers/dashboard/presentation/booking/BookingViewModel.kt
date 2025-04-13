@@ -49,7 +49,7 @@ class BookingViewModel(
             }
 
             is BookingAction.OnConfirmBooking -> {
-                confirmBooking(action.review)
+                confirmBooking(action.date)
             }
         }
     }
@@ -145,7 +145,7 @@ class BookingViewModel(
         }
     }
 
-    private fun confirmBooking(review: Review) {
+    private fun confirmBooking(date: String) {
 
     }
 }

@@ -21,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.altabib.featuers.dashboard.domain.entities.Review
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingAction
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingState
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.RatingSection
@@ -82,10 +81,9 @@ fun BookingScreen(
                     Spacer(modifier = Modifier.height(16.dp))
 
                     // Rating section
-                    RatingSection(
-                        rating = state.userRating,
-                        onRatingSelected = { onAction(BookingAction.OnSubmitRating(it)) }
-                    )
+                    RatingSection {
+                        onAction(BookingAction.OnSubmitRating(it))
+                    }
 
                     Spacer(modifier = Modifier.height(16.dp))
 
@@ -165,15 +163,8 @@ fun BookingScreen(
                     ) {
                         Button(
                             onClick = {
-                                val review = Review(
-                                    id = "", // get from UseCase
-                                    userName = "", // get from UseCase
-                                    text = state.userReview,
-                                    rating = state.userRating
-                                )
-
                                 onAction(
-                                    BookingAction.OnConfirmBooking(review)
+                                    BookingAction.OnConfirmBooking("12/5/2025")
                                 )
                             },
                             modifier = Modifier
