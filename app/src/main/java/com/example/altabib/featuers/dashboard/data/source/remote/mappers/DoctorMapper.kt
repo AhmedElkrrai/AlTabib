@@ -10,6 +10,7 @@ fun DoctorDto.toDomain(): Doctor {
     return Doctor(
         id = id,
         name = name,
+        avatar = avatar,
         specialization = Specialization.entries.firstOrNull {
             it.key.equals(specialization, ignoreCase = true)
         } ?: Specialization.GENERAL_PRACTICE,
@@ -30,6 +31,7 @@ fun Doctor.toDto(): DoctorDto {
     return DoctorDto(
         id = id,
         name = name,
+        avatar = avatar,
         specialization = specialization.key,
         rating = rating.toDouble(),
         reviews = reviews,

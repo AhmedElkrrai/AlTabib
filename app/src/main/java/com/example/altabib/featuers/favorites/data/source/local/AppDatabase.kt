@@ -2,6 +2,7 @@ package com.example.altabib.featuers.favorites.data.source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.altabib.featuers.favorites.data.source.local.models.FavoriteDoctorEntity
 
 @Database(
     entities = [FavoriteDoctorEntity::class],

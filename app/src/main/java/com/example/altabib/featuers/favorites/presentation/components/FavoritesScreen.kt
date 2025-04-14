@@ -1,24 +1,18 @@
 package com.example.altabib.featuers.favorites.presentation.components
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.altabib.featuers.dashboard.domain.entities.Doctor
-import com.example.altabib.featuers.dashboard.domain.entities.getDisplayName
 import com.example.altabib.featuers.favorites.presentation.FavoritesAction
 import com.example.altabib.featuers.favorites.presentation.FavoritesState
 import com.example.altabib.ui.components.Loading
@@ -35,28 +29,20 @@ fun FavoritesScreen(
             Text("No favorite doctors yet.")
         }
     } else {
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 12.dp, vertical = 16.dp),
+            contentPadding = PaddingValues(bottom = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
             itemsIndexed(state.favorites) { _, doctor ->
-                FavoriteDoctorCard(doctor = doctor)
-            }
-        }
-    }
-}
-
-@Composable
-fun FavoriteDoctorCard(doctor: Doctor) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-            .clickable { /* Navigate to DoctorDetails */ }
-    ) {
-        Row(modifier = Modifier.padding(16.dp)) {
-            Column {
-                Text(doctor.name, style = MaterialTheme.typography.titleMedium)
-                Text(doctor.specialization.getDisplayName(LocalContext.current))
-                Text("⭐ ${doctor.rating}")
-                Text(doctor.city)
+                FavoriteCard(
+                    doctor = doctor,
+                    onClick = { onAction(FavoritesAction.OnDoctorClick(doctor.id)) }
+                )
             }
         }
     }

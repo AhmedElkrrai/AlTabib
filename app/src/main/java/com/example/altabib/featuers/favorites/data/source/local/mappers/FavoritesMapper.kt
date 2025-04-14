@@ -1,7 +1,7 @@
 package com.example.altabib.featuers.favorites.data.source.local.mappers
 
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
-import com.example.altabib.featuers.favorites.data.source.local.FavoriteDoctorEntity
+import com.example.altabib.featuers.favorites.data.source.local.models.FavoriteDoctorEntity
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 
 fun Doctor.toEntity(): FavoriteDoctorEntity {
@@ -9,9 +9,9 @@ fun Doctor.toEntity(): FavoriteDoctorEntity {
         id = id,
         name = name,
         specialization = specialization.key,
-        city = city,
         rating = rating.toDouble(),
-        reviews = reviews
+        reviews = reviews,
+        availability = availability,
     )
 }
 
@@ -20,8 +20,8 @@ fun FavoriteDoctorEntity.toDoctor(): Doctor {
         id = id,
         name = name,
         specialization = Specialization.fromKey(specialization),
-        city = city,
         rating = rating.toFloat(),
-        reviews = reviews
+        reviews = reviews,
+        availability = availability,
     )
 }

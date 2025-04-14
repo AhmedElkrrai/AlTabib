@@ -3,6 +3,7 @@ package com.example.altabib.featuers.dashboard.data.source.remote.models
 data class DoctorDto(
     val id: String = "",
     val name: String = "",
+    val avatar: String = "",
     val specialization: String = "",
     val rating: Double = 0.0,
     val reviews: Int = 0,

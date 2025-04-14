@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.domain.util.onError
 import com.example.altabib.core.domain.util.onSuccess
 import com.example.altabib.featuers.favorites.domain.usecases.GetFavoritesUseCase
+import com.example.altabib.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -33,6 +34,18 @@ class FavoritesViewModel(
     fun onAction(action: FavoritesAction) {
         when (action) {
             is FavoritesAction.LoadFavorites -> loadFavorites()
+
+            is FavoritesAction.OnDoctorClick -> {
+                viewModelScope.launch {
+                    _event.emit(
+                        FavoritesEvent.Navigate(
+                            PatientScreen.DoctorDetails.createRoute(
+                                doctorId = action.doctorId
+                            )
+                        )
+                    )
+                }
+            }
         }
     }
 

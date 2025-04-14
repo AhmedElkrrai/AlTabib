@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0f9eee3c3f4b4b55dbaa7ab0a57284f2",
+    "identityHash": "c0a81b13e3909c628c5d1c7fcaa61ba1",
     "entities": [
       {
         "tableName": "favorite_doctors",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `specialization` TEXT NOT NULL, `city` TEXT NOT NULL, `rating` REAL NOT NULL, `reviews` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `specialization` TEXT NOT NULL, `rating` REAL NOT NULL, `reviews` INTEGER NOT NULL, `availability` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -27,12 +27,6 @@
             "notNull": true
           },
           {
-            "fieldPath": "city",
-            "columnName": "city",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "rating",
             "columnName": "rating",
             "affinity": "REAL",
@@ -42,6 +36,12 @@
             "fieldPath": "reviews",
             "columnName": "reviews",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "availability",
+            "columnName": "availability",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -58,7 +58,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0f9eee3c3f4b4b55dbaa7ab0a57284f2')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c0a81b13e3909c628c5d1c7fcaa61ba1')"
     ]
   }
 }

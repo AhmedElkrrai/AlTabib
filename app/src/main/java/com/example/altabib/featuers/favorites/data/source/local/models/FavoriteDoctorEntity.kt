@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.favorites.data.source.local
+package com.example.altabib.featuers.favorites.data.source.local.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,7 +8,7 @@ data class FavoriteDoctorEntity(
     @PrimaryKey val id: String,
     val name: String,
     val specialization: String,
-    val city: String,
     val rating: Double,
-    val reviews: Int
+    val reviews: Int,
+    val availability: String,
 )

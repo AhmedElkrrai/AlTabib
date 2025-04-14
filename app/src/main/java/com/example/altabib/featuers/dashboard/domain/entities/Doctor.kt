@@ -2,6 +2,7 @@ package com.example.altabib.featuers.dashboard.domain.entities
 
 data class Doctor(
     val id: String = "",
+    val avatar: String = "",
     val name: String = "",
     val specialization: Specialization = Specialization.GENERAL_PRACTICE,
     val rating: Float = 0f,
