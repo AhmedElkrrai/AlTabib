@@ -14,7 +14,7 @@ val viewModelModule = module {
     viewModel { AuthViewModel(get(), get(), get()) }
     viewModel { SettingsViewModel(get()) }
     viewModel { DashboardViewModel(get()) }
-    viewModel { FavoritesViewModel(get()) }
+    viewModel { FavoritesViewModel(get(), get()) }
     viewModel { SpecializationViewModel(get()) }
     viewModel { BookingViewModel(get(), get(), get(), get(), get()) }
     viewModel { DoctorDetailsViewModel(get(), get(), get()) }

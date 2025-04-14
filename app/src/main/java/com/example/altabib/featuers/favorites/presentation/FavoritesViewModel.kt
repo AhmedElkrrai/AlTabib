@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.domain.util.onError
 import com.example.altabib.core.domain.util.onSuccess
+import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.favorites.domain.usecases.GetFavoritesUseCase
+import com.example.altabib.featuers.favorites.domain.usecases.RemoveFavoriteUseCase
 import com.example.altabib.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,6 +19,7 @@ import kotlinx.coroutines.launch
 
 class FavoritesViewModel(
     private val getFavoritesUseCase: GetFavoritesUseCase,
+    private val removeFavoriteUseCase: RemoveFavoriteUseCase
 ) : ViewModel() {
 
     private val initialState = FavoritesState()
@@ -46,6 +49,8 @@ class FavoritesViewModel(
                     )
                 }
             }
+
+            is FavoritesAction.UnFavoriteDoctor -> unFavoriteDoctor(action.doctor)
         }
     }
 
@@ -58,6 +63,22 @@ class FavoritesViewModel(
                     _state.update { state -> state.copy(isLoading = false, favorites = doctors) }
                 }.onError {
                     _state.update { state -> state.copy(isLoading = false) }
+                    _event.emit(FavoritesEvent.ShowToast(it))
+                }
+        }
+    }
+
+    private fun unFavoriteDoctor(doctor: Doctor) {
+        viewModelScope.launch {
+            val result = removeFavoriteUseCase(doctor)
+            result
+                .onSuccess {
+                    _state.update { state ->
+                        state.copy(
+                            favorites = state.favorites.filter { it.id != doctor.id }
+                        )
+                    }
+                }.onError {
                     _event.emit(FavoritesEvent.ShowToast(it))
                 }
         }

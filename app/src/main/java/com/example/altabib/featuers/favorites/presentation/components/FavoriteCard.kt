@@ -1,5 +1,6 @@
 package com.example.altabib.featuers.favorites.presentation.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,12 +13,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,11 +33,13 @@ import androidx.compose.ui.unit.dp
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.domain.entities.getDisplayName
 import com.example.altabib.ui.theme.LightBlue
+import com.example.altabib.ui.theme.Pink
 
 @Composable
 fun FavoriteCard(
     doctor: Doctor,
     onClick: () -> Unit,
+    onRemoveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -57,6 +63,7 @@ fun FavoriteCard(
                 modifier = Modifier.size(67.dp),
                 tint = MaterialTheme.colorScheme.primary
             )
+
             Spacer(modifier = Modifier.height(4.dp))
 
             // Name
@@ -65,6 +72,7 @@ fun FavoriteCard(
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center
             )
+
             Spacer(modifier = Modifier.height(4.dp))
 
             // Specialization
@@ -73,6 +81,7 @@ fun FavoriteCard(
                 style = MaterialTheme.typography.bodySmall,
                 textAlign = TextAlign.Center
             )
+
             Spacer(modifier = Modifier.height(4.dp))
 
             // Rating
@@ -92,6 +101,7 @@ fun FavoriteCard(
                     style = MaterialTheme.typography.bodySmall
                 )
             }
+
             Spacer(modifier = Modifier.height(4.dp))
 
             // Availability
@@ -100,6 +110,19 @@ fun FavoriteCard(
                 style = MaterialTheme.typography.bodySmall,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.primary
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Remove button
+
+            Icon(
+                imageVector = Icons.Default.Favorite,
+                contentDescription = "Remove",
+                tint = Pink,
+                modifier = Modifier
+                    .size(32.dp)
+                    .clickable { onRemoveClick() },
             )
         }
     }

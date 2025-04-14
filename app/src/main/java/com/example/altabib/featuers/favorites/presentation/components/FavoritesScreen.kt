@@ -41,7 +41,8 @@ fun FavoritesScreen(
             itemsIndexed(state.favorites) { _, doctor ->
                 FavoriteCard(
                     doctor = doctor,
-                    onClick = { onAction(FavoritesAction.OnDoctorClick(doctor.id)) }
+                    onClick = { onAction(FavoritesAction.OnDoctorClick(doctor.id)) },
+                    onRemoveClick = { onAction(FavoritesAction.UnFavoriteDoctor(doctor)) }
                 )
             }
         }
