@@ -13,4 +13,9 @@ interface DoctorRepository {
         specialization: String,
         city: String
     ): Result<List<Doctor>, DataError>
+
+    suspend fun isFavorite(doctorId: String): Boolean
+    suspend fun getFavorites(): Result<List<Doctor>, DataError>
+    suspend fun addFavorite(doctor: Doctor): Result<Unit, DataError>
+    suspend fun removeFavorite(doctor: Doctor): Result<Unit, DataError>
 }

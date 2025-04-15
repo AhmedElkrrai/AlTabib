@@ -72,6 +72,7 @@ class DoctorRepositoryImpl(
         city: String
     ): Result<List<Doctor>, DataError> {
         return try {
+            // 1. Fetch remote doctors from Firestore
             val snapshot = firestore.collection(DOCTORS_PATH)
                 .whereEqualTo(CITY_FIELD, city)
                 .whereEqualTo(SPECIALIZATION_FIELD, specialization)
@@ -79,16 +80,25 @@ class DoctorRepositoryImpl(
                 .get()
                 .await()
 
-            val doctors = snapshot.toObjects(DoctorDto::class.java).map { it.toDomain() }
+            val remoteDoctors = snapshot.toObjects(DoctorDto::class.java).map { it.toDomain() }
 
-            // Cache to Room
-            dao.insertDoctors(doctors.map { it.toEntity() })
+            // 2. Get currently favorite doctor IDs from local DB
+            val favoriteIds = dao.getFavoriteDoctorIds().toSet()
 
-            Result.Success(doctors)
+            // 3. Map doctors to entities, preserving favorite flag
+            val doctorEntities = remoteDoctors.map { domain ->
+                val favorite = domain.id in favoriteIds
+                domain.toEntity(favorite).copy(isFavorite = favorite)
+            }
+
+            // 4. Cache updated list to Room
+            dao.insertDoctors(doctorEntities)
+
+            Result.Success(remoteDoctors)
         } catch (e: Exception) {
             Log.e("DoctorRepo", "Error in getDoctorsBySpecialization", e)
 
-            // Fallback to cached doctors
+            // 5. Fallback to cached doctors from Room
             val cached = dao.getDoctorsBySpecializationAndCity(specialization, city)
             return if (cached.isNotEmpty()) {
                 Result.Success(cached.map { it.toDomain() })
@@ -124,6 +134,37 @@ class DoctorRepositoryImpl(
         } catch (e: Exception) {
             Log.e("DoctorRepo", "Error in addDoctor", e)
             Result.Error(DataError.WriteError(e.message ?: "Could not add doctor"))
+        }
+    }
+
+    override suspend fun isFavorite(doctorId: String): Boolean {
+        return dao.getFavoriteDoctorIds().any { it == doctorId }
+    }
+
+    override suspend fun getFavorites(): Result<List<Doctor>, DataError> {
+        return try {
+            val favorites = dao.getFavorites().map { it.toDomain() }
+            Result.Success(favorites)
+        } catch (e: Exception) {
+            Result.Error(DataError.LocalError)
+        }
+    }
+
+    override suspend fun addFavorite(doctor: Doctor): Result<Unit, DataError> {
+        return try {
+            dao.updateFavoriteStatus(doctor.id, true)
+            Result.Success(Unit)
+        } catch (e: Exception) {
+            Result.Error(DataError.LocalError)
+        }
+    }
+
+    override suspend fun removeFavorite(doctor: Doctor): Result<Unit, DataError> {
+        return try {
+            dao.updateFavoriteStatus(doctor.id, false)
+            Result.Success(Unit)
+        } catch (e: Exception) {
+            Result.Error(DataError.LocalError)
         }
     }
 }

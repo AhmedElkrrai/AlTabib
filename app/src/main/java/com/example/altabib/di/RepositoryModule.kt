@@ -4,8 +4,6 @@ import com.example.altabib.featuers.appointments.data.source.AppointmentReposito
 import com.example.altabib.featuers.appointments.domain.AppointmentRepository
 import com.example.altabib.featuers.dashboard.data.source.DoctorRepositoryImpl
 import com.example.altabib.featuers.dashboard.domain.DoctorRepository
-import com.example.altabib.featuers.favorites.data.source.FavoritesRepositoryImpl
-import com.example.altabib.featuers.favorites.domain.FavoritesRepository
 import com.example.altabib.featuers.settings.data.source.PatientRepositoryImpl
 import com.example.altabib.featuers.settings.domain.PatientRepository
 import com.example.altabib.featuers.user.data.source.AuthRepositoryImpl
@@ -19,5 +17,4 @@ val repositoryModule = module {
     singleOf(::DoctorRepositoryImpl).bind<DoctorRepository>()
     singleOf(::AppointmentRepositoryImpl).bind<AppointmentRepository>()
     singleOf(::PatientRepositoryImpl).bind<PatientRepository>()
-    singleOf(::FavoritesRepositoryImpl).bind<FavoritesRepository>()
 }

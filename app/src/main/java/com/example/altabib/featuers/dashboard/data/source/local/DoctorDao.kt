@@ -13,4 +13,13 @@ interface DoctorDao {
 
     @Query("SELECT * FROM doctors WHERE specialization = :specialization AND city = :city")
     suspend fun getDoctorsBySpecializationAndCity(specialization: String, city: String): List<DoctorEntity>
+
+    @Query("SELECT * FROM doctors WHERE isFavorite = 1")
+    suspend fun getFavorites(): List<DoctorEntity>
+
+    @Query("SELECT id FROM doctors WHERE isFavorite = 1")
+    suspend fun getFavoriteDoctorIds(): List<String>
+
+    @Query("UPDATE doctors SET isFavorite = :isFav WHERE id = :doctorId")
+    suspend fun updateFavoriteStatus(doctorId: String, isFav: Boolean)
 }

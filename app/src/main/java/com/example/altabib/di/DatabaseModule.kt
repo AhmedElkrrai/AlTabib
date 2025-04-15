@@ -1,7 +1,7 @@
 package com.example.altabib.di
 
 import androidx.room.Room
-import com.example.altabib.featuers.favorites.data.source.local.AppDatabase
+import com.example.altabib.featuers.dashboard.data.source.local.AppDatabase
 import org.koin.dsl.module
 
 val databaseModule = module {
@@ -13,6 +13,5 @@ val databaseModule = module {
         ).build()
     }
 
-    single { get<AppDatabase>().favoritesDao() }
     single { get<AppDatabase>().doctorsDao() }
 }

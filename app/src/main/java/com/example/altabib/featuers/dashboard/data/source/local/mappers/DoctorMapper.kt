@@ -4,7 +4,9 @@ import com.example.altabib.featuers.dashboard.data.source.local.entites.DoctorEn
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 
-fun Doctor.toEntity(): DoctorEntity = DoctorEntity(
+fun Doctor.toEntity(
+    isFavorite: Boolean
+): DoctorEntity = DoctorEntity(
     id,
     name,
     specialization.key,
@@ -13,7 +15,8 @@ fun Doctor.toEntity(): DoctorEntity = DoctorEntity(
     reviews,
     availability,
     inQueue,
-    price
+    price,
+    isFavorite
 )
 
 fun DoctorEntity.toDomain(): Doctor = Doctor(

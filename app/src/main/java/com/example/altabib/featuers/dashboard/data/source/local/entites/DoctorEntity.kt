@@ -14,4 +14,5 @@ data class DoctorEntity(
     val availability: String,
     val inQueue: Int,
     val price: Int,
+    val isFavorite: Boolean
 )
