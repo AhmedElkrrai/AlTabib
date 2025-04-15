@@ -14,4 +14,5 @@ val databaseModule = module {
     }
 
     single { get<AppDatabase>().favoritesDao() }
+    single { get<AppDatabase>().doctorsDao() }
 }

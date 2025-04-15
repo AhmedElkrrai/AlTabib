@@ -1,8 +1,8 @@
 package com.example.altabib.di
 
-import com.example.altabib.featuers.dashboard.data.source.AppointmentRepositoryImpl
+import com.example.altabib.featuers.appointments.data.source.AppointmentRepositoryImpl
+import com.example.altabib.featuers.appointments.domain.AppointmentRepository
 import com.example.altabib.featuers.dashboard.data.source.DoctorRepositoryImpl
-import com.example.altabib.featuers.dashboard.domain.AppointmentRepository
 import com.example.altabib.featuers.dashboard.domain.DoctorRepository
 import com.example.altabib.featuers.favorites.data.source.FavoritesRepositoryImpl
 import com.example.altabib.featuers.favorites.domain.FavoritesRepository

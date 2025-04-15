@@ -30,7 +30,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.domain.entities.getDisplayName
-import com.example.altabib.ui.theme.LightBlue
+import com.example.altabib.ui.theme.Green
+import com.example.altabib.ui.theme.Primary
 import com.example.altabib.ui.theme.Pink
 
 @Composable
@@ -45,7 +46,7 @@ fun FavoriteCard(
             .clickable { onClick() },
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = LightBlue)
+        colors = CardDefaults.cardColors(containerColor = Primary)
     ) {
         Box(
             modifier = Modifier
@@ -57,10 +58,21 @@ fun FavoriteCard(
                 contentDescription = "Remove from favorites",
                 tint = Pink,
                 modifier = Modifier
-                    .padding(12.dp)
+                    .padding(8.dp)
                     .size(24.dp)
                     .align(Alignment.TopStart)
                     .clickable { onRemoveClick() }
+            )
+
+            // Price
+            Text(
+                text = "${doctor.price} EGP",
+                style = MaterialTheme.typography.bodySmall,
+                textAlign = TextAlign.Center,
+                color = Green,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .align(Alignment.TopEnd)
             )
 
             // Main card content
@@ -84,7 +96,8 @@ fun FavoriteCard(
                 Text(
                     text = doctor.name,
                     style = MaterialTheme.typography.bodyMedium,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    color = Color.White
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))
@@ -93,7 +106,8 @@ fun FavoriteCard(
                 Text(
                     text = doctor.specialization.getDisplayName(LocalContext.current),
                     style = MaterialTheme.typography.bodySmall,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    color = Color.White
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))
@@ -112,7 +126,8 @@ fun FavoriteCard(
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = "${"%.1f".format(doctor.rating)} (${doctor.reviews} reviews)",
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White
                     )
                 }
 
@@ -123,7 +138,7 @@ fun FavoriteCard(
                     text = doctor.availability,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.primary
+                    color = Green
                 )
             }
         }

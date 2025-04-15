@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import com.example.altabib.ui.theme.LightBlue
+import com.example.altabib.ui.theme.Primary
 
 @Composable
 fun ClickableInfoRow(
@@ -29,7 +29,7 @@ fun ClickableInfoRow(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     iconTint: Color = MaterialTheme.colorScheme.primary,
-    textColor: Color = LightBlue,
+    textColor: Color = Primary,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,

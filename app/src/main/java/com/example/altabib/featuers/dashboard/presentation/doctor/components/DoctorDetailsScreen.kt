@@ -2,7 +2,6 @@ package com.example.altabib.featuers.dashboard.presentation.doctor.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -28,10 +27,8 @@ import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Verified
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -45,9 +42,10 @@ import androidx.compose.ui.unit.dp
 import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsAction
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsState
+import com.example.altabib.ui.components.AppOutlinedButton
 import com.example.altabib.ui.components.Loading
 import com.example.altabib.ui.components.TopAppBarWithBackButton
-import com.example.altabib.ui.theme.LightBlue
+import com.example.altabib.ui.theme.Primary
 
 @Composable
 fun DoctorDetailsScreen(
@@ -94,7 +92,7 @@ fun DoctorDetailsScreen(
                             contentAlignment = Alignment.BottomEnd
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.ic_google_logo), // Placeholder
+                                painter = painterResource(id = R.drawable.doctor), // Placeholder
                                 contentDescription = "Doctor's photo",
                                 modifier = Modifier
                                     .fillMaxSize()
@@ -106,7 +104,7 @@ fun DoctorDetailsScreen(
                                 Icon(
                                     imageVector = Icons.Default.Verified,
                                     contentDescription = "Verified Badge",
-                                    tint = LightBlue,
+                                    tint = Primary,
                                     modifier = Modifier
                                         .offset(x = (-16).dp, y = (-2).dp)
                                         .size(36.dp)
@@ -165,36 +163,26 @@ fun DoctorDetailsScreen(
                             .height(56.dp)
                     ) {
 
-                        OutlinedButton(
+                        AppOutlinedButton(
+                            modifier = Modifier.weight(1f),
+                            text = "Book Now",
                             onClick = {
                                 onAction(
                                     DoctorDetailsAction.OnBookAppointmentClick(state.doctor.id)
                                 )
-                            },
-                            modifier = Modifier.weight(1f),
-                            colors = ButtonDefaults.outlinedButtonColors(
-                                contentColor = Color.White,
-                                containerColor = LightBlue
-                            ),
-                            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
-                        ) {
-                            Text("Book Now")
-                        }
+                            }
+                        )
 
-                        OutlinedButton(
-                            onClick = { onAction(DoctorDetailsAction.OnAddToFavoritesClick) },
+                        AppOutlinedButton(
                             modifier = Modifier.weight(1f),
-                            colors = ButtonDefaults.outlinedButtonColors(
-                                contentColor = Color.White,
-                                containerColor = LightBlue
-                            ),
-                            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
-                        ) {
-                            Text("Add to Favorites")
-                        }
+                            text = "Add to Favorites",
+                            onClick = {
+                                onAction(DoctorDetailsAction.OnAddToFavoritesClick)
+                            }
+                        )
                     }
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
                 }
             }
         }

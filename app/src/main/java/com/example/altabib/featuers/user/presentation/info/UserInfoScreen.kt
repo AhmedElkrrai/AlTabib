@@ -49,8 +49,8 @@ import com.example.altabib.featuers.user.domain.entities.Governorate
 import com.example.altabib.featuers.user.domain.entities.UserType
 import com.example.altabib.navigation.utils.LocalNavController
 import com.example.altabib.navigation.screen.Screen
+import com.example.altabib.ui.components.AppOutlinedButton
 import com.example.altabib.ui.theme.Gray
-import com.example.altabib.ui.theme.Mauve
 import com.example.altabib.ui.theme.Primary
 
 private const val SELECT_CITY = "Select City"
@@ -103,7 +103,7 @@ fun UserInfoScreen() {
                 value = name,
                 onValueChange = { name = it },
                 label = { Text(text = "Name", fontSize = 16.sp, color = Primary) },
-                textStyle = TextStyle(color = Color.Black),
+                textStyle = TextStyle(color = Color.White),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Text,
                     imeAction = ImeAction.Go
@@ -145,7 +145,7 @@ fun UserInfoScreen() {
                         onDismissRequest = { expanded = false },
                         modifier = Modifier
                             .width(250.dp)
-                            .background(Mauve, shape = RoundedCornerShape(8.dp))
+                            .background(Primary, shape = RoundedCornerShape(8.dp))
                             .heightIn(max = 250.dp)
                     ) {
                         Governorate.entries.forEach { governorate ->

@@ -1,8 +1,8 @@
-package com.example.altabib.featuers.dashboard.domain.usecases
+package com.example.altabib.featuers.appointments.domain.usecases
 
 import com.example.altabib.core.domain.util.DataError
 import com.example.altabib.core.domain.util.Result
-import com.example.altabib.featuers.dashboard.domain.AppointmentRepository
+import com.example.altabib.featuers.appointments.domain.AppointmentRepository
 import com.example.altabib.featuers.dashboard.domain.entities.Appointment
 
 class SaveAppointmentUseCase(

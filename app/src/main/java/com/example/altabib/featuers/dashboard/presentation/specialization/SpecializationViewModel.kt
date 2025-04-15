@@ -2,10 +2,8 @@ package com.example.altabib.featuers.dashboard.presentation.specialization
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.altabib.core.domain.util.DataError
 import com.example.altabib.core.domain.util.onError
 import com.example.altabib.core.domain.util.onSuccess
-import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorsBySpecializationUseCase
 import com.example.altabib.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -60,15 +58,6 @@ class SpecializationViewModel(
     private fun loadDoctors(key: String) {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
-
-            val specialization = Specialization.fromKey(key)
-            if (specialization == null) {
-                _event.emit(
-                    SpecializationEvent.ShowToast(DataError.GeneralError)
-                )
-                _state.update { it.copy(isLoading = false) }
-                return@launch
-            }
 
             val result = useCase(key)
 

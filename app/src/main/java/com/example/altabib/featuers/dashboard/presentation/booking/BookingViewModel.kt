@@ -7,7 +7,7 @@ import com.example.altabib.core.domain.util.onSuccess
 import com.example.altabib.featuers.dashboard.domain.entities.Appointment
 import com.example.altabib.featuers.dashboard.domain.entities.Review
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
-import com.example.altabib.featuers.dashboard.domain.usecases.SaveAppointmentUseCase
+import com.example.altabib.featuers.appointments.domain.usecases.SaveAppointmentUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
 import com.example.altabib.featuers.settings.domain.entities.Patient
 import com.example.altabib.featuers.settings.domain.usecases.GetPatientUseCase

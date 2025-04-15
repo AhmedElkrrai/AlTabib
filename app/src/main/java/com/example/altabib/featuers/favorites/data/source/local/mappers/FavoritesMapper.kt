@@ -12,6 +12,7 @@ fun Doctor.toEntity(): FavoriteDoctorEntity {
         rating = rating.toDouble(),
         reviews = reviews,
         availability = availability,
+        price = price
     )
 }
 
@@ -23,5 +24,6 @@ fun FavoriteDoctorEntity.toDoctor(): Doctor {
         rating = rating.toFloat(),
         reviews = reviews,
         availability = availability,
+        price = price
     )
 }

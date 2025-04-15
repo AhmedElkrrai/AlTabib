@@ -20,7 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
-import com.example.altabib.ui.theme.LightBlue
+import com.example.altabib.ui.theme.Primary
 
 @Composable
 fun SpecializationCard(
@@ -33,7 +33,7 @@ fun SpecializationCard(
             .clickable { onClick(specialization) },
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = LightBlue)
+        colors = CardDefaults.cardColors(containerColor = Primary)
     ) {
         Column(
             modifier = Modifier

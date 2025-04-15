@@ -3,6 +3,9 @@ package com.example.altabib.featuers.dashboard.data.source
 import android.util.Log
 import com.example.altabib.core.domain.util.DataError
 import com.example.altabib.core.domain.util.Result
+import com.example.altabib.featuers.dashboard.data.source.local.DoctorDao
+import com.example.altabib.featuers.dashboard.data.source.local.mappers.toDomain
+import com.example.altabib.featuers.dashboard.data.source.local.mappers.toEntity
 import com.example.altabib.featuers.dashboard.data.source.remote.mappers.toDomain
 import com.example.altabib.featuers.dashboard.data.source.remote.mappers.toDto
 import com.example.altabib.featuers.dashboard.data.source.remote.models.DoctorDto
@@ -18,7 +21,8 @@ private const val REVIEWS_FIELD = "reviews"
 private const val SPECIALIZATION_FIELD = "specialization"
 
 class DoctorRepositoryImpl(
-    private val firestore: FirebaseFirestore
+    private val firestore: FirebaseFirestore,
+    private val dao: DoctorDao
 ) : DoctorRepository {
 
     override suspend fun searchDoctors(
@@ -76,14 +80,21 @@ class DoctorRepositoryImpl(
                 .await()
 
             val doctors = snapshot.toObjects(DoctorDto::class.java).map { it.toDomain() }
+
+            // Cache to Room
+            dao.insertDoctors(doctors.map { it.toEntity() })
+
             Result.Success(doctors)
         } catch (e: Exception) {
             Log.e("DoctorRepo", "Error in getDoctorsBySpecialization", e)
-            Result.Error(
-                DataError.RetrievalError(
-                    e.message ?: "Could not fetch doctors"
-                )
-            )
+
+            // Fallback to cached doctors
+            val cached = dao.getDoctorsBySpecializationAndCity(specialization, city)
+            return if (cached.isNotEmpty()) {
+                Result.Success(cached.map { it.toDomain() })
+            } else {
+                Result.Error(DataError.RetrievalError(e.message ?: "Could not fetch doctors"))
+            }
         }
     }
 

@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.domain.entities.getDisplayName
 import com.example.altabib.ui.theme.Green
-import com.example.altabib.ui.theme.LightBlue
+import com.example.altabib.ui.theme.Primary
 
 @Composable
 fun DoctorCard(
@@ -46,7 +46,7 @@ fun DoctorCard(
             .clickable { onClick() },
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = LightBlue)
+        colors = CardDefaults.cardColors(containerColor = Primary)
     ) {
         Box(
             modifier = Modifier
@@ -83,7 +83,8 @@ fun DoctorCard(
                 Text(
                     text = doctor.name,
                     style = MaterialTheme.typography.bodyMedium,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    color = Color.White
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))
@@ -92,7 +93,8 @@ fun DoctorCard(
                 Text(
                     text = doctor.specialization.getDisplayName(LocalContext.current),
                     style = MaterialTheme.typography.bodySmall,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    color = Color.White
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))
@@ -111,7 +113,8 @@ fun DoctorCard(
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = "${"%.1f".format(doctor.rating)} (${doctor.reviews} reviews)",
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White
                     )
                 }
 
@@ -123,7 +126,9 @@ fun DoctorCard(
                         withStyle(style = SpanStyle(color = Green)) {
                             append("${doctor.inQueue}")
                         }
-                        append(" in queue")
+                        withStyle(style = SpanStyle(color = Color.White)) {
+                            append(" in queue")
+                        }
                     },
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center

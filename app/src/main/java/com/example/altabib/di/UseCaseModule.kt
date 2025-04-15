@@ -2,7 +2,7 @@ package com.example.altabib.di
 
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorsBySpecializationUseCase
-import com.example.altabib.featuers.dashboard.domain.usecases.SaveAppointmentUseCase
+import com.example.altabib.featuers.appointments.domain.usecases.SaveAppointmentUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.SearchDoctorsUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
 import com.example.altabib.featuers.favorites.domain.usecases.AddFavoriteUseCase
