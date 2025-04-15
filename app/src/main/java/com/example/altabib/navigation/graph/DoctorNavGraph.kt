@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.altabib.featuers.analytics.presentation.AnalyticsScreen
 import com.example.altabib.featuers.appointments.presentation.AppointmentsScreen
-import com.example.altabib.featuers.settings.presentation.SettingsScreenRoot
+import com.example.altabib.featuers.profile.presentation.ProfileScreen
 import com.example.altabib.navigation.screen.DoctorScreen
 
 @Composable
@@ -22,8 +22,8 @@ fun DoctorNavGraph(
         composable(DoctorScreen.Appointments.route) {
             AppointmentsScreen(navController)
         }
-        composable(DoctorScreen.Settings.route) {
-            SettingsScreenRoot(navController)
+        composable(DoctorScreen.Profile.route) {
+            ProfileScreen()
         }
     }
 }

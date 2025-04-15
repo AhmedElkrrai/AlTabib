@@ -3,13 +3,12 @@ package com.example.altabib.featuers.settings.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.domain.util.DataError
-import com.example.altabib.featuers.user.domain.AuthRepository
 import com.example.altabib.featuers.user.domain.usecases.LogoutUseCase
+import com.example.altabib.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SettingsViewModel(
@@ -25,13 +24,28 @@ class SettingsViewModel(
     fun onAction(action: SettingsAction) {
         when (action) {
             SettingsAction.Logout -> logout()
+            SettingsAction.EditProfile -> {
+                viewModelScope.launch {
+                    _event.emit(SettingsEvent.Navigate(PatientScreen.EditProfile.route))
+                }
+            }
+
+            SettingsAction.ContactDevs -> {
+                viewModelScope.launch {
+                    _event.emit(SettingsEvent.Navigate(PatientScreen.ContactUs.route))
+                }
+            }
+
+            SettingsAction.RateApp -> {
+                viewModelScope.launch {
+                    _event.emit(SettingsEvent.RateApp)
+                }
+            }
         }
     }
 
     private fun logout() {
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
-
             try {
                 logoutUseCase.invoke()
                 _event.emit(SettingsEvent.LoggedOut)
@@ -41,8 +55,6 @@ class SettingsViewModel(
                         DataError.RetrievalError("Logout failed: ${e.message}")
                     )
                 )
-            } finally {
-                _state.update { it.copy(isLoading = false) }
             }
         }
     }

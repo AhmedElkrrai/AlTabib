@@ -2,6 +2,7 @@ package com.example.altabib.navigation.bar
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShowChart
 import androidx.compose.runtime.Composable
@@ -22,9 +23,9 @@ fun DoctorBottomBar(navController: NavController) {
             route = DoctorScreen.Appointments.route
         ),
         BottomNavItem(
-            label = "Settings",
-            icon = Icons.Default.Settings,
-            route = DoctorScreen.Settings.route
+            label = "Profile",
+            icon = Icons.Default.Person,
+            route = DoctorScreen.Profile.route
         )
     )
 

@@ -1,0 +1,75 @@
+package com.example.altabib.featuers.settings.presentation.components
+
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
+import android.widget.Toast
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
+import com.example.altabib.core.presentation.util.ObserveEvents
+import com.example.altabib.core.presentation.util.getMessage
+import com.example.altabib.featuers.settings.presentation.SettingsEvent
+import com.example.altabib.featuers.settings.presentation.SettingsViewModel
+import com.example.altabib.navigation.screen.Screen
+import com.example.altabib.navigation.utils.LocalNavController
+import org.koin.androidx.compose.koinViewModel
+
+@Composable
+fun SettingsScreenRoot(
+    navController: NavHostController,
+    viewModel: SettingsViewModel = koinViewModel()
+) {
+    val context = LocalContext.current
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val rootNavController = LocalNavController.current
+
+    ObserveEvents(events = viewModel.event) { event ->
+        when (event) {
+            is SettingsEvent.LoggedOut -> {
+                rootNavController.navigate(Screen.UserInfo.route) {
+                    popUpTo(0) { inclusive = true }
+                }
+            }
+
+            is SettingsEvent.ShowToast -> {
+                Toast
+                    .makeText(context, event.error.getMessage(context), Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            is SettingsEvent.Navigate -> {
+                navController.navigate(event.route)
+            }
+
+            is SettingsEvent.RateApp -> {
+                val packageName = context.packageName
+                val playStoreUri = Uri.parse("market://details?id=$packageName")
+                val fallbackUri =
+                    Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+
+                val intent = Intent(Intent.ACTION_VIEW, playStoreUri).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+
+                try {
+                    context.startActivity(intent)
+                } catch (e: ActivityNotFoundException) {
+                    // Fallback to browser if Play Store not available
+                    context.startActivity(
+                        Intent(Intent.ACTION_VIEW, fallbackUri).apply {
+                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        }
+                    )
+                }
+            }
+        }
+    }
+
+    SettingsScreen(
+        state = state,
+        onAction = viewModel::onAction
+    )
+}
