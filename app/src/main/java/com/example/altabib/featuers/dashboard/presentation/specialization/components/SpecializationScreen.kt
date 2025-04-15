@@ -3,7 +3,7 @@ package com.example.altabib.featuers.dashboard.presentation.specialization.compo
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -11,13 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.example.altabib.R
-import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorList
+import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorCard
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationAction
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationState
 import com.example.altabib.ui.components.Loading
 import com.example.altabib.ui.components.TopAppBarWithBackButton
+import com.example.altabib.ui.components.VerticalGrid
 
 @Composable
 fun SpecializationScreen(
@@ -50,13 +50,19 @@ fun SpecializationScreen(
                 )
             }
         } else {
-            DoctorList(
-                doctors = state.doctors,
-                onDoctorClick = { doctor -> onAction(SpecializationAction.OnDoctorClick(doctor)) },
+            VerticalGrid(
                 modifier = Modifier
                     .padding(innerPadding)
-                    .padding(horizontal = 16.dp, vertical = 4.dp)
-            )
+            ) {
+                itemsIndexed(state.doctors) { _, doctor ->
+                    DoctorCard(
+                        doctor = doctor,
+                        onClick = {
+                            onAction(SpecializationAction.OnDoctorClick(doctor))
+                        }
+                    )
+                }
+            }
         }
     }
 }

@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,9 +19,10 @@ import androidx.compose.ui.unit.dp
 import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardAction
 import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardState
-import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorList
-import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationGrid
+import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorCard
+import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationCard
 import com.example.altabib.ui.components.Loading
+import com.example.altabib.ui.components.VerticalGrid
 
 @Composable
 fun DashboardScreen(
@@ -57,13 +59,18 @@ fun DashboardScreen(
 
                 query.isNotBlank() -> {
                     if (result.isNotEmpty()) {
-                        DoctorList(
-                            doctors = result,
-                            onDoctorClick = { doctor ->
-                                onAction(DashboardAction.OpenDoctorDetails(doctor))
-                            },
-                            modifier = Modifier.padding(horizontal = 16.dp)
-                        )
+                        VerticalGrid {
+                            itemsIndexed(result) { _, doctor ->
+                                DoctorCard(
+                                    doctor = doctor,
+                                    onClick = {
+                                        onAction(
+                                            DashboardAction.OpenDoctorDetails(doctor)
+                                        )
+                                    }
+                                )
+                            }
+                        }
                     } else {
                         Box(
                             modifier = Modifier.fillMaxSize(),
@@ -78,10 +85,16 @@ fun DashboardScreen(
                 }
 
                 else -> {
-                    SpecializationGrid(
-                        specializations = state.specializations,
-                        onClick = { onAction(DashboardAction.OpenSpecializationScreen(it)) }
-                    )
+                    VerticalGrid {
+                        itemsIndexed(state.specializations) { _, specialization ->
+                            SpecializationCard(
+                                specialization = specialization,
+                                onClick = {
+                                    onAction(DashboardAction.OpenSpecializationScreen(it))
+                                }
+                            )
+                        }
+                    }
                 }
             }
         }

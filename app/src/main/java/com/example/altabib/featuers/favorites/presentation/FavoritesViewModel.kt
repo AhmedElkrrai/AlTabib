@@ -60,7 +60,7 @@ class FavoritesViewModel(
             val result = getFavoritesUseCase()
             result
                 .onSuccess { doctors ->
-                    _state.update { state -> state.copy(isLoading = false, favorites = doctors) }
+                    _state.update { state -> state.copy(isLoading = false, doctors = doctors) }
                 }.onError {
                     _state.update { state -> state.copy(isLoading = false) }
                     _event.emit(FavoritesEvent.ShowToast(it))
@@ -75,7 +75,7 @@ class FavoritesViewModel(
                 .onSuccess {
                     _state.update { state ->
                         state.copy(
-                            favorites = state.favorites.filter { it.id != doctor.id }
+                            doctors = state.doctors.filter { it.id != doctor.id }
                         )
                     }
                 }.onError {

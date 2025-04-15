@@ -9,8 +9,8 @@ private val DarkColorScheme = darkColorScheme(
     primary = Color.Black,
     secondary = Primary,
     tertiary = Red,
-    background = DarkMauve,
-    surface = DarkMauve
+    background = DarkCharcoal,
+    surface = DarkCharcoal
 )
 
 @Composable
