@@ -44,7 +44,7 @@ class DoctorRepositoryImpl(
             Result.Success(filtered)
         } catch (e: Exception) {
             Log.e("DoctorRepo", "Error in searchDoctors", e)
-            Result.Error(DataError.RetrievalError(e.message ?: "Could not search doctors"))
+            Result.Error(DataError.FailedToRetrieveData)
         }
     }
 
@@ -59,11 +59,11 @@ class DoctorRepositoryImpl(
             if (dto != null) {
                 Result.Success(dto.toDomain())
             } else {
-                Result.Error(DataError.RetrievalError("Doctor not found"))
+                Result.Error(DataError.FailedToRetrieveData)
             }
         } catch (e: Exception) {
             Log.e("DoctorRepo", "Error in getDoctorById", e)
-            Result.Error(DataError.RetrievalError(e.message ?: "Could not get doctor"))
+            Result.Error(DataError.FailedToRetrieveData)
         }
     }
 
@@ -103,7 +103,7 @@ class DoctorRepositoryImpl(
             return if (cached.isNotEmpty()) {
                 Result.Success(cached.map { it.toDomain() })
             } else {
-                Result.Error(DataError.RetrievalError(e.message ?: "Could not fetch doctors"))
+                Result.Error(DataError.FailedToRetrieveData)
             }
         }
     }
@@ -119,7 +119,7 @@ class DoctorRepositoryImpl(
             Result.Success(Unit)
         } catch (e: Exception) {
             Log.e("DoctorRepo", "Error in updateDoctor", e)
-            Result.Error(DataError.WriteError(e.message ?: "Could not update doctor"))
+            Result.Error(DataError.FailedToUpdateData)
         }
     }
 
@@ -133,7 +133,7 @@ class DoctorRepositoryImpl(
             Result.Success(Unit)
         } catch (e: Exception) {
             Log.e("DoctorRepo", "Error in addDoctor", e)
-            Result.Error(DataError.WriteError(e.message ?: "Could not add doctor"))
+            Result.Error(DataError.GeneralError)
         }
     }
 

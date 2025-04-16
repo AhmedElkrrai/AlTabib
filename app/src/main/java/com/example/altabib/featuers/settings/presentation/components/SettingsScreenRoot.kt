@@ -11,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.altabib.core.presentation.util.ObserveEvents
 import com.example.altabib.core.presentation.util.getMessage
@@ -41,6 +42,10 @@ fun SettingsScreenRoot(
 
     ObserveEvents(events = viewModel.event) { event ->
         when (event) {
+            is SettingsEvent.ShowMessage -> {
+                Toast.makeText(context, stringResource(event.msgRes), Toast.LENGTH_SHORT).show()
+            }
+
             is SettingsEvent.LoggedOut -> {
                 rootNavController.navigate(Screen.UserInfo.route) {
                     popUpTo(0) { inclusive = true }

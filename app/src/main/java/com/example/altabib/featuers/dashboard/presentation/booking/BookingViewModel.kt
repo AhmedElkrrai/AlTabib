@@ -2,12 +2,14 @@ package com.example.altabib.featuers.dashboard.presentation.booking
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.altabib.R
+import com.example.altabib.core.domain.util.DataError
 import com.example.altabib.core.domain.util.onError
 import com.example.altabib.core.domain.util.onSuccess
+import com.example.altabib.featuers.appointments.domain.usecases.SaveAppointmentUseCase
 import com.example.altabib.featuers.dashboard.domain.entities.Appointment
 import com.example.altabib.featuers.dashboard.domain.entities.Review
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
-import com.example.altabib.featuers.appointments.domain.usecases.SaveAppointmentUseCase
 import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
 import com.example.altabib.featuers.settings.domain.entities.Patient
 import com.example.altabib.featuers.settings.domain.usecases.GetPatientUseCase
@@ -126,7 +128,7 @@ class BookingViewModel(
                     val result = updateDoctorUseCase(updatedDoctor)
                     result
                         .onSuccess {
-                            _event.emit(BookingEvent.ShowMessage("Rating submitted successfully"))
+                            _event.emit(BookingEvent.ShowMessage(R.string.rating_submitted_successfully))
                             _state.update { state ->
                                 state.copy(
                                     doctor = updatedDoctor,
@@ -145,7 +147,7 @@ class BookingViewModel(
     private fun submitReview() {
         viewModelScope.launch {
             if (_state.value.userReview.isBlank()) {
-                _event.emit(BookingEvent.ShowMessage("Review cannot be empty"))
+                _event.emit(BookingEvent.ShowMessage(R.string.review_cannot_be_empty))
                 return@launch
             }
             getPatientUseCase.invoke()?.onSuccess { patient ->
@@ -165,7 +167,7 @@ class BookingViewModel(
                     val result = updateDoctorUseCase(updatedDoctor)
                     result
                         .onSuccess {
-                            _event.emit(BookingEvent.ShowMessage("Review submitted successfully"))
+                            _event.emit(BookingEvent.ShowMessage(R.string.review_submitted_successfully))
                             _state.update { state ->
                                 state.copy(
                                     doctor = updatedDoctor,
@@ -187,7 +189,7 @@ class BookingViewModel(
 
         if (selectedDate == null) {
             viewModelScope.launch {
-                _event.emit(BookingEvent.ShowMessage("Please select a date"))
+                _event.emit(BookingEvent.ShowMessage(R.string.select_date))
             }
             return
         }
@@ -210,7 +212,7 @@ class BookingViewModel(
 
                     result
                         .onSuccess {
-                            _event.emit(BookingEvent.ShowMessage("Appointment booked successfully"))
+                            _event.emit(BookingEvent.ShowMessage(R.string.appointment_booked_successfully))
                             _event.emit(BookingEvent.Back)
                         }
                         .onError {
@@ -218,7 +220,7 @@ class BookingViewModel(
                         }
                 }
                 ?.onError {
-                    _event.emit(BookingEvent.ShowMessage("User not found"))
+                    _event.emit(BookingEvent.ShowToast(DataError.GeneralError))
                 }
         }
     }

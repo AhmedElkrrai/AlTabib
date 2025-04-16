@@ -2,10 +2,10 @@ package com.example.altabib.featuers.dashboard.presentation.doctor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.altabib.R
 import com.example.altabib.core.domain.util.onError
 import com.example.altabib.core.domain.util.onSuccess
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
-import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
 import com.example.altabib.featuers.favorites.domain.usecases.AddFavoriteUseCase
 import com.example.altabib.featuers.favorites.domain.usecases.IsFavoriteUseCase
 import com.example.altabib.navigation.screen.PatientScreen
@@ -98,11 +98,11 @@ class DoctorDetailsViewModel(
             val doctor = state.value.doctor ?: return@launch
             val result = isFavoriteUseCase(doctor.id)
             if (result) {
-                _event.emit(DoctorDetailsEvent.ShowMessage("Doctor already in favorites"))
+                _event.emit(DoctorDetailsEvent.ShowMessage(R.string.doctor_already_added))
             } else {
                 addFavoriteUseCase.invoke(state.value.doctor!!)
                     .onSuccess {
-                        _event.emit(DoctorDetailsEvent.ShowMessage("Doctor added to favorites"))
+                        _event.emit(DoctorDetailsEvent.ShowMessage(R.string.doctor_added_to_favorites))
                     }
                     .onError {
                         _event.emit(DoctorDetailsEvent.ShowToast(it))

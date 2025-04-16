@@ -55,12 +55,12 @@ sealed interface DataError {
     /**
      * Represents an error when data retrieval fails.
      */
-    data class RetrievalError(val message: String) : DataError
+    data object FailedToRetrieveData : DataError
 
     /**
-     * Represents an error when data writing fails.
+     * Represents an error when data update fails.
      */
-    data class WriteError(val message: String) : DataError
+    data object FailedToUpdateData : DataError
 
     /**
      * Represents an unknown or unexpected error.

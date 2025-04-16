@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.example.altabib.core.presentation.util.ObserveEvents
@@ -41,7 +42,7 @@ fun BookingScreenRoot(
 
             is BookingEvent.ShowMessage -> {
                 Toast
-                    .makeText(context, event.message, Toast.LENGTH_SHORT)
+                    .makeText(context, stringResource(event.msgRes), Toast.LENGTH_SHORT)
                     .show()
             }
         }

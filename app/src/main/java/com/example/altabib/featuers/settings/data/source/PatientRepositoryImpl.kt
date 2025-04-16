@@ -1,5 +1,6 @@
 package com.example.altabib.featuers.settings.data.source
 
+import android.util.Log
 import com.example.altabib.core.domain.util.DataError
 import com.example.altabib.core.domain.util.Result
 import com.example.altabib.featuers.settings.domain.PatientRepository
@@ -13,7 +14,7 @@ class PatientRepositoryImpl(
 ) : PatientRepository {
 
     override suspend fun getPatient(uid: String?): Result<Patient, DataError>? {
-        if (uid == null) return Result.Error(DataError.RetrievalError("Invalid user ID"))
+        if (uid == null) return Result.Error(DataError.FailedToRetrieveData)
 
         return try {
             val snapshot = firestore
@@ -27,13 +28,14 @@ class PatientRepositoryImpl(
                 if (patient != null) {
                     Result.Success(patient)
                 } else {
-                    Result.Error(DataError.RetrievalError("Failed to parse patient"))
+                    Result.Error(DataError.FailedToRetrieveData)
                 }
             } else {
-                Result.Error(DataError.RetrievalError("Patient not found"))
+                Result.Error(DataError.FailedToRetrieveData)
             }
         } catch (e: Exception) {
-            Result.Error(DataError.RetrievalError(e.message ?: "Unknown error"))
+            Log.e("PatientRepo", "Error in getPatient", e)
+            Result.Error(DataError.FailedToRetrieveData)
         }
     }
 
@@ -47,7 +49,8 @@ class PatientRepositoryImpl(
 
             Result.Success(patient)
         } catch (e: Exception) {
-            Result.Error(DataError.WriteError(e.message ?: "Failed to update patient"))
+            Log.e("PatientRepo", "Error in updatePatient", e)
+            Result.Error(DataError.FailedToUpdateData)
         }
     }
 }

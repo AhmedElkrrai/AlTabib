@@ -5,6 +5,8 @@
     <string name="error_too_many_requests">تم إرسال عدد كبير من الطلبات إلى الخادم.</string>
     <string name="error_no_internet">تعذر الاتصال بالخادم، يرجى التحقق من اتصالك بالإنترنت.</string>
     <string name="error_unknown">حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.</string>
+    <string name="error_failed_to_retrieve_data">تعذر جلب البيانات من الخادم.</string>
+    <string name="error_failed_to_update_data">تعذر تحديث البيانات.</string>
     <string name="error_serialization">تعذر تسلسل أو إلغاء تسلسل البيانات.</string>
     <string name="search_hint">ابحث عن طبيب.</string>
     <string name="no_results">لم يتم العثور على نتائج.</string>
@@ -12,7 +14,7 @@
     <string name="unknown_specialization">تخصص غير معروف.</string>
     <string name="local_data_error">تعذر جلب البيانات من قاعدة البيانات المحلية.</string>
     <string name="firebase_error">تعذر جلب البيانات من Firebase.</string>
-    <!-- ... medical specializations ... -->
+    <!-- ... Medical specializations ... -->
     <string name="general_practice">ممارسة عامة</string>
     <string name="pediatrics">الأطفال</string>
     <string name="cardiology">القلب</string>
@@ -29,4 +31,14 @@
     <string name="otolaryngologies">الأنف والأذن والحنجرة</string>
     <string name="dentistry">أسنان</string>
     <string name="radiology">الأشعة</string>
+    <!-- ... Toast messages ... -->
+    <string name="update_profile_msg">تم تحديث الملف الشخصي</string>
+    <string name="doctor_already_added">هذا الطبيب موجود بالفعل في المفضلة</string>
+    <string name="doctor_added_to_favorites">تم إضافة الطبيب إلى المفضلة</string>
+    <string name="doctor_removed_from_favorites">تم حذف الطبيب من المفضلة</string>
+    <string name="review_submitted_successfully">تم ارسال التقييم بنجاح</string>
+    <string name="rating_submitted_successfully">تم ارسال التقييم بنجاح</string>
+    <string name="appointment_booked_successfully">تم حجز موعد بنجاح</string>
+    <string name="review_cannot_be_empty">لا يمكن أن يكون التقييم فارغا</string>
+    <string name="select_date">اختر تاريخ</string>
 </resources>

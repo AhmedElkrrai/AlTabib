@@ -1,5 +1,6 @@
 package com.example.altabib.featuers.appointments.data.source
 
+import android.util.Log
 import com.example.altabib.core.domain.util.DataError
 import com.example.altabib.core.domain.util.Result
 import com.example.altabib.featuers.appointments.domain.AppointmentRepository
@@ -22,7 +23,8 @@ class AppointmentRepositoryImpl(
                 .await()
             Result.Success(Unit)
         } catch (e: Exception) {
-            Result.Error(DataError.WriteError(e.localizedMessage ?: "Unknown error"))
+            Log.e("AppointmentRepo", "Error in saveAppointment", e)
+            Result.Error(DataError.GeneralError)
         }
     }
 }

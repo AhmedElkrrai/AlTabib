@@ -12,7 +12,7 @@ class GetDoctorsBySpecializationUseCase(
 ) {
     suspend operator fun invoke(key: String): Result<List<Doctor>, DataError> {
         val user = getUserUseCase.invoke()
-        val city = user?.city ?: return Result.Error(DataError.RetrievalError("City not found"))
+        val city = user?.city ?: return Result.Error(DataError.GeneralError)
         return repository.getDoctorsBySpecialization(key, city)
     }
 }

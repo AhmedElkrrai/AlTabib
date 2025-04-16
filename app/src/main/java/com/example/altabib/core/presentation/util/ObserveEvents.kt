@@ -2,6 +2,8 @@ package com.example.altabib.core.presentation.util
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
@@ -30,14 +32,21 @@ fun <T> ObserveEvents(
     events: Flow<T>,
     key1: Any? = null,
     key2: Any? = null,
-    onEvent: (T) -> Unit
+    onEvent: @Composable (T) -> Unit
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
+    val eventState = remember { mutableStateOf<T?>(null) }
+
     LaunchedEffect(lifecycleOwner.lifecycle, key1, key2) {
         lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            withContext(Dispatchers.Main.immediate) {
-                events.collect(onEvent)
+            events.collect {
+                eventState.value = it
             }
         }
+    }
+
+    eventState.value?.let { event ->
+        onEvent(event)
+        eventState.value = null
     }
 }

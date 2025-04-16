@@ -1,5 +1,6 @@
 package com.example.altabib.featuers.user.data.source.remote
 
+import android.util.Log
 import com.example.altabib.core.domain.util.DataError
 import com.example.altabib.core.domain.util.Result
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
@@ -30,12 +31,11 @@ class AuthenticationService(
                 val authResult = firebaseAuth.signInWithCredential(credential).await()
                 val user = authResult.user
                 if (user != null) Result.Success(user.toDomain())
-                else Result.Error(DataError.RetrievalError("User is null"))
+                else Result.Error(DataError.FailedToRetrieveData)
             } catch (e: Exception) {
+                Log.e("AuthenticationService", "Error signing in with Google", e)
                 Result.Error(
-                    DataError.RetrievalError(
-                        e.message ?: "Could not sign in with Google"
-                    )
+                    DataError.GeneralError
                 )
             }
         }
@@ -50,7 +50,7 @@ class AuthenticationService(
     ): Result<T, DataError> = withContext(Dispatchers.IO) {
         try {
             val currentUser = firebaseAuth.currentUser
-                ?: return@withContext Result.Error(DataError.RetrievalError("Not signed in"))
+                ?: return@withContext Result.Error(DataError.GeneralError)
             val userDoc = firestore.collection(path).document(currentUser.uid)
             val snapshot = userDoc.get().await()
 
@@ -62,7 +62,8 @@ class AuthenticationService(
                 Result.Success(user)
             }
         } catch (e: Exception) {
-            Result.Error(DataError.WriteError(e.message ?: "Firestore error"))
+            Log.e("AuthenticationService", "Error registering user", e)
+            Result.Error(DataError.GeneralError)
         }
     }
 

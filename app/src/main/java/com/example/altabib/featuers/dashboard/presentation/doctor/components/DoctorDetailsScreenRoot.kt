@@ -2,7 +2,6 @@ package com.example.altabib.featuers.dashboard.presentation.doctor.components
 
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -60,7 +59,7 @@ fun DoctorDetailsScreenRoot(
             }
 
             is DoctorDetailsEvent.ShowMessage -> {
-                Toast.makeText(context, event.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, stringResource(event.msgRes), Toast.LENGTH_SHORT).show()
             }
         }
     }

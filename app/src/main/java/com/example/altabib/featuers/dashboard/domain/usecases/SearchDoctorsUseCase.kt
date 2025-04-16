@@ -14,7 +14,7 @@ class SearchDoctorsUseCase(
     suspend operator fun invoke(query: String): Result<List<Doctor>, DataError> {
         seedDoctors(doctorRepository)
         val user = getUserUseCase.invoke()
-        val city = user?.city ?: return Result.Error(DataError.RetrievalError("City not found"))
+        val city = user?.city ?: return Result.Error(DataError.GeneralError)
 
         return doctorRepository.searchDoctors(city, query)
     }

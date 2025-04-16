@@ -1,11 +1,15 @@
 package com.example.altabib.featuers.settings.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.altabib.R
 import com.example.altabib.core.domain.util.DataError
 import com.example.altabib.core.domain.util.getOrDefault
 import com.example.altabib.featuers.settings.domain.usecases.GetPatientUseCase
 import com.example.altabib.featuers.settings.domain.usecases.UpdatePatientUseCase
+import com.example.altabib.featuers.user.data.source.remote.mappers.toUser
+import com.example.altabib.featuers.user.domain.usecases.CacheUserUseCase
 import com.example.altabib.featuers.user.domain.usecases.LogoutUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,6 +20,7 @@ import kotlinx.coroutines.launch
 
 class SettingsViewModel(
     private val logoutUseCase: LogoutUseCase,
+    private val updateUserUseCase: CacheUserUseCase,
     private val getPatientUseCase: GetPatientUseCase,
     private val updatePatientUseCase: UpdatePatientUseCase
 ) : ViewModel() {
@@ -57,10 +62,9 @@ class SettingsViewModel(
 
                 _state.update { it.copy(patient = patient) }
             } catch (e: Exception) {
+                Log.e("SettingsViewModel", "Error retrieving patient data", e)
                 _event.emit(
-                    SettingsEvent.ShowToast(
-                        DataError.RetrievalError("Failed to retrieve patient data: ${e.message}")
-                    )
+                    SettingsEvent.ShowToast(DataError.FailedToRetrieveData)
                 )
             }
         }
@@ -85,13 +89,17 @@ class SettingsViewModel(
     private fun updateProfile() {
         viewModelScope.launch {
             try {
-                _state.value.patient?.let {
-                    updatePatientUseCase(it)
+                _state.value.patient?.let { patient ->
+                    updatePatientUseCase(patient)
+                    updateUserUseCase(patient.toUser())
                 }
+                _event.emit(
+                    SettingsEvent.ShowMessage(R.string.update_profile_msg)
+                )
             } catch (e: Exception) {
                 _event.emit(
                     SettingsEvent.ShowToast(
-                        DataError.RetrievalError("Update profile failed: ${e.message}")
+                        DataError.FailedToRetrieveData
                     )
                 )
             }
@@ -105,9 +113,7 @@ class SettingsViewModel(
                 _event.emit(SettingsEvent.LoggedOut)
             } catch (e: Exception) {
                 _event.emit(
-                    SettingsEvent.ShowToast(
-                        DataError.RetrievalError("Logout failed: ${e.message}")
-                    )
+                    SettingsEvent.ShowToast(DataError.GeneralError)
                 )
             }
         }
