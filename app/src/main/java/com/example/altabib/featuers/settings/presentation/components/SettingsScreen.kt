@@ -4,19 +4,26 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import com.example.altabib.featuers.settings.presentation.SettingsAction
 import com.example.altabib.featuers.settings.presentation.SettingsState
 import com.example.altabib.ui.components.AppOutlinedButton
+import com.example.altabib.ui.components.AppOutlinedTextFiled
+import com.example.altabib.ui.components.CitySelector
 
 @Composable
 fun SettingsScreen(
     state: SettingsState,
     onAction: (SettingsAction) -> Unit
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -25,14 +32,26 @@ fun SettingsScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        AppOutlinedButton(
-            onClick = { onAction(SettingsAction.ContactDevs) },
-            text = "Contact The Developer",
+
+        AppOutlinedTextFiled(
+            name = state.name,
+            onValueChange = { onAction(SettingsAction.UpdateName(it)) },
+            keyboardController = keyboardController
+        )
+
+        CitySelector(
+            selectedCity = state.city,
+            onCitySelected = { onAction(SettingsAction.ChangeCity(it)) }
         )
 
         AppOutlinedButton(
-            onClick = { onAction(SettingsAction.EditProfile) },
-            text = "Edit Profile",
+            onClick = { onAction(SettingsAction.UpdateProfile) },
+            text = "Update Profile",
+        )
+
+        AppOutlinedButton(
+            onClick = { onAction(SettingsAction.ContactDevs) },
+            text = "Contact The Developer",
         )
 
         AppOutlinedButton(

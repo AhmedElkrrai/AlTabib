@@ -6,11 +6,14 @@ import android.net.Uri
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavHostController
 import com.example.altabib.core.presentation.util.ObserveEvents
 import com.example.altabib.core.presentation.util.getMessage
+import com.example.altabib.featuers.contact_us.ContactUsDialog
 import com.example.altabib.featuers.settings.presentation.SettingsEvent
 import com.example.altabib.featuers.settings.presentation.SettingsViewModel
 import com.example.altabib.navigation.screen.Screen
@@ -19,12 +22,16 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SettingsScreenRoot(
-    navController: NavHostController,
     viewModel: SettingsViewModel = koinViewModel()
 ) {
     val context = LocalContext.current
     val state by viewModel.state.collectAsStateWithLifecycle()
     val rootNavController = LocalNavController.current
+    var showContactDialog by remember { mutableStateOf(false) }
+
+    if (showContactDialog) {
+        ContactUsDialog { showContactDialog = false }
+    }
 
     ObserveEvents(events = viewModel.event) { event ->
         when (event) {
@@ -38,10 +45,6 @@ fun SettingsScreenRoot(
                 Toast
                     .makeText(context, event.error.getMessage(context), Toast.LENGTH_SHORT)
                     .show()
-            }
-
-            is SettingsEvent.Navigate -> {
-                navController.navigate(event.route)
             }
 
             is SettingsEvent.RateApp -> {
@@ -64,6 +67,10 @@ fun SettingsScreenRoot(
                         }
                     )
                 }
+            }
+
+            is SettingsEvent.ContactDevs -> {
+                showContactDialog = true
             }
         }
     }

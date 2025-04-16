@@ -11,8 +11,6 @@ import com.example.altabib.featuers.dashboard.presentation.doctor.components.Doc
 import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationScreenRoot
 import com.example.altabib.featuers.favorites.presentation.components.FavoritesScreenRoot
 import com.example.altabib.featuers.settings.presentation.components.SettingsScreenRoot
-import com.example.altabib.featuers.settings.presentation.contact_us.ContactUsScreen
-import com.example.altabib.featuers.settings.presentation.profile.EditProfileScreen
 import com.example.altabib.navigation.screen.PatientScreen
 import com.example.altabib.navigation.utils.DOCTOR_ID
 import com.example.altabib.navigation.utils.SPECIALIZATION
@@ -30,7 +28,7 @@ fun PatientNavGraph(
             FavoritesScreenRoot(navController)
         }
         composable(PatientScreen.Settings.route) {
-            SettingsScreenRoot(navController)
+            SettingsScreenRoot()
         }
         composable(PatientScreen.Specialization.route) { backStackEntry ->
             val specialization = backStackEntry.arguments?.getString(SPECIALIZATION)
@@ -58,12 +56,6 @@ fun PatientNavGraph(
                     navController = navController
                 )
             }
-        }
-        composable(PatientScreen.ContactUs.route) {
-            ContactUsScreen()
-        }
-        composable(PatientScreen.EditProfile.route) {
-            EditProfileScreen()
         }
     }
 }

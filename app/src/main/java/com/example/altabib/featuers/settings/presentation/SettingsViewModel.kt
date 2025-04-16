@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.domain.util.DataError
 import com.example.altabib.featuers.user.domain.usecases.LogoutUseCase
-import com.example.altabib.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SettingsViewModel(
@@ -23,23 +23,46 @@ class SettingsViewModel(
 
     fun onAction(action: SettingsAction) {
         when (action) {
-            SettingsAction.Logout -> logout()
-            SettingsAction.EditProfile -> {
-                viewModelScope.launch {
-                    _event.emit(SettingsEvent.Navigate(PatientScreen.EditProfile.route))
-                }
+            is SettingsAction.Logout -> logout()
+
+            is SettingsAction.UpdateProfile -> updateProfile()
+
+            is SettingsAction.ContactDevs -> {
+                sendEvent(SettingsEvent.ContactDevs)
             }
 
-            SettingsAction.ContactDevs -> {
-                viewModelScope.launch {
-                    _event.emit(SettingsEvent.Navigate(PatientScreen.ContactUs.route))
-                }
+            is SettingsAction.RateApp -> {
+                sendEvent(SettingsEvent.RateApp)
             }
 
-            SettingsAction.RateApp -> {
-                viewModelScope.launch {
-                    _event.emit(SettingsEvent.RateApp)
-                }
+            is SettingsAction.ChangeCity -> changeCity(action.city)
+
+            is SettingsAction.UpdateName -> updateName(action.name)
+        }
+    }
+
+    private fun changeCity(city: String) {
+        viewModelScope.launch {
+            _state.update { it.copy(city = city) }
+        }
+    }
+
+    private fun updateName(name: String) {
+        viewModelScope.launch {
+            _state.update { it.copy(name = name) }
+        }
+    }
+
+    private fun updateProfile() {
+        viewModelScope.launch {
+            try {
+                // Update profile logic here
+            } catch (e: Exception) {
+                _event.emit(
+                    SettingsEvent.ShowToast(
+                        DataError.RetrievalError("Update profile failed: ${e.message}")
+                    )
+                )
             }
         }
     }
@@ -56,6 +79,12 @@ class SettingsViewModel(
                     )
                 )
             }
+        }
+    }
+
+    private fun sendEvent(event: SettingsEvent) {
+        viewModelScope.launch {
+            _event.emit(event)
         }
     }
 }

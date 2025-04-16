@@ -12,16 +12,16 @@ sealed class PatientScreen(val route: String) {
             return "doctors_by_specialization/$specialization"
         }
     }
+
     data object DoctorDetails : PatientScreen("doctor_details/{$DOCTOR_ID}") {
         fun createRoute(doctorId: String): String {
             return "doctor_details/$doctorId"
         }
     }
+
     data object Booking : PatientScreen("booking/{$DOCTOR_ID}") {
         fun createRoute(doctorId: String): String {
             return "booking/$doctorId"
         }
     }
-    data object ContactUs : PatientScreen("contact_us")
-    data object EditProfile : PatientScreen("edit_profile")
 }

@@ -9,18 +9,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -33,9 +25,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -45,15 +34,14 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
-import com.example.altabib.featuers.user.domain.entities.Governorate
 import com.example.altabib.featuers.user.domain.entities.UserType
-import com.example.altabib.navigation.utils.LocalNavController
 import com.example.altabib.navigation.screen.Screen
-import com.example.altabib.ui.components.AppOutlinedButton
+import com.example.altabib.navigation.utils.LocalNavController
+import com.example.altabib.ui.components.AppOutlinedTextFiled
+import com.example.altabib.ui.components.CitySelector
+import com.example.altabib.ui.components.SELECT_CITY
 import com.example.altabib.ui.theme.Gray
 import com.example.altabib.ui.theme.Primary
-
-private const val SELECT_CITY = "Select City"
 
 @Composable
 fun UserInfoScreen() {
@@ -64,7 +52,6 @@ fun UserInfoScreen() {
     var name by remember { mutableStateOf("") }
     var city by remember { mutableStateOf("Select City") }
     var userType by remember { mutableStateOf(UserType.Patient.key) }
-    var expanded by remember { mutableStateOf(false) }
 
     // Load Lottie Animation
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.doctor))
@@ -99,68 +86,17 @@ fun UserInfoScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // User Name
-            OutlinedTextField(
-                value = name,
+            AppOutlinedTextFiled(
+                name = name,
                 onValueChange = { name = it },
-                label = { Text(text = "Name", fontSize = 16.sp, color = Primary) },
-                textStyle = TextStyle(color = Color.White),
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Go
-                ),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = Primary,
-                    unfocusedBorderColor = Gray
-                ),
-                keyboardActions = KeyboardActions(
-                    onGo = {
-                        keyboardController?.hide()
-                    }
-                ),
-                modifier = Modifier.fillMaxWidth()
+                keyboardController = keyboardController
             )
 
             // City Selection
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center
-            ) {
-                Column {
-                    Button(
-                        onClick = { expanded = true },
-                        colors = ButtonDefaults.buttonColors(containerColor = Primary),
-                        modifier = Modifier
-                            .width(250.dp)
-                            .align(Alignment.CenterHorizontally)
-                    ) {
-                        Text(
-                            text = city.ifEmpty { SELECT_CITY },
-                            fontSize = 16.sp,
-                            color = Color.White
-                        )
-                    }
-
-                    DropdownMenu(
-                        expanded = expanded,
-                        onDismissRequest = { expanded = false },
-                        modifier = Modifier
-                            .width(250.dp)
-                            .background(Primary, shape = RoundedCornerShape(8.dp))
-                            .heightIn(max = 250.dp)
-                    ) {
-                        Governorate.entries.forEach { governorate ->
-                            DropdownMenuItem(
-                                text = { Text(text = governorate.capital, color = Color.White) },
-                                onClick = {
-                                    city = governorate.capital
-                                    expanded = false
-                                },
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                        }
-                    }
-                }
-            }
+            CitySelector(
+                selectedCity = city,
+                onCitySelected = { city = it }
+            )
 
             // User Type Selection
             Row(
