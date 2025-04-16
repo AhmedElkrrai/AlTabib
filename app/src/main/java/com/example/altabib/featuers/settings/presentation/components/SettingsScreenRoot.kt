@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -14,6 +15,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.altabib.core.presentation.util.ObserveEvents
 import com.example.altabib.core.presentation.util.getMessage
 import com.example.altabib.featuers.contact_us.ContactUsDialog
+import com.example.altabib.featuers.settings.presentation.SettingsAction
 import com.example.altabib.featuers.settings.presentation.SettingsEvent
 import com.example.altabib.featuers.settings.presentation.SettingsViewModel
 import com.example.altabib.navigation.screen.Screen
@@ -31,6 +33,10 @@ fun SettingsScreenRoot(
 
     if (showContactDialog) {
         ContactUsDialog { showContactDialog = false }
+    }
+
+    LaunchedEffect(Unit) {
+        viewModel.onAction(SettingsAction.InitPatientData)
     }
 
     ObserveEvents(events = viewModel.event) { event ->

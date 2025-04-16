@@ -2,7 +2,6 @@ package com.example.altabib.featuers.contact_us
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.AlertDialog
@@ -42,8 +41,9 @@ fun ContactUsDialog(
             TextButton(
                 onClick = {
                     if (message.isNotBlank()) {
-                        val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
-                            data = Uri.parse("mailto:$devEmail")
+                        val emailIntent = Intent(Intent.ACTION_SEND).apply {
+                            type = "message/rfc822"
+                            putExtra(Intent.EXTRA_EMAIL, arrayOf(devEmail))
                             putExtra(Intent.EXTRA_SUBJECT, "App Feedback")
                             putExtra(Intent.EXTRA_TEXT, message)
                         }

@@ -60,6 +60,7 @@ inline fun <T, E : DataError> Result<T, E>.onSuccess(action: (T) -> Unit): Resul
         }
     }
 }
+
 /**
  * Performs an action if the [Result] is an error.
  *
@@ -77,5 +78,15 @@ inline fun <T, E : DataError> Result<T, E>.onError(action: (E) -> Unit): Result<
         }
 
         is Result.Success -> this
+    }
+}
+
+/**
+ * Retrieves the default value if the [Result] is an error.
+ */
+fun <T, E : DataError> Result<T, E>.getOrDefault(default: T): T {
+    return when (this) {
+        is Result.Success -> this.data
+        is Result.Error -> default
     }
 }

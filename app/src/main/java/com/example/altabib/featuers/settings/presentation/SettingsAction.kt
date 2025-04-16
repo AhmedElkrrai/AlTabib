@@ -1,6 +1,7 @@
 package com.example.altabib.featuers.settings.presentation
 
 sealed interface SettingsAction {
+    data object InitPatientData : SettingsAction
     data object Logout : SettingsAction
     data object UpdateProfile : SettingsAction
     data object ContactDevs : SettingsAction

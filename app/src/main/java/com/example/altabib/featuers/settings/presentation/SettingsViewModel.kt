@@ -3,6 +3,9 @@ package com.example.altabib.featuers.settings.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.domain.util.DataError
+import com.example.altabib.core.domain.util.getOrDefault
+import com.example.altabib.featuers.settings.domain.usecases.GetPatientUseCase
+import com.example.altabib.featuers.settings.domain.usecases.UpdatePatientUseCase
 import com.example.altabib.featuers.user.domain.usecases.LogoutUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +15,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SettingsViewModel(
-    private val logoutUseCase: LogoutUseCase
+    private val logoutUseCase: LogoutUseCase,
+    private val getPatientUseCase: GetPatientUseCase,
+    private val updatePatientUseCase: UpdatePatientUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SettingsState())
@@ -23,6 +28,8 @@ class SettingsViewModel(
 
     fun onAction(action: SettingsAction) {
         when (action) {
+            is SettingsAction.InitPatientData -> initPatientData()
+
             is SettingsAction.Logout -> logout()
 
             is SettingsAction.UpdateProfile -> updateProfile()
@@ -41,22 +48,46 @@ class SettingsViewModel(
         }
     }
 
+    private fun initPatientData() {
+        viewModelScope.launch {
+            try {
+                val patient = getPatientUseCase
+                    .invoke()
+                    ?.getOrDefault(null) ?: return@launch
+
+                _state.update { it.copy(patient = patient) }
+            } catch (e: Exception) {
+                _event.emit(
+                    SettingsEvent.ShowToast(
+                        DataError.RetrievalError("Failed to retrieve patient data: ${e.message}")
+                    )
+                )
+            }
+        }
+    }
+
     private fun changeCity(city: String) {
         viewModelScope.launch {
-            _state.update { it.copy(city = city) }
+            _state.update { state ->
+                state.copy(patient = state.patient?.copy(city = city))
+            }
         }
     }
 
     private fun updateName(name: String) {
         viewModelScope.launch {
-            _state.update { it.copy(name = name) }
+            _state.update {
+                it.copy(patient = it.patient?.copy(name = name))
+            }
         }
     }
 
     private fun updateProfile() {
         viewModelScope.launch {
             try {
-                // Update profile logic here
+                _state.value.patient?.let {
+                    updatePatientUseCase(it)
+                }
             } catch (e: Exception) {
                 _event.emit(
                     SettingsEvent.ShowToast(
