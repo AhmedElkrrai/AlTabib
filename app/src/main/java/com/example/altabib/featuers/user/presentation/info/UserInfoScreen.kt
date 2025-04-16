@@ -87,8 +87,9 @@ fun UserInfoScreen() {
         ) {
             // User Name
             AppOutlinedTextFiled(
-                name = name,
+                value = name,
                 onValueChange = { name = it },
+                label = "Name",
                 keyboardController = keyboardController
             )
 

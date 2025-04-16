@@ -11,19 +11,19 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingAction
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingState
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.RatingSection
+import com.example.altabib.ui.components.AppOutlinedButton
+import com.example.altabib.ui.components.AppOutlinedTextFiled
 import com.example.altabib.ui.components.Loading
 import com.example.altabib.ui.components.TopAppBarWithBackButton
 
@@ -52,57 +52,46 @@ fun BookingScreen(
                         .fillMaxSize()
                         .padding(horizontal = 16.dp)
                         .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(4.dp))
 
                     DatePicker(
                         state = state,
                         onAction = onAction
                     )
 
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(6.dp))
 
                     // Rating section
                     RatingSection(state.userRating) {
                         onAction(BookingAction.OnSubmitRating(it))
                     }
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // User review input
-                    OutlinedTextField(
+                    AppOutlinedTextFiled(
                         value = state.userReview,
+                        label = "Your review",
                         onValueChange = { onAction(BookingAction.OnReviewTextChanged(it)) },
-                        label = { Text("Your review") },
-                        modifier = Modifier.fillMaxWidth(),
+                        keyboardController = LocalSoftwareKeyboardController.current,
                         singleLine = false,
-                        maxLines = 3
+                        maxLines = 3,
                     )
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
                     // Leave review button
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Button(
-                            onClick = {
-                                onAction(
-                                    BookingAction.OnSubmitReview
-                                )
-                            },
-                            modifier = Modifier
-                                .fillMaxWidth(0.6f)
-                                .height(48.dp)
-                        ) {
-                            Text("Leave a review")
-                        }
-                    }
+                    AppOutlinedButton(
+                        text = "Leave a review",
+                        onClick = {
+                            onAction(BookingAction.OnSubmitReview)
+                        },
+                    )
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
                     // Reviews
                     if (doctor.reviewsList.isEmpty()) {
@@ -143,22 +132,12 @@ fun BookingScreen(
                     Spacer(modifier = Modifier.height(16.dp))
 
                     // Submit button
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Button(
-                            onClick = {
-                                onAction(BookingAction.OnConfirmBooking)
-                            },
-                            modifier = Modifier
-                                .fillMaxWidth(0.6f)
-                                .height(48.dp)
-                        ) {
-                            Text("Confirm Booking")
-                        }
-                    }
+                    AppOutlinedButton(
+                        text = "Confirm Booking",
+                        onClick = {
+                            onAction(BookingAction.OnConfirmBooking)
+                        },
+                    )
 
                     Spacer(modifier = Modifier.height(8.dp))
                 }

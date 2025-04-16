@@ -18,15 +18,18 @@ import com.example.altabib.ui.theme.Primary
 
 @Composable
 fun AppOutlinedTextFiled(
-    name: String,
+    value: String,
+    label: String,
     onValueChange: (String) -> Unit,
+    singleLine: Boolean = true,
+    maxLines: Int = 1,
     keyboardController: androidx.compose.ui.platform.SoftwareKeyboardController?,
 ) {
 
     OutlinedTextField(
-        value = name,
+        value = value,
         onValueChange = { onValueChange(it) },
-        label = { Text(text = "Name", fontSize = 16.sp, color = Primary) },
+        label = { Text(text = label, fontSize = 16.sp, color = Primary) },
         textStyle = TextStyle(color = Color.White),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,

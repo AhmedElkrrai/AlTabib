@@ -47,15 +47,13 @@ class DoctorDetailsViewModel(
 
             is DoctorDetailsAction.OnBookAppointmentClick -> {
                 viewModelScope.launch {
-                    viewModelScope.launch {
-                        _event.emit(
-                            DoctorDetailsEvent.Navigate(
-                                PatientScreen.Booking.createRoute(
-                                    doctorId = action.doctorId
-                                )
+                    _event.emit(
+                        DoctorDetailsEvent.Navigate(
+                            PatientScreen.Booking.createRoute(
+                                doctorId = action.doctorId
                             )
                         )
-                    }
+                    )
                 }
             }
 

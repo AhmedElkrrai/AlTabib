@@ -16,11 +16,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 import com.example.altabib.ui.theme.Primary
+import com.example.altabib.utils.getLocalizedString
 
 @Composable
 fun SpecializationCard(
@@ -50,8 +52,9 @@ fun SpecializationCard(
             )
             Spacer(modifier = Modifier.height(8.dp))
 
+            val title = getLocalizedString(LocalContext.current, specialization.nameResource)
             Text(
-                text = stringResource(specialization.nameResource),
+                text = title,
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center
             )

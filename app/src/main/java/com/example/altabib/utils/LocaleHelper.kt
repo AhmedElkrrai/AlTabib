@@ -25,7 +25,7 @@ object LocaleHelper {
         return updateResources(context, language)
     }
 
-    fun getCurrentLanguage(context: Context): String {
+    private fun getCurrentLanguage(context: Context): String {
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
         return preferences.getString(SELECTED_LANGUAGE, Language.ENGLISH.code)
             ?: Language.ENGLISH.code

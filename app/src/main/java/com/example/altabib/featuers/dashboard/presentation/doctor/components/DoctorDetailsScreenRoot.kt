@@ -17,6 +17,7 @@ import com.example.altabib.featuers.dashboard.domain.entities.getDisplayName
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsAction
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsEvent
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsViewModel
+import com.example.altabib.utils.getLocalizedString
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -59,7 +60,8 @@ fun DoctorDetailsScreenRoot(
             }
 
             is DoctorDetailsEvent.ShowMessage -> {
-                Toast.makeText(context, stringResource(event.msgRes), Toast.LENGTH_SHORT).show()
+                val message = getLocalizedString(context, event.msgRes)
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
         }
     }

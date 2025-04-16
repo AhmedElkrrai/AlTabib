@@ -24,6 +24,7 @@ import com.example.altabib.featuers.settings.presentation.SettingsViewModel
 import com.example.altabib.navigation.screen.Screen
 import com.example.altabib.navigation.utils.LocalNavController
 import com.example.altabib.utils.LocaleHelper
+import com.example.altabib.utils.getLocalizedString
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -46,7 +47,8 @@ fun SettingsScreenRoot(
     ObserveEvents(events = viewModel.event) { event ->
         when (event) {
             is SettingsEvent.ShowMessage -> {
-                Toast.makeText(context, stringResource(event.msgRes), Toast.LENGTH_SHORT).show()
+                val message = getLocalizedString(context, event.msgRes)
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
 
             is SettingsEvent.LoggedOut -> {

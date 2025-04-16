@@ -14,6 +14,7 @@ import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCas
 import com.example.altabib.featuers.settings.domain.entities.Patient
 import com.example.altabib.featuers.settings.domain.usecases.GetPatientUseCase
 import com.example.altabib.featuers.settings.domain.usecases.UpdatePatientUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -213,6 +214,7 @@ class BookingViewModel(
                     result
                         .onSuccess {
                             _event.emit(BookingEvent.ShowMessage(R.string.appointment_booked_successfully))
+                            delay(2000)
                             _event.emit(BookingEvent.Back)
                         }
                         .onError {

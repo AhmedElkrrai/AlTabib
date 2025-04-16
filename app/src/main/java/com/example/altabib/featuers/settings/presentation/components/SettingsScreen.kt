@@ -3,6 +3,7 @@ package com.example.altabib.featuers.settings.presentation.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -38,8 +39,9 @@ fun SettingsScreen(
     ) {
 
         AppOutlinedTextFiled(
-            name = state.patient?.name ?: "",
+            value = state.patient?.name ?: "",
             onValueChange = { onAction(SettingsAction.UpdateName(it)) },
+            label = "Name",
             keyboardController = keyboardController
         )
 
@@ -53,19 +55,27 @@ fun SettingsScreen(
             text = "Update Profile",
         )
 
-        val currentLang = LocaleHelper.getCurrentLanguageEnum(LocalContext.current)
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            val currentLang = LocaleHelper.getCurrentLanguageEnum(LocalContext.current)
 
-        AppOutlinedButton(
-            onClick = { onAction(SettingsAction.ChangeLanguage(LocaleHelper.Language.ENGLISH)) },
-            text = stringResource(R.string.english),
-            enabled = currentLang != LocaleHelper.Language.ENGLISH
-        )
+            AppOutlinedButton(
+                onClick = { onAction(SettingsAction.ChangeLanguage(LocaleHelper.Language.ENGLISH)) },
+                text = stringResource(R.string.english),
+                enabled = currentLang != LocaleHelper.Language.ENGLISH
+            )
 
-        AppOutlinedButton(
-            onClick = { onAction(SettingsAction.ChangeLanguage(LocaleHelper.Language.ARABIC)) },
-            text = stringResource(R.string.arabic),
-            enabled = currentLang != LocaleHelper.Language.ARABIC
-        )
+            Spacer(modifier = Modifier.padding(8.dp))
+
+            AppOutlinedButton(
+                onClick = { onAction(SettingsAction.ChangeLanguage(LocaleHelper.Language.ARABIC)) },
+                text = stringResource(R.string.arabic),
+                enabled = currentLang != LocaleHelper.Language.ARABIC
+            )
+        }
 
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),

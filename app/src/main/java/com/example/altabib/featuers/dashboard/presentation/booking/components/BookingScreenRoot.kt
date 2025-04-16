@@ -1,5 +1,6 @@
 package com.example.altabib.featuers.dashboard.presentation.booking.components
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -13,6 +14,7 @@ import com.example.altabib.core.presentation.util.getMessage
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingAction
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingEvent
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingViewModel
+import com.example.altabib.utils.getLocalizedString
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -41,9 +43,8 @@ fun BookingScreenRoot(
             }
 
             is BookingEvent.ShowMessage -> {
-                Toast
-                    .makeText(context, stringResource(event.msgRes), Toast.LENGTH_SHORT)
-                    .show()
+                val message = getLocalizedString(context, event.msgRes)
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
         }
     }
