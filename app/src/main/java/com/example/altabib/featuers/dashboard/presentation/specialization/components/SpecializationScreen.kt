@@ -10,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorCard
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationAction
@@ -18,6 +17,7 @@ import com.example.altabib.featuers.dashboard.presentation.specialization.Specia
 import com.example.altabib.ui.components.Loading
 import com.example.altabib.ui.components.TopAppBarWithBackButton
 import com.example.altabib.ui.components.VerticalGrid
+import com.example.altabib.utils.getLocalizedString
 
 @Composable
 fun SpecializationScreen(
@@ -45,7 +45,7 @@ fun SpecializationScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = stringResource(R.string.no_doctors_available),
+                    text = getLocalizedString(R.string.no_doctors_available),
                     style = MaterialTheme.typography.bodyMedium
                 )
             }

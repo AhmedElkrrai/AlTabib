@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -31,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.altabib.R
 import com.example.altabib.ui.theme.DarkGray
+import com.example.altabib.utils.getLocalizedString
 
 @Composable
 fun SearchBar(
@@ -64,7 +64,7 @@ fun SearchBar(
                     .fillMaxSize()
                     .padding(start = 4.dp),
                 textAlign = TextAlign.Start,
-                text = stringResource(R.string.search_hint),
+                text = getLocalizedString(R.string.search_hint),
                 style = MaterialTheme.typography.bodyMedium,
                 color = Black.copy(alpha = 0.66f),
                 maxLines = 1

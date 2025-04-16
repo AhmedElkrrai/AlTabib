@@ -1,9 +1,12 @@
 package com.example.altabib.utils
 
-import android.content.Context
 import androidx.annotation.StringRes
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 
-fun getLocalizedString(context: Context, @StringRes resId: Int): String {
+@Composable
+fun getLocalizedString(@StringRes resId: Int): String {
+    val context = LocalContext.current
     val lang: LocaleHelper.Language = LocaleHelper.getCurrentLanguageEnum(context)
     val localizedContext = LocaleHelper.setLocale(context, lang)
     return localizedContext.getString(resId)

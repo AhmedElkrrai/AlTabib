@@ -8,7 +8,7 @@
     <string name="error_failed_to_retrieve_data">تعذر جلب البيانات من الخادم.</string>
     <string name="error_failed_to_update_data">تعذر تحديث البيانات.</string>
     <string name="error_serialization">تعذر تسلسل أو إلغاء تسلسل البيانات.</string>
-    <string name="search_hint">ابحث عن طبيب.</string>
+    <string name="search_hint">ابحث عن طبيب</string>
     <string name="no_results">لم يتم العثور على نتائج.</string>
     <string name="no_doctors_available">لا يوجد أطباء متاحون لهذا التخصص.</string>
     <string name="unknown_specialization">تخصص غير معروف.</string>
@@ -44,4 +44,7 @@
     <!-- ... Other ... -->
     <string name="english">الانجليزيه</string>
     <string name="arabic">العربية</string>
+    <string name="currency">ج.م</string>
+    <string name="reviews">تقييم</string>
+    <string name="in_queue">في الانتظار</string>
 </resources>

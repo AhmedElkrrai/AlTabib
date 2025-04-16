@@ -13,7 +13,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardAction
@@ -22,6 +21,7 @@ import com.example.altabib.featuers.dashboard.presentation.doctor.components.Doc
 import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationCard
 import com.example.altabib.ui.components.Loading
 import com.example.altabib.ui.components.VerticalGrid
+import com.example.altabib.utils.getLocalizedString
 
 @Composable
 fun DashboardScreen(
@@ -76,7 +76,7 @@ fun DashboardScreen(
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                text = stringResource(R.string.no_results),
+                                text = getLocalizedString(R.string.no_results),
                                 style = MaterialTheme.typography.bodyMedium
                             )
                         }

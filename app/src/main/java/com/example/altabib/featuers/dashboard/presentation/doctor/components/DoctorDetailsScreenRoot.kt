@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.example.altabib.R
@@ -60,15 +59,15 @@ fun DoctorDetailsScreenRoot(
             }
 
             is DoctorDetailsEvent.ShowMessage -> {
-                val message = getLocalizedString(context, event.msgRes)
+                val message = getLocalizedString(event.msgRes)
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     DoctorDetailsScreen(
-        specialization = state.doctor?.specialization?.getDisplayName(context)
-            ?: stringResource(R.string.unknown_specialization),
+        specialization = state.doctor?.specialization?.getDisplayName()
+            ?: getLocalizedString(R.string.unknown_specialization),
         state = state,
         onAction = viewModel::onAction
     )

@@ -1,6 +1,5 @@
 package com.example.altabib.featuers.settings.presentation.components
 
-import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -12,7 +11,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.altabib.MainActivity
 import com.example.altabib.core.presentation.util.ObserveEvents
@@ -47,7 +45,7 @@ fun SettingsScreenRoot(
     ObserveEvents(events = viewModel.event) { event ->
         when (event) {
             is SettingsEvent.ShowMessage -> {
-                val message = getLocalizedString(context, event.msgRes)
+                val message = getLocalizedString(event.msgRes)
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
 

@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.altabib.R
 import com.example.altabib.featuers.settings.presentation.SettingsAction
@@ -22,6 +21,7 @@ import com.example.altabib.ui.components.AppOutlinedTextFiled
 import com.example.altabib.ui.components.CitySelector
 import com.example.altabib.ui.components.SELECT_CITY
 import com.example.altabib.utils.LocaleHelper
+import com.example.altabib.utils.getLocalizedString
 
 @Composable
 fun SettingsScreen(
@@ -64,7 +64,7 @@ fun SettingsScreen(
 
             AppOutlinedButton(
                 onClick = { onAction(SettingsAction.ChangeLanguage(LocaleHelper.Language.ENGLISH)) },
-                text = stringResource(R.string.english),
+                text = getLocalizedString(R.string.english),
                 enabled = currentLang != LocaleHelper.Language.ENGLISH
             )
 
@@ -72,7 +72,7 @@ fun SettingsScreen(
 
             AppOutlinedButton(
                 onClick = { onAction(SettingsAction.ChangeLanguage(LocaleHelper.Language.ARABIC)) },
-                text = stringResource(R.string.arabic),
+                text = getLocalizedString(R.string.arabic),
                 enabled = currentLang != LocaleHelper.Language.ARABIC
             )
         }

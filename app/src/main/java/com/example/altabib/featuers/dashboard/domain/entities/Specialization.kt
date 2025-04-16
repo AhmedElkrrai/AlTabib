@@ -1,6 +1,5 @@
 package com.example.altabib.featuers.dashboard.domain.entities
 
-import android.content.Context
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FitnessCenter
@@ -12,8 +11,10 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Psychology
 import androidx.compose.material.icons.filled.Science
 import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.altabib.R
+import com.example.altabib.utils.getLocalizedString
 
 enum class Specialization(
     val key: String,
@@ -43,6 +44,7 @@ enum class Specialization(
     }
 }
 
-fun Specialization.getDisplayName(context: Context): String {
-    return context.getString(this.nameResource)
+@Composable
+fun Specialization.getDisplayName(): String {
+   return getLocalizedString(nameResource)
 }

@@ -3,6 +3,11 @@ package com.example.altabib.utils
 import android.content.Context
 import android.content.res.Configuration
 import android.preference.PreferenceManager
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
 import java.util.Locale
 
 object LocaleHelper {
@@ -49,5 +54,25 @@ object LocaleHelper {
         config.setLayoutDirection(locale)
 
         return context.createConfigurationContext(config)
+    }
+
+    @Composable
+    fun isArabic(): Boolean {
+        val context = LocalContext.current
+        return getCurrentLanguageEnum(context) == Language.ARABIC
+    }
+
+    @Composable
+    fun getCurrentLanguage(): Language {
+        val context = LocalContext.current
+        return getCurrentLanguageEnum(context)
+    }
+
+    @Composable
+    fun getLayoutDirection(): LayoutDirection {
+        return when (getCurrentLanguageEnum(LocalContext.current)) {
+            LocaleHelper.Language.ARABIC -> LayoutDirection.Rtl
+            LocaleHelper.Language.ENGLISH -> LayoutDirection.Ltr
+        }
     }
 }

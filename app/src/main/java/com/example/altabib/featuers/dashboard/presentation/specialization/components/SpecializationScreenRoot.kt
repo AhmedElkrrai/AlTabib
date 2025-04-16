@@ -6,10 +6,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavHostController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.altabib.R
+import androidx.navigation.NavHostController
 import com.example.altabib.core.presentation.util.ObserveEvents
 import com.example.altabib.core.presentation.util.getMessage
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
@@ -52,8 +50,7 @@ fun SpecializationScreenRoot(
     }
 
     SpecializationScreen(
-        specialization = Specialization.fromKey(key)?.getDisplayName(context)
-            ?: stringResource(R.string.unknown_specialization),
+        specialization = Specialization.fromKey(key).getDisplayName(),
         state = state,
         onAction = viewModel::onAction,
         modifier = modifier
