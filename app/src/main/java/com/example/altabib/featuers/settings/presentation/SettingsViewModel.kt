@@ -50,6 +50,12 @@ class SettingsViewModel(
             is SettingsAction.ChangeCity -> changeCity(action.city)
 
             is SettingsAction.UpdateName -> updateName(action.name)
+
+            is SettingsAction.ChangeLanguage -> {
+                viewModelScope.launch {
+                    _event.emit(SettingsEvent.ChangeAppLanguage(action.language))
+                }
+            }
         }
     }
 

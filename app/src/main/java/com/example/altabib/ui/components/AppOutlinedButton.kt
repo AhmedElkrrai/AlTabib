@@ -15,12 +15,14 @@ import com.example.altabib.ui.theme.Primary
 fun AppOutlinedButton(
     modifier: Modifier = Modifier,
     text: String,
+    enabled: Boolean = true,
     onClick: () -> Unit
 ) {
     OutlinedButton(
         onClick = { onClick() },
         modifier = modifier
             .height(50.dp),
+        enabled = enabled,
         colors = ButtonDefaults.outlinedButtonColors(
             contentColor = Color.White,
             containerColor = Primary

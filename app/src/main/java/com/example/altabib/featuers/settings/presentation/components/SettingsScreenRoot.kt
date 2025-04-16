@@ -1,5 +1,6 @@
 package com.example.altabib.featuers.settings.presentation.components
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -13,6 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.altabib.MainActivity
 import com.example.altabib.core.presentation.util.ObserveEvents
 import com.example.altabib.core.presentation.util.getMessage
 import com.example.altabib.featuers.contact_us.ContactUsDialog
@@ -21,6 +23,7 @@ import com.example.altabib.featuers.settings.presentation.SettingsEvent
 import com.example.altabib.featuers.settings.presentation.SettingsViewModel
 import com.example.altabib.navigation.screen.Screen
 import com.example.altabib.navigation.utils.LocalNavController
+import com.example.altabib.utils.LocaleHelper
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -82,6 +85,14 @@ fun SettingsScreenRoot(
 
             is SettingsEvent.ContactDevs -> {
                 showContactDialog = true
+            }
+
+            is SettingsEvent.ChangeAppLanguage -> {
+                val updatedContext = LocaleHelper.setLocale(context, event.language)
+                val intent = Intent(updatedContext, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                updatedContext.startActivity(intent)
             }
         }
     }

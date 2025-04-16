@@ -41,4 +41,7 @@
     <string name="appointment_booked_successfully">تم حجز موعد بنجاح</string>
     <string name="review_cannot_be_empty">لا يمكن أن يكون التقييم فارغا</string>
     <string name="select_date">اختر تاريخ</string>
+    <!-- ... Other ... -->
+    <string name="english">الانجليزيه</string>
+    <string name="arabic">العربية</string>
 </resources>
