@@ -2,6 +2,7 @@ package com.example.altabib.featuers.dashboard.presentation.doctor.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -19,7 +20,9 @@ import androidx.compose.ui.unit.dp
 fun InfoRow(icon: ImageVector, text: String) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(vertical = 4.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
     ) {
         Icon(icon, contentDescription = null, modifier = Modifier.size(20.dp))
         Spacer(modifier = Modifier.width(8.dp))

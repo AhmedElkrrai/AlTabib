@@ -36,6 +36,7 @@ import com.example.altabib.ui.theme.Green
 import com.example.altabib.ui.theme.Primary
 import com.example.altabib.utils.FormatCompose
 import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.utils.getRatingText
 
 @Composable
 fun DoctorCard(
@@ -115,11 +116,8 @@ fun DoctorCard(
 
                         Spacer(modifier = Modifier.width(4.dp))
 
-                        val reviews = "${"%.1f".format(doctor.rating)} (${doctor.reviews} " +
-                                getLocalizedString(R.string.reviews) + ")"
-
                         Text(
-                            text = reviews,
+                            text = getRatingText(doctor.rating, doctor.reviews),
                             style = MaterialTheme.typography.bodySmall,
                             color = Color.White
                         )

@@ -27,11 +27,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.domain.entities.getDisplayName
 import com.example.altabib.ui.theme.Green
-import com.example.altabib.ui.theme.Primary
 import com.example.altabib.ui.theme.Pink
+import com.example.altabib.ui.theme.Primary
+import com.example.altabib.utils.FormatCompose
+import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.utils.getRatingText
 
 @Composable
 fun FavoriteCard(
@@ -40,105 +44,109 @@ fun FavoriteCard(
     onRemoveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card(
-        modifier = modifier
-            .clickable { onClick() },
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-        shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Primary)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
+    FormatCompose {
+        Card(
+            modifier = modifier
+                .clickable { onClick() },
+            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+            shape = RoundedCornerShape(8.dp),
+            colors = CardDefaults.cardColors(containerColor = Primary)
         ) {
-            // Heart icon
-            Icon(
-                imageVector = Icons.Default.Favorite,
-                contentDescription = "Remove from favorites",
-                tint = Pink,
-                modifier = Modifier
-                    .padding(8.dp)
-                    .size(24.dp)
-                    .align(Alignment.TopStart)
-                    .clickable { onRemoveClick() }
-            )
-
-            // Price
-            Text(
-                text = "${doctor.price} EGP",
-                style = MaterialTheme.typography.bodySmall,
-                textAlign = TextAlign.Center,
-                color = Green,
-                modifier = Modifier
-                    .padding(8.dp)
-                    .align(Alignment.TopEnd)
-            )
-
-            // Main card content
-            Column(
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Avatar
+                // Heart icon
                 Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = doctor.name,
-                    modifier = Modifier.size(84.dp),
-                    tint = MaterialTheme.colorScheme.primary
+                    imageVector = Icons.Default.Favorite,
+                    contentDescription = "Remove from favorites",
+                    tint = Pink,
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .size(24.dp)
+                        .align(Alignment.TopStart)
+                        .clickable { onRemoveClick() }
                 )
 
-                Spacer(modifier = Modifier.height(4.dp))
-
-                // Name
+                // Price
                 Text(
-                    text = doctor.name,
-                    style = MaterialTheme.typography.bodyMedium,
-                    textAlign = TextAlign.Center,
-                    color = Color.White
-                )
-
-                Spacer(modifier = Modifier.height(4.dp))
-
-                // Specialization
-                Text(
-                    text = doctor.specialization.getDisplayName(),
+                    text = " ${doctor.price} " + getLocalizedString(R.string.currency),
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center,
-                    color = Color.White
+                    color = Green,
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .align(Alignment.TopEnd)
                 )
 
-                Spacer(modifier = Modifier.height(4.dp))
-
-                // Rating
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
+                // Main card content
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    // Avatar
                     Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "Rating",
-                        tint = Color.Yellow,
-                        modifier = Modifier.size(20.dp)
+                        imageVector = Icons.Default.Person,
+                        contentDescription = doctor.name,
+                        modifier = Modifier.size(84.dp),
+                        tint = MaterialTheme.colorScheme.primary
                     )
-                    Spacer(modifier = Modifier.width(4.dp))
+
+                    Spacer(modifier = Modifier.height(4.dp))
+
+                    // Name
                     Text(
-                        text = "${"%.1f".format(doctor.rating)} (${doctor.reviews} reviews)",
-                        style = MaterialTheme.typography.bodySmall,
+                        text = doctor.name,
+                        style = MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.Center,
                         color = Color.White
                     )
+
+                    Spacer(modifier = Modifier.height(4.dp))
+
+                    // Specialization
+                    Text(
+                        text = doctor.specialization.getDisplayName(),
+                        style = MaterialTheme.typography.bodySmall,
+                        textAlign = TextAlign.Center,
+                        color = Color.White
+                    )
+
+                    Spacer(modifier = Modifier.height(4.dp))
+
+                    // Rating
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "Rating",
+                            tint = Color.Yellow,
+                            modifier = Modifier.size(20.dp)
+                        )
+
+                        Spacer(modifier = Modifier.width(4.dp))
+
+                        Text(
+                            text = getRatingText(doctor.rating, doctor.reviews),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Color.White
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(4.dp))
+
+                    // Availability
+                    Text(
+                        text = doctor.availability,
+                        style = MaterialTheme.typography.bodySmall,
+                        textAlign = TextAlign.Center,
+                        color = Green
+                    )
                 }
-
-                Spacer(modifier = Modifier.height(4.dp))
-
-                // Availability
-                Text(
-                    text = doctor.availability,
-                    style = MaterialTheme.typography.bodySmall,
-                    textAlign = TextAlign.Center,
-                    color = Green
-                )
             }
         }
     }

@@ -20,6 +20,7 @@ import com.example.altabib.ui.components.AppOutlinedButton
 import com.example.altabib.ui.components.AppOutlinedTextFiled
 import com.example.altabib.ui.components.CitySelector
 import com.example.altabib.ui.components.SELECT_CITY
+import com.example.altabib.utils.FormatCompose
 import com.example.altabib.utils.LocaleHelper
 import com.example.altabib.utils.getLocalizedString
 
@@ -33,17 +34,20 @@ fun SettingsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
+            .padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        AppOutlinedTextFiled(
-            value = state.patient?.name ?: "",
-            onValueChange = { onAction(SettingsAction.UpdateName(it)) },
-            label = "Name",
-            keyboardController = keyboardController
-        )
+        FormatCompose {
+            AppOutlinedTextFiled(
+                value = state.patient?.name ?: "",
+                onValueChange = { onAction(SettingsAction.UpdateName(it)) },
+                label = getLocalizedString(R.string.name),
+                keyboardController = keyboardController,
+                initialCursorPosition = state.patient?.name?.length
+            )
+        }
 
         CitySelector(
             selectedCity = state.patient?.city ?: SELECT_CITY,
@@ -52,7 +56,7 @@ fun SettingsScreen(
 
         AppOutlinedButton(
             onClick = { onAction(SettingsAction.UpdateProfile) },
-            text = "Update Profile",
+            text = getLocalizedString(R.string.update_profile),
         )
 
         Row(
@@ -78,24 +82,26 @@ fun SettingsScreen(
         }
 
         Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalArrangement = Arrangement.Center,
             modifier = Modifier
                 .fillMaxWidth()
         ) {
             AppOutlinedButton(
                 onClick = { onAction(SettingsAction.ContactDevs) },
-                text = "Contact The Developer",
+                text = getLocalizedString(R.string.contact_devs),
             )
+
+            Spacer(modifier = Modifier.padding(6.dp))
 
             AppOutlinedButton(
                 onClick = { onAction(SettingsAction.RateApp) },
-                text = "Rate App",
+                text = getLocalizedString(R.string.rate_app),
             )
         }
 
         AppOutlinedButton(
             onClick = { onAction(SettingsAction.Logout) },
-            text = "Logout",
+            text = getLocalizedString(R.string.logout),
         )
     }
 }

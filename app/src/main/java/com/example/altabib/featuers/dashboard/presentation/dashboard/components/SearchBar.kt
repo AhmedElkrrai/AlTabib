@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.altabib.R
 import com.example.altabib.ui.theme.DarkGray
+import com.example.altabib.utils.FormatCompose
 import com.example.altabib.utils.getLocalizedString
 
 @Composable
@@ -39,70 +40,72 @@ fun SearchBar(
     onImeSearch: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    OutlinedTextField(
-        modifier = modifier
-            .padding(horizontal = 10.dp)
-            .fillMaxWidth()
-            .height(52.dp)
-            .clip(RoundedCornerShape(12)),
-        value = searchQuery,
-        onValueChange = onSearchQueryChange,
-        shape = RoundedCornerShape(12),
-        colors = OutlinedTextFieldDefaults.colors(
-            cursorColor = DarkGray,
-            focusedBorderColor = DarkGray,
-            unfocusedBorderColor = DarkGray,
-            focusedTextColor = Black,
-            unfocusedTextColor = DarkGray,
-            unfocusedContainerColor = Color(0xFFF7F7F7),
-            focusedContainerColor = Color.White
-        ),
-        textStyle = TextStyle(fontSize = 16.sp),
-        placeholder = {
-            Text(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(start = 4.dp),
-                textAlign = TextAlign.Start,
-                text = getLocalizedString(R.string.search_hint),
-                style = MaterialTheme.typography.bodyMedium,
-                color = Black.copy(alpha = 0.66f),
-                maxLines = 1
-            )
-        },
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Default.Search,
-                contentDescription = null,
-                tint = Black
-            )
-        },
-        singleLine = true,
-        keyboardActions = KeyboardActions(
-            onSearch = {
-                onImeSearch()
-            }
-        ),
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Text,
-            imeAction = ImeAction.Search
-        ),
-        trailingIcon = {
-            AnimatedVisibility(
-                visible = searchQuery.isNotBlank()
-            ) {
-                IconButton(
-                    onClick = {
-                        onSearchQueryChange("")
-                    }
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
+    FormatCompose {
+        OutlinedTextField(
+            modifier = modifier
+                .padding(horizontal = 10.dp)
+                .fillMaxWidth()
+                .height(52.dp)
+                .clip(RoundedCornerShape(12)),
+            value = searchQuery,
+            onValueChange = onSearchQueryChange,
+            shape = RoundedCornerShape(12),
+            colors = OutlinedTextFieldDefaults.colors(
+                cursorColor = DarkGray,
+                focusedBorderColor = DarkGray,
+                unfocusedBorderColor = DarkGray,
+                focusedTextColor = Black,
+                unfocusedTextColor = DarkGray,
+                unfocusedContainerColor = Color(0xFFF7F7F7),
+                focusedContainerColor = Color.White
+            ),
+            textStyle = TextStyle(fontSize = 16.sp),
+            placeholder = {
+                Text(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(start = 4.dp),
+                    textAlign = TextAlign.Start,
+                    text = getLocalizedString(R.string.search_hint),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Black.copy(alpha = 0.66f),
+                    maxLines = 1
+                )
+            },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = null,
+                    tint = Black
+                )
+            },
+            singleLine = true,
+            keyboardActions = KeyboardActions(
+                onSearch = {
+                    onImeSearch()
                 }
-            }
-        },
-    )
+            ),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text,
+                imeAction = ImeAction.Search
+            ),
+            trailingIcon = {
+                AnimatedVisibility(
+                    visible = searchQuery.isNotBlank()
+                ) {
+                    IconButton(
+                        onClick = {
+                            onSearchQueryChange("")
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                }
+            },
+        )
+    }
 }

@@ -42,9 +42,29 @@
     <string name="review_cannot_be_empty">لا يمكن أن يكون التقييم فارغا</string>
     <string name="select_date">اختر تاريخ</string>
     <!-- ... Other ... -->
-    <string name="english">الانجليزيه</string>
+    <string name="english">الانجليزية</string>
     <string name="arabic">العربية</string>
     <string name="currency">ج.م</string>
     <string name="reviews">تقييم</string>
     <string name="in_queue">في الانتظار</string>
+    <string name="favorites">المفضلة</string>
+    <string name="dashboard">الواجهة الرئيسية</string>
+    <string name="settings">الإعدادات</string>
+    <string name="bio">السيرة الذاتية</string>
+    <string name="available">متاح</string>
+    <string name="queue">في الانتظار</string>
+    <string name="price">السعر</string>
+    <string name="add_to_fav">إضافة إلى المفضلة</string>
+    <string name="book_now">احجز الان</string>
+    <string name="rate_doctor">تقييم بعد الزيارة</string>
+    <string name="confirm_booking">تأكيد الحجز</string>
+    <string name="leave_review">اترك تعليق</string>
+    <string name="no_reviews">لا يوجد تقييمات بعد</string>
+    <string name="submit_review">تقييمك</string>
+    <string name="reviews_title">ماذا يقول الآخرون:</string>
+    <string name="contact_devs">تواصل مع المطور</string>
+    <string name="rate_app">قيم التطبيق</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="update_profile">تحديث الملف الشخصي</string>
+    <string name="name">الاسم</string>
 </resources>

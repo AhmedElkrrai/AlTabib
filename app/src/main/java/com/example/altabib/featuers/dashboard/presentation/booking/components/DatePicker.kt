@@ -11,9 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingAction
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingState
 import com.example.altabib.ui.components.AppOutlinedButton
+import com.example.altabib.utils.getLocalizedString
 import java.time.LocalDate
 
 @Composable
@@ -47,7 +49,7 @@ fun DatePicker(
         AppOutlinedButton(
             text = state.selectedDate?.let {
                 "${it.dayOfMonth}/${it.monthValue}/${it.year}"
-            } ?: "Select a date",
+            } ?: getLocalizedString(R.string.select_date),
             onClick = { datePickerDialog.show() },
             modifier = modifier
                 .fillMaxWidth(0.6f)

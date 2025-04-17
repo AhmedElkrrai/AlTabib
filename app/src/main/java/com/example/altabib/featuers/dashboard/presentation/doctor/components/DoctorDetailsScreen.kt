@@ -46,6 +46,9 @@ import com.example.altabib.ui.components.AppOutlinedButton
 import com.example.altabib.ui.components.Loading
 import com.example.altabib.ui.components.TopAppBarWithBackButton
 import com.example.altabib.ui.theme.Primary
+import com.example.altabib.utils.FormatCompose
+import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.utils.getRatingText
 
 @Composable
 fun DoctorDetailsScreen(
@@ -135,54 +138,76 @@ fun DoctorDetailsScreen(
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Text(
-                                text = "${"%.1f".format(animatedRating.value)} (${doctor.reviews} reviews)",
+                                text = getRatingText(animatedRating.value, doctor.reviews),
                                 style = MaterialTheme.typography.bodySmall
                             )
                         }
                     }
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    FormatCompose {
+                        Spacer(modifier = Modifier.height(16.dp))
 
-                    InfoRow(Icons.Default.Info, "Bio: ${doctor.bio}")
-                    InfoRow(Icons.Default.Schedule, "Available: ${doctor.availability}")
-                    InfoRow(Icons.Default.People, "Queue: ${doctor.inQueue} people")
-                    ClickableInfoRow(
-                        icon = Icons.Default.Place,
-                        text = doctor.address,
-                        onClick = { onAction(DoctorDetailsAction.OnAddressClick(doctor.address)) }
-                    )
-                    InfoRow(Icons.Default.AttachMoney, "Price: ${doctor.price} LE")
-
-                    Spacer(modifier = Modifier.height(24.dp))
-
-                    // Action buttons
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(16.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(56.dp)
-                    ) {
-
-                        AppOutlinedButton(
-                            modifier = Modifier.weight(1f),
-                            text = "Book Now",
-                            onClick = {
-                                onAction(
-                                    DoctorDetailsAction.OnBookAppointmentClick(state.doctor.id)
-                                )
-                            }
+                        InfoRow(
+                            icon = Icons.Default.Info,
+                            text = getLocalizedString(R.string.bio) + ": ${doctor.bio}"
                         )
 
-                        AppOutlinedButton(
-                            modifier = Modifier.weight(1f),
-                            text = "Add to Favorites",
-                            onClick = {
-                                onAction(DoctorDetailsAction.OnAddToFavoritesClick)
-                            }
+                        InfoRow(
+                            icon = Icons.Default.Schedule,
+                            text = getLocalizedString(R.string.available) + ": ${doctor.availability}"
                         )
+
+                        InfoRow(
+                            icon = Icons.Default.People,
+                            text = getLocalizedString(R.string.queue) + ": ${doctor.inQueue}"
+                        )
+
+                        ClickableInfoRow(
+                            icon = Icons.Default.Place,
+                            text = doctor.address,
+                            onClick = { onAction(DoctorDetailsAction.OnAddressClick(doctor.address)) }
+                        )
+
+                        val priceText = getLocalizedString(R.string.price) +
+                                ": ${doctor.price} " +
+                                getLocalizedString(R.string.currency)
+
+                        InfoRow(
+                            icon = Icons.Default.AttachMoney,
+                            text = priceText
+                        )
+
+                        Spacer(modifier = Modifier.height(24.dp))
+
+                        // Action buttons
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(56.dp)
+                        ) {
+
+                            AppOutlinedButton(
+                                modifier = Modifier.weight(1f),
+                                text = getLocalizedString(R.string.book_now),
+                                onClick = {
+                                    onAction(
+                                        DoctorDetailsAction.OnBookAppointmentClick(state.doctor.id)
+                                    )
+                                }
+                            )
+
+                            AppOutlinedButton(
+                                modifier = Modifier.weight(1f),
+                                text = getLocalizedString(R.string.add_to_fav),
+                                onClick = {
+                                    onAction(DoctorDetailsAction.OnAddToFavoritesClick)
+                                }
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(12.dp))
                     }
-
-                    Spacer(modifier = Modifier.height(12.dp))
                 }
             }
         }
