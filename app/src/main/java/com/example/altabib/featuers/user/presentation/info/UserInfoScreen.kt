@@ -39,9 +39,9 @@ import com.example.altabib.navigation.screen.Screen
 import com.example.altabib.navigation.utils.LocalNavController
 import com.example.altabib.ui.components.AppOutlinedTextFiled
 import com.example.altabib.ui.components.CitySelector
-import com.example.altabib.ui.components.SELECT_CITY
 import com.example.altabib.ui.theme.Gray
 import com.example.altabib.ui.theme.Primary
+import com.example.altabib.utils.getLocalizedString
 
 @Composable
 fun UserInfoScreen() {
@@ -49,8 +49,9 @@ fun UserInfoScreen() {
     val keyboardController = LocalSoftwareKeyboardController.current
     val navController = LocalNavController.current
 
+    val defaultCityTxt = getLocalizedString(R.string.select_city)
     var name by remember { mutableStateOf("") }
-    var city by remember { mutableStateOf("Select City") }
+    var city by remember { mutableStateOf(defaultCityTxt) }
     var userType by remember { mutableStateOf(UserType.Patient.key) }
 
     // Load Lottie Animation
@@ -128,17 +129,14 @@ fun UserInfoScreen() {
             }
 
             // Continue Button
+            val msg = getLocalizedString(R.string.empty_input)
             Button(
                 onClick = {
-                    if (name.isNotBlank() && city != SELECT_CITY) {
+                    if (name.isNotBlank() && city != defaultCityTxt) {
                         navController.navigate(Screen.Auth.createRoute(name, city, userType))
                         keyboardController?.hide()
                     } else {
-                        Toast.makeText(
-                            context,
-                            "Please enter your name and select a city",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                     }
                 },
                 modifier = Modifier.fillMaxWidth(),

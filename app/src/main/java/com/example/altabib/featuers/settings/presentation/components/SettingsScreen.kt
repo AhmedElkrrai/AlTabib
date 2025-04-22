@@ -19,7 +19,6 @@ import com.example.altabib.featuers.settings.presentation.SettingsState
 import com.example.altabib.ui.components.AppOutlinedButton
 import com.example.altabib.ui.components.AppOutlinedTextFiled
 import com.example.altabib.ui.components.CitySelector
-import com.example.altabib.ui.components.SELECT_CITY
 import com.example.altabib.utils.FormatCompose
 import com.example.altabib.utils.LocaleHelper
 import com.example.altabib.utils.getLocalizedString
@@ -50,7 +49,7 @@ fun SettingsScreen(
         }
 
         CitySelector(
-            selectedCity = state.patient?.city ?: SELECT_CITY,
+            selectedCity = state.patient?.city ?: getLocalizedString(R.string.select_city),
             onCitySelected = { onAction(SettingsAction.ChangeCity(it)) }
         )
 
