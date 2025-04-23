@@ -22,7 +22,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableStickyImmersiveMode()
         setContent {
             AlTabibTheme {
                 val rootNavController = rememberNavController()
@@ -43,6 +42,13 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
+        }
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            enableStickyImmersiveMode()
         }
     }
 }

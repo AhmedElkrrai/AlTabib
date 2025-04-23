@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "458416682788",
+    "project_id": "altabib-e4ce9",
+    "storage_bucket": "altabib-e4ce9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458416682788:android:3cb69e67e055685f6965b1",
+        "android_client_info": {
+          "package_name": "com.example.altabib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458416682788-tmftf3752n7pom7pgee6jg4n6io81e1e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.altabib",
+            "certificate_hash": "e9ee2d611f46d2c4b8061ab9fa24a12bc83f573e"
+          }
+        },
+        {
+          "client_id": "458416682788-glifk6effmqg69jctupti3hrcmlv7l22.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe3A3GcLY7N5EBONFRiPekU7UcK3P3INs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458416682788-glifk6effmqg69jctupti3hrcmlv7l22.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -30,38 +30,38 @@ enum class City {
     Zagazig,
     Sohag,
     El_Tor,
-    Suez
-}
+    Suez;
 
-@Composable
-fun City.displayName(): String {
-    val resourceId: Int = when (this) {
-        City.Alexandria -> R.string.alexandria
-        City.Aswan -> R.string.aswan
-        City.Asyut -> R.string.asyut
-        City.Cairo -> R.string.cairo
-        City.Damanhur -> R.string.damanhur
-        City.Damietta -> R.string.damietta
-        City.Faiyum -> R.string.faiyum
-        City.Giza -> R.string.giza
-        City.Ismailia -> R.string.ismailia
-        City.Luxor -> R.string.luxor
-        City.Minya -> R.string.minya
-        City.Qena -> R.string.qena
-        City.Sohag -> R.string.sohag
-        City.Suez -> R.string.suez
-        City.Beni_Suef -> R.string.beni_suef
-        City.Mansoura -> R.string.mansoura
-        City.Kafr_El_Sheikh -> R.string.kafr_el_sheikh
-        City.Marsa_Matrouh -> R.string.marsa_matrouh
-        City.Shibin_El_Kom -> R.string.shibin_el_kom
-        City.Arish -> R.string.arish
-        City.Port_Said -> R.string.port_said
-        City.Banha -> R.string.banha
-        City.Hurghada -> R.string.hurghada
-        City.Zagazig -> R.string.zagazig
-        City.El_Tor -> R.string.el_tor
-        City.Tanta -> R.string.tanta
+    @Composable
+    fun displayName(): String {
+        val resourceId: Int = when (this) {
+            Alexandria -> R.string.alexandria
+            Aswan -> R.string.aswan
+            Asyut -> R.string.asyut
+            Cairo -> R.string.cairo
+            Damanhur -> R.string.damanhur
+            Damietta -> R.string.damietta
+            Faiyum -> R.string.faiyum
+            Giza -> R.string.giza
+            Ismailia -> R.string.ismailia
+            Luxor -> R.string.luxor
+            Minya -> R.string.minya
+            Qena -> R.string.qena
+            Sohag -> R.string.sohag
+            Suez -> R.string.suez
+            Beni_Suef -> R.string.beni_suef
+            Mansoura -> R.string.mansoura
+            Kafr_El_Sheikh -> R.string.kafr_el_sheikh
+            Marsa_Matrouh -> R.string.marsa_matrouh
+            Shibin_El_Kom -> R.string.shibin_el_kom
+            Arish -> R.string.arish
+            Port_Said -> R.string.port_said
+            Banha -> R.string.banha
+            Hurghada -> R.string.hurghada
+            Zagazig -> R.string.zagazig
+            El_Tor -> R.string.el_tor
+            Tanta -> R.string.tanta
+        }
+        return getLocalizedString(resourceId)
     }
-    return getLocalizedString(resourceId)
 }

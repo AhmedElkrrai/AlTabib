@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.altabib.R
 import com.example.altabib.featuers.user.domain.entities.City
-import com.example.altabib.featuers.user.domain.entities.displayName
 import com.example.altabib.ui.theme.Primary
 import com.example.altabib.utils.getLocalizedString
 

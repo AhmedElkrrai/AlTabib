@@ -38,9 +38,11 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
 import com.example.altabib.featuers.user.data.source.remote.GoogleSignInHelper
 import com.example.altabib.featuers.user.domain.entities.User
-import com.example.altabib.featuers.user.presentation.auth.AuthState
 import com.example.altabib.featuers.user.presentation.auth.AuthAction
+import com.example.altabib.featuers.user.presentation.auth.AuthState
 import com.example.altabib.ui.theme.Primary
+import com.example.altabib.utils.FormatCompose
+import com.example.altabib.utils.getLocalizedString
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 
@@ -50,6 +52,8 @@ fun AuthScreen(
     user: User,
     onAction: (AuthAction) -> Unit
 ) {
+    val errorMsg = getLocalizedString(R.string.error_unknown)
+
     val context = LocalContext.current
     val helper = remember { GoogleSignInHelper(context) }
     val launcher = rememberLauncherForActivityResult(
@@ -69,9 +73,8 @@ fun AuthScreen(
                 Toast.LENGTH_SHORT
             ).show()
         } catch (e: Exception) {
-            Toast.makeText(context, "An unexpected error occurred.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
         }
-
     }
 
     val googleSignInClient = helper.getGoogleSignInClient()
@@ -81,74 +84,76 @@ fun AuthScreen(
         iterations = LottieConstants.IterateForever
     )
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    FormatCompose {
+        Box(modifier = Modifier.fillMaxSize()) {
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-            ) {
-                LottieAnimation(composition = composition, progress = { progress })
-            }
-
-            Text(
-                text = "Welcome to Tabib, Your Tabib Finder App!",
-                fontSize = 24.sp,
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Bold,
-                color = Color.White,
-                modifier = Modifier.padding(vertical = 16.dp)
-            )
-
-            Spacer(modifier = Modifier.weight(1f))
-        }
-
-        // Google Sign-In Button
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .padding(24.dp)
-        ) {
-            Button(
-                onClick = {
-                    launcher.launch(googleSignInClient.signInIntent)
-                },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Primary),
-                shape = RoundedCornerShape(50)
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_google_logo),
-                    contentDescription = "Google Logo",
-                    modifier = Modifier.size(20.dp),
-                    tint = Color.Unspecified
-                )
-                Spacer(modifier = Modifier.width(12.dp))
-                Text(
-                    text = "Sign in with Google",
-                    fontSize = 16.sp,
-                    color = Color.White,
-                    modifier = Modifier.padding(vertical = 12.dp)
-                )
-            }
-        }
-
-        // Loading overlay
-        if (state.isLoading) {
-            Box(
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.4f)),
-                contentAlignment = Alignment.Center
+                    .padding(horizontal = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                CircularProgressIndicator(color = Color.White)
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                ) {
+                    LottieAnimation(composition = composition, progress = { progress })
+                }
+
+                Text(
+                    text = getLocalizedString(R.string.intro_msg),
+                    fontSize = 24.sp,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    modifier = Modifier.padding(vertical = 16.dp)
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+            }
+
+            // Google Sign-In Button
+            Box(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .padding(24.dp)
+            ) {
+                Button(
+                    onClick = {
+                        launcher.launch(googleSignInClient.signInIntent)
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(containerColor = Primary),
+                    shape = RoundedCornerShape(50)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_google_logo),
+                        contentDescription = "Google Logo",
+                        modifier = Modifier.size(20.dp),
+                        tint = Color.Unspecified
+                    )
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Text(
+                        text = getLocalizedString(R.string.google_sign_in),
+                        fontSize = 16.sp,
+                        color = Color.White,
+                        modifier = Modifier.padding(vertical = 12.dp)
+                    )
+                }
+            }
+
+            // Loading overlay
+            if (state.isLoading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.4f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(color = Color.White)
+                }
             }
         }
     }

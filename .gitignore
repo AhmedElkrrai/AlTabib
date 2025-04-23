@@ -13,7 +13,3 @@
 .externalNativeBuild
 .cxx
 local.properties
-
-# Ignore the google-services.json file
-google-services.json
-app/src/main/res/values/strings.xml

@@ -4,9 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.preference.PreferenceManager
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import java.util.Locale
 
@@ -14,13 +12,15 @@ object LocaleHelper {
 
     private const val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
 
+    private val defaultLang = Language.ARABIC
+
     enum class Language(val code: String) {
         ENGLISH("en"),
         ARABIC("ar");
 
         companion object {
             fun fromCode(code: String): Language {
-                return entries.find { it.code == code } ?: ARABIC
+                return entries.find { it.code == code } ?: defaultLang
             }
         }
     }
@@ -32,8 +32,8 @@ object LocaleHelper {
 
     private fun getCurrentLanguage(context: Context): String {
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        return preferences.getString(SELECTED_LANGUAGE, Language.ENGLISH.code)
-            ?: Language.ENGLISH.code
+        return preferences.getString(SELECTED_LANGUAGE, defaultLang.code)
+            ?: defaultLang.code
     }
 
     fun getCurrentLanguageEnum(context: Context): Language {
@@ -58,8 +58,7 @@ object LocaleHelper {
 
     @Composable
     fun isArabic(): Boolean {
-        val context = LocalContext.current
-        return getCurrentLanguageEnum(context) == Language.ARABIC
+        return getCurrentLanguage() == Language.ARABIC
     }
 
     @Composable

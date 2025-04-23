@@ -41,6 +41,7 @@ import com.example.altabib.ui.components.AppOutlinedTextFiled
 import com.example.altabib.ui.components.CitySelector
 import com.example.altabib.ui.theme.Gray
 import com.example.altabib.ui.theme.Primary
+import com.example.altabib.utils.FormatCompose
 import com.example.altabib.utils.getLocalizedString
 
 @Composable
@@ -61,94 +62,96 @@ fun UserInfoScreen() {
         iterations = LottieConstants.IterateForever
     )
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        // Animation
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-        ) {
-            LottieAnimation(
-                composition = composition,
-                progress = { progress }
-            )
-        }
-
+    FormatCompose {
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+                .fillMaxSize()
+                .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // User Name
-            AppOutlinedTextFiled(
-                value = name,
-                onValueChange = { name = it },
-                label = "Name",
-                keyboardController = keyboardController
-            )
-
-            // City Selection
-            CitySelector(
-                selectedCity = city,
-                onCitySelected = { city = it }
-            )
-
-            // User Type Selection
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            // Animation
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
             ) {
-                listOf(UserType.Doctor, UserType.Patient).forEach { type ->
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .clip(RoundedCornerShape(12.dp))
-                            .background(if (userType == type.key) Primary else Gray)
-                            .clickable {
-                                userType = type.key
-                                keyboardController?.hide()
-                            }
-                            .padding(vertical = 16.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = type.name,
-                            fontSize = 16.sp,
-                            color = Color.White,
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
+                LottieAnimation(
+                    composition = composition,
+                    progress = { progress }
+                )
             }
 
-            // Continue Button
-            val msg = getLocalizedString(R.string.empty_input)
-            Button(
-                onClick = {
-                    if (name.isNotBlank() && city != defaultCityTxt) {
-                        navController.navigate(Screen.Auth.createRoute(name, city, userType))
-                        keyboardController?.hide()
-                    } else {
-                        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-                    }
-                },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Primary),
-                shape = RoundedCornerShape(50)
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = "Continue",
-                    fontSize = 16.sp,
-                    color = Color.White,
-                    modifier = Modifier.padding(vertical = 12.dp)
+                // User Name
+                AppOutlinedTextFiled(
+                    value = name,
+                    onValueChange = { name = it },
+                    label = getLocalizedString(R.string.name),
+                    keyboardController = keyboardController
                 )
+
+                // City Selection
+                CitySelector(
+                    selectedCity = city,
+                    onCitySelected = { city = it }
+                )
+
+                // User Type Selection
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    listOf(UserType.Doctor, UserType.Patient).forEach { type ->
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(if (userType == type.key) Primary else Gray)
+                                .clickable {
+                                    userType = type.key
+                                    keyboardController?.hide()
+                                }
+                                .padding(vertical = 16.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = type.displayName(),
+                                fontSize = 16.sp,
+                                color = Color.White,
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                    }
+                }
+
+                // Continue Button
+                val msg = getLocalizedString(R.string.empty_input)
+                Button(
+                    onClick = {
+                        if (name.isNotBlank() && city != defaultCityTxt) {
+                            navController.navigate(Screen.Auth.createRoute(name, city, userType))
+                            keyboardController?.hide()
+                        } else {
+                            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(containerColor = Primary),
+                    shape = RoundedCornerShape(50)
+                ) {
+                    Text(
+                        text = getLocalizedString(R.string.continue_txt),
+                        fontSize = 16.sp,
+                        color = Color.White,
+                        modifier = Modifier.padding(vertical = 12.dp)
+                    )
+                }
             }
         }
     }

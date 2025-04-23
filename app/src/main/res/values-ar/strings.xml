@@ -10,7 +10,7 @@
     <string name="error_serialization">تعذر تسلسل أو إلغاء تسلسل البيانات.</string>
     <string name="search_hint">ابحث عن طبيب</string>
     <string name="no_results">لم يتم العثور على نتائج.</string>
-    <string name="no_doctors_available">لا يوجد أطباء متاحون لهذا التخصص.</string>
+    <string name="no_doctors_available">لا يوجد أطباء متاحون لهذا التخصص</string>
     <string name="unknown_specialization">تخصص غير معروف.</string>
     <string name="local_data_error">تعذر جلب البيانات من قاعدة البيانات المحلية.</string>
     <string name="firebase_error">تعذر جلب البيانات من Firebase.</string>
@@ -20,12 +20,12 @@
     <string name="cardiology">القلب</string>
     <string name="dermatology">الجلدية</string>
     <string name="orthopedics">العظام</string>
-    <string name="gynecology">طب النساء</string>
+    <string name="gynecology">نساء و توليد</string>
     <string name="ophthalmology">العيون</string>
     <string name="psychiatry">الطب النفسي</string>
-    <string name="gastroenterology">الجهاز الهضمي</string>
-    <string name="neurology">الأعصاب</string>
-    <string name="endocrinology">الغدد الصماء</string>
+    <string name="gastroenterology">باطني</string>
+    <string name="neurology">مخ و اعصاب</string>
+    <string name="endocrinology">الغدد</string>
     <string name="urology">المسالك البولية</string>
     <string name="oncology">الأورام</string>
     <string name="otolaryngologies">الأنف والأذن والحنجرة</string>
@@ -69,10 +69,15 @@
     <string name="marsa_matrouh">مرسي مطروح</string>
     <string name="qena">قنا</string>
     <!-- ... Other ... -->
+    <string name="doctor">طبيب</string>
+    <string name="patient">مريض</string>
+    <string name="google_sign_in">تسجيل الدخول باستخدام جوجل</string>
+    <string name="intro_msg">أهلاً وسهلاً بك في طبيب، تطبيقك للبحث عن الأطباء!</string>
     <string name="english">الانجليزية</string>
     <string name="arabic">العربية</string>
     <string name="currency">ج.م</string>
     <string name="reviews">تقييم</string>
+    <string name="continue_txt">استمرار</string>
     <string name="in_queue">في الانتظار</string>
     <string name="favorites">المفضلة</string>
     <string name="dashboard">الواجهة الرئيسية</string>
