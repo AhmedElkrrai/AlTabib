@@ -34,6 +34,7 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
+import com.example.altabib.featuers.user.domain.entities.City
 import com.example.altabib.featuers.user.domain.entities.UserType
 import com.example.altabib.navigation.screen.Screen
 import com.example.altabib.navigation.utils.LocalNavController
@@ -98,7 +99,7 @@ fun UserInfoScreen() {
 
                 // City Selection
                 CitySelector(
-                    selectedCity = city,
+                    selectedCity = City.displayName(city),
                     onCitySelected = { city = it }
                 )
 

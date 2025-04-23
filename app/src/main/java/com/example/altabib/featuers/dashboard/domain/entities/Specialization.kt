@@ -25,13 +25,13 @@ enum class Specialization(
     ONCOLOGY("oncology", R.string.oncology, R.drawable.oncology),
     RADIOLOGY("radiology", R.string.radiology, R.drawable.radiology);
 
+    @Composable
+    fun getDisplayName(): String {
+        return getLocalizedString(nameResource)
+    }
+
     companion object {
         fun fromKey(key: String): Specialization =
             entries.find { it.key == key } ?: GENERAL_PRACTICE
     }
-}
-
-@Composable
-fun Specialization.getDisplayName(): String {
-    return getLocalizedString(nameResource)
 }

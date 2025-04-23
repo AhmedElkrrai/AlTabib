@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.altabib.R
 import com.example.altabib.featuers.settings.presentation.SettingsAction
 import com.example.altabib.featuers.settings.presentation.SettingsState
+import com.example.altabib.featuers.user.domain.entities.City
 import com.example.altabib.ui.components.AppOutlinedButton
 import com.example.altabib.ui.components.AppOutlinedTextFiled
 import com.example.altabib.ui.components.CitySelector
@@ -49,7 +50,7 @@ fun SettingsScreen(
         }
 
         CitySelector(
-            selectedCity = state.patient?.city ?: getLocalizedString(R.string.select_city),
+            selectedCity = City.displayName(state.patient?.city),
             onCitySelected = { onAction(SettingsAction.ChangeCity(it)) }
         )
 

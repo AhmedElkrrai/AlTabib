@@ -12,7 +12,6 @@ import androidx.navigation.NavHostController
 import com.example.altabib.R
 import com.example.altabib.core.presentation.util.ObserveEvents
 import com.example.altabib.core.presentation.util.getMessage
-import com.example.altabib.featuers.dashboard.domain.entities.getDisplayName
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsAction
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsEvent
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsViewModel

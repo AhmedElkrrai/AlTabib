@@ -29,7 +29,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
-import com.example.altabib.featuers.dashboard.domain.entities.getDisplayName
 import com.example.altabib.ui.theme.Green
 import com.example.altabib.ui.theme.Pink
 import com.example.altabib.ui.theme.Primary

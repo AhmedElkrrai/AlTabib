@@ -22,10 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.altabib.R
 import com.example.altabib.featuers.user.domain.entities.City
 import com.example.altabib.ui.theme.Primary
-import com.example.altabib.utils.getLocalizedString
 
 @Composable
 fun CitySelector(
@@ -48,7 +46,7 @@ fun CitySelector(
                     .align(Alignment.CenterHorizontally)
             ) {
                 Text(
-                    text = selectedCity.ifBlank { getLocalizedString(R.string.select_city) },
+                    text = selectedCity,
                     fontSize = 16.sp,
                     color = Color.White
                 )
@@ -63,11 +61,15 @@ fun CitySelector(
                     .heightIn(max = 250.dp)
             ) {
                 City.entries.forEach { entry ->
-                    val city = entry.displayName()
                     DropdownMenuItem(
-                        text = { Text(text = city, color = Color.White) },
+                        text = {
+                            Text(
+                                text = entry.displayName(),
+                                color = Color.White
+                            )
+                        },
                         onClick = {
-                            onCitySelected(city)
+                            onCitySelected(entry.name)
                             expanded = false
                         },
                         modifier = Modifier.fillMaxWidth()

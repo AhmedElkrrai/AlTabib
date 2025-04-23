@@ -11,7 +11,6 @@ import androidx.navigation.NavHostController
 import com.example.altabib.core.presentation.util.ObserveEvents
 import com.example.altabib.core.presentation.util.getMessage
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
-import com.example.altabib.featuers.dashboard.domain.entities.getDisplayName
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationAction
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationEvent
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationViewModel
