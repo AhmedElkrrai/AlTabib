@@ -2,9 +2,11 @@ package com.example.altabib.utils
 
 import androidx.compose.runtime.Composable
 import com.example.altabib.R
+import java.util.Locale
 
 @Composable
 fun getRatingText(rating: Float, reviews: Int): String {
-    return "${"%.1f".format(rating)} (${reviews} " +
-            getLocalizedString(R.string.reviews) + ")"
+    val stars = String.format(Locale.ENGLISH, "%.1f", rating)
+    val txt = getLocalizedString(R.string.reviews)
+    return "$stars ($reviews $txt)"
 }
