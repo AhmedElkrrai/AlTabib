@@ -9,10 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.altabib.featuers.user.domain.entities.UserType
 import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
-import com.example.altabib.navigation.bar.DoctorBottomBar
-import com.example.altabib.navigation.bar.PatientBottomBar
-import com.example.altabib.navigation.graph.DoctorNavGraph
-import com.example.altabib.navigation.graph.PatientNavGraph
+import com.example.altabib.design_system.navigation.bar.DoctorBottomBar
+import com.example.altabib.design_system.navigation.bar.PatientBottomBar
+import com.example.altabib.graph.DoctorNavGraph
+import com.example.altabib.graph.PatientNavGraph
 import com.example.altabib.design_system.utils.enableStickyImmersiveMode
 
 @Composable

@@ -10,9 +10,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
-import com.example.altabib.navigation.graph.RegistrationNavGraph
-import com.example.altabib.navigation.screen.Screen
-import com.example.altabib.navigation.utils.LocalNavController
+import com.example.altabib.graph.RegistrationNavGraph
+import com.example.altabib.design_system.navigation.screen.Screen
+import com.example.altabib.design_system.navigation.utils.LocalNavController
 import com.example.altabib.design_system.theme.AlTabibTheme
 import com.example.altabib.design_system.utils.enableStickyImmersiveMode
 import org.koin.android.ext.android.inject

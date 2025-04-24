@@ -12,6 +12,9 @@
     <string name="firebase_error">Couldn\'t fetch data from Firebase.</string>
     <string name="reviews">reviews</string>
     <string name="select_city">Select City</string>
+    <string name="favorites">Favorites</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="settings">Settings</string>
     <!-- ... Cities ... -->
     <string name="alexandria">Alexandria</string>
     <string name="aswan">Aswan</string>

@@ -1,4 +1,4 @@
-package com.example.altabib.navigation.graph
+package com.example.altabib.graph
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -10,10 +10,10 @@ import com.example.altabib.featuers.home.presentation.HomeScreen
 import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
 import com.example.altabib.featuers.user.presentation.auth.components.AuthScreenRoot
 import com.example.altabib.featuers.user.presentation.info.UserInfoScreen
-import com.example.altabib.navigation.utils.CITY
-import com.example.altabib.navigation.utils.NAME
-import com.example.altabib.navigation.screen.Screen
-import com.example.altabib.navigation.utils.USER_TYPE
+import com.example.altabib.design_system.navigation.utils.CITY
+import com.example.altabib.design_system.navigation.utils.NAME
+import com.example.altabib.design_system.navigation.screen.Screen
+import com.example.altabib.design_system.navigation.utils.USER_TYPE
 
 @Composable
 fun RegistrationNavGraph(

@@ -1,4 +1,4 @@
-package com.example.altabib.navigation.graph
+package com.example.altabib.graph
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import com.example.altabib.featuers.analytics.presentation.AnalyticsScreen
 import com.example.altabib.featuers.appointments.presentation.AppointmentsScreen
 import com.example.altabib.featuers.profile.presentation.ProfileScreen
-import com.example.altabib.navigation.screen.DoctorScreen
+import com.example.altabib.design_system.navigation.screen.DoctorScreen
 
 @Composable
 fun DoctorNavGraph(

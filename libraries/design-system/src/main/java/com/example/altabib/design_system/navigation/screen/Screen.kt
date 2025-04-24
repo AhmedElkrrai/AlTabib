@@ -1,8 +1,8 @@
-package com.example.altabib.navigation.screen
+package com.example.altabib.design_system.navigation.screen
 
-import com.example.altabib.navigation.utils.CITY
-import com.example.altabib.navigation.utils.NAME
-import com.example.altabib.navigation.utils.USER_TYPE
+import com.example.altabib.design_system.navigation.utils.CITY
+import com.example.altabib.design_system.navigation.utils.NAME
+import com.example.altabib.design_system.navigation.utils.USER_TYPE
 
 sealed class Screen(val route: String) {
     data object UserInfo : Screen("user_info_screen")
@@ -11,5 +11,6 @@ sealed class Screen(val route: String) {
             return "auth_screen/$name/$city/$userType"
         }
     }
+
     data object Home : Screen("home_screen")
 }

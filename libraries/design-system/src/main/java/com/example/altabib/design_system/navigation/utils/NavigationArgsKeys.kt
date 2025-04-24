@@ -1,4 +1,4 @@
-package com.example.altabib.navigation.utils
+package com.example.altabib.design_system.navigation.utils
 
 const val NAME = "name"
 const val CITY = "city"

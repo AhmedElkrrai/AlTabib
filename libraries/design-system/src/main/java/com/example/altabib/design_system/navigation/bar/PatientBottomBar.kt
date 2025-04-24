@@ -1,4 +1,4 @@
-package com.example.altabib.navigation.bar
+package com.example.altabib.design_system.navigation.bar
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -6,8 +6,8 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
-import com.example.altabib.R
-import com.example.altabib.navigation.screen.PatientScreen
+import com.example.altabib.design.R
+import com.example.altabib.design_system.navigation.screen.PatientScreen
 import com.example.altabib.design_system.localization.getLocalizedString
 
 @Composable

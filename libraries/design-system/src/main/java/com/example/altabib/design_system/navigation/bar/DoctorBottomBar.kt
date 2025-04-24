@@ -1,4 +1,4 @@
-package com.example.altabib.navigation.bar
+package com.example.altabib.design_system.navigation.bar
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
@@ -7,7 +7,7 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShowChart
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
-import com.example.altabib.navigation.screen.DoctorScreen
+import com.example.altabib.design_system.navigation.screen.DoctorScreen
 
 @Composable
 fun DoctorBottomBar(navController: NavController) {

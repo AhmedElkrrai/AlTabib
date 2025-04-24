@@ -1,4 +1,4 @@
-package com.example.altabib.navigation.screen
+package com.example.altabib.design_system.navigation.screen
 
 sealed class DoctorScreen(val route: String) {
     data object Appointments : DoctorScreen("doctor_appointments")

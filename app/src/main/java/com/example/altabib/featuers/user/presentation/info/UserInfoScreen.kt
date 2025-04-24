@@ -36,8 +36,8 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
 import com.example.altabib.design_system.models.City
 import com.example.altabib.featuers.user.domain.entities.UserType
-import com.example.altabib.navigation.screen.Screen
-import com.example.altabib.navigation.utils.LocalNavController
+import com.example.altabib.design_system.navigation.screen.Screen
+import com.example.altabib.design_system.navigation.utils.LocalNavController
 import com.example.altabib.design_system.components.AppOutlinedTextFiled
 import com.example.altabib.design_system.components.CitySelector
 import com.example.altabib.design_system.theme.Gray

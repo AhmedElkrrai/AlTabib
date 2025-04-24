@@ -1,4 +1,4 @@
-package com.example.altabib.navigation.bar
+package com.example.altabib.design_system.navigation.bar
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar

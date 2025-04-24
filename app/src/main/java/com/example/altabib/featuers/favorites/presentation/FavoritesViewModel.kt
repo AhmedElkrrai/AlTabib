@@ -7,7 +7,7 @@ import com.example.altabib.core.onSuccess
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.favorites.domain.usecases.GetFavoritesUseCase
 import com.example.altabib.featuers.favorites.domain.usecases.RemoveFavoriteUseCase
-import com.example.altabib.navigation.screen.PatientScreen
+import com.example.altabib.design_system.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow

@@ -19,8 +19,8 @@ import com.example.altabib.featuers.contact_us.ContactUsDialog
 import com.example.altabib.featuers.settings.presentation.SettingsAction
 import com.example.altabib.featuers.settings.presentation.SettingsEvent
 import com.example.altabib.featuers.settings.presentation.SettingsViewModel
-import com.example.altabib.navigation.screen.Screen
-import com.example.altabib.navigation.utils.LocalNavController
+import com.example.altabib.design_system.navigation.screen.Screen
+import com.example.altabib.design_system.navigation.utils.LocalNavController
 import com.example.altabib.design_system.localization.LocaleHelper
 import com.example.altabib.design_system.localization.getLocalizedString
 import org.koin.androidx.compose.koinViewModel
