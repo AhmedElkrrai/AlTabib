@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.dashboard.domain.entities
+package com.example.altabib.featuers.user.domain.entities
 
 data class Review(
     val id: String = "",

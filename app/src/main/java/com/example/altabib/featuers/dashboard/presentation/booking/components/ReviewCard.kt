@@ -13,7 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.altabib.featuers.dashboard.domain.entities.Review
+import com.example.altabib.featuers.user.domain.entities.Review
 
 @Composable
 fun ReviewCard(review: Review) {

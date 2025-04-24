@@ -28,13 +28,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.altabib.R
-import com.example.altabib.featuers.dashboard.domain.entities.Doctor
+import com.example.altabib.featuers.user.domain.entities.Doctor
 import com.example.altabib.design_system.theme.Green
 import com.example.altabib.design_system.theme.Pink
 import com.example.altabib.design_system.theme.Primary
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.localization.getRatingText
+import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
 
 @Composable
 fun FavoriteCard(
@@ -107,7 +108,7 @@ fun FavoriteCard(
 
                     // Specialization
                     Text(
-                        text = doctor.specialization.getDisplayName(),
+                        text = Specialization.displayName(doctor.specKey),
                         style = MaterialTheme.typography.bodySmall,
                         textAlign = TextAlign.Center,
                         color = Color.White

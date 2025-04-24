@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.settings.domain.entities
+package com.example.altabib.featuers.user.domain.entities
 
 data class Patient(
     val uid: String = "",

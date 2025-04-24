@@ -1,6 +1,6 @@
 package com.example.altabib.featuers.dashboard.presentation.specialization
 
-import com.example.altabib.featuers.dashboard.domain.entities.Doctor
+import com.example.altabib.featuers.user.domain.entities.Doctor
 
 data class SpecializationState(
     val isLoading: Boolean = false,

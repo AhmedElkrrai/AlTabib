@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
 import com.example.altabib.featuers.settings.domain.PatientRepository
-import com.example.altabib.featuers.settings.domain.entities.Patient
+import com.example.altabib.featuers.user.domain.entities.Patient
 import com.example.altabib.featuers.user.data.source.remote.PATIENTS_PATH
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await

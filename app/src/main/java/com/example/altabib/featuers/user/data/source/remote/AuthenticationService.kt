@@ -3,8 +3,8 @@ package com.example.altabib.featuers.user.data.source.remote
 import android.util.Log
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
-import com.example.altabib.featuers.dashboard.domain.entities.Doctor
-import com.example.altabib.featuers.settings.domain.entities.Patient
+import com.example.altabib.featuers.user.domain.entities.Doctor
+import com.example.altabib.featuers.user.domain.entities.Patient
 import com.example.altabib.featuers.user.data.source.remote.mappers.toDomain
 import com.example.altabib.featuers.user.domain.entities.User
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

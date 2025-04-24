@@ -6,7 +6,7 @@ import com.example.altabib.core.DataError
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
 import com.example.altabib.featuers.dashboard.domain.usecases.SearchDoctorsUseCase
-import com.example.altabib.featuers.dashboard.domain.entities.Specialization
+import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
 import com.example.altabib.design_system.navigation.screen.PatientScreen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview

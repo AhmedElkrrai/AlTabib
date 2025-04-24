@@ -2,18 +2,15 @@ package com.example.altabib.featuers.dashboard.data.source.remote.mappers
 
 import com.example.altabib.featuers.dashboard.data.source.remote.models.DoctorDto
 import com.example.altabib.featuers.dashboard.data.source.remote.models.ReviewDto
-import com.example.altabib.featuers.dashboard.domain.entities.Doctor
-import com.example.altabib.featuers.dashboard.domain.entities.Review
-import com.example.altabib.featuers.dashboard.domain.entities.Specialization
+import com.example.altabib.featuers.user.domain.entities.Doctor
+import com.example.altabib.featuers.user.domain.entities.Review
 
 fun DoctorDto.toDomain(): Doctor {
     return Doctor(
         id = id,
         name = name,
         avatar = avatar,
-        specialization = Specialization.entries.firstOrNull {
-            it.key.equals(specialization, ignoreCase = true)
-        } ?: Specialization.GENERAL_PRACTICE,
+        specKey = specialization,
         rating = rating.toFloat(),
         reviews = reviews,
         bio = bio,
@@ -32,7 +29,7 @@ fun Doctor.toDto(): DoctorDto {
         id = id,
         name = name,
         avatar = avatar,
-        specialization = specialization.key,
+        specialization = specKey,
         rating = rating.toDouble(),
         reviews = reviews,
         bio = bio,

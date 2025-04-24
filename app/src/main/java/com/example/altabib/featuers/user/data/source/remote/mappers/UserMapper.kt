@@ -1,7 +1,7 @@
 package com.example.altabib.featuers.user.data.source.remote.mappers
 
-import com.example.altabib.featuers.dashboard.domain.entities.Doctor
-import com.example.altabib.featuers.settings.domain.entities.Patient
+import com.example.altabib.featuers.user.domain.entities.Doctor
+import com.example.altabib.featuers.user.domain.entities.Patient
 import com.example.altabib.featuers.user.domain.entities.User
 import com.example.altabib.featuers.user.domain.entities.UserType
 import com.google.firebase.auth.FirebaseUser

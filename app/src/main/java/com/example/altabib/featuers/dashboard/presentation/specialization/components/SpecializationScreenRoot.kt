@@ -10,7 +10,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
-import com.example.altabib.featuers.dashboard.domain.entities.Specialization
+import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationAction
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationEvent
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationViewModel
@@ -49,7 +49,7 @@ fun SpecializationScreenRoot(
     }
 
     SpecializationScreen(
-        specialization = Specialization.fromKey(key).getDisplayName(),
+        specialization = Specialization.displayName(key),
         state = state,
         onAction = viewModel::onAction,
         modifier = modifier

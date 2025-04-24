@@ -1,15 +1,15 @@
 package com.example.altabib.featuers.dashboard.data.source.local.mappers
 
 import com.example.altabib.featuers.dashboard.data.source.local.entites.DoctorEntity
-import com.example.altabib.featuers.dashboard.domain.entities.Doctor
-import com.example.altabib.featuers.dashboard.domain.entities.Specialization
+import com.example.altabib.featuers.user.domain.entities.Doctor
+import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
 
 fun Doctor.toEntity(
     isFavorite: Boolean
 ): DoctorEntity = DoctorEntity(
     id,
     name,
-    specialization.key,
+    specKey,
     city,
     rating.toDouble(),
     reviews,
@@ -22,7 +22,7 @@ fun Doctor.toEntity(
 fun DoctorEntity.toDomain(): Doctor = Doctor(
     id = id,
     name = name,
-    specialization = Specialization.DERMATOLOGY,
+    specKey = Specialization.DERMATOLOGY.key,
     rating = rating.toFloat(),
     reviews = reviews,
     availability = availability,

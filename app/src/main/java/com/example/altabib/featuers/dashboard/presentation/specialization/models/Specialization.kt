@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.dashboard.domain.entities
+package com.example.altabib.featuers.dashboard.presentation.specialization.models
 
 import androidx.compose.runtime.Composable
 import com.example.altabib.R
@@ -25,13 +25,11 @@ enum class Specialization(
     ONCOLOGY("oncology", R.string.oncology, R.drawable.oncology),
     RADIOLOGY("radiology", R.string.radiology, R.drawable.radiology);
 
-    @Composable
-    fun getDisplayName(): String {
-        return getLocalizedString(nameResource)
-    }
-
     companion object {
-        fun fromKey(key: String): Specialization =
-            entries.find { it.key == key } ?: GENERAL_PRACTICE
+        @Composable
+        fun displayName(key: String?): String {
+            val specialization = entries.find { it.key == key } ?: GENERAL_PRACTICE
+            return getLocalizedString(specialization.nameResource)
+        }
     }
 }

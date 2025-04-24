@@ -16,6 +16,7 @@ import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsA
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsEvent
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsViewModel
 import com.example.altabib.design_system.localization.getLocalizedString
+import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -65,7 +66,7 @@ fun DoctorDetailsScreenRoot(
     }
 
     DoctorDetailsScreen(
-        specialization = state.doctor?.specialization?.getDisplayName()
+        specialization = Specialization.displayName(state.doctor?.specKey)
             ?: getLocalizedString(R.string.unknown_specialization),
         state = state,
         onAction = viewModel::onAction

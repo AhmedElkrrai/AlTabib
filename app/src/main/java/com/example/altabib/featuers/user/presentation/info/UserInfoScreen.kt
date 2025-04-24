@@ -44,6 +44,7 @@ import com.example.altabib.design_system.theme.Gray
 import com.example.altabib.design_system.theme.Primary
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.altabib.design_system.localization.getLocalizedString
+import com.example.altabib.featuers.user.presentation.auth.utils.displayName
 
 @Composable
 fun UserInfoScreen() {

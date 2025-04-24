@@ -1,10 +1,10 @@
 package com.example.altabib
 
 import com.example.altabib.featuers.dashboard.domain.DoctorRepository
-import com.example.altabib.featuers.dashboard.domain.entities.Doctor
-import com.example.altabib.featuers.dashboard.domain.entities.Specialization
+import com.example.altabib.featuers.user.domain.entities.Doctor
+import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
 import com.example.altabib.core.Result
-import com.example.altabib.featuers.dashboard.domain.entities.Review
+import com.example.altabib.featuers.user.domain.entities.Review
 import kotlin.random.Random
 
 suspend fun seedDoctors(doctorRepository: DoctorRepository) {
@@ -86,7 +86,7 @@ suspend fun seedDoctors(doctorRepository: DoctorRepository) {
         Doctor(
             id = "doc_${index + 1}",
             name = names[index % names.size],
-            specialization = Specialization.entries.random(),
+            specKey = Specialization.entries.random().key,
             city = cities.random(),
             rating = Random
                 .nextDouble(2.5, 5.0)
@@ -107,7 +107,7 @@ suspend fun seedDoctors(doctorRepository: DoctorRepository) {
         if (result is Result.Error) {
             println("Failed to add ${doctor.name}: ${result.error}")
         } else {
-            println("Added ${doctor.name} in ${doctor.city} (${doctor.specialization})")
+            println("Added ${doctor.name} in ${doctor.city} (${doctor.specKey})")
         }
     }
 }
