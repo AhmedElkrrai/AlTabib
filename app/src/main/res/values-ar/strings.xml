@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">طبيب</string>
-    <string name="error_request_timeout">انتهت مهلة الطلب.</string>
-    <string name="error_too_many_requests">تم إرسال عدد كبير من الطلبات إلى الخادم.</string>
-    <string name="error_no_internet">تعذر الاتصال بالخادم، يرجى التحقق من اتصالك بالإنترنت.</string>
-    <string name="error_unknown">حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.</string>
-    <string name="error_failed_to_retrieve_data">تعذر جلب البيانات من الخادم.</string>
-    <string name="error_failed_to_update_data">تعذر تحديث البيانات.</string>
-    <string name="error_serialization">تعذر تسلسل أو إلغاء تسلسل البيانات.</string>
-    <string name="search_hint">ابحث عن طبيب</string>
     <string name="no_results">لم يتم العثور على نتائج.</string>
-    <string name="no_doctors_available">لا يوجد أطباء متاحون لهذا التخصص</string>
+    <string name="search_hint">ابحث عن طبيب</string>
     <string name="unknown_specialization">تخصص غير معروف.</string>
-    <string name="local_data_error">تعذر جلب البيانات من قاعدة البيانات المحلية.</string>
-    <string name="firebase_error">تعذر جلب البيانات من Firebase.</string>
+    <string name="no_doctors_available">لا يوجد أطباء متاحون لهذا التخصص</string>
+    <string name="error_unknown">حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.</string>
     <!-- ... Medical specializations ... -->
     <string name="general_practice">ممارسة عامة</string>
     <string name="pediatrics">الأطفال</string>

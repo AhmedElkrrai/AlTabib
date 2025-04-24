@@ -2,6 +2,7 @@ package com.example.altabib.utils
 
 import androidx.compose.runtime.Composable
 import com.example.altabib.R
+import com.example.altabib.design_system.getLocalizedString
 import java.util.Locale
 
 @Composable

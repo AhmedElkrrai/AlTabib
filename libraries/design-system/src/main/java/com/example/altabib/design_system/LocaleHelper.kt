@@ -1,4 +1,4 @@
-package com.example.altabib.utils
+package com.example.altabib.design_system
 
 import android.content.Context
 import android.content.res.Configuration
@@ -70,8 +70,8 @@ object LocaleHelper {
     @Composable
     fun getLayoutDirection(): LayoutDirection {
         return when (getCurrentLanguageEnum(LocalContext.current)) {
-            LocaleHelper.Language.ARABIC -> LayoutDirection.Rtl
-            LocaleHelper.Language.ENGLISH -> LayoutDirection.Ltr
+            Language.ARABIC -> LayoutDirection.Rtl
+            Language.ENGLISH -> LayoutDirection.Ltr
         }
     }
 }

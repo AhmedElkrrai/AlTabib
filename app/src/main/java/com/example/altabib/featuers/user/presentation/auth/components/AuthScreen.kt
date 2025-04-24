@@ -36,13 +36,13 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
+import com.example.altabib.design_system.FormatCompose
+import com.example.altabib.design_system.getLocalizedString
 import com.example.altabib.featuers.user.data.source.remote.GoogleSignInHelper
 import com.example.altabib.featuers.user.domain.entities.User
 import com.example.altabib.featuers.user.presentation.auth.AuthAction
 import com.example.altabib.featuers.user.presentation.auth.AuthState
 import com.example.altabib.ui.theme.Primary
-import com.example.altabib.utils.FormatCompose
-import com.example.altabib.utils.getLocalizedString
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 

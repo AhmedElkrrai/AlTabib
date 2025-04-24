@@ -1,9 +1,8 @@
-package com.example.altabib.core.presentation.util
+package com.example.altabib.design_system
 
 import android.content.Context
-import com.example.altabib.R
 import com.example.altabib.core.DataError
-import com.example.altabib.utils.LocaleHelper
+import com.example.altabib.design.R
 
 /**
  * Extension function for [DataError] to get a user-friendly error message.

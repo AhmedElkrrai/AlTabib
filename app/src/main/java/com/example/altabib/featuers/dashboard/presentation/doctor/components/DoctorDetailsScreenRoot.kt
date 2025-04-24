@@ -10,12 +10,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.example.altabib.R
-import com.example.altabib.core.presentation.util.ObserveEvents
-import com.example.altabib.core.presentation.util.getMessage
+import com.example.altabib.design_system.ObserveEvents
+import com.example.altabib.design_system.getMessage
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsAction
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsEvent
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsViewModel
-import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.design_system.getLocalizedString
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

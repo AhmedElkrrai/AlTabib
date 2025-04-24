@@ -32,8 +32,8 @@ import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.ui.theme.Green
 import com.example.altabib.ui.theme.Pink
 import com.example.altabib.ui.theme.Primary
-import com.example.altabib.utils.FormatCompose
-import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.design_system.FormatCompose
+import com.example.altabib.design_system.getLocalizedString
 import com.example.altabib.utils.getRatingText
 
 @Composable

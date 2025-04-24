@@ -20,9 +20,9 @@ import com.example.altabib.featuers.user.domain.entities.City
 import com.example.altabib.ui.components.AppOutlinedButton
 import com.example.altabib.ui.components.AppOutlinedTextFiled
 import com.example.altabib.ui.components.CitySelector
-import com.example.altabib.utils.FormatCompose
-import com.example.altabib.utils.LocaleHelper
-import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.design_system.FormatCompose
+import com.example.altabib.design_system.LocaleHelper
+import com.example.altabib.design_system.getLocalizedString
 
 @Composable
 fun SettingsScreen(

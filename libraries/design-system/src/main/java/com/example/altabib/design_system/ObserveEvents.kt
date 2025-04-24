@@ -1,4 +1,4 @@
-package com.example.altabib.core.presentation.util
+package com.example.altabib.design_system
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

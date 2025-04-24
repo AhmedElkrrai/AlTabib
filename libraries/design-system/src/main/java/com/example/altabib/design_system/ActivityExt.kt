@@ -1,4 +1,4 @@
-package com.example.altabib.utils
+package com.example.altabib.design_system
 
 import android.app.Activity
 import android.os.Build

@@ -21,7 +21,7 @@ import com.example.altabib.featuers.dashboard.presentation.doctor.components.Doc
 import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationCard
 import com.example.altabib.ui.components.Loading
 import com.example.altabib.ui.components.VerticalGrid
-import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.design_system.getLocalizedString
 
 @Composable
 fun DashboardScreen(

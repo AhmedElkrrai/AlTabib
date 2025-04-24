@@ -13,7 +13,7 @@ import com.example.altabib.navigation.bar.DoctorBottomBar
 import com.example.altabib.navigation.bar.PatientBottomBar
 import com.example.altabib.navigation.graph.DoctorNavGraph
 import com.example.altabib.navigation.graph.PatientNavGraph
-import com.example.altabib.utils.enableStickyImmersiveMode
+import com.example.altabib.design_system.enableStickyImmersiveMode
 
 @Composable
 fun HomeScreen(getUser: GetUserUseCase) {

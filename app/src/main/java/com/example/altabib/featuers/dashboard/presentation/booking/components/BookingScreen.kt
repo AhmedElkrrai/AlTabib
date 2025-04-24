@@ -27,8 +27,8 @@ import com.example.altabib.ui.components.AppOutlinedButton
 import com.example.altabib.ui.components.AppOutlinedTextFiled
 import com.example.altabib.ui.components.Loading
 import com.example.altabib.ui.components.TopAppBarWithBackButton
-import com.example.altabib.utils.FormatCompose
-import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.design_system.FormatCompose
+import com.example.altabib.design_system.getLocalizedString
 
 @Composable
 fun BookingScreen(

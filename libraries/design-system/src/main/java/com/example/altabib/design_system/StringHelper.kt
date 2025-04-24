@@ -1,4 +1,4 @@
-package com.example.altabib.utils
+package com.example.altabib.design_system
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable

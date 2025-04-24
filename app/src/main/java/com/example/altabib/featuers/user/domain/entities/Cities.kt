@@ -2,7 +2,7 @@ package com.example.altabib.featuers.user.domain.entities
 
 import androidx.compose.runtime.Composable
 import com.example.altabib.R
-import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.design_system.getLocalizedString
 
 enum class City(
     val nameResource: Int

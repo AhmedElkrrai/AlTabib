@@ -15,7 +15,7 @@ import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingAction
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingState
 import com.example.altabib.ui.components.AppOutlinedButton
-import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.design_system.getLocalizedString
 import java.time.LocalDate
 
 @Composable

@@ -14,7 +14,7 @@ import com.example.altabib.navigation.graph.RegistrationNavGraph
 import com.example.altabib.navigation.screen.Screen
 import com.example.altabib.navigation.utils.LocalNavController
 import com.example.altabib.ui.theme.AlTabibTheme
-import com.example.altabib.utils.enableStickyImmersiveMode
+import com.example.altabib.design_system.enableStickyImmersiveMode
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {

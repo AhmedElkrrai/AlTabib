@@ -30,8 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.altabib.R
 import com.example.altabib.ui.theme.DarkGray
-import com.example.altabib.utils.FormatCompose
-import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.design_system.FormatCompose
+import com.example.altabib.design_system.getLocalizedString
 
 @Composable
 fun SearchBar(

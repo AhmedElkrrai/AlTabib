@@ -13,16 +13,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.altabib.MainActivity
-import com.example.altabib.core.presentation.util.ObserveEvents
-import com.example.altabib.core.presentation.util.getMessage
+import com.example.altabib.design_system.ObserveEvents
+import com.example.altabib.design_system.getMessage
 import com.example.altabib.featuers.contact_us.ContactUsDialog
 import com.example.altabib.featuers.settings.presentation.SettingsAction
 import com.example.altabib.featuers.settings.presentation.SettingsEvent
 import com.example.altabib.featuers.settings.presentation.SettingsViewModel
 import com.example.altabib.navigation.screen.Screen
 import com.example.altabib.navigation.utils.LocalNavController
-import com.example.altabib.utils.LocaleHelper
-import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.design_system.LocaleHelper
+import com.example.altabib.design_system.getLocalizedString
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

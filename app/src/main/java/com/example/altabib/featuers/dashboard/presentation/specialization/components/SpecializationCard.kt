@@ -17,13 +17,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 import com.example.altabib.ui.theme.Primary
-import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.design_system.getLocalizedString
 
 @Composable
 fun SpecializationCard(

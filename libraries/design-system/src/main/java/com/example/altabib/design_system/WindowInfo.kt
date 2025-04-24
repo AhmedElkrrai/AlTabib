@@ -1,4 +1,4 @@
-package com.example.altabib.core.presentation.util
+package com.example.altabib.design_system
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
@@ -32,17 +32,17 @@ data class WindowInfo(
         /**
          * Represents a compact screen dimension.
          */
-        object Compact : Type()
+        data object Compact : Type()
 
         /**
          * Represents a medium screen dimension.
          */
-        object Medium : Type()
+        data object Medium : Type()
 
         /**
          * Represents an expanded screen dimension.
          */
-        object Expanded : Type()
+        data object Expanded : Type()
     }
 }
 

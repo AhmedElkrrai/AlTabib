@@ -42,8 +42,8 @@ import com.example.altabib.ui.components.AppOutlinedTextFiled
 import com.example.altabib.ui.components.CitySelector
 import com.example.altabib.ui.theme.Gray
 import com.example.altabib.ui.theme.Primary
-import com.example.altabib.utils.FormatCompose
-import com.example.altabib.utils.getLocalizedString
+import com.example.altabib.design_system.FormatCompose
+import com.example.altabib.design_system.getLocalizedString
 
 @Composable
 fun UserInfoScreen() {

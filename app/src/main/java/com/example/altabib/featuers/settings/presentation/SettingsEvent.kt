@@ -1,7 +1,7 @@
 package com.example.altabib.featuers.settings.presentation
 
 import com.example.altabib.core.DataError
-import com.example.altabib.utils.LocaleHelper
+import com.example.altabib.design_system.LocaleHelper
 
 sealed interface SettingsEvent {
     data object LoggedOut : SettingsEvent

@@ -1,9 +1,9 @@
-package com.example.altabib.utils
+package com.example.altabib.design_system
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalLayoutDirection
-import com.example.altabib.utils.LocaleHelper.getLayoutDirection
+import com.example.altabib.design_system.LocaleHelper.getLayoutDirection
 
 @Composable
 fun FormatCompose(content: @Composable () -> Unit) {
