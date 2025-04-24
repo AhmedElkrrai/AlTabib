@@ -3,7 +3,7 @@ package com.example.altabib
 import com.example.altabib.featuers.dashboard.domain.DoctorRepository
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
-import com.example.altabib.core.domain.util.Result
+import com.example.altabib.core.Result
 import com.example.altabib.featuers.dashboard.domain.entities.Review
 import kotlin.random.Random
 

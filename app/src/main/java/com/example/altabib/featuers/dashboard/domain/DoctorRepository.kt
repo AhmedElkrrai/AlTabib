@@ -1,8 +1,8 @@
 package com.example.altabib.featuers.dashboard.domain
 
-import com.example.altabib.core.domain.util.DataError
+import com.example.altabib.core.DataError
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
-import com.example.altabib.core.domain.util.Result
+import com.example.altabib.core.Result
 
 interface DoctorRepository {
     suspend fun searchDoctors(city: String, query: String): Result<List<Doctor>, DataError>

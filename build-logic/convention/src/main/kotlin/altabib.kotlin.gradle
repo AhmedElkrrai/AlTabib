@@ -3,6 +3,6 @@ plugins {
 }
 
 
-//dependencies {
-//    implementation projects.libraries.core
-//}
+dependencies {
+    implementation(project(":libraries:core"))
+}

@@ -2,8 +2,8 @@ package com.example.altabib.featuers.dashboard.presentation.specialization
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.altabib.core.domain.util.onError
-import com.example.altabib.core.domain.util.onSuccess
+import com.example.altabib.core.onError
+import com.example.altabib.core.onSuccess
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorsBySpecializationUseCase
 import com.example.altabib.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow

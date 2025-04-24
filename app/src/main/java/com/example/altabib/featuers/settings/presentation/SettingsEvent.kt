@@ -1,6 +1,6 @@
 package com.example.altabib.featuers.settings.presentation
 
-import com.example.altabib.core.domain.util.DataError
+import com.example.altabib.core.DataError
 import com.example.altabib.utils.LocaleHelper
 
 sealed interface SettingsEvent {

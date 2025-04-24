@@ -1,6 +1,6 @@
 package com.example.altabib.featuers.user.presentation.auth
 
-import com.example.altabib.core.domain.util.DataError
+import com.example.altabib.core.DataError
 
 data class AuthState(
     val isLoading: Boolean = false,

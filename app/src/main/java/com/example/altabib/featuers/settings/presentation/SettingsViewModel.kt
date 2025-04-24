@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.R
-import com.example.altabib.core.domain.util.DataError
-import com.example.altabib.core.domain.util.getOrDefault
+import com.example.altabib.core.DataError
+import com.example.altabib.core.getOrDefault
 import com.example.altabib.featuers.settings.domain.usecases.GetPatientUseCase
 import com.example.altabib.featuers.settings.domain.usecases.UpdatePatientUseCase
 import com.example.altabib.featuers.user.data.source.remote.mappers.toUser

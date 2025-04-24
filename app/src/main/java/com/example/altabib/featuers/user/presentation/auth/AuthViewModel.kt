@@ -2,8 +2,8 @@ package com.example.altabib.featuers.user.presentation.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.altabib.core.domain.util.onError
-import com.example.altabib.core.domain.util.onSuccess
+import com.example.altabib.core.onError
+import com.example.altabib.core.onSuccess
 import com.example.altabib.featuers.user.domain.usecases.GoogleSignInUseCase
 import com.example.altabib.featuers.user.domain.usecases.RegisterUseCase
 import com.example.altabib.featuers.user.domain.entities.User

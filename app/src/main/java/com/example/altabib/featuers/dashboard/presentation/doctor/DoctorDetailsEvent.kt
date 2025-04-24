@@ -1,6 +1,6 @@
 package com.example.altabib.featuers.dashboard.presentation.doctor
 
-import com.example.altabib.core.domain.util.DataError
+import com.example.altabib.core.DataError
 
 sealed class DoctorDetailsEvent {
     data object Back : DoctorDetailsEvent()

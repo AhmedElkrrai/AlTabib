@@ -1,4 +1,4 @@
-package com.example.altabib.core.domain.util
+package com.example.altabib.core
 
 /**
  * Represents the result of an operation that can either be a success with a value or a failure with an error.

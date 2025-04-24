@@ -1,8 +1,8 @@
 package com.example.altabib.featuers.appointments.data.source
 
 import android.util.Log
-import com.example.altabib.core.domain.util.DataError
-import com.example.altabib.core.domain.util.Result
+import com.example.altabib.core.DataError
+import com.example.altabib.core.Result
 import com.example.altabib.featuers.appointments.domain.AppointmentRepository
 import com.example.altabib.featuers.dashboard.domain.entities.Appointment
 import com.google.firebase.firestore.FirebaseFirestore

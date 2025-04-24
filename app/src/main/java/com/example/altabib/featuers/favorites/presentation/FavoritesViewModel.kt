@@ -2,8 +2,8 @@ package com.example.altabib.featuers.favorites.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.altabib.core.domain.util.onError
-import com.example.altabib.core.domain.util.onSuccess
+import com.example.altabib.core.onError
+import com.example.altabib.core.onSuccess
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
 import com.example.altabib.featuers.favorites.domain.usecases.GetFavoritesUseCase
 import com.example.altabib.featuers.favorites.domain.usecases.RemoveFavoriteUseCase

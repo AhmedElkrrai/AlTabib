@@ -1,6 +1,6 @@
 package com.example.altabib.featuers.dashboard.presentation.specialization
 
-import com.example.altabib.core.domain.util.DataError
+import com.example.altabib.core.DataError
 
 sealed class SpecializationEvent {
     data object Back : SpecializationEvent()

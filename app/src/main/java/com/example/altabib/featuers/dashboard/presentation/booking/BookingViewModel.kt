@@ -3,9 +3,9 @@ package com.example.altabib.featuers.dashboard.presentation.booking
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.R
-import com.example.altabib.core.domain.util.DataError
-import com.example.altabib.core.domain.util.onError
-import com.example.altabib.core.domain.util.onSuccess
+import com.example.altabib.core.DataError
+import com.example.altabib.core.onError
+import com.example.altabib.core.onSuccess
 import com.example.altabib.featuers.appointments.domain.usecases.SaveAppointmentUseCase
 import com.example.altabib.featuers.dashboard.domain.entities.Appointment
 import com.example.altabib.featuers.dashboard.domain.entities.Review

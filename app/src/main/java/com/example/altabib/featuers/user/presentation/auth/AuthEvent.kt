@@ -1,6 +1,6 @@
 package com.example.altabib.featuers.user.presentation.auth
 
-import com.example.altabib.core.domain.util.DataError
+import com.example.altabib.core.DataError
 
 sealed interface AuthEvent {
     data class Navigate(val route: String) : AuthEvent

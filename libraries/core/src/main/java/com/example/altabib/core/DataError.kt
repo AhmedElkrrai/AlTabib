@@ -1,4 +1,4 @@
-package com.example.altabib.core.domain.util
+package com.example.altabib.core
 
 /**
  * Represents different types of errors that can occur during

@@ -2,7 +2,7 @@ package com.example.altabib.core.presentation.util
 
 import android.content.Context
 import com.example.altabib.R
-import com.example.altabib.core.domain.util.DataError
+import com.example.altabib.core.DataError
 import com.example.altabib.utils.LocaleHelper
 
 /**

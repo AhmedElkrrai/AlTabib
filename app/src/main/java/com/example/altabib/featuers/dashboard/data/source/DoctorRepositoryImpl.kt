@@ -1,8 +1,8 @@
 package com.example.altabib.featuers.dashboard.data.source
 
 import android.util.Log
-import com.example.altabib.core.domain.util.DataError
-import com.example.altabib.core.domain.util.Result
+import com.example.altabib.core.DataError
+import com.example.altabib.core.Result
 import com.example.altabib.featuers.dashboard.data.source.local.DoctorDao
 import com.example.altabib.featuers.dashboard.data.source.local.mappers.toDomain
 import com.example.altabib.featuers.dashboard.data.source.local.mappers.toEntity

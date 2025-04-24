@@ -3,8 +3,8 @@ package com.example.altabib.featuers.dashboard.presentation.doctor
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.R
-import com.example.altabib.core.domain.util.onError
-import com.example.altabib.core.domain.util.onSuccess
+import com.example.altabib.core.onError
+import com.example.altabib.core.onSuccess
 import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
 import com.example.altabib.featuers.favorites.domain.usecases.AddFavoriteUseCase
 import com.example.altabib.featuers.favorites.domain.usecases.IsFavoriteUseCase
