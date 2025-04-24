@@ -1,0 +1,22 @@
+plugins {
+    id 'altabib.android.library'
+    id 'com.google.dagger.hilt.android'
+    id 'com.google.devtools.ksp'
+}
+
+
+dependencies {
+    implementation(projects.libraries.network)
+    implementation(projects.libraries.dispatchers)
+    implementation libs.moshi.core
+    implementation libs.google.gson
+    ksp libs.moshi.kotlin.codegen
+
+    // Database
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
+    ksp libs.androidx.room.compiler
+
+    // DI
+    implementation(libs.bundles.koin)
+}

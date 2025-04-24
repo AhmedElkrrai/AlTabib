@@ -1,0 +1,8 @@
+plugins {
+    id 'kotlin.core'
+}
+
+
+//dependencies {
+//    implementation projects.libraries.core
+//}

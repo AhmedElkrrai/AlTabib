@@ -1,0 +1,16 @@
+plugins {
+    id 'altabib.android.library'
+    id 'kotlin-parcelize'
+    id 'com.google.devtools.ksp'
+}
+
+
+android {
+    buildFeatures {
+        compose = true
+    }
+}
+
+dependencies {
+    implementation(libs.bundles.koin)
+}

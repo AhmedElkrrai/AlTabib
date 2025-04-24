@@ -1,0 +1,25 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+dependencies {
+    api libs.kotlin.stdlib
+    api libs.kotlin.reflect
+    api libs.kotlinx.core
+
+    testApi libs.junit.core
+    testApi libs.kotlinx.core
+    testApi libs.kotlinx.test
+    // Optional -- Robolectric environment
+    testApi libs.robolectric.core
+    // Optional -- Mockito framework
+    testApi libs.mockito.core
+    // Optional -- Mockk framework
+    testApi libs.mockk.core
+}

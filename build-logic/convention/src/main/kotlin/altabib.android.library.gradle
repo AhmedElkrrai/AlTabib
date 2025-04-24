@@ -1,0 +1,42 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+android {
+    compileSdk rootProject.ext.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
+    }
+}
+
+dependencies {
+  //  implementation(project(":libraries:core"))
+
+    implementation libs.core
+    implementation libs.appcompat
+    implementation libs.annotation
+    testImplementation libs.junit.core
+    testImplementation libs.kotlinx.core
+    testImplementation libs.kotlinx.test
+    testImplementation libs.androidx.test.core
+    // Optional -- Robolectric environment
+    testImplementation libs.robolectric.core
+    // Optional -- Mockito framework
+    testImplementation libs.mockito.core
+    // Optional -- Mockk framework
+    testImplementation libs.mockk.core
+    androidTestImplementation libs.androidx.test.junit
+    androidTestImplementation libs.androidx.test.espresso
+}
