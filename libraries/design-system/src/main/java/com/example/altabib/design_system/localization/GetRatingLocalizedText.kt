@@ -1,8 +1,7 @@
-package com.example.altabib.utils
+package com.example.altabib.design_system.localization
 
 import androidx.compose.runtime.Composable
-import com.example.altabib.R
-import com.example.altabib.design_system.getLocalizedString
+import com.example.altabib.design.R
 import java.util.Locale
 
 @Composable

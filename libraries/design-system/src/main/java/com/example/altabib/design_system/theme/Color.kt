@@ -1,4 +1,4 @@
-package com.example.altabib.ui.theme
+package com.example.altabib.design_system.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,4 +1,4 @@
-package com.example.altabib.design_system
+package com.example.altabib.design_system.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration

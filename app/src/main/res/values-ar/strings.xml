@@ -33,33 +33,6 @@
     <string name="appointment_booked_successfully">تم حجز موعد بنجاح</string>
     <string name="review_cannot_be_empty">لا يمكن أن يكون التقييم فارغا</string>
     <string name="select_date">اختر تاريخ</string>
-    <!-- ... Cities ... -->
-    <string name="alexandria">الاسكندرية</string>
-    <string name="aswan">أسوان</string>
-    <string name="asyut">أسيوط</string>
-    <string name="damanhur">دمنهور</string>
-    <string name="beni_suef">بني سويف</string>
-    <string name="cairo">القاهرة</string>
-    <string name="mansoura">المنصورة</string>
-    <string name="damietta">دمياط</string>
-    <string name="faiyum">الفيوم</string>
-    <string name="tanta">طنطا</string>
-    <string name="giza">الجيزة</string>
-    <string name="ismailia">الإسماعيلية</string>
-    <string name="kafr_el_sheikh">كفر الشيخ</string>
-    <string name="luxor">الاقصر</string>
-    <string name="minya">المنيا</string>
-    <string name="shibin_el_kom">شبين الكوم</string>
-    <string name="arish">العريش</string>
-    <string name="port_said">بورسعيد</string>
-    <string name="banha">بنها</string>
-    <string name="hurghada">الغردقة</string>
-    <string name="zagazig">الزقازيق</string>
-    <string name="el_tor">الطور</string>
-    <string name="sohag">سوهاج</string>
-    <string name="suez">السويس</string>
-    <string name="marsa_matrouh">مرسي مطروح</string>
-    <string name="qena">قنا</string>
     <!-- ... Other ... -->
     <string name="doctor">طبيب</string>
     <string name="patient">مريض</string>
@@ -68,7 +41,6 @@
     <string name="english">الانجليزية</string>
     <string name="arabic">العربية</string>
     <string name="currency">ج.م</string>
-    <string name="reviews">تقييم</string>
     <string name="continue_txt">استمرار</string>
     <string name="in_queue">في الانتظار</string>
     <string name="favorites">المفضلة</string>

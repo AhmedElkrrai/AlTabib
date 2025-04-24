@@ -16,13 +16,13 @@ import androidx.compose.ui.unit.dp
 import com.example.altabib.R
 import com.example.altabib.featuers.settings.presentation.SettingsAction
 import com.example.altabib.featuers.settings.presentation.SettingsState
-import com.example.altabib.featuers.user.domain.entities.City
-import com.example.altabib.ui.components.AppOutlinedButton
-import com.example.altabib.ui.components.AppOutlinedTextFiled
-import com.example.altabib.ui.components.CitySelector
-import com.example.altabib.design_system.FormatCompose
-import com.example.altabib.design_system.LocaleHelper
-import com.example.altabib.design_system.getLocalizedString
+import com.example.altabib.design_system.models.City
+import com.example.altabib.design_system.components.AppOutlinedButton
+import com.example.altabib.design_system.components.AppOutlinedTextFiled
+import com.example.altabib.design_system.components.CitySelector
+import com.example.altabib.design_system.utils.FormatCompose
+import com.example.altabib.design_system.localization.LocaleHelper
+import com.example.altabib.design_system.localization.getLocalizedString
 
 @Composable
 fun SettingsScreen(

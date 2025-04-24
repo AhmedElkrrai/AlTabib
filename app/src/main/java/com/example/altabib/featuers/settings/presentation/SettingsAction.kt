@@ -1,6 +1,6 @@
 package com.example.altabib.featuers.settings.presentation
 
-import com.example.altabib.design_system.LocaleHelper
+import com.example.altabib.design_system.localization.LocaleHelper
 
 sealed interface SettingsAction {
     data object InitPatientData : SettingsAction

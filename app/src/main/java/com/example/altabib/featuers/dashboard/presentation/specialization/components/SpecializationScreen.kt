@@ -14,10 +14,10 @@ import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorCard
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationAction
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationState
-import com.example.altabib.ui.components.Loading
-import com.example.altabib.ui.components.TopAppBarWithBackButton
-import com.example.altabib.ui.components.VerticalGrid
-import com.example.altabib.design_system.getLocalizedString
+import com.example.altabib.design_system.components.Loading
+import com.example.altabib.design_system.components.TopAppBarWithBackButton
+import com.example.altabib.design_system.components.VerticalGrid
+import com.example.altabib.design_system.localization.getLocalizedString
 
 @Composable
 fun SpecializationScreen(

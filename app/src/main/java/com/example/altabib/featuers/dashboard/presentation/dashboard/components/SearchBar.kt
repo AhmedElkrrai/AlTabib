@@ -29,9 +29,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.altabib.R
-import com.example.altabib.ui.theme.DarkGray
-import com.example.altabib.design_system.FormatCompose
-import com.example.altabib.design_system.getLocalizedString
+import com.example.altabib.design_system.theme.DarkGray
+import com.example.altabib.design_system.utils.FormatCompose
+import com.example.altabib.design_system.localization.getLocalizedString
 
 @Composable
 fun SearchBar(

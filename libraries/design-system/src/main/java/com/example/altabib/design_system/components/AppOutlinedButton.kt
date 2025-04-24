@@ -1,4 +1,4 @@
-package com.example.altabib.ui.components
+package com.example.altabib.design_system.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.height
@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.altabib.ui.theme.Primary
+import com.example.altabib.design_system.theme.Primary
 
 @Composable
 fun AppOutlinedButton(

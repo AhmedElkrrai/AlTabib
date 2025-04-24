@@ -34,16 +34,16 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
-import com.example.altabib.featuers.user.domain.entities.City
+import com.example.altabib.design_system.models.City
 import com.example.altabib.featuers.user.domain.entities.UserType
 import com.example.altabib.navigation.screen.Screen
 import com.example.altabib.navigation.utils.LocalNavController
-import com.example.altabib.ui.components.AppOutlinedTextFiled
-import com.example.altabib.ui.components.CitySelector
-import com.example.altabib.ui.theme.Gray
-import com.example.altabib.ui.theme.Primary
-import com.example.altabib.design_system.FormatCompose
-import com.example.altabib.design_system.getLocalizedString
+import com.example.altabib.design_system.components.AppOutlinedTextFiled
+import com.example.altabib.design_system.components.CitySelector
+import com.example.altabib.design_system.theme.Gray
+import com.example.altabib.design_system.theme.Primary
+import com.example.altabib.design_system.utils.FormatCompose
+import com.example.altabib.design_system.localization.getLocalizedString
 
 @Composable
 fun UserInfoScreen() {

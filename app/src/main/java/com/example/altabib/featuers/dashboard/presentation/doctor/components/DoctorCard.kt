@@ -31,11 +31,11 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.domain.entities.Doctor
-import com.example.altabib.ui.theme.Green
-import com.example.altabib.ui.theme.Primary
-import com.example.altabib.design_system.FormatCompose
-import com.example.altabib.design_system.getLocalizedString
-import com.example.altabib.utils.getRatingText
+import com.example.altabib.design_system.theme.Green
+import com.example.altabib.design_system.theme.Primary
+import com.example.altabib.design_system.utils.FormatCompose
+import com.example.altabib.design_system.localization.getLocalizedString
+import com.example.altabib.design_system.localization.getRatingText
 
 @Composable
 fun DoctorCard(

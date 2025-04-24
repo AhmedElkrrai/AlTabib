@@ -1,4 +1,4 @@
-package com.example.altabib.ui.components
+package com.example.altabib.design_system.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -22,8 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.altabib.featuers.user.domain.entities.City
-import com.example.altabib.ui.theme.Primary
+import com.example.altabib.design_system.theme.Primary
+import com.example.altabib.design_system.models.City
 
 @Composable
 fun CitySelector(

@@ -13,8 +13,8 @@ import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
 import com.example.altabib.navigation.graph.RegistrationNavGraph
 import com.example.altabib.navigation.screen.Screen
 import com.example.altabib.navigation.utils.LocalNavController
-import com.example.altabib.ui.theme.AlTabibTheme
-import com.example.altabib.design_system.enableStickyImmersiveMode
+import com.example.altabib.design_system.theme.AlTabibTheme
+import com.example.altabib.design_system.utils.enableStickyImmersiveMode
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {

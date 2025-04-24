@@ -7,8 +7,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.example.altabib.design_system.ObserveEvents
-import com.example.altabib.design_system.getMessage
+import com.example.altabib.design_system.utils.ObserveEvents
+import com.example.altabib.design_system.utils.getMessage
 import com.example.altabib.featuers.favorites.presentation.FavoritesAction
 import com.example.altabib.featuers.favorites.presentation.FavoritesEvent
 import com.example.altabib.featuers.favorites.presentation.FavoritesViewModel

@@ -8,8 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.example.altabib.design_system.ObserveEvents
-import com.example.altabib.design_system.getMessage
+import com.example.altabib.design_system.utils.ObserveEvents
+import com.example.altabib.design_system.utils.getMessage
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationAction
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationEvent

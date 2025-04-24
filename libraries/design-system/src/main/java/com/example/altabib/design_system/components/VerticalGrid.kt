@@ -1,4 +1,4 @@
-package com.example.altabib.ui.components
+package com.example.altabib.design_system.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

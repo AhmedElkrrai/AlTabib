@@ -10,4 +10,33 @@
     <string name="no_results">No results found.</string>
     <string name="local_data_error">Couldn\'t fetch data from local database.</string>
     <string name="firebase_error">Couldn\'t fetch data from Firebase.</string>
+    <string name="reviews">reviews</string>
+    <string name="select_city">Select City</string>
+    <!-- ... Cities ... -->
+    <string name="alexandria">Alexandria</string>
+    <string name="aswan">Aswan</string>
+    <string name="asyut">Asyut</string>
+    <string name="damanhur">Damanhur</string>
+    <string name="beni_suef">Beni Suef</string>
+    <string name="cairo">Cairo</string>
+    <string name="mansoura">Mansoura</string>
+    <string name="damietta">Damietta</string>
+    <string name="faiyum">Faiyum</string>
+    <string name="tanta">Tanta</string>
+    <string name="giza">Giza</string>
+    <string name="ismailia">Ismailia</string>"
+    <string name="kafr_el_sheikh">Kafr El Sheikh</string>
+    <string name="luxor">Luxor</string>
+    <string name="minya">Minya</string>
+    <string name="shibin_el_kom">Shibin El Kom</string>
+    <string name="arish">Arish</string>
+    <string name="port_said">Port Said</string>
+    <string name="banha">Banha</string>
+    <string name="hurghada">Hurghada</string>
+    <string name="zagazig">Zagazig</string>
+    <string name="el_tor">El Tor</string>
+    <string name="sohag">Sohag</string>
+    <string name="suez">Suez</string>
+    <string name="marsa_matrouh">Marsa Matrouh</string>
+    <string name="qena">Qena</string>
 </resources>

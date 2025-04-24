@@ -1,4 +1,4 @@
-package com.example.altabib.ui.components
+package com.example.altabib.design_system.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
@@ -21,8 +21,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.sp
-import com.example.altabib.ui.theme.Gray
-import com.example.altabib.ui.theme.Primary
+import com.example.altabib.design_system.theme.Gray
+import com.example.altabib.design_system.theme.Primary
 
 @Composable
 fun AppOutlinedTextFiled(

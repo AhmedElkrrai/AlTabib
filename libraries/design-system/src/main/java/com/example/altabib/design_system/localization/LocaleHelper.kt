@@ -1,4 +1,4 @@
-package com.example.altabib.design_system
+package com.example.altabib.design_system.localization
 
 import android.content.Context
 import android.content.res.Configuration

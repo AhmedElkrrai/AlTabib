@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import com.example.altabib.ui.theme.Primary
+import com.example.altabib.design_system.theme.Primary
 
 @Composable
 fun ClickableInfoRow(

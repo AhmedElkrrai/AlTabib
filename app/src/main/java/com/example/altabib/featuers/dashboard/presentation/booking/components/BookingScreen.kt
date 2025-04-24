@@ -23,12 +23,12 @@ import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingAction
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingState
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.RatingSection
-import com.example.altabib.ui.components.AppOutlinedButton
-import com.example.altabib.ui.components.AppOutlinedTextFiled
-import com.example.altabib.ui.components.Loading
-import com.example.altabib.ui.components.TopAppBarWithBackButton
-import com.example.altabib.design_system.FormatCompose
-import com.example.altabib.design_system.getLocalizedString
+import com.example.altabib.design_system.components.AppOutlinedButton
+import com.example.altabib.design_system.components.AppOutlinedTextFiled
+import com.example.altabib.design_system.components.Loading
+import com.example.altabib.design_system.components.TopAppBarWithBackButton
+import com.example.altabib.design_system.utils.FormatCompose
+import com.example.altabib.design_system.localization.getLocalizedString
 
 @Composable
 fun BookingScreen(

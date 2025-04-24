@@ -2,7 +2,7 @@ package com.example.altabib.featuers.dashboard.domain.entities
 
 import androidx.compose.runtime.Composable
 import com.example.altabib.R
-import com.example.altabib.design_system.getLocalizedString
+import com.example.altabib.design_system.localization.getLocalizedString
 
 enum class Specialization(
     val key: String,

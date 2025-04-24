@@ -10,4 +10,33 @@
     <string name="no_results">لم يتم العثور على نتائج.</string>
     <string name="local_data_error">تعذر جلب البيانات من قاعدة البيانات المحلية.</string>
     <string name="firebase_error">تعذر جلب البيانات من Firebase.</string>
+    <string name="reviews">تقييم</string>
+    <string name="select_city">اختر المدينة</string>
+    <!-- ... Cities ... -->
+    <string name="alexandria">الاسكندرية</string>
+    <string name="aswan">أسوان</string>
+    <string name="asyut">أسيوط</string>
+    <string name="damanhur">دمنهور</string>
+    <string name="beni_suef">بني سويف</string>
+    <string name="cairo">القاهرة</string>
+    <string name="mansoura">المنصورة</string>
+    <string name="damietta">دمياط</string>
+    <string name="faiyum">الفيوم</string>
+    <string name="tanta">طنطا</string>
+    <string name="giza">الجيزة</string>
+    <string name="ismailia">الإسماعيلية</string>
+    <string name="kafr_el_sheikh">كفر الشيخ</string>
+    <string name="luxor">الاقصر</string>
+    <string name="minya">المنيا</string>
+    <string name="shibin_el_kom">شبين الكوم</string>
+    <string name="arish">العريش</string>
+    <string name="port_said">بورسعيد</string>
+    <string name="banha">بنها</string>
+    <string name="hurghada">الغردقة</string>
+    <string name="zagazig">الزقازيق</string>
+    <string name="el_tor">الطور</string>
+    <string name="sohag">سوهاج</string>
+    <string name="suez">السويس</string>
+    <string name="marsa_matrouh">مرسي مطروح</string>
+    <string name="qena">قنا</string>
 </resources>

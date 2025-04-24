@@ -14,8 +14,8 @@ import androidx.compose.ui.unit.dp
 import com.example.altabib.R
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingAction
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingState
-import com.example.altabib.ui.components.AppOutlinedButton
-import com.example.altabib.design_system.getLocalizedString
+import com.example.altabib.design_system.components.AppOutlinedButton
+import com.example.altabib.design_system.localization.getLocalizedString
 import java.time.LocalDate
 
 @Composable

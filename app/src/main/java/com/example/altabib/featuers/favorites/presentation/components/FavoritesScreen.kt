@@ -9,8 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.altabib.featuers.favorites.presentation.FavoritesAction
 import com.example.altabib.featuers.favorites.presentation.FavoritesState
-import com.example.altabib.ui.components.Loading
-import com.example.altabib.ui.components.VerticalGrid
+import com.example.altabib.design_system.components.Loading
+import com.example.altabib.design_system.components.VerticalGrid
 
 @Composable
 fun FavoritesScreen(

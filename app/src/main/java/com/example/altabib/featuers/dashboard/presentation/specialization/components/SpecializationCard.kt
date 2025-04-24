@@ -21,8 +21,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.altabib.featuers.dashboard.domain.entities.Specialization
-import com.example.altabib.ui.theme.Primary
-import com.example.altabib.design_system.getLocalizedString
+import com.example.altabib.design_system.theme.Primary
+import com.example.altabib.design_system.localization.getLocalizedString
 
 @Composable
 fun SpecializationCard(
