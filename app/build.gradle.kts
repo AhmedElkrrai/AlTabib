@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.example.altabib"
-    compileSdk = 35
+    compileSdk = rootProject.extra["compileSdk"] as Int
 
     defaultConfig {
         applicationId = "com.example.altabib"
-        minSdk = 27
-        targetSdk = 35
+        minSdk = rootProject.extra["minSdk"] as Int
+        targetSdk = rootProject.extra["targetSdk"] as Int
         versionCode = 1
         versionName = "1.0"
 
@@ -49,6 +49,7 @@ android {
 
 dependencies {
     implementation(project(":libraries:core"))
+    implementation(project(":libraries:design-system"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)
@@ -62,6 +63,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.lottie.compose)
+
     implementation(libs.firebase.auth)
     implementation(libs.google.play.services.auth)
     implementation(libs.firebase.firestore.ktx)

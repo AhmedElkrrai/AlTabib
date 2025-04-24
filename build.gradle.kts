@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.jetbrains.kotlin.jvm) apply false
+    alias(libs.plugins.android.library) apply false
 }
 
 buildscript {
@@ -15,3 +16,8 @@ buildscript {
         mavenCentral()
     }
 }
+
+val compileSdk by extra(35)
+val minSdk by extra(27)
+val targetSdk by extra(35)
+val testInstrumentationRunner by extra("androidx.test.runner.AndroidJUnitRunner")
