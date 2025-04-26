@@ -8,7 +8,7 @@ import com.example.altabib.core.DataError
 import com.example.altabib.core.getOrDefault
 import com.example.altabib.featuers.settings.domain.usecases.GetPatientUseCase
 import com.example.altabib.featuers.settings.domain.usecases.UpdatePatientUseCase
-import com.example.altabib.featuers.user.data.source.remote.mappers.toUser
+import com.example.user.data.source.remote.mappers.toUser
 import com.example.user.domain.usecases.CacheUserUseCase
 import com.example.user.domain.usecases.LogoutUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow

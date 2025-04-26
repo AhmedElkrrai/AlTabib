@@ -1,13 +1,13 @@
-package com.example.altabib.featuers.user.data.source
+package com.example.user.data.source
 
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
 import com.example.altabib.core.map
 import com.example.user.domain.entities.Doctor
 import com.example.user.domain.entities.Patient
-import com.example.altabib.featuers.user.data.source.local.UserManager
-import com.example.altabib.featuers.user.data.source.remote.AuthenticationService
-import com.example.altabib.featuers.user.data.source.remote.mappers.toUser
+import com.example.user.data.source.local.UserManager
+import com.example.user.data.source.remote.AuthenticationService
+import com.example.user.data.source.remote.mappers.toUser
 import com.example.user.domain.AuthRepository
 import com.example.user.domain.entities.User
 

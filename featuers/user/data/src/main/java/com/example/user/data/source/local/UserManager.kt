@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.data.source.local
+package com.example.user.data.source.local
 
 import android.content.SharedPreferences
 import com.example.user.domain.entities.User

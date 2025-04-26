@@ -44,6 +44,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -51,6 +52,7 @@ dependencies {
     implementation(project(":libraries:core"))
     implementation(project(":libraries:design-system"))
     implementation(project(":featuers:user:domain"))
+    implementation(project(":featuers:user:data"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)

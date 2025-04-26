@@ -27,6 +27,7 @@
             <option value="$PROJECT_DIR$/build-logic/convention" />
             <option value="$PROJECT_DIR$/featuers" />
             <option value="$PROJECT_DIR$/featuers/user" />
+            <option value="$PROJECT_DIR$/featuers/user/data" />
             <option value="$PROJECT_DIR$/featuers/user/domain" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/core" />

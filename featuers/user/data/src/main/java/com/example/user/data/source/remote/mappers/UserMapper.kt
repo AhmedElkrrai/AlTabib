@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.data.source.remote.mappers
+package com.example.user.data.source.remote.mappers
 
 import com.example.user.domain.entities.Doctor
 import com.example.user.domain.entities.Patient

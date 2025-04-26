@@ -38,7 +38,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.altabib.design_system.localization.getLocalizedString
-import com.example.altabib.featuers.user.data.source.remote.GoogleSignInHelper
+import com.example.user.data.source.remote.GoogleSignInHelper
 import com.example.user.domain.entities.User
 import com.example.altabib.featuers.user.presentation.auth.AuthAction
 import com.example.altabib.featuers.user.presentation.auth.AuthState
@@ -77,7 +77,7 @@ fun AuthScreen(
         }
     }
 
-    val googleSignInClient = helper.getGoogleSignInClient()
+    val googleSignInClient = helper.getClient()
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.appointment))
     val progress by animateLottieCompositionAsState(
         composition,

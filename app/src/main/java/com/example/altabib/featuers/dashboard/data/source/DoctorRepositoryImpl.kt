@@ -10,7 +10,7 @@ import com.example.altabib.featuers.dashboard.data.source.remote.mappers.toDomai
 import com.example.altabib.featuers.dashboard.data.source.remote.mappers.toDto
 import com.example.altabib.featuers.dashboard.data.source.remote.models.DoctorDto
 import com.example.altabib.featuers.dashboard.domain.DoctorRepository
-import com.example.altabib.featuers.user.data.source.remote.DOCTORS_PATH
+import com.example.user.data.source.remote.DOCTORS_PATH
 import com.example.user.domain.entities.Doctor
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query

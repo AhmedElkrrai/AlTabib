@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tabib</string>
-    <string name="default_web_client_id" translatable="false">458416682788-tmftf3752n7pom7pgee6jg4n6io81e1e.apps.googleusercontent.com</string>
     <string name="dev_email" translatable="false">ahmedemadelkrrai@gmail.com</string>
     <string name="no_results">No results found.</string>
     <string name="search_hint">Search for a doctor.</string>
