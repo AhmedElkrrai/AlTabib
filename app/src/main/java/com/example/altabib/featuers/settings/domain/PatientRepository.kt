@@ -2,7 +2,7 @@ package com.example.altabib.featuers.settings.domain
 
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
-import com.example.altabib.featuers.user.domain.entities.Patient
+import com.example.user.domain.entities.Patient
 
 interface PatientRepository {
     suspend fun updatePatient(patient: Patient): Result<Patient, DataError>

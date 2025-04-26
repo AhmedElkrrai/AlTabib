@@ -1,6 +1,6 @@
 package com.example.altabib.featuers.dashboard.presentation.booking
 
-import com.example.altabib.featuers.user.domain.entities.Doctor
+import com.example.user.domain.entities.Doctor
 import java.time.LocalDate
 
 data class BookingState(

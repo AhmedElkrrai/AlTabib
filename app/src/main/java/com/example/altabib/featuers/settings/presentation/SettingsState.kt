@@ -1,7 +1,7 @@
 package com.example.altabib.featuers.settings.presentation
 
 import com.example.altabib.core.DataError
-import com.example.altabib.featuers.user.domain.entities.Patient
+import com.example.user.domain.entities.Patient
 
 data class SettingsState(
     val patient: Patient? = null,

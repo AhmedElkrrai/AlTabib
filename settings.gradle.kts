@@ -24,3 +24,4 @@ rootProject.name = "AlTabib"
 include(":app")
 include(":libraries:core")
 include(":libraries:design-system")
+include(":featuers:user:domain")

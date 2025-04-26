@@ -3,9 +3,9 @@ package com.example.altabib.featuers.user.presentation.auth.utils
 import androidx.compose.runtime.Composable
 import com.example.altabib.R
 import com.example.altabib.design_system.localization.getLocalizedString
-import com.example.altabib.featuers.user.domain.entities.UserType
-import com.example.altabib.featuers.user.domain.entities.UserType.Doctor
-import com.example.altabib.featuers.user.domain.entities.UserType.Patient
+import com.example.user.domain.entities.UserType
+import com.example.user.domain.entities.UserType.Doctor
+import com.example.user.domain.entities.UserType.Patient
 
 @Composable
 fun UserType.displayName(): String {

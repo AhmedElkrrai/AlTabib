@@ -3,7 +3,7 @@ package com.example.altabib.featuers.settings.domain.usecases
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
 import com.example.altabib.featuers.settings.domain.PatientRepository
-import com.example.altabib.featuers.user.domain.entities.Patient
+import com.example.user.domain.entities.Patient
 
 class UpdatePatientUseCase(
     private val repository: PatientRepository

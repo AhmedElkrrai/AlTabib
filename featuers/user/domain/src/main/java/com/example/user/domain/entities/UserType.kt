@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.domain.entities
+package com.example.user.domain.entities
 
 enum class UserType(val key: String) {
     Doctor("Doctor"),

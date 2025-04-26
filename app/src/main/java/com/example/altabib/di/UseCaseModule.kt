@@ -11,11 +11,11 @@ import com.example.altabib.featuers.favorites.domain.usecases.IsFavoriteUseCase
 import com.example.altabib.featuers.favorites.domain.usecases.RemoveFavoriteUseCase
 import com.example.altabib.featuers.settings.domain.usecases.GetPatientUseCase
 import com.example.altabib.featuers.settings.domain.usecases.UpdatePatientUseCase
-import com.example.altabib.featuers.user.domain.usecases.CacheUserUseCase
-import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
-import com.example.altabib.featuers.user.domain.usecases.GoogleSignInUseCase
-import com.example.altabib.featuers.user.domain.usecases.LogoutUseCase
-import com.example.altabib.featuers.user.domain.usecases.RegisterUseCase
+import com.example.user.domain.usecases.CacheUserUseCase
+import com.example.user.domain.usecases.GetUserUseCase
+import com.example.user.domain.usecases.GoogleSignInUseCase
+import com.example.user.domain.usecases.LogoutUseCase
+import com.example.user.domain.usecases.RegisterUseCase
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 

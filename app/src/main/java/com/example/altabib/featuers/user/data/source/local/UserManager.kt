@@ -1,7 +1,7 @@
 package com.example.altabib.featuers.user.data.source.local
 
 import android.content.SharedPreferences
-import com.example.altabib.featuers.user.domain.entities.User
+import com.example.user.domain.entities.User
 import com.google.gson.Gson
 
 class UserManager(

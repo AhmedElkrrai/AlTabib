@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.domain.entities
+package com.example.user.domain.entities
 
 data class Doctor(
     val id: String = "",

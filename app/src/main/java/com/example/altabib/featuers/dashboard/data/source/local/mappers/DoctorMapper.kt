@@ -1,8 +1,8 @@
 package com.example.altabib.featuers.dashboard.data.source.local.mappers
 
 import com.example.altabib.featuers.dashboard.data.source.local.entites.DoctorEntity
-import com.example.altabib.featuers.user.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
+import com.example.user.domain.entities.Doctor
 
 fun Doctor.toEntity(
     isFavorite: Boolean
@@ -19,19 +19,20 @@ fun Doctor.toEntity(
     isFavorite
 )
 
-fun DoctorEntity.toDomain(): Doctor = Doctor(
-    id = id,
-    name = name,
-    specKey = Specialization.DERMATOLOGY.key,
-    rating = rating.toFloat(),
-    reviews = reviews,
-    availability = availability,
-    inQueue = inQueue,
-    price = price,
-    city = city,
-    bio = "",
-    avatar = "",
-    premium = false,
-    address = "",
-    reviewsList = listOf()
-)
+fun DoctorEntity.toDomain(): Doctor =
+    Doctor(
+        id = id,
+        name = name,
+        specKey = Specialization.DERMATOLOGY.key,
+        rating = rating.toFloat(),
+        reviews = reviews,
+        availability = availability,
+        inQueue = inQueue,
+        price = price,
+        city = city,
+        bio = "",
+        avatar = "",
+        premium = false,
+        address = "",
+        reviewsList = listOf()
+    )

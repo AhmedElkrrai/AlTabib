@@ -7,8 +7,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavBackStackEntry
 import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
-import com.example.altabib.featuers.user.domain.entities.User
-import com.example.altabib.featuers.user.domain.entities.UserType
+import com.example.user.domain.entities.User
+import com.example.user.domain.entities.UserType
 import com.example.altabib.featuers.user.presentation.auth.AuthEvent
 import com.example.altabib.featuers.user.presentation.auth.AuthViewModel
 import com.example.altabib.design_system.navigation.utils.CITY

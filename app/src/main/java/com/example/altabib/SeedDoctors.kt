@@ -1,10 +1,10 @@
 package com.example.altabib
 
 import com.example.altabib.featuers.dashboard.domain.DoctorRepository
-import com.example.altabib.featuers.user.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
 import com.example.altabib.core.Result
-import com.example.altabib.featuers.user.domain.entities.Review
+import com.example.user.domain.entities.Doctor
+import com.example.user.domain.entities.Review
 import kotlin.random.Random
 
 suspend fun seedDoctors(doctorRepository: DoctorRepository) {

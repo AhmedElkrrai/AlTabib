@@ -2,8 +2,8 @@ package com.example.altabib.featuers.dashboard.data.source.remote.mappers
 
 import com.example.altabib.featuers.dashboard.data.source.remote.models.DoctorDto
 import com.example.altabib.featuers.dashboard.data.source.remote.models.ReviewDto
-import com.example.altabib.featuers.user.domain.entities.Doctor
-import com.example.altabib.featuers.user.domain.entities.Review
+import com.example.user.domain.entities.Doctor
+import com.example.user.domain.entities.Review
 
 fun DoctorDto.toDomain(): Doctor {
     return Doctor(

@@ -1,7 +1,7 @@
 package com.example.altabib.featuers.dashboard.presentation.dashboard
 
-import com.example.altabib.featuers.user.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
+import com.example.user.domain.entities.Doctor
 
 data class DashboardState(
     val searchQuery: String = "",

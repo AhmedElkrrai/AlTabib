@@ -7,13 +7,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.altabib.featuers.user.domain.entities.UserType
-import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
 import com.example.altabib.design_system.navigation.bar.DoctorBottomBar
 import com.example.altabib.design_system.navigation.bar.PatientBottomBar
+import com.example.altabib.design_system.utils.enableStickyImmersiveMode
 import com.example.altabib.graph.DoctorNavGraph
 import com.example.altabib.graph.PatientNavGraph
-import com.example.altabib.design_system.utils.enableStickyImmersiveMode
+import com.example.user.domain.entities.UserType
+import com.example.user.domain.usecases.GetUserUseCase
 
 @Composable
 fun HomeScreen(getUser: GetUserUseCase) {

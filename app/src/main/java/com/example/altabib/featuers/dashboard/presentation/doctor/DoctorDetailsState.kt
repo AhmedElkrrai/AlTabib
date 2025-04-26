@@ -1,6 +1,6 @@
 package com.example.altabib.featuers.dashboard.presentation.doctor
 
-import com.example.altabib.featuers.user.domain.entities.Doctor
+import com.example.user.domain.entities.Doctor
 
 data class DoctorDetailsState(
     val isLoading: Boolean = false,

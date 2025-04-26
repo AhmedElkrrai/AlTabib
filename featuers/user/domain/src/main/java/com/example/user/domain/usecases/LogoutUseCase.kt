@@ -1,6 +1,6 @@
-package com.example.altabib.featuers.user.domain.usecases
+package com.example.user.domain.usecases
 
-import com.example.altabib.featuers.user.domain.AuthRepository
+import com.example.user.domain.AuthRepository
 
 class LogoutUseCase(
     private val repository: AuthRepository

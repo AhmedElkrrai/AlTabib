@@ -50,6 +50,7 @@ android {
 dependencies {
     implementation(project(":libraries:core"))
     implementation(project(":libraries:design-system"))
+    implementation(project(":featuers:user:domain"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)

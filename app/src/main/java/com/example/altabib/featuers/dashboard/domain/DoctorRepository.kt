@@ -1,7 +1,7 @@
 package com.example.altabib.featuers.dashboard.domain
 
 import com.example.altabib.core.DataError
-import com.example.altabib.featuers.user.domain.entities.Doctor
+import com.example.user.domain.entities.Doctor
 import com.example.altabib.core.Result
 
 interface DoctorRepository {

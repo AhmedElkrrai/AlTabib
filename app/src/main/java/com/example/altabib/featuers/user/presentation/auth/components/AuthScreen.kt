@@ -39,7 +39,7 @@ import com.example.altabib.R
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.featuers.user.data.source.remote.GoogleSignInHelper
-import com.example.altabib.featuers.user.domain.entities.User
+import com.example.user.domain.entities.User
 import com.example.altabib.featuers.user.presentation.auth.AuthAction
 import com.example.altabib.featuers.user.presentation.auth.AuthState
 import com.example.altabib.design_system.theme.Primary

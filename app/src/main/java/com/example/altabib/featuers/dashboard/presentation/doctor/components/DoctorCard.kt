@@ -35,7 +35,7 @@ import com.example.altabib.design_system.localization.getRatingText
 import com.example.altabib.design_system.theme.Green
 import com.example.altabib.design_system.theme.Primary
 import com.example.altabib.design_system.utils.FormatCompose
-import com.example.altabib.featuers.user.domain.entities.Doctor
+import com.example.user.domain.entities.Doctor
 import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
 
 @Composable

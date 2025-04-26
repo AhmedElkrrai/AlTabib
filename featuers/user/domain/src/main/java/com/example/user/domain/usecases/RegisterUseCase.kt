@@ -1,12 +1,12 @@
-package com.example.altabib.featuers.user.domain.usecases
+package com.example.user.domain.usecases
 
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
-import com.example.altabib.featuers.user.domain.entities.Doctor
-import com.example.altabib.featuers.user.domain.entities.Patient
-import com.example.altabib.featuers.user.domain.AuthRepository
-import com.example.altabib.featuers.user.domain.entities.User
-import com.example.altabib.featuers.user.domain.entities.UserType
+import com.example.user.domain.entities.Doctor
+import com.example.user.domain.entities.Patient
+import com.example.user.domain.AuthRepository
+import com.example.user.domain.entities.User
+import com.example.user.domain.entities.UserType
 
 class RegisterUseCase(
     private val repository: AuthRepository

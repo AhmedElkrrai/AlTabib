@@ -35,7 +35,6 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.altabib.R
 import com.example.altabib.design_system.models.City
-import com.example.altabib.featuers.user.domain.entities.UserType
 import com.example.altabib.design_system.navigation.screen.Screen
 import com.example.altabib.design_system.navigation.utils.LocalNavController
 import com.example.altabib.design_system.components.AppOutlinedTextFiled
@@ -45,6 +44,7 @@ import com.example.altabib.design_system.theme.Primary
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.featuers.user.presentation.auth.utils.displayName
+import com.example.user.domain.entities.UserType.*
 
 @Composable
 fun UserInfoScreen() {
@@ -55,7 +55,7 @@ fun UserInfoScreen() {
     val defaultCityTxt = getLocalizedString(R.string.select_city)
     var name by remember { mutableStateOf("") }
     var city by remember { mutableStateOf(defaultCityTxt) }
-    var userType by remember { mutableStateOf(UserType.Patient.key) }
+    var userType by remember { mutableStateOf(Patient.key) }
 
     // Load Lottie Animation
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.doctor))
@@ -109,7 +109,7 @@ fun UserInfoScreen() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    listOf(UserType.Doctor, UserType.Patient).forEach { type ->
+                    listOf(Doctor, Patient).forEach { type ->
                         Box(
                             modifier = Modifier
                                 .weight(1f)

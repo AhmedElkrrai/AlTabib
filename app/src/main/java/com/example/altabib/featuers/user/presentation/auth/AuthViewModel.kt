@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
-import com.example.altabib.featuers.user.domain.usecases.GoogleSignInUseCase
-import com.example.altabib.featuers.user.domain.usecases.RegisterUseCase
-import com.example.altabib.featuers.user.domain.entities.User
-import com.example.altabib.featuers.user.domain.usecases.CacheUserUseCase
 import com.example.altabib.design_system.navigation.screen.Screen
+import com.example.user.domain.entities.User
+import com.example.user.domain.usecases.CacheUserUseCase
+import com.example.user.domain.usecases.GoogleSignInUseCase
+import com.example.user.domain.usecases.RegisterUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow

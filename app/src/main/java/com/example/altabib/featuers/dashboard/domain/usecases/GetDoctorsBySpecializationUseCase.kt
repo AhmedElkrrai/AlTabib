@@ -1,10 +1,10 @@
 package com.example.altabib.featuers.dashboard.domain.usecases
 
 import com.example.altabib.core.DataError
-import com.example.altabib.featuers.user.domain.entities.Doctor
 import com.example.altabib.core.Result
 import com.example.altabib.featuers.dashboard.domain.DoctorRepository
-import com.example.altabib.featuers.user.domain.usecases.GetUserUseCase
+import com.example.user.domain.entities.Doctor
+import com.example.user.domain.usecases.GetUserUseCase
 
 class GetDoctorsBySpecializationUseCase(
     private val repository: DoctorRepository,
