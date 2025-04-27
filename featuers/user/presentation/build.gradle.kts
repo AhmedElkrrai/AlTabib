@@ -6,3 +6,7 @@ plugins {
 android {
     namespace = "com.example.user.presentation"
 }
+
+dependencies {
+    implementation(project(":featuers:user:domain"))
+}

@@ -21,6 +21,7 @@ public class AltabibFeaturePresentationLibraryPlugin implements org.gradle.api.P
             pluginsBlockScript.run();
             target.getPluginManager().apply("altabib.android.library");
             target.getPluginManager().apply("com.google.devtools.ksp");
+            target.getPluginManager().apply("org.jetbrains.kotlin.plugin.compose");
 
 
             Class<? extends BasicScript> precompiledScriptClass = Class.forName("precompiled_AltabibFeaturePresentationLibrary").asSubclass(BasicScript.class);
