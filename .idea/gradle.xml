@@ -44,6 +44,7 @@
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/core" />
             <option value="$PROJECT_DIR$/libraries/design-system" />
+            <option value="$PROJECT_DIR$/libraries/signin" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

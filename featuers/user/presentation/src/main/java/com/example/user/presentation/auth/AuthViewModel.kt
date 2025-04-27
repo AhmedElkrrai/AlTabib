@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.presentation.auth
+package com.example.user.presentation.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

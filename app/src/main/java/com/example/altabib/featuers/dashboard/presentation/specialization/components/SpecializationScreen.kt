@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.altabib.R
+import com.example.altabib.design.R
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorCard
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationAction
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationState

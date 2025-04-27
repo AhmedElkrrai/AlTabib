@@ -3,7 +3,7 @@ package com.example.altabib.featuers.settings.presentation
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.altabib.R
+import com.example.altabib.design.R
 import com.example.altabib.core.DataError
 import com.example.altabib.core.getOrDefault
 import com.example.settings.domain.usecases.GetPatientUseCase

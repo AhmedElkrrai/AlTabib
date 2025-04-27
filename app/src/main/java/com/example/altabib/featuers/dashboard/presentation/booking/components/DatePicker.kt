@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.altabib.R
+import com.example.altabib.design.R
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingAction
 import com.example.altabib.featuers.dashboard.presentation.booking.BookingState
 import com.example.altabib.design_system.components.AppOutlinedButton

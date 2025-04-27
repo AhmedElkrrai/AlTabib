@@ -9,7 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.example.altabib.R
+import com.example.altabib.design.R
 import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsAction

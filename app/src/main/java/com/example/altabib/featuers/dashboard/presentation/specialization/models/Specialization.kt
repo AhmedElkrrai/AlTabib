@@ -1,7 +1,7 @@
 package com.example.altabib.featuers.dashboard.presentation.specialization.models
 
 import androidx.compose.runtime.Composable
-import com.example.altabib.R
+import com.example.altabib.design.R
 import com.example.altabib.design_system.localization.getLocalizedString
 
 enum class Specialization(

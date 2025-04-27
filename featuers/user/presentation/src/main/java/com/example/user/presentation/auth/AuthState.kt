@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.presentation.auth
+package com.example.user.presentation.auth
 
 import com.example.altabib.core.DataError
 

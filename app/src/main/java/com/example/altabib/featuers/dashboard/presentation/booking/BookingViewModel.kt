@@ -2,12 +2,11 @@ package com.example.altabib.featuers.dashboard.presentation.booking
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.altabib.R
+import com.example.altabib.design.R
 import com.example.altabib.core.DataError
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
 import com.example.appointments.domain.usecases.SaveAppointmentUseCase
-import com.example.appointments.domain.entities.Appointment
 import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
 import com.example.doctors.domain.usecases.UpdateDoctorUseCase
 import com.example.settings.domain.usecases.GetPatientUseCase
@@ -29,7 +28,7 @@ class BookingViewModel(
     private val updateDoctorUseCase: UpdateDoctorUseCase,
     private val updatePatientUseCase: UpdatePatientUseCase,
     private val getPatientUseCase: GetPatientUseCase,
-    private val saveAppointmentUseCase: com.example.appointments.domain.usecases.SaveAppointmentUseCase
+    private val saveAppointmentUseCase: SaveAppointmentUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(BookingState())
     val state: StateFlow<BookingState> = _state

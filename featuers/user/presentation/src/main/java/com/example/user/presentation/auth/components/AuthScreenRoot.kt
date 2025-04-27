@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.presentation.auth.components
+package com.example.user.presentation.auth.components
 
 import android.widget.Toast
 import androidx.compose.runtime.Composable
@@ -9,8 +9,8 @@ import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
 import com.example.user.domain.entities.User
 import com.example.user.domain.entities.UserType
-import com.example.altabib.featuers.user.presentation.auth.AuthEvent
-import com.example.altabib.featuers.user.presentation.auth.AuthViewModel
+import com.example.user.presentation.auth.AuthEvent
+import com.example.user.presentation.auth.AuthViewModel
 import com.example.altabib.core.CITY
 import com.example.altabib.design_system.navigation.utils.LocalNavController
 import com.example.altabib.core.NAME

@@ -29,7 +29,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import com.example.altabib.R
+import com.example.altabib.design.R
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.localization.getRatingText
 import com.example.altabib.design_system.theme.Green

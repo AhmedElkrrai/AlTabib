@@ -14,12 +14,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.altabib.R
+import com.example.altabib.design.R
 import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardAction
 import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardState
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorCard
 import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationCard
 import com.example.altabib.design_system.components.Loading
+import com.example.altabib.design_system.components.SearchBar
 import com.example.altabib.design_system.components.VerticalGrid
 import com.example.altabib.design_system.localization.getLocalizedString
 

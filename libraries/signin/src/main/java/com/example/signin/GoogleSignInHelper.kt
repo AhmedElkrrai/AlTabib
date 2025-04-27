@@ -1,10 +1,12 @@
-package com.example.user.data.source.remote
+package com.example.signin
 
 import android.content.Context
-import com.example.altabib.user.data.BuildConfig
+import android.content.Intent
+import com.example.altabib.signin.BuildConfig
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 
 class GoogleSignInHelper(context: Context) {
     private val googleSignInClient: GoogleSignInClient
@@ -19,5 +21,15 @@ class GoogleSignInHelper(context: Context) {
 
     fun getClient(): GoogleSignInClient {
         return googleSignInClient
+    }
+
+    fun getSignInIntent(): Intent {
+        return getClient().signInIntent
+    }
+
+    fun getToken(intent: Intent?): String? {
+        return GoogleSignIn.getSignedInAccountFromIntent(intent)
+            .getResult(ApiException::class.java)
+            .idToken
     }
 }

@@ -51,6 +51,7 @@ android {
 dependencies {
     implementation(project(":libraries:core"))
     implementation(project(":libraries:design-system"))
+    implementation(project(":libraries:signin"))
 
     implementation(project(":featuers:appointments:domain"))
     implementation(project(":featuers:appointments:data"))

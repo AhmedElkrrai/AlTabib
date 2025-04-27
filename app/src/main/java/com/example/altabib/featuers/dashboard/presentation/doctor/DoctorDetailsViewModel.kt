@@ -2,7 +2,7 @@ package com.example.altabib.featuers.dashboard.presentation.doctor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.altabib.R
+import com.example.altabib.design.R
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
 import com.example.doctors.domain.usecases.GetDoctorByIdUseCase

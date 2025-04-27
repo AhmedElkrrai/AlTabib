@@ -6,7 +6,7 @@ import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsV
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationViewModel
 import com.example.altabib.featuers.favorites.presentation.FavoritesViewModel
 import com.example.altabib.featuers.settings.presentation.SettingsViewModel
-import com.example.altabib.featuers.user.presentation.auth.AuthViewModel
+import com.example.user.presentation.auth.AuthViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 

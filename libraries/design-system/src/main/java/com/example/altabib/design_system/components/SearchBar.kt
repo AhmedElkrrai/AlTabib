@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.dashboard.presentation.dashboard.components
+package com.example.altabib.design_system.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,10 +28,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.altabib.R
+import com.example.altabib.design.R
+import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.theme.DarkGray
 import com.example.altabib.design_system.utils.FormatCompose
-import com.example.altabib.design_system.localization.getLocalizedString
 
 @Composable
 fun SearchBar(

@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.presentation.auth.components
+package com.example.user.presentation.auth.components
 
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -35,16 +35,14 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.example.altabib.R
-import com.example.altabib.design_system.utils.FormatCompose
+import com.example.altabib.design.R
 import com.example.altabib.design_system.localization.getLocalizedString
-import com.example.user.data.source.remote.GoogleSignInHelper
-import com.example.user.domain.entities.User
-import com.example.altabib.featuers.user.presentation.auth.AuthAction
-import com.example.altabib.featuers.user.presentation.auth.AuthState
 import com.example.altabib.design_system.theme.Primary
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.common.api.ApiException
+import com.example.altabib.design_system.utils.FormatCompose
+import com.example.signin.GoogleSignInHelper
+import com.example.user.domain.entities.User
+import com.example.user.presentation.auth.AuthAction
+import com.example.user.presentation.auth.AuthState
 
 @Composable
 fun AuthScreen(
@@ -52,32 +50,27 @@ fun AuthScreen(
     user: User,
     onAction: (AuthAction) -> Unit
 ) {
-    val errorMsg = getLocalizedString(R.string.error_unknown)
+    val errorMsg = getLocalizedString(R.string.error_request_timeout)
 
     val context = LocalContext.current
     val helper = remember { GoogleSignInHelper(context) }
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
         try {
-            val account = task.getResult(ApiException::class.java)
-            val idToken = account.idToken
+            val idToken = helper.getToken(result.data)
             if (idToken != null) {
                 onAction(AuthAction.OnGoogleSignIn(user, idToken))
             }
-        } catch (e: ApiException) {
+        } catch (e: Exception) {
             Toast.makeText(
                 context,
-                "Google Sign-In failed: ${e.localizedMessage}",
+                errorMsg,
                 Toast.LENGTH_SHORT
             ).show()
-        } catch (e: Exception) {
-            Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
         }
     }
 
-    val googleSignInClient = helper.getClient()
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.appointment))
     val progress by animateLottieCompositionAsState(
         composition,
@@ -122,7 +115,7 @@ fun AuthScreen(
             ) {
                 Button(
                     onClick = {
-                        launcher.launch(googleSignInClient.signInIntent)
+                        launcher.launch(helper.getSignInIntent())
                     },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(containerColor = Primary),

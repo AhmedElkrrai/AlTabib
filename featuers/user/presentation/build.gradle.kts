@@ -9,4 +9,5 @@ android {
 
 dependencies {
     implementation(project(":featuers:user:domain"))
+    implementation(project(":libraries:signin"))
 }

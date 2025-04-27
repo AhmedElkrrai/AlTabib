@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.user.presentation.info
+package com.example.user.presentation.info
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -33,18 +33,19 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.example.altabib.R
+import com.example.altabib.design.R
+import com.example.altabib.design_system.components.AppOutlinedTextFiled
+import com.example.altabib.design_system.components.CitySelector
+import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.models.City
 import com.example.altabib.design_system.navigation.screen.Screen
 import com.example.altabib.design_system.navigation.utils.LocalNavController
-import com.example.altabib.design_system.components.AppOutlinedTextFiled
-import com.example.altabib.design_system.components.CitySelector
 import com.example.altabib.design_system.theme.Gray
 import com.example.altabib.design_system.theme.Primary
 import com.example.altabib.design_system.utils.FormatCompose
-import com.example.altabib.design_system.localization.getLocalizedString
-import com.example.altabib.featuers.user.presentation.auth.utils.displayName
-import com.example.user.domain.entities.UserType.*
+import com.example.user.domain.entities.UserType.Doctor
+import com.example.user.domain.entities.UserType.Patient
+import com.example.user.presentation.auth.utils.displayName
 
 @Composable
 fun UserInfoScreen() {

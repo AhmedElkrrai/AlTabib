@@ -27,7 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.altabib.R
+import com.example.altabib.design.R
 import com.example.user.domain.entities.Doctor
 import com.example.altabib.design_system.theme.Green
 import com.example.altabib.design_system.theme.Pink
