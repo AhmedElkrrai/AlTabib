@@ -3,7 +3,7 @@ package com.example.altabib.featuers.settings.data.source
 import android.util.Log
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
-import com.example.altabib.featuers.settings.domain.PatientRepository
+import com.example.settings.domain.PatientRepository
 import com.example.user.domain.entities.Patient
 import com.example.user.data.source.remote.PATIENTS_PATH
 import com.google.firebase.firestore.FirebaseFirestore

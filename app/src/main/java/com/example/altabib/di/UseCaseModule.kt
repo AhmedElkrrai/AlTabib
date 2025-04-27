@@ -9,8 +9,8 @@ import com.example.altabib.featuers.favorites.domain.usecases.AddFavoriteUseCase
 import com.example.altabib.featuers.favorites.domain.usecases.GetFavoritesUseCase
 import com.example.altabib.featuers.favorites.domain.usecases.IsFavoriteUseCase
 import com.example.altabib.featuers.favorites.domain.usecases.RemoveFavoriteUseCase
-import com.example.altabib.featuers.settings.domain.usecases.GetPatientUseCase
-import com.example.altabib.featuers.settings.domain.usecases.UpdatePatientUseCase
+import com.example.settings.domain.usecases.GetPatientUseCase
+import com.example.settings.domain.usecases.UpdatePatientUseCase
 import com.example.user.domain.usecases.CacheUserUseCase
 import com.example.user.domain.usecases.GetUserUseCase
 import com.example.user.domain.usecases.GoogleSignInUseCase

@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.settings.domain
+package com.example.settings.domain
 
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result

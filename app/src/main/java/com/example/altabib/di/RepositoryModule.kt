@@ -5,7 +5,7 @@ import com.example.altabib.featuers.appointments.domain.AppointmentRepository
 import com.example.altabib.featuers.dashboard.data.source.DoctorRepositoryImpl
 import com.example.altabib.featuers.dashboard.domain.DoctorRepository
 import com.example.altabib.featuers.settings.data.source.PatientRepositoryImpl
-import com.example.altabib.featuers.settings.domain.PatientRepository
+import com.example.settings.domain.PatientRepository
 import com.example.user.data.source.AuthRepositoryImpl
 import com.example.user.domain.AuthRepository
 import org.koin.core.module.dsl.singleOf
