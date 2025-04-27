@@ -65,6 +65,7 @@ dependencies {
 
     implementation(project(":featuers:user:domain"))
     implementation(project(":featuers:user:data"))
+    implementation(project(":featuers:user:presentation"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)

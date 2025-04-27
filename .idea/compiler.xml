@@ -3,7 +3,6 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="17">
       <module name="AlTabib.core.presentation" target="21" />
-      <module name="AlTabib.featuers.user.presentation" target="21" />
       <module name="build-logic" target="17" />
       <module name="build-logic.main" target="17" />
       <module name="build-logic.test" target="17" />

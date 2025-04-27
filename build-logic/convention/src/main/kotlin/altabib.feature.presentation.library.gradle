@@ -3,13 +3,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-
-android {
-    buildFeatures {
-        compose = true
-    }
-}
-
 dependencies {
-    implementation(":libraries:design-system")
+    implementation(project(":libraries:design-system"))
 }
