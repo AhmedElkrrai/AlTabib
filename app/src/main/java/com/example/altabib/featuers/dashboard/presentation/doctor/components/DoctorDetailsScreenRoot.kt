@@ -16,7 +16,7 @@ import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsA
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsEvent
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsViewModel
 import com.example.altabib.design_system.localization.getLocalizedString
-import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
+import com.example.altabib.design_system.models.Specialization
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

@@ -34,6 +34,7 @@
             <option value="$PROJECT_DIR$/featuers/doctors/domain" />
             <option value="$PROJECT_DIR$/featuers/favorites" />
             <option value="$PROJECT_DIR$/featuers/favorites/domain" />
+            <option value="$PROJECT_DIR$/featuers/favorites/presentation" />
             <option value="$PROJECT_DIR$/featuers/settings" />
             <option value="$PROJECT_DIR$/featuers/settings/data" />
             <option value="$PROJECT_DIR$/featuers/settings/domain" />

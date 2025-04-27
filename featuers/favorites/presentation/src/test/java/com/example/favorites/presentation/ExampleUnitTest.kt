@@ -1,4 +1,4 @@
-package com.example.settings.presentation
+package com.example.favorites.presentation
 
 import org.junit.Test
 

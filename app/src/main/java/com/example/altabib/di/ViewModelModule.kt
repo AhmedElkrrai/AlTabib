@@ -4,7 +4,7 @@ import com.example.altabib.featuers.dashboard.presentation.booking.BookingViewMo
 import com.example.altabib.featuers.dashboard.presentation.dashboard.DashboardViewModel
 import com.example.altabib.featuers.dashboard.presentation.doctor.DoctorDetailsViewModel
 import com.example.altabib.featuers.dashboard.presentation.specialization.SpecializationViewModel
-import com.example.altabib.featuers.favorites.presentation.FavoritesViewModel
+import com.example.favorites.presentation.FavoritesViewModel
 import com.example.settings.presentation.SettingsViewModel
 import com.example.user.presentation.auth.AuthViewModel
 import org.koin.core.module.dsl.viewModel

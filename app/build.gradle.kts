@@ -60,6 +60,7 @@ dependencies {
     implementation(project(":featuers:doctors:data"))
 
     implementation(project(":featuers:favorites:domain"))
+    implementation(project(":featuers:favorites:presentation"))
 
     implementation(project(":featuers:settings:domain"))
     implementation(project(":featuers:settings:data"))

@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.favorites.presentation.components
+package com.example.favorites.presentation.components
 
 import android.widget.Toast
 import androidx.compose.runtime.Composable
@@ -9,9 +9,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
-import com.example.altabib.featuers.favorites.presentation.FavoritesAction
-import com.example.altabib.featuers.favorites.presentation.FavoritesEvent
-import com.example.altabib.featuers.favorites.presentation.FavoritesViewModel
+import com.example.favorites.presentation.FavoritesAction
+import com.example.favorites.presentation.FavoritesEvent
+import com.example.favorites.presentation.FavoritesViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

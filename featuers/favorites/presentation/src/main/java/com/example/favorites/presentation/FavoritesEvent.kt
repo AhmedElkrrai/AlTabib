@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.favorites.presentation
+package com.example.favorites.presentation
 
 import com.example.altabib.core.DataError
 

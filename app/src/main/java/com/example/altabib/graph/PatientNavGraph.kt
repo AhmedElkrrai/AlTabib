@@ -12,7 +12,7 @@ import com.example.altabib.featuers.dashboard.presentation.booking.components.Bo
 import com.example.altabib.featuers.dashboard.presentation.dashboard.components.DashboardScreenRoot
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorDetailsScreenRoot
 import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationScreenRoot
-import com.example.altabib.featuers.favorites.presentation.components.FavoritesScreenRoot
+import com.example.favorites.presentation.components.FavoritesScreenRoot
 import com.example.altabib.utils.RestartApp
 import com.example.settings.presentation.components.SettingsScreenRoot
 

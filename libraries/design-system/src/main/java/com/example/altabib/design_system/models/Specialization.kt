@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.dashboard.presentation.specialization.models
+package com.example.altabib.design_system.models
 
 import androidx.compose.runtime.Composable
 import com.example.altabib.design.R
