@@ -5,8 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.altabib.featuers.analytics.presentation.AnalyticsScreen
-import com.example.altabib.featuers.appointments.presentation.AppointmentsScreen
+import com.example.analytics.presentation.AnalyticsScreen
+import com.example.appointments.presentation.AppointmentsScreen
 import com.example.altabib.featuers.profile.presentation.ProfileScreen
 import com.example.altabib.design_system.navigation.screen.DoctorScreen
 

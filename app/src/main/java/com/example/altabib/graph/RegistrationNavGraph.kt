@@ -6,7 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.altabib.featuers.home.presentation.HomeScreen
+import com.example.altabib.home.presentation.HomeScreen
 import com.example.user.presentation.auth.components.AuthScreenRoot
 import com.example.user.presentation.info.UserInfoScreen
 import com.example.altabib.core.CITY

@@ -3,7 +3,7 @@ package com.example.altabib.utils
 import android.content.Intent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import com.example.altabib.MainActivity
+import com.example.altabib.home.presentation.MainActivity
 import com.example.altabib.design_system.localization.LocaleHelper
 
 @Composable

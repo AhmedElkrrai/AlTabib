@@ -53,21 +53,29 @@ dependencies {
     implementation(project(":libraries:design-system"))
     implementation(project(":libraries:signin"))
 
-    implementation(project(":featuers:appointments:domain"))
-    implementation(project(":featuers:appointments:data"))
+    implementation(project(":featuers:profile:domain"))
+    implementation(project(":featuers:profile:presentation"))
 
-    implementation(project(":featuers:doctors:domain"))
+    implementation(project(":featuers:analytics:domain"))
+    implementation(project(":featuers:analytics:presentation"))
+
+    implementation(project(":featuers:appointments:data"))
+    implementation(project(":featuers:appointments:domain"))
+    implementation(project(":featuers:appointments:presentation"))
+
     implementation(project(":featuers:doctors:data"))
+    implementation(project(":featuers:doctors:domain"))
+    implementation(project(":featuers:doctors:presentation"))
 
     implementation(project(":featuers:favorites:domain"))
     implementation(project(":featuers:favorites:presentation"))
 
-    implementation(project(":featuers:settings:domain"))
     implementation(project(":featuers:settings:data"))
+    implementation(project(":featuers:settings:domain"))
     implementation(project(":featuers:settings:presentation"))
 
-    implementation(project(":featuers:user:domain"))
     implementation(project(":featuers:user:data"))
+    implementation(project(":featuers:user:domain"))
     implementation(project(":featuers:user:presentation"))
 
     implementation(libs.androidx.activity.compose)

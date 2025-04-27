@@ -8,12 +8,12 @@ import androidx.navigation.compose.composable
 import com.example.altabib.core.DOCTOR_ID
 import com.example.altabib.core.SPECIALIZATION
 import com.example.altabib.design_system.navigation.screen.PatientScreen
-import com.example.altabib.featuers.dashboard.presentation.booking.components.BookingScreenRoot
-import com.example.altabib.featuers.dashboard.presentation.dashboard.components.DashboardScreenRoot
-import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorDetailsScreenRoot
-import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationScreenRoot
 import com.example.favorites.presentation.components.FavoritesScreenRoot
 import com.example.altabib.utils.RestartApp
+import com.example.doctors.presentation.booking.components.BookingScreenRoot
+import com.example.doctors.presentation.dashboard.components.DashboardScreenRoot
+import com.example.doctors.presentation.doctor.components.DoctorDetailsScreenRoot
+import com.example.doctors.presentation.specialization.components.SpecializationScreenRoot
 import com.example.settings.presentation.components.SettingsScreenRoot
 
 @Composable
