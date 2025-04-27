@@ -1,7 +1,7 @@
-package com.example.altabib.featuers.dashboard.domain.usecases
+package com.example.doctors.domain.usecases
 
 import com.example.altabib.core.DataError
-import com.example.altabib.featuers.dashboard.domain.DoctorRepository
+import com.example.doctors.domain.DoctorRepository
 import com.example.user.domain.entities.Doctor
 import com.example.altabib.core.Result
 

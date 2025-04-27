@@ -1,6 +1,6 @@
-package com.example.altabib.featuers.favorites.domain.usecases
+package com.example.favorites.domain.usecases
 
-import com.example.altabib.featuers.dashboard.domain.DoctorRepository
+import com.example.doctors.domain.DoctorRepository
 
 class IsFavoriteUseCase(
     private val repository: DoctorRepository

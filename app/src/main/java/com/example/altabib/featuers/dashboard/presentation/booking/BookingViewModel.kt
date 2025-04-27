@@ -7,9 +7,9 @@ import com.example.altabib.core.DataError
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
 import com.example.altabib.featuers.appointments.domain.usecases.SaveAppointmentUseCase
-import com.example.altabib.featuers.dashboard.domain.entities.Appointment
-import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
-import com.example.altabib.featuers.dashboard.domain.usecases.UpdateDoctorUseCase
+import com.example.altabib.featuers.appointments.domain.entities.Appointment
+import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
+import com.example.doctors.domain.usecases.UpdateDoctorUseCase
 import com.example.settings.domain.usecases.GetPatientUseCase
 import com.example.settings.domain.usecases.UpdatePatientUseCase
 import com.example.user.domain.entities.Patient

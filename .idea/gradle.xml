@@ -26,6 +26,10 @@
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/build-logic/convention" />
             <option value="$PROJECT_DIR$/featuers" />
+            <option value="$PROJECT_DIR$/featuers/doctors" />
+            <option value="$PROJECT_DIR$/featuers/doctors/domain" />
+            <option value="$PROJECT_DIR$/featuers/favorites" />
+            <option value="$PROJECT_DIR$/featuers/favorites/domain" />
             <option value="$PROJECT_DIR$/featuers/settings" />
             <option value="$PROJECT_DIR$/featuers/settings/data" />
             <option value="$PROJECT_DIR$/featuers/settings/domain" />

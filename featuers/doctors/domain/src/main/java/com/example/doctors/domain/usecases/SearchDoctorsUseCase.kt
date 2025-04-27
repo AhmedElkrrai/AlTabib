@@ -1,9 +1,8 @@
-package com.example.altabib.featuers.dashboard.domain.usecases
+package com.example.doctors.domain.usecases
 
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
-import com.example.altabib.featuers.dashboard.domain.DoctorRepository
-import com.example.altabib.seedDoctors
+import com.example.doctors.domain.DoctorRepository
 import com.example.user.domain.entities.Doctor
 import com.example.user.domain.usecases.GetUserUseCase
 
@@ -12,7 +11,6 @@ class SearchDoctorsUseCase(
     private val getUserUseCase: GetUserUseCase,
 ) {
     suspend operator fun invoke(query: String): Result<List<Doctor>, DataError> {
-        seedDoctors(doctorRepository)
         val user = getUserUseCase.invoke()
         val city = user?.city ?: return Result.Error(DataError.GeneralError)
 

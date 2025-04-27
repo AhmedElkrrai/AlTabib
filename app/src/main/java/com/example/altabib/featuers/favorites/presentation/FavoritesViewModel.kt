@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
 import com.example.user.domain.entities.Doctor
-import com.example.altabib.featuers.favorites.domain.usecases.GetFavoritesUseCase
-import com.example.altabib.featuers.favorites.domain.usecases.RemoveFavoriteUseCase
+import com.example.favorites.domain.usecases.GetFavoritesUseCase
+import com.example.favorites.domain.usecases.RemoveFavoriteUseCase
 import com.example.altabib.design_system.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,8 +18,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class FavoritesViewModel(
-    private val getFavoritesUseCase: GetFavoritesUseCase,
-    private val removeFavoriteUseCase: RemoveFavoriteUseCase
+    private val getFavoritesUseCase: com.example.favorites.domain.usecases.GetFavoritesUseCase,
+    private val removeFavoriteUseCase: com.example.favorites.domain.usecases.RemoveFavoriteUseCase
 ) : ViewModel() {
 
     private val initialState = FavoritesState()

@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.dashboard.domain
+package com.example.doctors.domain
 
 import com.example.altabib.core.DataError
 import com.example.user.domain.entities.Doctor

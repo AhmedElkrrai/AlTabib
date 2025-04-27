@@ -51,6 +51,8 @@ android {
 dependencies {
     implementation(project(":libraries:core"))
     implementation(project(":libraries:design-system"))
+    implementation(project(":featuers:doctors:domain"))
+    implementation(project(":featuers:favorites:domain"))
     implementation(project(":featuers:settings:domain"))
     implementation(project(":featuers:settings:data"))
     implementation(project(":featuers:user:domain"))

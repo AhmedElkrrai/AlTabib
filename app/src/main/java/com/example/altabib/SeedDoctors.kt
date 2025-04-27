@@ -1,6 +1,6 @@
 package com.example.altabib
 
-import com.example.altabib.featuers.dashboard.domain.DoctorRepository
+import com.example.doctors.domain.DoctorRepository
 import com.example.altabib.featuers.dashboard.presentation.specialization.models.Specialization
 import com.example.altabib.core.Result
 import com.example.user.domain.entities.Doctor

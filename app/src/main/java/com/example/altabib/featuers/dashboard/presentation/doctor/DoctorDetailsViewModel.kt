@@ -5,9 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.altabib.R
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
-import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorByIdUseCase
-import com.example.altabib.featuers.favorites.domain.usecases.AddFavoriteUseCase
-import com.example.altabib.featuers.favorites.domain.usecases.IsFavoriteUseCase
+import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
 import com.example.altabib.design_system.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,8 +18,8 @@ import kotlinx.coroutines.launch
 
 class DoctorDetailsViewModel(
     private val getDoctorUseCase: GetDoctorByIdUseCase,
-    private val isFavoriteUseCase: IsFavoriteUseCase,
-    private val addFavoriteUseCase: AddFavoriteUseCase,
+    private val isFavoriteUseCase: com.example.favorites.domain.usecases.IsFavoriteUseCase,
+    private val addFavoriteUseCase: com.example.favorites.domain.usecases.AddFavoriteUseCase,
 ) : ViewModel() {
     private val initialState = DoctorDetailsState()
     private val _state: MutableStateFlow<DoctorDetailsState> = MutableStateFlow(initialState)

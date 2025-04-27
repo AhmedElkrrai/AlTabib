@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
-import com.example.altabib.featuers.dashboard.domain.usecases.GetDoctorsBySpecializationUseCase
+import com.example.doctors.domain.usecases.GetDoctorsBySpecializationUseCase
 import com.example.altabib.design_system.navigation.screen.PatientScreen
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
