@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.settings.presentation
+package com.example.settings.presentation
 
 import com.example.altabib.design_system.localization.LocaleHelper
 

@@ -63,6 +63,7 @@ dependencies {
 
     implementation(project(":featuers:settings:domain"))
     implementation(project(":featuers:settings:data"))
+    implementation(project(":featuers:settings:presentation"))
 
     implementation(project(":featuers:user:domain"))
     implementation(project(":featuers:user:data"))

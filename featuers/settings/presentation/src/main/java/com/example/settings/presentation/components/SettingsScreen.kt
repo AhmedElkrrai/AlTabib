@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.settings.presentation.components
+package com.example.settings.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,8 +14,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import com.example.altabib.design.R
-import com.example.altabib.featuers.settings.presentation.SettingsAction
-import com.example.altabib.featuers.settings.presentation.SettingsState
+import com.example.settings.presentation.SettingsAction
+import com.example.settings.presentation.SettingsState
 import com.example.altabib.design_system.models.City
 import com.example.altabib.design_system.components.AppOutlinedButton
 import com.example.altabib.design_system.components.AppOutlinedTextFiled

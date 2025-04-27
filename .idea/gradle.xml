@@ -37,6 +37,7 @@
             <option value="$PROJECT_DIR$/featuers/settings" />
             <option value="$PROJECT_DIR$/featuers/settings/data" />
             <option value="$PROJECT_DIR$/featuers/settings/domain" />
+            <option value="$PROJECT_DIR$/featuers/settings/presentation" />
             <option value="$PROJECT_DIR$/featuers/user" />
             <option value="$PROJECT_DIR$/featuers/user/data" />
             <option value="$PROJECT_DIR$/featuers/user/domain" />

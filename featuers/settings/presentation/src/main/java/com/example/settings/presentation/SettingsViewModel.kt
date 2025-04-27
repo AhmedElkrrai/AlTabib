@@ -1,14 +1,14 @@
-package com.example.altabib.featuers.settings.presentation
+package com.example.settings.presentation
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.altabib.design.R
 import com.example.altabib.core.DataError
 import com.example.altabib.core.getOrDefault
+import com.example.altabib.design.R
 import com.example.settings.domain.usecases.GetPatientUseCase
 import com.example.settings.domain.usecases.UpdatePatientUseCase
-import com.example.user.data.source.remote.mappers.toUser
+import com.example.user.domain.mappers.toUser
 import com.example.user.domain.usecases.CacheUserUseCase
 import com.example.user.domain.usecases.LogoutUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -53,7 +53,7 @@ class SettingsViewModel(
 
             is SettingsAction.ChangeLanguage -> {
                 viewModelScope.launch {
-                    _event.emit(SettingsEvent.ChangeAppLanguage(action.language))
+                    _event.emit(SettingsEvent.RestartAppForLanguageChange(action.language))
                 }
             }
         }

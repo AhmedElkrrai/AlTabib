@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.settings.presentation.components
+package com.example.settings.presentation.components
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -12,22 +12,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.altabib.MainActivity
-import com.example.altabib.design_system.utils.ObserveEvents
-import com.example.altabib.design_system.utils.getMessage
-import com.example.altabib.featuers.contact_us.ContactUsDialog
-import com.example.altabib.featuers.settings.presentation.SettingsAction
-import com.example.altabib.featuers.settings.presentation.SettingsEvent
-import com.example.altabib.featuers.settings.presentation.SettingsViewModel
-import com.example.altabib.design_system.navigation.screen.Screen
-import com.example.altabib.design_system.navigation.utils.LocalNavController
+import com.example.altabib.design_system.components.ContactUsDialog
 import com.example.altabib.design_system.localization.LocaleHelper
 import com.example.altabib.design_system.localization.getLocalizedString
+import com.example.altabib.design_system.navigation.screen.Screen
+import com.example.altabib.design_system.navigation.utils.LocalNavController
+import com.example.altabib.design_system.utils.ObserveEvents
+import com.example.altabib.design_system.utils.getMessage
+import com.example.settings.presentation.SettingsAction
+import com.example.settings.presentation.SettingsEvent
+import com.example.settings.presentation.SettingsViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SettingsScreenRoot(
-    viewModel: SettingsViewModel = koinViewModel()
+    viewModel: SettingsViewModel = koinViewModel(),
+    onRestartApp: @Composable (LocaleHelper.Language) -> Unit,
 ) {
     val context = LocalContext.current
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -87,12 +87,8 @@ fun SettingsScreenRoot(
                 showContactDialog = true
             }
 
-            is SettingsEvent.ChangeAppLanguage -> {
-                val updatedContext = LocaleHelper.setLocale(context, event.language)
-                val intent = Intent(updatedContext, MainActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                }
-                updatedContext.startActivity(intent)
+            is SettingsEvent.RestartAppForLanguageChange -> {
+                onRestartApp(event.language)
             }
         }
     }

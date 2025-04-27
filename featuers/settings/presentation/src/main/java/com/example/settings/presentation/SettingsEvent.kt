@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.settings.presentation
+package com.example.settings.presentation
 
 import com.example.altabib.core.DataError
 import com.example.altabib.design_system.localization.LocaleHelper
@@ -9,5 +9,5 @@ sealed interface SettingsEvent {
     data class ShowMessage(val msgRes: Int) : SettingsEvent
     data object RateApp : SettingsEvent
     data object ContactDevs : SettingsEvent
-    data class ChangeAppLanguage(val language: LocaleHelper.Language) : SettingsEvent
+    data class RestartAppForLanguageChange(val language: LocaleHelper.Language) : SettingsEvent
 }

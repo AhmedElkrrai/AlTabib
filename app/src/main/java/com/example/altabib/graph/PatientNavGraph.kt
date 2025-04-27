@@ -5,15 +5,16 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.altabib.core.DOCTOR_ID
+import com.example.altabib.core.SPECIALIZATION
+import com.example.altabib.design_system.navigation.screen.PatientScreen
 import com.example.altabib.featuers.dashboard.presentation.booking.components.BookingScreenRoot
 import com.example.altabib.featuers.dashboard.presentation.dashboard.components.DashboardScreenRoot
 import com.example.altabib.featuers.dashboard.presentation.doctor.components.DoctorDetailsScreenRoot
 import com.example.altabib.featuers.dashboard.presentation.specialization.components.SpecializationScreenRoot
 import com.example.altabib.featuers.favorites.presentation.components.FavoritesScreenRoot
-import com.example.altabib.featuers.settings.presentation.components.SettingsScreenRoot
-import com.example.altabib.design_system.navigation.screen.PatientScreen
-import com.example.altabib.core.DOCTOR_ID
-import com.example.altabib.core.SPECIALIZATION
+import com.example.altabib.utils.RestartApp
+import com.example.settings.presentation.components.SettingsScreenRoot
 
 @Composable
 fun PatientNavGraph(
@@ -28,7 +29,7 @@ fun PatientNavGraph(
             FavoritesScreenRoot(navController)
         }
         composable(PatientScreen.Settings.route) {
-            SettingsScreenRoot()
+            SettingsScreenRoot { language -> RestartApp(language) }
         }
         composable(PatientScreen.Specialization.route) { backStackEntry ->
             val specialization = backStackEntry.arguments?.getString(SPECIALIZATION)

@@ -1,4 +1,4 @@
-package com.example.signin
+package com.example.settings.presentation
 
 import org.junit.Test
 

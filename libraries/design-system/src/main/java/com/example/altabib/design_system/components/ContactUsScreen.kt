@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.contact_us
+package com.example.altabib.design_system.components
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -16,7 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import com.example.altabib.R
+import com.example.altabib.design.R
 
 @Composable
 fun ContactUsDialog(
