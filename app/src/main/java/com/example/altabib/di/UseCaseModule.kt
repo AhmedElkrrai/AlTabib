@@ -2,7 +2,7 @@ package com.example.altabib.di
 
 import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
 import com.example.doctors.domain.usecases.GetDoctorsBySpecializationUseCase
-import com.example.altabib.featuers.appointments.domain.usecases.SaveAppointmentUseCase
+import com.example.appointments.domain.usecases.SaveAppointmentUseCase
 import com.example.doctors.domain.usecases.SearchDoctorsUseCase
 import com.example.doctors.domain.usecases.UpdateDoctorUseCase
 import com.example.favorites.domain.usecases.AddFavoriteUseCase

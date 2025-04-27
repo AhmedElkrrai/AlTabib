@@ -1,4 +1,4 @@
-package com.example.altabib.featuers.appointments.domain.entities
+package com.example.appointments.domain.entities
 
 data class Appointment(
     val id: String,

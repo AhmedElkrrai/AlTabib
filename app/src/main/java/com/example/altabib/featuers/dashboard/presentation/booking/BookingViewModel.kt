@@ -6,8 +6,8 @@ import com.example.altabib.R
 import com.example.altabib.core.DataError
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
-import com.example.altabib.featuers.appointments.domain.usecases.SaveAppointmentUseCase
-import com.example.altabib.featuers.appointments.domain.entities.Appointment
+import com.example.appointments.domain.usecases.SaveAppointmentUseCase
+import com.example.appointments.domain.entities.Appointment
 import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
 import com.example.doctors.domain.usecases.UpdateDoctorUseCase
 import com.example.settings.domain.usecases.GetPatientUseCase
@@ -29,7 +29,7 @@ class BookingViewModel(
     private val updateDoctorUseCase: UpdateDoctorUseCase,
     private val updatePatientUseCase: UpdatePatientUseCase,
     private val getPatientUseCase: GetPatientUseCase,
-    private val saveAppointmentUseCase: SaveAppointmentUseCase
+    private val saveAppointmentUseCase: com.example.appointments.domain.usecases.SaveAppointmentUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(BookingState())
     val state: StateFlow<BookingState> = _state
@@ -202,7 +202,7 @@ class BookingViewModel(
                 ?.onSuccess { patient ->
                     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                     val dateString = selectedDate.format(formatter)
-                    val appointment = Appointment(
+                    val appointment = com.example.appointments.domain.entities.Appointment(
                         id = UUID.randomUUID().toString(),
                         doctorId = doctor.id,
                         patientId = patient.uid,

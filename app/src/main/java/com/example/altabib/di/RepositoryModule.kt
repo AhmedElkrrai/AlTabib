@@ -1,7 +1,7 @@
 package com.example.altabib.di
 
-import com.example.altabib.featuers.appointments.data.source.AppointmentRepositoryImpl
-import com.example.altabib.featuers.appointments.domain.AppointmentRepository
+import com.example.appointments.data.source.AppointmentRepositoryImpl
+import com.example.appointments.domain.AppointmentRepository
 import com.example.doctors.data.source.DoctorRepositoryImpl
 import com.example.doctors.domain.DoctorRepository
 import com.example.settings.data.source.PatientRepositoryImpl

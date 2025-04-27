@@ -1,10 +1,10 @@
-package com.example.altabib.featuers.appointments.data.source
+package com.example.appointments.data.source
 
 import android.util.Log
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
-import com.example.altabib.featuers.appointments.domain.AppointmentRepository
-import com.example.altabib.featuers.appointments.domain.entities.Appointment
+import com.example.appointments.domain.AppointmentRepository
+import com.example.appointments.domain.entities.Appointment
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 

@@ -52,6 +52,9 @@ dependencies {
     implementation(project(":libraries:core"))
     implementation(project(":libraries:design-system"))
 
+    implementation(project(":featuers:appointments:domain"))
+    implementation(project(":featuers:appointments:data"))
+
     implementation(project(":featuers:doctors:domain"))
     implementation(project(":featuers:doctors:data"))
 

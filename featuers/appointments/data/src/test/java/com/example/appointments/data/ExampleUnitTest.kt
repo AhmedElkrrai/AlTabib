@@ -1,4 +1,4 @@
-package com.example.doctors.data
+package com.example.appointments.data
 
 import org.junit.Test
 
