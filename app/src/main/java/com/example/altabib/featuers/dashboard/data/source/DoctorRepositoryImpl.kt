@@ -1,6 +1,7 @@
 package com.example.altabib.featuers.dashboard.data.source
 
 import android.util.Log
+import com.example.altabib.core.DOCTORS_PATH
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
 import com.example.altabib.featuers.dashboard.data.source.local.DoctorDao
@@ -10,7 +11,6 @@ import com.example.altabib.featuers.dashboard.data.source.remote.mappers.toDomai
 import com.example.altabib.featuers.dashboard.data.source.remote.mappers.toDto
 import com.example.altabib.featuers.dashboard.data.source.remote.models.DoctorDto
 import com.example.altabib.featuers.dashboard.domain.DoctorRepository
-import com.example.user.data.source.remote.DOCTORS_PATH
 import com.example.user.domain.entities.Doctor
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query

@@ -13,4 +13,9 @@ dependencies {
 
     // DI
     implementation(libs.bundles.koin)
+
+    // Firebase
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.google.play.services.auth)
 }

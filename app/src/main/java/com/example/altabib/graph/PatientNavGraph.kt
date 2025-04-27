@@ -12,8 +12,8 @@ import com.example.altabib.featuers.dashboard.presentation.specialization.compon
 import com.example.altabib.featuers.favorites.presentation.components.FavoritesScreenRoot
 import com.example.altabib.featuers.settings.presentation.components.SettingsScreenRoot
 import com.example.altabib.design_system.navigation.screen.PatientScreen
-import com.example.altabib.design_system.navigation.utils.DOCTOR_ID
-import com.example.altabib.design_system.navigation.utils.SPECIALIZATION
+import com.example.altabib.core.DOCTOR_ID
+import com.example.altabib.core.SPECIALIZATION
 
 @Composable
 fun PatientNavGraph(

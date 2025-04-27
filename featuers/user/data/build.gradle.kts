@@ -17,7 +17,4 @@ android {
 
 dependencies {
     implementation(project(":featuers:user:domain"))
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore.ktx)
-    implementation(libs.google.play.services.auth)
 }

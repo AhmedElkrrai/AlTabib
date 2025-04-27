@@ -1,7 +1,7 @@
 package com.example.altabib.design_system.navigation.screen
 
-import com.example.altabib.design_system.navigation.utils.DOCTOR_ID
-import com.example.altabib.design_system.navigation.utils.SPECIALIZATION
+import com.example.altabib.core.DOCTOR_ID
+import com.example.altabib.core.SPECIALIZATION
 
 sealed class PatientScreen(val route: String) {
     data object Dashboard : PatientScreen("dashboard")

@@ -11,11 +11,11 @@ import com.example.user.domain.entities.User
 import com.example.user.domain.entities.UserType
 import com.example.altabib.featuers.user.presentation.auth.AuthEvent
 import com.example.altabib.featuers.user.presentation.auth.AuthViewModel
-import com.example.altabib.design_system.navigation.utils.CITY
+import com.example.altabib.core.CITY
 import com.example.altabib.design_system.navigation.utils.LocalNavController
-import com.example.altabib.design_system.navigation.utils.NAME
+import com.example.altabib.core.NAME
 import com.example.altabib.design_system.navigation.screen.Screen
-import com.example.altabib.design_system.navigation.utils.USER_TYPE
+import com.example.altabib.core.USER_TYPE
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

@@ -1,11 +1,13 @@
 package com.example.user.data.source.remote
 
 import android.util.Log
+import com.example.altabib.core.DOCTORS_PATH
 import com.example.altabib.core.DataError
+import com.example.altabib.core.PATIENTS_PATH
 import com.example.altabib.core.Result
+import com.example.user.data.source.remote.mappers.toDomain
 import com.example.user.domain.entities.Doctor
 import com.example.user.domain.entities.Patient
-import com.example.user.data.source.remote.mappers.toDomain
 import com.example.user.domain.entities.User
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
@@ -14,9 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-
-const val PATIENTS_PATH = "patients"
-const val DOCTORS_PATH = "doctors"
 
 class AuthenticationService(
     private val firebaseAuth: FirebaseAuth,

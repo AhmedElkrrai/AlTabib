@@ -9,10 +9,10 @@ import androidx.navigation.navArgument
 import com.example.altabib.featuers.home.presentation.HomeScreen
 import com.example.altabib.featuers.user.presentation.auth.components.AuthScreenRoot
 import com.example.altabib.featuers.user.presentation.info.UserInfoScreen
-import com.example.altabib.design_system.navigation.utils.CITY
-import com.example.altabib.design_system.navigation.utils.NAME
+import com.example.altabib.core.CITY
+import com.example.altabib.core.NAME
 import com.example.altabib.design_system.navigation.screen.Screen
-import com.example.altabib.design_system.navigation.utils.USER_TYPE
+import com.example.altabib.core.USER_TYPE
 import com.example.user.domain.usecases.GetUserUseCase
 
 @Composable
