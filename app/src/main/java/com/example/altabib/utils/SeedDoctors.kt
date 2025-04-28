@@ -104,7 +104,7 @@ suspend fun seedDoctors(doctorRepository: DoctorRepository) {
     }
 
     for (doctor in dummyDoctors) {
-        val result = doctorRepository.addDoctor(doctor)
+        val result = doctorRepository.upsertDoctor(doctor)
         if (result is Result.Error) {
             println("Failed to add ${doctor.name}: ${result.error}")
         } else {

@@ -2,11 +2,12 @@ package com.example.doctors.presentation.doctor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.altabib.design.R
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
-import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
+import com.example.altabib.design.R
 import com.example.altabib.design_system.navigation.screen.PatientScreen
+import com.example.analytics.domain.usecases.UpdateProfileViewsUseCase
+import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
 import com.example.favorites.domain.usecases.AddFavoriteUseCase
 import com.example.favorites.domain.usecases.IsFavoriteUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -22,6 +23,7 @@ class DoctorDetailsViewModel(
     private val getDoctorUseCase: GetDoctorByIdUseCase,
     private val isFavoriteUseCase: IsFavoriteUseCase,
     private val addFavoriteUseCase: AddFavoriteUseCase,
+    private val updateProfileViews: UpdateProfileViewsUseCase
 ) : ViewModel() {
     private val initialState = DoctorDetailsState()
     private val _state: MutableStateFlow<DoctorDetailsState> = MutableStateFlow(initialState)
@@ -64,6 +66,12 @@ class DoctorDetailsViewModel(
             is DoctorDetailsAction.OnAddressClick -> {
                 viewModelScope.launch {
                     _event.emit(DoctorDetailsEvent.NavigateToAddress(action.address))
+                }
+            }
+
+            is DoctorDetailsAction.UpdateProfileViews -> {
+                viewModelScope.launch {
+                    updateProfileViews.invoke(action.doctorId)
                 }
             }
         }

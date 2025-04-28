@@ -27,6 +27,7 @@
             <option value="$PROJECT_DIR$/build-logic/convention" />
             <option value="$PROJECT_DIR$/featuers" />
             <option value="$PROJECT_DIR$/featuers/analytics" />
+            <option value="$PROJECT_DIR$/featuers/analytics/data" />
             <option value="$PROJECT_DIR$/featuers/analytics/domain" />
             <option value="$PROJECT_DIR$/featuers/analytics/presentation" />
             <option value="$PROJECT_DIR$/featuers/appointments" />

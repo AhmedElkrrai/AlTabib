@@ -9,7 +9,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.example.altabib.design.R
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.models.Specialization
 import com.example.altabib.design_system.utils.ObserveEvents
@@ -30,6 +29,7 @@ fun DoctorDetailsScreenRoot(
 
     LaunchedEffect(doctorId) {
         viewModel.onAction(DoctorDetailsAction.LoadDoctor(doctorId))
+        viewModel.onAction(DoctorDetailsAction.UpdateProfileViews(doctorId))
     }
 
     ObserveEvents(events = viewModel.event) { event ->
@@ -66,8 +66,7 @@ fun DoctorDetailsScreenRoot(
     }
 
     DoctorDetailsScreen(
-        specialization = Specialization.displayName(state.doctor?.specKey)
-            ?: getLocalizedString(R.string.unknown_specialization),
+        specialization = Specialization.displayName(state.doctor?.specKey),
         state = state,
         onAction = viewModel::onAction
     )

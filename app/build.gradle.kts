@@ -56,6 +56,7 @@ dependencies {
     implementation(project(":featuers:profile:domain"))
     implementation(project(":featuers:profile:presentation"))
 
+    implementation(project(":featuers:analytics:data"))
     implementation(project(":featuers:analytics:domain"))
     implementation(project(":featuers:analytics:presentation"))
 

@@ -1,8 +1,10 @@
 package com.example.altabib.di
 
+import com.example.analytics.domain.usecases.GetProfileViewsUseCase
+import com.example.analytics.domain.usecases.UpdateProfileViewsUseCase
+import com.example.appointments.domain.usecases.SaveAppointmentUseCase
 import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
 import com.example.doctors.domain.usecases.GetDoctorsBySpecializationUseCase
-import com.example.appointments.domain.usecases.SaveAppointmentUseCase
 import com.example.doctors.domain.usecases.SearchDoctorsUseCase
 import com.example.doctors.domain.usecases.UpdateDoctorUseCase
 import com.example.favorites.domain.usecases.AddFavoriteUseCase
@@ -36,4 +38,6 @@ val useCaseModule = module {
     singleOf(::GetFavoritesUseCase)
     singleOf(::AddFavoriteUseCase)
     singleOf(::RemoveFavoriteUseCase)
+    singleOf(::GetProfileViewsUseCase)
+    singleOf(::UpdateProfileViewsUseCase)
 }

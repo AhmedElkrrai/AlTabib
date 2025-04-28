@@ -9,6 +9,6 @@ class UpdateDoctorUseCase(
     private val repository: DoctorRepository
 ) {
     suspend operator fun invoke(doctor: Doctor): Result<Unit, DataError> {
-        return repository.updateDoctor(doctor)
+        return repository.upsertDoctor(doctor)
     }
 }

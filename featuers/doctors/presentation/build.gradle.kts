@@ -13,4 +13,5 @@ dependencies {
     implementation(project(":featuers:settings:domain"))
     implementation(project(":featuers:favorites:domain"))
     implementation(project(":featuers:appointments:domain"))
+    implementation(project(":featuers:analytics:domain"))
 }

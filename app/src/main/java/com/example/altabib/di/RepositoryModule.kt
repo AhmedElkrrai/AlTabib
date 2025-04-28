@@ -1,5 +1,7 @@
 package com.example.altabib.di
 
+import com.example.analytics.data.AnalyticsRepositoryImpl
+import com.example.analytics.domain.AnalyticsRepository
 import com.example.appointments.data.source.AppointmentRepositoryImpl
 import com.example.appointments.domain.AppointmentRepository
 import com.example.doctors.data.source.DoctorRepositoryImpl
@@ -17,4 +19,5 @@ val repositoryModule = module {
     singleOf(::DoctorRepositoryImpl).bind<DoctorRepository>()
     singleOf(::AppointmentRepositoryImpl).bind<AppointmentRepository>()
     singleOf(::PatientRepositoryImpl).bind<PatientRepository>()
+    singleOf(::AnalyticsRepositoryImpl).bind<AnalyticsRepository>()
 }

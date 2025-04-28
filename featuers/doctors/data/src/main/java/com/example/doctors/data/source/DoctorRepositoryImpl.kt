@@ -36,10 +36,10 @@ class DoctorRepositoryImpl(
                 .await()
 
             val allDoctors = doctorsSnapshot.toObjects(DoctorDto::class.java)
-            val filtered = allDoctors.filter {
-                it.name.contains(query, ignoreCase = true) ||
-                        it.specialization.contains(query, ignoreCase = true)
-            }.map { it.toDomain() }
+            val filtered = allDoctors
+                .filter {
+                    it.name.contains(query, ignoreCase = true) || it.specialization.contains(query, ignoreCase = true)
+                }.map { it.toDomain() }
 
             Result.Success(filtered)
         } catch (e: Exception) {
@@ -108,7 +108,7 @@ class DoctorRepositoryImpl(
         }
     }
 
-    override suspend fun updateDoctor(doctor: Doctor): Result<Unit, DataError> {
+    override suspend fun upsertDoctor(doctor: Doctor): Result<Unit, DataError> {
         return try {
             val dto = doctor.toDto()
             firestore.collection(DOCTORS_PATH)
@@ -118,22 +118,8 @@ class DoctorRepositoryImpl(
 
             Result.Success(Unit)
         } catch (e: Exception) {
-            Log.e("DoctorRepo", "Error in updateDoctor", e)
+            Log.e("DoctorRepo", "Error in upsertDoctor", e)
             Result.Error(DataError.FailedToUpdateData)
-        }
-    }
-
-    override suspend fun addDoctor(doctor: Doctor): Result<Unit, DataError> {
-        return try {
-            val dto = doctor.toDto()
-            firestore.collection(DOCTORS_PATH)
-                .document(dto.id)
-                .set(dto)
-                .await()
-            Result.Success(Unit)
-        } catch (e: Exception) {
-            Log.e("DoctorRepo", "Error in addDoctor", e)
-            Result.Error(DataError.GeneralError)
         }
     }
 
