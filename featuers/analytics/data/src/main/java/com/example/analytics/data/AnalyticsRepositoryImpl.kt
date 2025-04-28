@@ -3,6 +3,7 @@ package com.example.analytics.data
 import android.util.Log
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
+import com.example.altabib.core.toInteger
 import com.example.analytics.domain.AnalyticsRepository
 import com.example.analytics.domain.entites.ProfileView
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,11 +31,7 @@ class AnalyticsRepositoryImpl(
                 val profileView = snapshot.toObject(ProfileView::class.java)
                 Result.Success(profileView!!)
             } else {
-                Result.Success(
-                    ProfileView(
-                        doctorId = doctorId
-                    )
-                )
+                Result.Error(DataError.FailedToRetrieveData)
             }
         } catch (e: Exception) {
             Log.e("AnalyticsRepo", "Error in getProfileViews", e)
@@ -42,12 +39,16 @@ class AnalyticsRepositoryImpl(
         }
     }
 
-    override suspend fun updateProfileViews(doctorId: String, patientId: String) {
+    override suspend fun updateProfileViews(
+        doctorId: String,
+        patientId: String,
+        premium: Boolean
+    ) {
         try {
             val docRef = firestore.collection(PROFILE_VIEWS_PATH)
                 .document(doctorId)
 
-            val today = LocalDate.now().format(DateTimeFormatter.ISO_DATE) // "2025-04-29"
+            val today = getTodayDate() // "2025-04-29"
 
             firestore.runTransaction { transaction ->
                 val snapshot = transaction.get(docRef)
@@ -69,6 +70,7 @@ class AnalyticsRepositoryImpl(
                     // First time view for this doctor
                     val newProfileView = ProfileView(
                         doctorId = doctorId,
+                        premium = premium.toInteger(),
                         views = mapOf(
                             today to listOf(patientId)
                         )
@@ -80,5 +82,10 @@ class AnalyticsRepositoryImpl(
             Log.e("AnalyticsRepo", "Error in updateProfileViews", e)
             Result.Error(DataError.FailedToUpdateData)
         }
+    }
+
+    private fun getTodayDate(): String {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        return LocalDate.now().format(formatter)
     }
 }

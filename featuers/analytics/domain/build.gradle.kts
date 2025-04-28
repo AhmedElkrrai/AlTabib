@@ -4,4 +4,5 @@ plugins {
 
 dependencies {
     implementation(project(":featuers:user:domain"))
+    implementation(project(":featuers:doctors:domain"))
 }
