@@ -10,7 +10,7 @@ android {
         buildConfigField(
             "String",
             "DEFAULT_WEB_CLIENT_ID",
-            "\"458416682788-tmftf3752n7pom7pgee6jg4n6io81e1e.apps.googleusercontent.com\""
+            "\"458416682788-glifk6effmqg69jctupti3hrcmlv7l22.apps.googleusercontent.com\""
         )
     }
 

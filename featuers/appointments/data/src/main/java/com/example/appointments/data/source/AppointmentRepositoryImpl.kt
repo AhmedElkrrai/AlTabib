@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 private const val APPOINTMENTS_PATH = "appointments"
+private const val DOCTOR_ID_FIELD = "doctorId"
 
 class AppointmentRepositoryImpl(
     private val firestore: FirebaseFirestore
@@ -24,6 +25,21 @@ class AppointmentRepositoryImpl(
             Result.Success(Unit)
         } catch (e: Exception) {
             Log.e("AppointmentRepo", "Error in saveAppointment", e)
+            Result.Error(DataError.GeneralError)
+        }
+    }
+
+    override suspend fun getAppointments(doctorId: String): Result<List<Appointment>, DataError> {
+        return try {
+            val appointments = firestore.collection(APPOINTMENTS_PATH)
+                .whereEqualTo(DOCTOR_ID_FIELD, doctorId)
+                .get()
+                .await()
+                .toObjects(Appointment::class.java)
+
+            Result.Success(appointments)
+        } catch (e: Exception) {
+            Log.e("AppointmentRepo", "Error in getAppointments", e)
             Result.Error(DataError.GeneralError)
         }
     }

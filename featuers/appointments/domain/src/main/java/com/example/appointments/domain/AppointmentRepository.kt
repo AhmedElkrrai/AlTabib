@@ -6,4 +6,5 @@ import com.example.appointments.domain.entities.Appointment
 
 interface AppointmentRepository {
     suspend fun saveAppointment(appointment: Appointment): Result<Unit, DataError>
+    suspend fun getAppointments(doctorId: String): Result<List<Appointment>, DataError>
 }

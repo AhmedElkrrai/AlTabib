@@ -11,6 +11,8 @@
     <string name="reviews">تقييم</string>
     <string name="select_city">اختر المدينة</string>
     <string name="favorites">المفضلة</string>
+    <string name="no_favorites">لا يوجد أطباء مفضلون بعد.</string>
+    <string name="no_appointments">لا يوجد حجوزات اليوم</string>
     <string name="dashboard">الواجهة الرئيسية</string>
     <string name="settings">الإعدادات</string>
     <string name="no_results">لم يتم العثور على نتائج.</string>

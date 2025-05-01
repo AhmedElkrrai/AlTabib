@@ -1,5 +1,6 @@
 package com.example.altabib.di
 
+import com.example.appointments.presentation.AppointmentsViewModel
 import com.example.doctors.presentation.booking.BookingViewModel
 import com.example.doctors.presentation.dashboard.DashboardViewModel
 import com.example.doctors.presentation.doctor.DoctorDetailsViewModel
@@ -18,4 +19,5 @@ val viewModelModule = module {
     viewModel { SpecializationViewModel(get()) }
     viewModel { BookingViewModel(get(), get(), get(), get(), get()) }
     viewModel { DoctorDetailsViewModel(get(), get(), get(), get()) }
+    viewModel { AppointmentsViewModel(get(), get()) }
 }

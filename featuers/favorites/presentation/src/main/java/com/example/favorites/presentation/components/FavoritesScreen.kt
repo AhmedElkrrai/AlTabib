@@ -11,6 +11,8 @@ import com.example.favorites.presentation.FavoritesAction
 import com.example.favorites.presentation.FavoritesState
 import com.example.altabib.design_system.components.Loading
 import com.example.altabib.design_system.components.VerticalGrid
+import com.example.altabib.design_system.localization.getLocalizedString
+import com.example.altabib.design.R
 
 @Composable
 fun FavoritesScreen(
@@ -21,7 +23,7 @@ fun FavoritesScreen(
         Loading()
     } else if (state.doctors.isEmpty()) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("No favorite doctors yet.")
+            Text(getLocalizedString(R.string.no_favorites))
         }
     } else {
         VerticalGrid {

@@ -2,6 +2,7 @@ package com.example.altabib.di
 
 import com.example.analytics.domain.usecases.GetProfileViewsUseCase
 import com.example.analytics.domain.usecases.UpdateProfileViewsUseCase
+import com.example.appointments.domain.usecases.GetAppointmentsUseCase
 import com.example.appointments.domain.usecases.SaveAppointmentUseCase
 import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
 import com.example.doctors.domain.usecases.GetDoctorsBySpecializationUseCase
@@ -25,6 +26,7 @@ val useCaseModule = module {
     singleOf(::SearchDoctorsUseCase)
     singleOf(::GetDoctorsBySpecializationUseCase)
     singleOf(::SaveAppointmentUseCase)
+    singleOf(::GetAppointmentsUseCase)
     singleOf(::GetDoctorByIdUseCase)
     singleOf(::GoogleSignInUseCase)
     singleOf(::RegisterUseCase)
