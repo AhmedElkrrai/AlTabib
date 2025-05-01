@@ -32,7 +32,7 @@ fun AppointmentsScreen(
         } else {
             VerticalGrid {
                 itemsIndexed(state.appointments) { _, appointment ->
-                    AppointmentCard(
+                    AnimatedAppointmentCard(
                         appointment = appointment,
                         onDismissClick = { onAction(AppointmentsAction.Dismiss(appointment)) }
                     )

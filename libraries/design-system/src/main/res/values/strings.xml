@@ -20,6 +20,7 @@
     <string name="unknown_specialization">Unknown specialization.</string>
     <string name="no_doctors_available">No doctors available for this specialization.</string>
     <string name="error_unknown">Something went wrong. Please try again later.</string>
+    <string name="appointment_dismissed">Appointment dismissed</string>
     <string name="dev_email" translatable="false">ahmedemadelkrrai@gmail.com</string>
     <!-- ... Cities ... -->
     <string name="alexandria">Alexandria</string>

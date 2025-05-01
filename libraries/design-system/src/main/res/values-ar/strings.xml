@@ -20,6 +20,7 @@
     <string name="unknown_specialization">تخصص غير معروف.</string>
     <string name="no_doctors_available">لا يوجد أطباء متاحون لهذا التخصص</string>
     <string name="error_unknown">حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.</string>
+    <string name="appointment_dismissed">تم انهاء الحجز</string>
 
     <!-- ... Cities ... -->
     <string name="alexandria">الاسكندرية</string>

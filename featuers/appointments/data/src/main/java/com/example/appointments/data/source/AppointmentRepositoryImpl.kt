@@ -43,4 +43,18 @@ class AppointmentRepositoryImpl(
             Result.Error(DataError.GeneralError)
         }
     }
+
+    override suspend fun dismissAppointment(appointmentId: String): Result<Unit, DataError> {
+        return try {
+            firestore.collection(APPOINTMENTS_PATH)
+                .document(appointmentId)
+                .delete()
+                .await()
+
+            Result.Success(Unit)
+        } catch (e: Exception) {
+            Log.e("AppointmentRepo", "Error in dismissAppointment", e)
+            Result.Error(DataError.GeneralError)
+        }
+    }
 }

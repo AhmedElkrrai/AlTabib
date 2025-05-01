@@ -19,5 +19,5 @@ val viewModelModule = module {
     viewModel { SpecializationViewModel(get()) }
     viewModel { BookingViewModel(get(), get(), get(), get(), get()) }
     viewModel { DoctorDetailsViewModel(get(), get(), get(), get()) }
-    viewModel { AppointmentsViewModel(get(), get()) }
+    viewModel { AppointmentsViewModel(get(), get(), get()) }
 }

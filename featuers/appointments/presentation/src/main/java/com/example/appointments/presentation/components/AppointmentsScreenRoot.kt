@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
 import com.example.appointments.presentation.AppointmentsEvent
@@ -26,6 +27,11 @@ fun AppointmentsScreenRoot(
                 Toast
                     .makeText(context, event.error.getMessage(context), Toast.LENGTH_SHORT)
                     .show()
+            }
+
+            is AppointmentsEvent.ShowMessage -> {
+                val message = getLocalizedString(event.msgRes)
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
         }
     }

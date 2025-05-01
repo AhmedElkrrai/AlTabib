@@ -5,20 +5,25 @@ import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.getOrDefault
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
+import com.example.altabib.design.R
+import com.example.appointments.domain.usecases.DismissAppointmentUseCase
 import com.example.appointments.domain.usecases.GetAppointmentsUseCase
 import com.example.appointments.presentation.mappers.toUiModel
 import com.example.appointments.presentation.models.AppointmentUi
 import com.example.settings.domain.usecases.GetPatientUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class AppointmentsViewModel(
     private val getAppointments: GetAppointmentsUseCase,
+    private val dismissAppointment: DismissAppointmentUseCase,
     private val getPatient: GetPatientUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(AppointmentsState())
@@ -71,7 +76,31 @@ class AppointmentsViewModel(
 
     private fun dismiss(appointment: AppointmentUi) {
         viewModelScope.launch {
+            val currentList = _state.value.appointments
+            if (currentList.none { it.id == appointment.id }) return@launch
 
+            _state.value = _state.value.copy(isLoading = true)
+
+            delay(400)
+
+            dismissAppointment.invoke(appointment.id)
+                .onSuccess {
+                    val updatedList = currentList.filterNot { it.id == appointment.id }
+                    _state.update {
+                        it.copy(
+                            appointments = updatedList,
+                            isLoading = false
+                        )
+                    }
+                }
+                .onError {
+                    _event.emit(AppointmentsEvent.ShowToast(it))
+                    _state.value = _state.value.copy(
+                        isLoading = false
+                    )
+                }
+
+            _event.emit(AppointmentsEvent.ShowMessage(R.string.appointment_dismissed))
         }
     }
 }

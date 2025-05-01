@@ -4,6 +4,7 @@ import com.example.analytics.domain.usecases.GetProfileViewsUseCase
 import com.example.analytics.domain.usecases.UpdateProfileViewsUseCase
 import com.example.appointments.domain.usecases.GetAppointmentsUseCase
 import com.example.appointments.domain.usecases.SaveAppointmentUseCase
+import com.example.appointments.domain.usecases.DismissAppointmentUseCase
 import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
 import com.example.doctors.domain.usecases.GetDoctorsBySpecializationUseCase
 import com.example.doctors.domain.usecases.SearchDoctorsUseCase
@@ -27,6 +28,7 @@ val useCaseModule = module {
     singleOf(::GetDoctorsBySpecializationUseCase)
     singleOf(::SaveAppointmentUseCase)
     singleOf(::GetAppointmentsUseCase)
+    singleOf(::DismissAppointmentUseCase)
     singleOf(::GetDoctorByIdUseCase)
     singleOf(::GoogleSignInUseCase)
     singleOf(::RegisterUseCase)
