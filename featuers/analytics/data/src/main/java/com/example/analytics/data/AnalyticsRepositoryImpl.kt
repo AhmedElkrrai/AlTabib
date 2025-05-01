@@ -3,13 +3,12 @@ package com.example.analytics.data
 import android.util.Log
 import com.example.altabib.core.DataError
 import com.example.altabib.core.Result
+import com.example.altabib.core.getTodayDate
 import com.example.altabib.core.toInteger
 import com.example.analytics.domain.AnalyticsRepository
 import com.example.analytics.domain.entites.ProfileView
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 private const val PROFILE_VIEWS_PATH = "profile_views"
 private const val VIEWS_FIELD = "views"
@@ -82,10 +81,5 @@ class AnalyticsRepositoryImpl(
             Log.e("AnalyticsRepo", "Error in updateProfileViews", e)
             Result.Error(DataError.FailedToUpdateData)
         }
-    }
-
-    private fun getTodayDate(): String {
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        return LocalDate.now().format(formatter)
     }
 }

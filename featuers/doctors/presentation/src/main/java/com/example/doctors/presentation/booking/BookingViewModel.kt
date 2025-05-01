@@ -3,6 +3,7 @@ package com.example.doctors.presentation.booking
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.DataError
+import com.example.altabib.core.getTodayDate
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
 import com.example.altabib.design.R
@@ -200,13 +201,11 @@ class BookingViewModel(
         viewModelScope.launch {
             getPatientUseCase.invoke()
                 ?.onSuccess { patient ->
-                    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                    val dateString = selectedDate.format(formatter)
                     val appointment = Appointment(
                         id = UUID.randomUUID().toString(),
                         doctorId = doctor.id,
                         patientId = patient.uid,
-                        date = dateString
+                        date = getTodayDate()
                     )
 
                     val result = saveAppointmentUseCase(appointment)

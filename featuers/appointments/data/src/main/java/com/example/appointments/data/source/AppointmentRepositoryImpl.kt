@@ -29,13 +29,17 @@ class AppointmentRepositoryImpl(
         }
     }
 
-    override suspend fun getAppointments(doctorId: String): Result<List<Appointment>, DataError> {
+    override suspend fun getAppointments(
+        doctorId: String,
+        date: String
+    ): Result<List<Appointment>, DataError> {
         return try {
             val appointments = firestore.collection(APPOINTMENTS_PATH)
                 .whereEqualTo(DOCTOR_ID_FIELD, doctorId)
                 .get()
                 .await()
                 .toObjects(Appointment::class.java)
+                .filter { it.date == date }
 
             Result.Success(appointments)
         } catch (e: Exception) {
