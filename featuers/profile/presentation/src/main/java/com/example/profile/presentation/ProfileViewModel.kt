@@ -6,8 +6,10 @@ import com.example.altabib.core.DataError
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
 import com.example.altabib.design.R
+import com.example.altabib.design_system.utils.ByteArrayConverter
 import com.example.doctors.domain.usecases.GetDoctorUseCase
 import com.example.doctors.domain.usecases.UpdateDoctorUseCase
+import com.example.doctors.domain.usecases.UploadAvatarUseCase
 import com.example.user.domain.usecases.GetUserUseCase
 import com.example.user.domain.usecases.LogoutUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -24,6 +26,8 @@ class ProfileViewModel(
     private val getDoctorUseCase: GetDoctorUseCase,
     private val updateDoctorUseCase: UpdateDoctorUseCase,
     private val logoutUseCase: LogoutUseCase,
+    private val uploadAvatarUseCase: UploadAvatarUseCase,
+    private val byteArrayConverter: ByteArrayConverter
 ) : ViewModel() {
     private val _state = MutableStateFlow(ProfileState())
     val state = _state
@@ -53,7 +57,7 @@ class ProfileViewModel(
             is ProfileAction.OnContactDeveloperClick -> showContactDevsDialog()
             is ProfileAction.OnEditAvailabilityClick -> showEditAvailabilityDialog()
             is ProfileAction.OnOpenImagePicker -> openImagePicker()
-            is ProfileAction.OnAvatarSelected -> TODO()
+            is ProfileAction.OnAvatarSelected -> onAvatarSelected(action)
             is ProfileAction.OnSpecializationClick -> openSpecializationDialog()
             is ProfileAction.OnSpecializationSelected -> onSpecializationSelected(action)
         }
@@ -199,6 +203,32 @@ class ProfileViewModel(
     private fun openSpecializationDialog() {
         viewModelScope.launch {
             _event.emit(ProfileEvent.OpenSpecializationDialog)
+        }
+    }
+
+    private fun onAvatarSelected(action: ProfileAction.OnAvatarSelected) {
+        viewModelScope.launch {
+            val user = getUserUseCase() ?: return@launch
+
+            val bytes = byteArrayConverter.uriToBytes(action.uri)
+            if (bytes == null) {
+                _event.emit(ProfileEvent.ShowToast(DataError.GeneralError))
+                return@launch
+            }
+
+            uploadAvatarUseCase(user.uid, bytes)
+                .onSuccess { url ->
+                    _state.update { state ->
+                        state.copy(
+                            doctor = state.doctor.copy(
+                                avatar = url
+                            )
+                        )
+                    }
+                }
+                .onError {
+                    _event.emit(ProfileEvent.ShowToast(DataError.FailedToUpdateData))
+                }
         }
     }
 

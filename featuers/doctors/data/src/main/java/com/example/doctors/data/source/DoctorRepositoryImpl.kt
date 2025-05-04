@@ -14,14 +14,20 @@ import com.example.doctors.domain.DoctorRepository
 import com.example.user.domain.entities.Doctor
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 private const val CITY_FIELD = "city"
+private const val AVATARS = "avatars"
+private const val AVATAR_FIELD = "avatar"
 private const val REVIEWS_FIELD = "reviews"
 private const val SPECIALIZATION_FIELD = "specialization"
 
 class DoctorRepositoryImpl(
     private val firestore: FirebaseFirestore,
+    private val storage: FirebaseStorage,
     private val dao: DoctorDao
 ) : DoctorRepository {
 
@@ -38,7 +44,10 @@ class DoctorRepositoryImpl(
             val allDoctors = doctorsSnapshot.toObjects(DoctorDto::class.java)
             val filtered = allDoctors
                 .filter {
-                    it.name.contains(query, ignoreCase = true) || it.specialization.contains(query, ignoreCase = true)
+                    it.name.contains(query, ignoreCase = true) || it.specialization.contains(
+                        query,
+                        ignoreCase = true
+                    )
                 }.map { it.toDomain() }
 
             Result.Success(filtered)
@@ -153,4 +162,29 @@ class DoctorRepositoryImpl(
             Result.Error(DataError.LocalError)
         }
     }
+
+    override suspend fun uploadAvatar(userId: String, bytes: ByteArray): Result<String, DataError> {
+        return withContext(Dispatchers.IO) {
+            try {
+                // 1. Upload avatar to Firebase Storage
+                val ref = storage.reference.child("$AVATARS/$userId.jpg")
+                ref.putBytes(bytes).await()
+
+                // 2. Get download URL
+                val url = ref.downloadUrl.await().toString()
+
+                // 3. Update Firestore doctor document with the new avatar URL
+                firestore.collection(DOCTORS_PATH)
+                    .document(userId)
+                    .update(AVATAR_FIELD, url)
+                    .await()
+
+                Result.Success(url)
+            } catch (e: Exception) {
+                Log.e("DoctorRepo", "Error in uploadAvatar", e)
+                Result.Error(DataError.FailedToUpdateData)
+            }
+        }
+    }
+
 }

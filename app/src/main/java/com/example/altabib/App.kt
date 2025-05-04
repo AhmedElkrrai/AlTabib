@@ -3,7 +3,7 @@ package com.example.altabib
 import android.app.Application
 import android.content.Context
 import com.example.altabib.design_system.localization.LocaleHelper
-import com.example.altabib.di.authModule
+import com.example.altabib.di.networkModule
 import com.example.altabib.di.databaseModule
 import com.example.altabib.di.repositoryModule
 import com.example.altabib.di.storageModule
@@ -27,7 +27,7 @@ class App : Application() {
                 repositoryModule,
                 useCaseModule,
                 viewModelModule,
-                authModule
+                networkModule
             )
         }
     }

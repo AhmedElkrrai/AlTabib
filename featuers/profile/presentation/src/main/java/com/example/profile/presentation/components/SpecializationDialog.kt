@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.models.Specialization
 import com.example.altabib.design.R
+import com.example.altabib.design_system.utils.FormatCompose
 
 @Composable
 fun SpecializationDialog(
@@ -24,31 +25,34 @@ fun SpecializationDialog(
     onDismiss: () -> Unit,
     onSelect: (String) -> Unit
 ) {
-    val specializations = Specialization.entries
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        confirmButton = {},
-        title = { Text(getLocalizedString(R.string.choose_specialization)) },
-        text = {
-            Column {
-                specializations.forEach { specialization ->
-                    val isSelected = specialization.key == current
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { onSelect(specialization.key) }
-                            .padding(12.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        RadioButton(
-                            selected = isSelected,
-                            onClick = { onSelect(specialization.key) }
-                        )
-                        Spacer(Modifier.width(8.dp))
-                        Text(text = getLocalizedString(specialization.nameResource))
+    FormatCompose {
+
+        val specializations = Specialization.entries
+        AlertDialog(
+            onDismissRequest = onDismiss,
+            confirmButton = {},
+            title = { Text(getLocalizedString(R.string.choose_specialization)) },
+            text = {
+                Column {
+                    specializations.forEach { specialization ->
+                        val isSelected = specialization.key == current
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { onSelect(specialization.key) }
+                                .padding(12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
+                                selected = isSelected,
+                                onClick = { onSelect(specialization.key) }
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text(text = getLocalizedString(specialization.nameResource))
+                        }
                     }
                 }
             }
-        }
-    )
+        )
+    }
 }

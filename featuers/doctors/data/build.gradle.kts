@@ -10,4 +10,5 @@ android {
 dependencies {
     implementation(project(":featuers:doctors:domain"))
     implementation(project(":featuers:user:domain"))
+    implementation(libs.firebase.storage.ktx)
 }

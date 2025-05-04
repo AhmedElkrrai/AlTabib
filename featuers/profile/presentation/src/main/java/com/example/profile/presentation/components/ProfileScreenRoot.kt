@@ -1,6 +1,9 @@
 package com.example.profile.presentation.components
 
+import android.net.Uri
 import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -47,6 +50,14 @@ fun ProfileScreenRoot(
         )
     }
 
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let {
+            viewModel.onAction(ProfileAction.OnAvatarSelected(it))
+        }
+    }
+
     ObserveEvents(events = viewModel.event) { event ->
         when (event) {
             is ProfileEvent.ShowToast -> {
@@ -78,12 +89,12 @@ fun ProfileScreenRoot(
                 showSpecializationDialog = true
             }
 
-            is ProfileEvent.EditAvailability -> {
-                // TODO
+            is ProfileEvent.OpenImagePicker -> {
+                launcher.launch("image/*")
             }
 
-            is ProfileEvent.OpenImagePicker -> {
-
+            is ProfileEvent.EditAvailability -> {
+                // TODO
             }
         }
     }

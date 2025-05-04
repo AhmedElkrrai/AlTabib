@@ -53,7 +53,6 @@ dependencies {
     implementation(project(":libraries:design-system"))
     implementation(project(":libraries:signin"))
 
-    implementation(project(":featuers:profile:domain"))
     implementation(project(":featuers:profile:presentation"))
 
     implementation(project(":featuers:analytics:data"))
@@ -95,6 +94,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.google.play.services.auth)
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.storage.ktx)
     implementation(libs.gson)
 
     ksp(libs.androidx.room.compiler)

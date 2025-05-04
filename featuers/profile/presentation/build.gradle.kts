@@ -9,6 +9,5 @@ android {
 
 dependencies {
     implementation(project(":featuers:user:domain"))
-    implementation(project(":featuers:profile:domain"))
     implementation(project(":featuers:doctors:domain"))
 }
