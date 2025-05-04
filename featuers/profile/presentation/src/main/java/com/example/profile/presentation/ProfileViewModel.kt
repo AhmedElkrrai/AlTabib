@@ -62,6 +62,7 @@ class ProfileViewModel(
             is ProfileAction.OnAvatarSelected -> onAvatarSelected(action)
             is ProfileAction.OnSpecializationClick -> openSpecializationDialog()
             is ProfileAction.OnSpecializationSelected -> onSpecializationSelected(action)
+            is ProfileAction.OnQueueChanged -> onQueueChanged(action)
         }
     }
 
@@ -236,6 +237,18 @@ class ProfileViewModel(
                 .onError {
                     _event.emit(ProfileEvent.ShowToast(DataError.FailedToUpdateData))
                 }
+        }
+    }
+
+    private fun onQueueChanged(action: ProfileAction.OnQueueChanged) {
+        viewModelScope.launch {
+            _state.update { state ->
+                state.copy(
+                    doctor = state.doctor.copy(
+                        inQueue = action.value
+                    )
+                )
+            }
         }
     }
 

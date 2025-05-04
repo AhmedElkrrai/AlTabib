@@ -11,6 +11,7 @@ sealed class ProfileAction {
     data class OnContactChange(val value: String) : ProfileAction()
     data class OnAvatarSelected(val uri: Uri) : ProfileAction()
     data class OnSpecializationSelected(val specKey: String) : ProfileAction()
+    data class OnQueueChanged(val value: Int) : ProfileAction()
     data object OnSpecializationClick : ProfileAction()
     data object OnOpenImagePicker : ProfileAction()
     data object OnEditAvailabilityClick : ProfileAction()

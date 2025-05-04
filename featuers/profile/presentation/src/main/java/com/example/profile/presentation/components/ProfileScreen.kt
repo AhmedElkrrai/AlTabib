@@ -1,10 +1,10 @@
 package com.example.profile.presentation.components
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,7 +20,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.AttachMoney
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Edit
@@ -42,6 +44,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.altabib.design.R
@@ -180,6 +183,54 @@ fun ProfileScreen(
                     modifier = Modifier.weight(1f)
                 )
                 Icon(Icons.Default.ArrowDropDown, contentDescription = null)
+            }
+
+            Spacer(Modifier.height(12.dp))
+
+            // In Queue
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            ) {
+                Icon(Icons.Default.Person, contentDescription = null)
+
+                Spacer(Modifier.width(8.dp))
+
+                Text(
+                    text = getLocalizedString(R.string.in_queue),
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.weight(1f)
+                )
+
+                Icon(
+                    imageVector = Icons.Default.ArrowDownward,
+                    modifier = Modifier
+                        .clickable {
+                            if (state.doctor.inQueue > 0) {
+                                onAction(
+                                    ProfileAction.OnQueueChanged(state.doctor.inQueue - 1)
+                                )
+                            }
+                        },
+                    contentDescription = null
+                )
+
+                Text(
+                    text = state.doctor.inQueue.toString(),
+                    style = MaterialTheme.typography.bodyLarge,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.weight(1f)
+                )
+
+                Icon(
+                    imageVector = Icons.Default.ArrowUpward,
+                    modifier = Modifier
+                        .clickable { onAction(ProfileAction.OnQueueChanged(state.doctor.inQueue + 1)) },
+                    contentDescription = null
+                )
             }
 
             Spacer(Modifier.height(12.dp))
