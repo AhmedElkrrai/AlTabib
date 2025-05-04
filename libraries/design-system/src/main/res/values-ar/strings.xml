@@ -84,6 +84,7 @@
     <string name="save_profile">حفظ الملف الشخصي</string>
     <string name="change_language">تغيير اللغة</string>
     <string name="edit">تعديل</string>
+    <string name="choose_specialization">اختر التخصص</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">تم تحديث الملف الشخصي</string>
     <string name="doctor_already_added">هذا الطبيب موجود بالفعل في المفضلة</string>

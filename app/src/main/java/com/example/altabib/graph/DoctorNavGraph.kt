@@ -5,9 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.altabib.design_system.navigation.screen.DoctorScreen
+import com.example.altabib.utils.RestartApp
 import com.example.analytics.presentation.AnalyticsScreen
 import com.example.appointments.presentation.components.AppointmentsScreenRoot
-import com.example.altabib.design_system.navigation.screen.DoctorScreen
 import com.example.profile.presentation.components.ProfileScreenRoot
 
 @Composable
@@ -23,7 +24,10 @@ fun DoctorNavGraph(
             AppointmentsScreenRoot(modifier)
         }
         composable(DoctorScreen.Profile.route) {
-            ProfileScreenRoot(modifier)
+            ProfileScreenRoot(
+                modifier = modifier,
+                onLanguageChanged = { RestartApp() }
+            )
         }
     }
 }

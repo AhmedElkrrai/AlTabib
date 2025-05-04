@@ -68,6 +68,14 @@ object LocaleHelper {
     }
 
     @Composable
+    fun getOppositeLanguage(): Language {
+        return when (getCurrentLanguageEnum(LocalContext.current)) {
+            Language.ARABIC -> Language.ENGLISH
+            Language.ENGLISH -> Language.ARABIC
+        }
+    }
+
+    @Composable
     fun getLayoutDirection(): LayoutDirection {
         return when (getCurrentLanguageEnum(LocalContext.current)) {
             Language.ARABIC -> LayoutDirection.Rtl

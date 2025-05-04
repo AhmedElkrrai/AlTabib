@@ -10,6 +10,8 @@ sealed class ProfileAction {
     data class OnAddressChange(val value: String) : ProfileAction()
     data class OnContactChange(val value: String) : ProfileAction()
     data class OnAvatarSelected(val uri: Uri) : ProfileAction()
+    data class OnSpecializationSelected(val specKey: String) : ProfileAction()
+    data object OnSpecializationClick : ProfileAction()
     data object OnOpenImagePicker : ProfileAction()
     data object OnEditAvailabilityClick : ProfileAction()
     data object OnSaveClick : ProfileAction()

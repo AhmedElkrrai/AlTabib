@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.AttachMoney
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Edit
@@ -26,9 +27,11 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Schedule
+import androidx.compose.material.icons.filled.Work
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -45,6 +48,7 @@ import com.example.altabib.design_system.components.AppOutlinedTextFiled
 import com.example.altabib.design_system.components.CitySelector
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.models.City
+import com.example.altabib.design_system.models.Specialization
 import com.example.altabib.design_system.theme.Primary
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.profile.presentation.ProfileAction
@@ -149,11 +153,32 @@ fun ProfileScreen(
                 onValueChange = { onAction(ProfileAction.OnContactChange(it)) },
                 label = getLocalizedString(R.string.contact),
                 leadingIcon = { Icon(Icons.Default.Call, null) },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
 
             Spacer(Modifier.height(12.dp))
 
-            // Availability (Chips or summary + edit button)
+            // Specialization
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onAction(ProfileAction.OnSpecializationClick) }
+                    .padding(vertical = 8.dp)
+            ) {
+                Icon(Icons.Default.Work, contentDescription = null)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = Specialization.displayName(state.doctor.specKey),
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.weight(1f)
+                )
+                Icon(Icons.Default.ArrowDropDown, contentDescription = null)
+            }
+
+            Spacer(Modifier.height(12.dp))
+
+            // Availability
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()

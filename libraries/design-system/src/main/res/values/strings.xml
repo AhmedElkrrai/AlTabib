@@ -84,6 +84,7 @@
     <string name="save_profile">Save Profile</string>
     <string name="change_language">Change Language</string>
     <string name="edit">Edit</string>
+    <string name="choose_specialization">Choose Specialization</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">Profile Updated</string>
     <string name="doctor_already_added">Doctor already in favorites</string>

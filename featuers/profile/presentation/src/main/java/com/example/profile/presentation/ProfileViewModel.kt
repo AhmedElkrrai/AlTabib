@@ -5,9 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.DataError
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
+import com.example.altabib.design.R
 import com.example.doctors.domain.usecases.GetDoctorUseCase
 import com.example.doctors.domain.usecases.UpdateDoctorUseCase
 import com.example.user.domain.usecases.GetUserUseCase
+import com.example.user.domain.usecases.LogoutUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -21,6 +23,7 @@ class ProfileViewModel(
     private val getUserUseCase: GetUserUseCase,
     private val getDoctorUseCase: GetDoctorUseCase,
     private val updateDoctorUseCase: UpdateDoctorUseCase,
+    private val logoutUseCase: LogoutUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow(ProfileState())
     val state = _state
@@ -38,7 +41,164 @@ class ProfileViewModel(
 
     fun onAction(action: ProfileAction) {
         when (action) {
-            else -> {}
+            is ProfileAction.OnAddressChange -> updateAddress(action)
+            is ProfileAction.OnBioChange -> onBioChange(action)
+            is ProfileAction.OnCityChange -> onCityChange(action)
+            is ProfileAction.OnContactChange -> onContactChange(action)
+            is ProfileAction.OnNameChange -> onNameChange(action)
+            is ProfileAction.OnPriceChange -> onPriceChange(action)
+            is ProfileAction.OnSaveClick -> saveProfile()
+            is ProfileAction.OnLogoutClick -> logout()
+            is ProfileAction.OnChangeLanguageClick -> changeLanguage()
+            is ProfileAction.OnContactDeveloperClick -> showContactDevsDialog()
+            is ProfileAction.OnEditAvailabilityClick -> showEditAvailabilityDialog()
+            is ProfileAction.OnOpenImagePicker -> openImagePicker()
+            is ProfileAction.OnAvatarSelected -> TODO()
+            is ProfileAction.OnSpecializationClick -> openSpecializationDialog()
+            is ProfileAction.OnSpecializationSelected -> onSpecializationSelected(action)
+        }
+    }
+
+    private fun updateAddress(action: ProfileAction.OnAddressChange) {
+        viewModelScope.launch {
+            _state.update { state ->
+                state.copy(
+                    doctor = state.doctor.copy(
+                        address = action.value
+                    )
+                )
+            }
+        }
+    }
+
+    private fun onBioChange(action: ProfileAction.OnBioChange) {
+        viewModelScope.launch {
+            _state.update { state ->
+                state.copy(
+                    doctor = state.doctor.copy(
+                        bio = action.value
+                    )
+                )
+            }
+        }
+    }
+
+    private fun onCityChange(action: ProfileAction.OnCityChange) {
+        viewModelScope.launch {
+            _state.update { state ->
+                state.copy(
+                    doctor = state.doctor.copy(
+                        city = action.value
+                    )
+                )
+            }
+        }
+    }
+
+    private fun onContactChange(action: ProfileAction.OnContactChange) {
+        viewModelScope.launch {
+            _state.update { state ->
+                state.copy(
+                    doctor = state.doctor.copy(
+                        contact = action.value
+                    )
+                )
+            }
+        }
+    }
+
+    private fun onNameChange(action: ProfileAction.OnNameChange) {
+        viewModelScope.launch {
+            _state.update { state ->
+                state.copy(
+                    doctor = state.doctor.copy(
+                        name = action.value
+                    )
+                )
+            }
+        }
+    }
+
+    private fun onPriceChange(action: ProfileAction.OnPriceChange) {
+        viewModelScope.launch {
+            _state.update { state ->
+                state.copy(
+                    doctor = state.doctor.copy(
+                        price = Integer.parseInt(action.value)
+                    )
+                )
+            }
+        }
+    }
+
+    private fun onSpecializationSelected(action: ProfileAction.OnSpecializationSelected) {
+        viewModelScope.launch {
+            _state.update { state ->
+                state.copy(
+                    doctor = state.doctor.copy(
+                        specKey = action.specKey
+                    )
+                )
+            }
+        }
+    }
+
+    private fun saveProfile() {
+        viewModelScope.launch {
+            updateDoctorUseCase(state.value.doctor)
+                .onSuccess {
+                    _event.emit(
+                        ProfileEvent.ShowMessage(R.string.update_profile_msg)
+                    )
+                }
+                .onError {
+                    _event.emit(
+                        ProfileEvent.ShowToast(DataError.FailedToUpdateData)
+                    )
+                }
+        }
+    }
+
+    private fun logout() {
+        viewModelScope.launch {
+            try {
+                logoutUseCase.invoke()
+                _event.emit(ProfileEvent.Logout)
+            } catch (e: Exception) {
+                _event.emit(
+                    ProfileEvent.ShowToast(DataError.GeneralError)
+                )
+            }
+        }
+    }
+
+    private fun changeLanguage() {
+        viewModelScope.launch {
+            _event.emit(ProfileEvent.LanguageChanged)
+        }
+    }
+
+    private fun showContactDevsDialog() {
+        viewModelScope.launch {
+            _event.emit(ProfileEvent.ContactDevs)
+        }
+    }
+
+    private fun showEditAvailabilityDialog() {
+        viewModelScope.launch {
+            _event.emit(ProfileEvent.EditAvailability)
+        }
+    }
+
+    private fun openImagePicker() {
+        viewModelScope.launch {
+            _event.emit(ProfileEvent.OpenImagePicker)
+        }
+    }
+
+    private fun openSpecializationDialog() {
+        viewModelScope.launch {
+            _event.emit(ProfileEvent.OpenSpecializationDialog)
         }
     }
 
