@@ -7,6 +7,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -79,27 +80,27 @@ fun DoctorDetailsScreen(
         } else {
             state.doctor?.let { doctor ->
                 Column(
-                    modifier = Modifier
+                    modifier = modifier
                         .padding(innerPadding)
                         .fillMaxSize()
                         .padding(horizontal = 16.dp)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = modifier.height(12.dp))
 
                     // Avatar & badge
                     Column(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = modifier.fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Box(
-                            modifier = Modifier.size(140.dp),
+                            modifier = modifier.size(140.dp),
                             contentAlignment = Alignment.BottomEnd
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.doctor), // Placeholder
                                 contentDescription = "Doctor's photo",
-                                modifier = Modifier
+                                modifier = modifier
                                     .fillMaxSize()
                                     .clip(CircleShape)
                                     .border(2.dp, Color.Gray, CircleShape)
@@ -118,7 +119,7 @@ fun DoctorDetailsScreen(
                             }
                         }
 
-                        Spacer(modifier = Modifier.height(6.dp))
+                        Spacer(modifier = modifier.height(6.dp))
 
                         Text(
                             text = specialization,
@@ -126,7 +127,7 @@ fun DoctorDetailsScreen(
                             textAlign = TextAlign.Center
                         )
 
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = modifier.height(4.dp))
 
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
@@ -136,9 +137,9 @@ fun DoctorDetailsScreen(
                                 imageVector = Icons.Default.Star,
                                 contentDescription = "Rating",
                                 tint = Color.Yellow,
-                                modifier = Modifier.size(20.dp)
+                                modifier = modifier.size(20.dp)
                             )
-                            Spacer(modifier = Modifier.width(4.dp))
+                            Spacer(modifier = modifier.width(4.dp))
                             Text(
                                 text = getRatingText(animatedRating.value, doctor.reviews),
                                 style = MaterialTheme.typography.bodySmall
@@ -147,7 +148,7 @@ fun DoctorDetailsScreen(
                     }
 
                     FormatCompose {
-                        Spacer(modifier = Modifier.height(10.dp))
+                        Spacer(modifier = modifier.height(10.dp))
 
                         InfoRow(
                             icon = Icons.Default.Info,
@@ -182,38 +183,49 @@ fun DoctorDetailsScreen(
                             onClick = { onAction(DoctorDetailsAction.OnAddressClick(doctor.address)) }
                         )
 
-                        AvailabilityChips(doctor.availability)
-
-                        Spacer(modifier = Modifier.height(10.dp))
-
-                        // Action buttons
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(16.dp),
-                            modifier = Modifier
+                        Column(
+                            modifier = modifier
                                 .fillMaxWidth()
-                                .height(56.dp)
+                                .height(IntrinsicSize.Min)
                         ) {
-
-                            AppOutlinedButton(
-                                modifier = Modifier.weight(1f),
-                                text = getLocalizedString(R.string.book_now),
-                                onClick = {
-                                    onAction(
-                                        DoctorDetailsAction.OnBookAppointmentClick(state.doctor.id)
-                                    )
-                                }
+                            AvailabilityChips(
+                                modifier = modifier
+                                    .fillMaxWidth()
+                                    .weight(1f),
+                                availability = doctor.availability
                             )
 
-                            AppOutlinedButton(
-                                modifier = Modifier.weight(1f),
-                                text = getLocalizedString(R.string.add_to_fav),
-                                onClick = {
-                                    onAction(DoctorDetailsAction.OnAddToFavoritesClick)
-                                }
-                            )
+                            Spacer(modifier = modifier.height(10.dp))
+
+                            // Action buttons
+                            Row(
+                                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                                modifier = modifier
+                                    .fillMaxWidth()
+                                    .weight(1f)
+                            ) {
+
+                                AppOutlinedButton(
+                                    modifier = modifier.weight(1f),
+                                    text = getLocalizedString(R.string.book_now),
+                                    onClick = {
+                                        onAction(
+                                            DoctorDetailsAction.OnBookAppointmentClick(state.doctor.id)
+                                        )
+                                    }
+                                )
+
+                                AppOutlinedButton(
+                                    modifier = modifier.weight(1f),
+                                    text = getLocalizedString(R.string.add_to_fav),
+                                    onClick = {
+                                        onAction(DoctorDetailsAction.OnAddToFavoritesClick)
+                                    }
+                                )
+                            }
                         }
 
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = modifier.height(4.dp))
                     }
                 }
             }
