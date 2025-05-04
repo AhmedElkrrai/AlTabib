@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.OpenInNew
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -28,7 +26,8 @@ fun ClickableInfoRow(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    iconTint: Color = MaterialTheme.colorScheme.primary,
+    imageVector: ImageVector,
+    iconTint: Color = Color.White,
     textColor: Color = Primary,
 ) {
     Row(
@@ -59,11 +58,11 @@ fun ClickableInfoRow(
         Spacer(modifier = Modifier.width(8.dp))
 
         Icon(
-            imageVector = Icons.Default.OpenInNew,
-            contentDescription = "Open in Maps",
+            imageVector = imageVector,
+            contentDescription = "button",
             tint = iconTint,
             modifier = Modifier.size(20.dp)
         )
     }
-    Spacer(modifier = Modifier.height(12.dp))
+    Spacer(modifier = Modifier.height(10.dp))
 }

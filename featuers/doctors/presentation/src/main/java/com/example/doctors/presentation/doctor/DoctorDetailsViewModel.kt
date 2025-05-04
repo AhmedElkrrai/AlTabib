@@ -10,6 +10,7 @@ import com.example.analytics.domain.usecases.UpdateProfileViewsUseCase
 import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
 import com.example.favorites.domain.usecases.AddFavoriteUseCase
 import com.example.favorites.domain.usecases.IsFavoriteUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -66,6 +67,14 @@ class DoctorDetailsViewModel(
             is DoctorDetailsAction.OnAddressClick -> {
                 viewModelScope.launch {
                     _event.emit(DoctorDetailsEvent.NavigateToAddress(action.address))
+                }
+            }
+
+            is DoctorDetailsAction.OnCopyContactClick -> {
+                viewModelScope.launch {
+                    _event.emit(DoctorDetailsEvent.CopyContact(action.contact))
+                    delay(100)
+                    _event.emit(DoctorDetailsEvent.ShowMessage(R.string.copied_to_clipboard))
                 }
             }
 

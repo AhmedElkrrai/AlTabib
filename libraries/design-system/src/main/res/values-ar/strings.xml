@@ -11,7 +11,7 @@
     <string name="reviews">تقييم</string>
     <string name="select_city">اختر المدينة</string>
     <string name="favorites">المفضلة</string>
-    <string name="no_favorites">لا يوجد أطباء مفضلون بعد.</string>
+    <string name="no_favorites">لا يوجد أطباء مفضلون.</string>
     <string name="no_appointments">لا يوجد حجوزات اليوم</string>
     <string name="dashboard">الواجهة الرئيسية</string>
     <string name="settings">الإعدادات</string>
@@ -63,7 +63,7 @@
     <string name="bio">السيرة الذاتية</string>
     <string name="available">متاح</string>
     <string name="queue">في الانتظار</string>
-    <string name="price">السعر</string>
+    <string name="price">الكشف</string>
     <string name="add_to_fav">إضافة إلى المفضلة</string>
     <string name="book_now">احجز الان</string>
     <string name="rate_doctor">تقييم بعد الزيارة</string>
@@ -81,6 +81,7 @@
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">تم تحديث الملف الشخصي</string>
     <string name="doctor_already_added">هذا الطبيب موجود بالفعل في المفضلة</string>
+    <string name="copied_to_clipboard">تم النسخ إلى الحافظة</string>
     <string name="doctor_added_to_favorites">تم إضافة الطبيب إلى المفضلة</string>
     <string name="doctor_removed_from_favorites">تم حذف الطبيب من المفضلة</string>
     <string name="review_submitted_successfully">تم ارسال التقييم بنجاح</string>

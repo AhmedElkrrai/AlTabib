@@ -8,4 +8,5 @@ sealed class DoctorDetailsEvent {
     data class Navigate(val route: String) : DoctorDetailsEvent()
     data class ShowToast(val error: DataError) : DoctorDetailsEvent()
     data class ShowMessage(val msgRes: Int) : DoctorDetailsEvent()
+    data class CopyContact(val contact: String) : DoctorDetailsEvent()
 }

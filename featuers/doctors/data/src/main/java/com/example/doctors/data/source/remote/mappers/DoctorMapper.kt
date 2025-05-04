@@ -31,6 +31,7 @@ fun DoctorDto.toDomain(): Doctor {
         price = price,
         premium = premium,
         address = address,
+        contact = contact,
         city = city,
         reviewsList = reviewsList.map { it.toDomain() }
     )
@@ -45,6 +46,7 @@ fun Doctor.toDto(): DoctorDto {
         specialization = specKey,
         rating = rating.toDouble(),
         reviews = reviews,
+        contact = contact,
         bio = bio,
         availability = availabilityJson,
         inQueue = inQueue,

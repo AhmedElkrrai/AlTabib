@@ -121,7 +121,7 @@ fun BookingScreen(
                             LazyColumn(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .height(150.dp)
+                                    .height(190.dp)
                             ) {
                                 itemsIndexed(
                                     doctor

@@ -1,7 +1,9 @@
 package com.example.doctors.presentation.doctor.components
 
+import android.content.ClipData.newPlainText
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -13,6 +15,7 @@ import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.models.Specialization
 import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
+import com.example.altabib.design.R
 import com.example.doctors.presentation.doctor.DoctorDetailsAction
 import com.example.doctors.presentation.doctor.DoctorDetailsEvent
 import com.example.doctors.presentation.doctor.DoctorDetailsViewModel
@@ -61,6 +64,13 @@ fun DoctorDetailsScreenRoot(
             is DoctorDetailsEvent.ShowMessage -> {
                 val message = getLocalizedString(event.msgRes)
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+            }
+
+            is DoctorDetailsEvent.CopyContact -> {
+                val clipboardManager =
+                    context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                val clipData = newPlainText("contact", event.contact)
+                clipboardManager.setPrimaryClip(clipData)
             }
         }
     }

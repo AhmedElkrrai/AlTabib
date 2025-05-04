@@ -81,6 +81,7 @@
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">Profile Updated</string>
     <string name="doctor_already_added">Doctor already in favorites</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="doctor_added_to_favorites">Doctor added to favorites</string>
     <string name="doctor_removed_from_favorites">Doctor removed from favorites</string>
     <string name="rating_submitted_successfully">Rating submitted successfully</string>

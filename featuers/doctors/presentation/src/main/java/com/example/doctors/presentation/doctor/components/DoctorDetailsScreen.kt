@@ -21,10 +21,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AttachMoney
+import androidx.compose.material.icons.filled.Contacts
+import androidx.compose.material.icons.filled.CopyAll
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.OpenInNew
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Place
-import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Verified
 import androidx.compose.material3.Icon
@@ -49,7 +51,6 @@ import com.example.altabib.design_system.theme.Primary
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.doctors.presentation.doctor.DoctorDetailsAction
 import com.example.doctors.presentation.doctor.DoctorDetailsState
-import com.example.doctors.presentation.doctor.util.format
 
 @Composable
 fun DoctorDetailsScreen(
@@ -84,7 +85,7 @@ fun DoctorDetailsScreen(
                         .padding(horizontal = 16.dp)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Avatar & badge
                     Column(
@@ -92,7 +93,7 @@ fun DoctorDetailsScreen(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Box(
-                            modifier = Modifier.size(180.dp),
+                            modifier = Modifier.size(140.dp),
                             contentAlignment = Alignment.BottomEnd
                         ) {
                             Image(
@@ -110,14 +111,14 @@ fun DoctorDetailsScreen(
                                     contentDescription = "Verified Badge",
                                     tint = Primary,
                                     modifier = Modifier
-                                        .offset(x = (-16).dp, y = (-2).dp)
-                                        .size(36.dp)
+                                        .offset(x = (-16).dp, y = (4).dp)
+                                        .size(28.dp)
                                         .padding(2.dp)
                                 )
                             }
                         }
 
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(6.dp))
 
                         Text(
                             text = specialization,
@@ -146,24 +147,16 @@ fun DoctorDetailsScreen(
                     }
 
                     FormatCompose {
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         InfoRow(
                             icon = Icons.Default.Info,
                             text = getLocalizedString(R.string.bio) + ": ${doctor.bio}"
                         )
 
-                        AvailabilityChips(doctor.availability)
-
                         InfoRow(
                             icon = Icons.Default.People,
                             text = getLocalizedString(R.string.queue) + ": ${doctor.inQueue}"
-                        )
-
-                        ClickableInfoRow(
-                            icon = Icons.Default.Place,
-                            text = doctor.address,
-                            onClick = { onAction(DoctorDetailsAction.OnAddressClick(doctor.address)) }
                         )
 
                         val priceText = getLocalizedString(R.string.price) +
@@ -175,7 +168,23 @@ fun DoctorDetailsScreen(
                             text = priceText
                         )
 
-                        Spacer(modifier = Modifier.height(24.dp))
+                        ClickableInfoRow(
+                            icon = Icons.Default.Contacts,
+                            text = doctor.contact,
+                            imageVector = Icons.Default.CopyAll,
+                            onClick = { onAction(DoctorDetailsAction.OnCopyContactClick(doctor.contact)) }
+                        )
+
+                        ClickableInfoRow(
+                            icon = Icons.Default.Place,
+                            text = doctor.address,
+                            imageVector = Icons.Default.OpenInNew,
+                            onClick = { onAction(DoctorDetailsAction.OnAddressClick(doctor.address)) }
+                        )
+
+                        AvailabilityChips(doctor.availability)
+
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         // Action buttons
                         Row(
@@ -204,7 +213,7 @@ fun DoctorDetailsScreen(
                             )
                         }
 
-                        Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.height(4.dp))
                     }
                 }
             }

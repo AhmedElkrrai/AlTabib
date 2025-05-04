@@ -13,26 +13,31 @@ import com.example.altabib.design_system.components.Loading
 import com.example.altabib.design_system.components.VerticalGrid
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design.R
+import com.example.altabib.design_system.utils.FormatCompose
 
 @Composable
 fun FavoritesScreen(
     state: FavoritesState,
     onAction: (FavoritesAction) -> Unit
 ) {
-    if (state.isLoading) {
-        Loading()
-    } else if (state.doctors.isEmpty()) {
-        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text(getLocalizedString(R.string.no_favorites))
-        }
-    } else {
-        VerticalGrid {
-            itemsIndexed(state.doctors) { _, doctor ->
-                FavoriteCard(
-                    doctor = doctor,
-                    onClick = { onAction(FavoritesAction.OnDoctorClick(doctor.id)) },
-                    onRemoveClick = { onAction(FavoritesAction.UnFavoriteDoctor(doctor)) }
+    FormatCompose {
+        if (state.isLoading) {
+            Loading()
+        } else if (state.doctors.isEmpty()) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(
+                    text = getLocalizedString(R.string.no_favorites),
                 )
+            }
+        } else {
+            VerticalGrid {
+                itemsIndexed(state.doctors) { _, doctor ->
+                    FavoriteCard(
+                        doctor = doctor,
+                        onClick = { onAction(FavoritesAction.OnDoctorClick(doctor.id)) },
+                        onRemoveClick = { onAction(FavoritesAction.UnFavoriteDoctor(doctor)) }
+                    )
+                }
             }
         }
     }
