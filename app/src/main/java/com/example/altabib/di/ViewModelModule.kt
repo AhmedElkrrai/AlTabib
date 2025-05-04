@@ -6,6 +6,7 @@ import com.example.doctors.presentation.dashboard.DashboardViewModel
 import com.example.doctors.presentation.doctor.DoctorDetailsViewModel
 import com.example.doctors.presentation.specialization.SpecializationViewModel
 import com.example.favorites.presentation.FavoritesViewModel
+import com.example.profile.presentation.ProfileViewModel
 import com.example.settings.presentation.SettingsViewModel
 import com.example.user.presentation.auth.AuthViewModel
 import org.koin.core.module.dsl.viewModel
@@ -20,4 +21,5 @@ val viewModelModule = module {
     viewModel { BookingViewModel(get(), get(), get(), get(), get()) }
     viewModel { DoctorDetailsViewModel(get(), get(), get(), get()) }
     viewModel { AppointmentsViewModel(get(), get(), get()) }
+    viewModel { ProfileViewModel(get(), get(), get()) }
 }

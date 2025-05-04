@@ -14,7 +14,9 @@ import com.example.user.domain.usecases.LogoutUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -26,15 +28,21 @@ class SettingsViewModel(
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SettingsState())
-    val state: StateFlow<SettingsState> = _state
+    val state = _state
+        .onStart {
+            initPatientData()
+        }
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(3000L),
+            SettingsState()
+        )
 
     private val _event = MutableSharedFlow<SettingsEvent>()
     val event: SharedFlow<SettingsEvent> = _event
 
     fun onAction(action: SettingsAction) {
         when (action) {
-            is SettingsAction.InitPatientData -> initPatientData()
-
             is SettingsAction.Logout -> logout()
 
             is SettingsAction.UpdateProfile -> updateProfile()

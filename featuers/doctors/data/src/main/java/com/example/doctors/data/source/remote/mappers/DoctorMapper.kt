@@ -1,23 +1,40 @@
 package com.example.doctors.data.source.remote.mappers
 
-import android.util.Log
+import com.example.doctors.data.source.remote.models.AvailabilityDto
+import com.example.doctors.data.source.remote.models.AvailableHourDto
 import com.example.doctors.data.source.remote.models.DoctorDto
 import com.example.doctors.data.source.remote.models.ReviewDto
+import com.example.doctors.data.source.remote.models.TimeWindowDto
 import com.example.doctors.data.source.remote.util.GsonProvider.gson
 import com.example.user.domain.entities.Availability
+import com.example.user.domain.entities.AvailableHour
+import com.example.user.domain.entities.DayOfWeek
 import com.example.user.domain.entities.Doctor
+import com.example.user.domain.entities.Period
 import com.example.user.domain.entities.Review
+import com.example.user.domain.entities.TimeWindow
+
+fun Doctor.toDto(): DoctorDto {
+    return DoctorDto(
+        id = id,
+        name = name,
+        avatar = avatar,
+        specialization = specKey,
+        rating = rating.toDouble(),
+        reviews = reviews,
+        contact = contact,
+        bio = bio,
+        availability = availability.toDto(),
+        inQueue = inQueue,
+        price = price,
+        premium = premium,
+        address = address,
+        city = city,
+        reviewsList = reviewsList.map { it.toDto() }
+    )
+}
 
 fun DoctorDto.toDomain(): Doctor {
-    val availabilityObj = try {
-        if (availability.isNotBlank()) {
-            gson.fromJson(availability, Availability::class.java)
-        } else null
-    } catch (e: Exception) {
-        Log.e("DoctorDto", "Error parsing availability", e)
-        null
-    }
-
     return Doctor(
         id = id,
         name = name,
@@ -26,7 +43,7 @@ fun DoctorDto.toDomain(): Doctor {
         rating = rating.toFloat(),
         reviews = reviews,
         bio = bio,
-        availability = availabilityObj,
+        availability = availability.toDomain(),
         inQueue = inQueue,
         price = price,
         premium = premium,
@@ -37,24 +54,46 @@ fun DoctorDto.toDomain(): Doctor {
     )
 }
 
-fun Doctor.toDto(): DoctorDto {
-    val availabilityJson = gson.toJson(availability)
-    return DoctorDto(
-        id = id,
-        name = name,
-        avatar = avatar,
-        specialization = specKey,
-        rating = rating.toDouble(),
-        reviews = reviews,
-        contact = contact,
-        bio = bio,
-        availability = availabilityJson,
-        inQueue = inQueue,
-        price = price,
-        premium = premium,
-        address = address,
-        city = city,
-        reviewsList = reviewsList.map { it.toDto() }
+fun AvailabilityDto.toDomain(): Availability {
+    return if (days.isNotEmpty() && hours.isNotEmpty()) {
+        Availability(
+            days = days.map { DayOfWeek.valueOf(it.uppercase()) },
+            hours = hours.map { it.toDomain() }
+        )
+    } else Availability()
+}
+
+fun TimeWindowDto.toDomain(): TimeWindow {
+    return TimeWindow(
+        start = start.toDomain(),
+        end = end.toDomain()
+    )
+}
+
+fun AvailableHourDto.toDomain(): AvailableHour {
+    return AvailableHour(
+        time = time,
+        period = Period.valueOf(period.uppercase())
+    )
+}
+
+fun Availability.toDto(): AvailabilityDto {
+    return AvailabilityDto(
+        days = days.map { it.name.uppercase() },
+        hours = hours.map { it.toDto() })
+}
+
+fun TimeWindow.toDto(): TimeWindowDto {
+    return TimeWindowDto(
+        start = start.toDto(),
+        end = end.toDto()
+    )
+}
+
+fun AvailableHour.toDto(): AvailableHourDto {
+    return AvailableHourDto(
+        time = time,
+        period = period.name.uppercase()
     )
 }
 

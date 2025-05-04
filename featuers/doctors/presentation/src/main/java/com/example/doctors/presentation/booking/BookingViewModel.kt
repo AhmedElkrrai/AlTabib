@@ -9,7 +9,7 @@ import com.example.altabib.core.onSuccess
 import com.example.altabib.design.R
 import com.example.appointments.domain.entities.Appointment
 import com.example.appointments.domain.usecases.SaveAppointmentUseCase
-import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
+import com.example.doctors.domain.usecases.GetDoctorUseCase
 import com.example.doctors.domain.usecases.UpdateDoctorUseCase
 import com.example.settings.domain.usecases.GetPatientUseCase
 import com.example.settings.domain.usecases.UpdatePatientUseCase
@@ -22,11 +22,10 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.time.format.DateTimeFormatter
 import java.util.UUID
 
 class BookingViewModel(
-    private val getDoctorUseCase: GetDoctorByIdUseCase,
+    private val getDoctorUseCase: GetDoctorUseCase,
     private val updateDoctorUseCase: UpdateDoctorUseCase,
     private val updatePatientUseCase: UpdatePatientUseCase,
     private val getPatientUseCase: GetPatientUseCase,

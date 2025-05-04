@@ -5,7 +5,7 @@ import com.example.altabib.core.Result
 import com.example.doctors.domain.DoctorRepository
 import com.example.user.domain.entities.Doctor
 
-class GetDoctorByIdUseCase(
+class GetDoctorUseCase(
     private val repository: DoctorRepository
 ) {
     suspend operator fun invoke(doctorId: String): Result<Doctor, DataError> {

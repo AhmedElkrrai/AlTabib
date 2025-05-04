@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,7 +18,6 @@ import com.example.altabib.design_system.navigation.screen.Screen
 import com.example.altabib.design_system.navigation.utils.LocalNavController
 import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
-import com.example.settings.presentation.SettingsAction
 import com.example.settings.presentation.SettingsEvent
 import com.example.settings.presentation.SettingsViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -36,10 +34,6 @@ fun SettingsScreenRoot(
 
     if (showContactDialog) {
         ContactUsDialog { showContactDialog = false }
-    }
-
-    LaunchedEffect(Unit) {
-        viewModel.onAction(SettingsAction.InitPatientData)
     }
 
     ObserveEvents(events = viewModel.event) { event ->

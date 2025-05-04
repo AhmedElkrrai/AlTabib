@@ -78,6 +78,12 @@
     <string name="update_profile">تحديث الملف الشخصي</string>
     <string name="name">الاسم</string>
     <string name="empty_input">الرجاء إدخال الاسم و المدينة</string>
+    <string name="contact">رقم الهاتف</string>
+    <string name="address">العنوان</string>
+    <string name="bio_hint">أخبرنا عنك</string>
+    <string name="save_profile">حفظ الملف الشخصي</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="edit">تعديل</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">تم تحديث الملف الشخصي</string>
     <string name="doctor_already_added">هذا الطبيب موجود بالفعل في المفضلة</string>

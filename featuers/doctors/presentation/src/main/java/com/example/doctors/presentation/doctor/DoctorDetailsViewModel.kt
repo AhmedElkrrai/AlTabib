@@ -7,7 +7,7 @@ import com.example.altabib.core.onSuccess
 import com.example.altabib.design.R
 import com.example.altabib.design_system.navigation.screen.PatientScreen
 import com.example.analytics.domain.usecases.UpdateProfileViewsUseCase
-import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
+import com.example.doctors.domain.usecases.GetDoctorUseCase
 import com.example.favorites.domain.usecases.AddFavoriteUseCase
 import com.example.favorites.domain.usecases.IsFavoriteUseCase
 import kotlinx.coroutines.delay
@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DoctorDetailsViewModel(
-    private val getDoctorUseCase: GetDoctorByIdUseCase,
+    private val getDoctorUseCase: GetDoctorUseCase,
     private val isFavoriteUseCase: IsFavoriteUseCase,
     private val addFavoriteUseCase: AddFavoriteUseCase,
     private val updateProfileViews: UpdateProfileViewsUseCase

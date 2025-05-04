@@ -2,13 +2,13 @@ package com.example.analytics.domain.usecases
 
 import com.example.altabib.core.getOrDefault
 import com.example.analytics.domain.AnalyticsRepository
-import com.example.doctors.domain.usecases.GetDoctorByIdUseCase
+import com.example.doctors.domain.usecases.GetDoctorUseCase
 import com.example.user.domain.usecases.GetUserUseCase
 
 class UpdateProfileViewsUseCase(
     private val repository: AnalyticsRepository,
     private val getUserUseCase: GetUserUseCase,
-    private val getDoctorUseCase: GetDoctorByIdUseCase
+    private val getDoctorUseCase: GetDoctorUseCase
 ) {
     suspend operator fun invoke(doctorId: String) {
         val patient = getUserUseCase() ?: return

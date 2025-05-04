@@ -78,6 +78,12 @@
     <string name="update_profile">Update Profile</string>
     <string name="name">Name</string>
     <string name="empty_input">Please enter your name and select a city</string>
+    <string name="contact">Contact</string>
+    <string name="address">Address</string>
+    <string name="bio_hint">Tell us about yourself</string>
+    <string name="save_profile">Save Profile</string>
+    <string name="change_language">Change Language</string>
+    <string name="edit">Edit</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">Profile Updated</string>
     <string name="doctor_already_added">Doctor already in favorites</string>

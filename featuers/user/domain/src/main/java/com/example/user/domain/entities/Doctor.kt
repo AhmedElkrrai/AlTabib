@@ -8,7 +8,7 @@ data class Doctor(
     val rating: Float = 0f,
     val reviews: Int = 0,
     val bio: String = "",
-    val availability: Availability? = Availability(),
+    val availability: Availability = Availability(),
     val inQueue: Int = 0,
     val price: Int = 0,
     val premium: Boolean = false,
