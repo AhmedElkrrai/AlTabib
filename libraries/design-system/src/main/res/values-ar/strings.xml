@@ -21,6 +21,7 @@
     <string name="no_doctors_available">لا يوجد أطباء متاحون لهذا التخصص</string>
     <string name="error_unknown">حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.</string>
     <string name="appointment_dismissed">تم انهاء الحجز</string>
+    <string name="not_available">غير متاح الان</string>
 
     <!-- ... Cities ... -->
     <string name="alexandria">الاسكندرية</string>
@@ -104,4 +105,14 @@
     <string name="otolaryngologies">الأنف والأذن والحنجرة</string>
     <string name="dentistry">أسنان</string>
     <string name="radiology">الأشعة</string>
+    <!-- ... Days of week ... -->
+    <string name="monday">الاثنين</string>
+    <string name="tuesday">الثلاثاء</string>
+    <string name="wednesday">الاربعاء</string>
+    <string name="thursday">الخميس</string>
+    <string name="friday">الجمعه</string>
+    <string name="saturday">السبت</string>
+    <string name="sunday">الأحد</string>
+    <string name="am">صباحا</string>
+    <string name="pm">مساءا</string>
 </resources>

@@ -49,6 +49,7 @@ import com.example.altabib.design_system.theme.Primary
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.doctors.presentation.doctor.DoctorDetailsAction
 import com.example.doctors.presentation.doctor.DoctorDetailsState
+import com.example.doctors.presentation.doctor.util.format
 
 @Composable
 fun DoctorDetailsScreen(
@@ -152,10 +153,7 @@ fun DoctorDetailsScreen(
                             text = getLocalizedString(R.string.bio) + ": ${doctor.bio}"
                         )
 
-                        InfoRow(
-                            icon = Icons.Default.Schedule,
-                            text = getLocalizedString(R.string.available) + ": ${doctor.availability}"
-                        )
+                        AvailabilityChips(doctor.availability)
 
                         InfoRow(
                             icon = Icons.Default.People,

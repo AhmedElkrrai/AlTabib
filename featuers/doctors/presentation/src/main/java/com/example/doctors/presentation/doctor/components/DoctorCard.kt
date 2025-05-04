@@ -32,11 +32,11 @@ import androidx.compose.ui.unit.dp
 import com.example.altabib.design.R
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.localization.getRatingText
+import com.example.altabib.design_system.models.Specialization
 import com.example.altabib.design_system.theme.Green
 import com.example.altabib.design_system.theme.Primary
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.user.domain.entities.Doctor
-import com.example.altabib.design_system.models.Specialization
 
 @Composable
 fun DoctorCard(
@@ -137,16 +137,6 @@ fun DoctorCard(
                         },
                         style = MaterialTheme.typography.bodySmall,
                         textAlign = TextAlign.Center
-                    )
-
-                    Spacer(modifier = Modifier.height(4.dp))
-
-                    // Availability
-                    Text(
-                        text = doctor.availability,
-                        style = MaterialTheme.typography.bodySmall,
-                        textAlign = TextAlign.Center,
-                        color = Green
                     )
                 }
             }

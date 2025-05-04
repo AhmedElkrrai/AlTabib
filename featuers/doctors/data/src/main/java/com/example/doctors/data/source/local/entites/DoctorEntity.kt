@@ -2,6 +2,7 @@ package com.example.doctors.data.source.local.entites
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.user.domain.entities.Availability
 
 @Entity(tableName = "doctors")
 data class DoctorEntity(
@@ -11,8 +12,9 @@ data class DoctorEntity(
     val city: String,
     val rating: Double,
     val reviews: Int,
-    val availability: String,
+    val availability: Availability,
     val inQueue: Int,
     val price: Int,
-    val isFavorite: Boolean
+    val contact: String,
+    val isFavorite: Boolean,
 )

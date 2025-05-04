@@ -1,11 +1,23 @@
 package com.example.doctors.data.source.remote.mappers
 
+import android.util.Log
 import com.example.doctors.data.source.remote.models.DoctorDto
 import com.example.doctors.data.source.remote.models.ReviewDto
+import com.example.doctors.data.source.remote.util.GsonProvider.gson
+import com.example.user.domain.entities.Availability
 import com.example.user.domain.entities.Doctor
 import com.example.user.domain.entities.Review
 
 fun DoctorDto.toDomain(): Doctor {
+    val availabilityObj = try {
+        if (availability.isNotBlank()) {
+            gson.fromJson(availability, Availability::class.java)
+        } else null
+    } catch (e: Exception) {
+        Log.e("DoctorDto", "Error parsing availability", e)
+        null
+    }
+
     return Doctor(
         id = id,
         name = name,
@@ -14,7 +26,7 @@ fun DoctorDto.toDomain(): Doctor {
         rating = rating.toFloat(),
         reviews = reviews,
         bio = bio,
-        availability = availability,
+        availability = availabilityObj,
         inQueue = inQueue,
         price = price,
         premium = premium,
@@ -25,6 +37,7 @@ fun DoctorDto.toDomain(): Doctor {
 }
 
 fun Doctor.toDto(): DoctorDto {
+    val availabilityJson = gson.toJson(availability)
     return DoctorDto(
         id = id,
         name = name,
@@ -33,7 +46,7 @@ fun Doctor.toDto(): DoctorDto {
         rating = rating.toDouble(),
         reviews = reviews,
         bio = bio,
-        availability = availability,
+        availability = availabilityJson,
         inQueue = inQueue,
         price = price,
         premium = premium,

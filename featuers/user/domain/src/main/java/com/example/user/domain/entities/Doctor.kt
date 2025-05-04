@@ -8,11 +8,12 @@ data class Doctor(
     val rating: Float = 0f,
     val reviews: Int = 0,
     val bio: String = "",
-    val availability: String = "", // eg 06PM - 09PM
+    val availability: Availability? = Availability(),
     val inQueue: Int = 0,
     val price: Int = 0,
     val premium: Boolean = false,
     val address: String = "",
     val city: String = "",
-    val reviewsList: List<Review> = emptyList()
+    val reviewsList: List<Review> = emptyList(),
+    val contact: String = ""
 )

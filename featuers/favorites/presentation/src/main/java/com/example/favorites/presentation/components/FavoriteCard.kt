@@ -136,16 +136,6 @@ fun FavoriteCard(
                             color = Color.White
                         )
                     }
-
-                    Spacer(modifier = Modifier.height(4.dp))
-
-                    // Availability
-                    Text(
-                        text = doctor.availability,
-                        style = MaterialTheme.typography.bodySmall,
-                        textAlign = TextAlign.Center,
-                        color = Green
-                    )
                 }
             }
         }

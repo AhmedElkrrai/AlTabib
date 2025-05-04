@@ -1,21 +1,23 @@
 package com.example.doctors.data.source.local.mappers
 
 import com.example.doctors.data.source.local.entites.DoctorEntity
+import com.example.user.domain.entities.Availability
 import com.example.user.domain.entities.Doctor
 
 fun Doctor.toEntity(
     isFavorite: Boolean
 ): DoctorEntity = DoctorEntity(
-    id,
-    name,
-    specKey,
-    city,
-    rating.toDouble(),
-    reviews,
-    availability,
-    inQueue,
-    price,
-    isFavorite
+    id = id,
+    name = name,
+    specialization = specKey,
+    city = city,
+    rating = rating.toDouble(),
+    reviews = reviews,
+    availability = Availability(),
+    inQueue = inQueue,
+    price = price,
+    contact = contact,
+    isFavorite = isFavorite
 )
 
 fun DoctorEntity.toDomain(): Doctor =
@@ -33,5 +35,6 @@ fun DoctorEntity.toDomain(): Doctor =
         avatar = "",
         premium = false,
         address = "",
-        reviewsList = listOf()
+        reviewsList = listOf(),
+        contact = contact
     )

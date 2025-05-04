@@ -1,11 +1,16 @@
 package com.example.altabib.utils
 
-import com.example.doctors.domain.DoctorRepository
-import com.example.altabib.design_system.models.Specialization
 import com.example.altabib.core.Result
 import com.example.altabib.design_system.models.City
+import com.example.altabib.design_system.models.Specialization
+import com.example.doctors.domain.DoctorRepository
+import com.example.user.domain.entities.Availability
+import com.example.user.domain.entities.AvailableHour
+import com.example.user.domain.entities.DayOfWeek
 import com.example.user.domain.entities.Doctor
+import com.example.user.domain.entities.Period
 import com.example.user.domain.entities.Review
+import com.example.user.domain.entities.TimeWindow
 import kotlin.random.Random
 
 suspend fun seedDoctors(doctorRepository: DoctorRepository) {
@@ -39,8 +44,50 @@ suspend fun seedDoctors(doctorRepository: DoctorRepository) {
         "Caring beyond prescriptions."
     )
 
+    val contacts = listOf(
+        "01000000001",
+        "01000000002",
+        "01000000003",
+        "01000000004",
+        "01000000005",
+        "01000000006",
+        "01000000007",
+        "01000000008",
+    )
+
     val availabilities = listOf(
-        "9AM - 5PM", "10AM - 6PM", "1PM - 9PM", "4PM - 11PM", "8AM - 2PM"
+        Availability(
+            days = listOf(DayOfWeek.FRIDAY, DayOfWeek.SATURDAY),
+            hours = listOf(
+                TimeWindow(
+                    start = AvailableHour(1, Period.PM),
+                    end = AvailableHour(4, Period.PM)
+                ),
+                TimeWindow(
+                    start = AvailableHour(6, Period.PM),
+                    end = AvailableHour(9, Period.PM)
+                )
+            )
+        ),
+
+        Availability(
+            days = listOf(
+                DayOfWeek.MONDAY,
+                DayOfWeek.SATURDAY,
+                DayOfWeek.SUNDAY,
+                DayOfWeek.THURSDAY
+            ),
+            hours = listOf(
+                TimeWindow(
+                    start = AvailableHour(12, Period.PM),
+                    end = AvailableHour(5, Period.PM)
+                ),
+                TimeWindow(
+                    start = AvailableHour(8, Period.PM),
+                    end = AvailableHour(11, Period.PM)
+                )
+            )
+        ),
     )
 
     val addresses = listOf(
@@ -89,6 +136,7 @@ suspend fun seedDoctors(doctorRepository: DoctorRepository) {
             name = names[index % names.size],
             specKey = Specialization.entries.random().key,
             city = cities.random(),
+            contact = contacts.random(),
             rating = Random
                 .nextDouble(2.5, 5.0)
                 .toFloat(),
