@@ -3,6 +3,7 @@ package com.example.doctors.data.source
 import android.util.Log
 import com.example.altabib.core.DOCTORS_PATH
 import com.example.altabib.core.DataError
+import com.example.altabib.core.LocalImageStorage
 import com.example.altabib.core.Result
 import com.example.doctors.data.source.local.DoctorDao
 import com.example.doctors.data.source.local.mappers.toDomain
@@ -28,6 +29,7 @@ private const val SPECIALIZATION_FIELD = "specialization"
 class DoctorRepositoryImpl(
     private val firestore: FirebaseFirestore,
     private val storage: FirebaseStorage,
+    private val localImageStorage: LocalImageStorage,
     private val dao: DoctorDao
 ) : DoctorRepository {
 
@@ -163,7 +165,10 @@ class DoctorRepositoryImpl(
         }
     }
 
-    override suspend fun uploadAvatar(userId: String, bytes: ByteArray): Result<String, DataError> {
+    override suspend fun uploadAvatar(
+        userId: String,
+        bytes: ByteArray
+    ): Result<String, DataError> {
         return withContext(Dispatchers.IO) {
             try {
                 // 1. Upload avatar to Firebase Storage
@@ -187,4 +192,22 @@ class DoctorRepositoryImpl(
         }
     }
 
+    override suspend fun cacheAvatar(
+        userId: String,
+        bytes: ByteArray,
+        path: String?
+    ): Result<String, DataError> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val uri = localImageStorage.saveAvatar(userId, bytes)
+                if (path != null && localImageStorage.isLocalAvatar(path)) {
+                    localImageStorage.deleteAvatar(userId)
+                }
+                Result.Success(uri)
+            } catch (e: Exception) {
+                Log.e("DoctorRepo", "Local image save failed", e)
+                Result.Error(DataError.FailedToUpdateData)
+            }
+        }
+    }
 }

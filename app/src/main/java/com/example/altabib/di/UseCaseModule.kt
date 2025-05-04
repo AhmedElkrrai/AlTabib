@@ -9,7 +9,7 @@ import com.example.doctors.domain.usecases.GetDoctorUseCase
 import com.example.doctors.domain.usecases.GetDoctorsBySpecializationUseCase
 import com.example.doctors.domain.usecases.SearchDoctorsUseCase
 import com.example.doctors.domain.usecases.UpdateDoctorUseCase
-import com.example.doctors.domain.usecases.UploadAvatarUseCase
+import com.example.doctors.domain.usecases.UpdateAvatarUseCase
 import com.example.favorites.domain.usecases.AddFavoriteUseCase
 import com.example.favorites.domain.usecases.GetFavoritesUseCase
 import com.example.favorites.domain.usecases.IsFavoriteUseCase
@@ -45,5 +45,5 @@ val useCaseModule = module {
     singleOf(::RemoveFavoriteUseCase)
     singleOf(::GetProfileViewsUseCase)
     singleOf(::UpdateProfileViewsUseCase)
-    singleOf(::UploadAvatarUseCase)
+    singleOf(::UpdateAvatarUseCase)
 }

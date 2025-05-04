@@ -1,5 +1,6 @@
 package com.example.profile.presentation.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -42,6 +43,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.example.altabib.design.R
 import com.example.altabib.design_system.components.AppOutlinedButton
 import com.example.altabib.design_system.components.AppOutlinedTextFiled
@@ -77,7 +79,11 @@ fun ProfileScreen(
                     .clickable { onAction(ProfileAction.OnOpenImagePicker) }
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.doctor), // Placeholder
+                    painter = rememberAsyncImagePainter(
+                        model = state.doctor.avatar,
+                        placeholder = painterResource(R.drawable.doctor),
+                        error = painterResource(R.drawable.doctor)
+                    ),
                     contentDescription = "Doctor's photo",
                     modifier = Modifier
                         .fillMaxSize()

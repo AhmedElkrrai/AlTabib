@@ -18,4 +18,9 @@ interface DoctorRepository {
     suspend fun addFavorite(doctor: Doctor): Result<Unit, DataError>
     suspend fun removeFavorite(doctor: Doctor): Result<Unit, DataError>
     suspend fun uploadAvatar(userId: String, bytes: ByteArray): Result<String, DataError>
+    suspend fun cacheAvatar(
+        userId: String,
+        bytes: ByteArray,
+        path: String?
+    ): Result<String, DataError>
 }

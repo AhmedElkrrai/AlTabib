@@ -3,13 +3,14 @@ package com.example.profile.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.DataError
+import com.example.altabib.core.LocalImageStorage
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
 import com.example.altabib.design.R
 import com.example.altabib.design_system.utils.ByteArrayConverter
 import com.example.doctors.domain.usecases.GetDoctorUseCase
+import com.example.doctors.domain.usecases.UpdateAvatarUseCase
 import com.example.doctors.domain.usecases.UpdateDoctorUseCase
-import com.example.doctors.domain.usecases.UploadAvatarUseCase
 import com.example.user.domain.usecases.GetUserUseCase
 import com.example.user.domain.usecases.LogoutUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -26,8 +27,9 @@ class ProfileViewModel(
     private val getDoctorUseCase: GetDoctorUseCase,
     private val updateDoctorUseCase: UpdateDoctorUseCase,
     private val logoutUseCase: LogoutUseCase,
-    private val uploadAvatarUseCase: UploadAvatarUseCase,
-    private val byteArrayConverter: ByteArrayConverter
+    private val updateAvatarUseCase: UpdateAvatarUseCase,
+    private val byteArrayConverter: ByteArrayConverter,
+    private val imageStorage: LocalImageStorage
 ) : ViewModel() {
     private val _state = MutableStateFlow(ProfileState())
     val state = _state
@@ -216,7 +218,12 @@ class ProfileViewModel(
                 return@launch
             }
 
-            uploadAvatarUseCase(user.uid, bytes)
+            updateAvatarUseCase.invoke(
+                uploadToServer = false,
+                doctorId = user.uid,
+                bytes = bytes,
+                oldAvatar = state.value.doctor.avatar
+            )
                 .onSuccess { url ->
                     _state.update { state ->
                         state.copy(
@@ -236,10 +243,12 @@ class ProfileViewModel(
         viewModelScope.launch {
             val doctorId = getUserUseCase()?.uid ?: return@launch
             getDoctorUseCase(doctorId)
-                .onSuccess {
+                .onSuccess { doctor ->
                     _state.update { state ->
                         state.copy(
-                            doctor = it
+                            doctor = doctor.copy(
+                                avatar = imageStorage.getCachedAvatarPath()
+                            )
                         )
                     }
                 }

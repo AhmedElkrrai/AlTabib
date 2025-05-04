@@ -1,5 +1,6 @@
 [versions]
 agp = "8.5.2"
+coilCompose = "2.5.0"
 googleServices = "4.3.15"
 gradle = "8.5.2"
 gson = "2.12.1"
@@ -25,6 +26,7 @@ material = "1.12.0"
 firebaseStorageKtx = "21.0.1"
 
 [libraries]
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 firebase-auth = "com.google.firebase:firebase-auth:22.3.1"
 google-play-services-auth = "com.google.android.gms:play-services-auth:21.3.0"
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
