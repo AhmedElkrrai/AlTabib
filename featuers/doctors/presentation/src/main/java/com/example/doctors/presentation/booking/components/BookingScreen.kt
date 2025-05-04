@@ -25,6 +25,7 @@ import com.example.altabib.design_system.components.AppOutlinedTextFiled
 import com.example.altabib.design_system.components.Loading
 import com.example.altabib.design_system.components.TopAppBarWithBackButton
 import com.example.altabib.design_system.localization.getLocalizedString
+import com.example.altabib.design_system.utils.ForceImmersiveMode
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.doctors.presentation.booking.BookingAction
 import com.example.doctors.presentation.booking.BookingState
@@ -36,6 +37,8 @@ fun BookingScreen(
     onAction: (BookingAction) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    ForceImmersiveMode()
+
     Scaffold(
         topBar = {
             TopAppBarWithBackButton(

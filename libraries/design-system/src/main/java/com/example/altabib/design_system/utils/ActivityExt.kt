@@ -2,11 +2,16 @@ package com.example.altabib.design_system.utils
 
 import android.app.Activity
 import android.os.Build
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
+import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalActivity
+import androidx.compose.runtime.Composable
 
 fun Activity.enableStickyImmersiveMode() {
+    Log.d("", "Taggs - enableStickyImmersiveMode")
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         window.insetsController?.let { controller ->
             controller.hide(WindowInsets.Type.systemBars())
@@ -34,5 +39,14 @@ fun Activity.enableStickyImmersiveMode() {
                             or View.SYSTEM_UI_FLAG_FULLSCREEN
                     )
         }
+    }
+}
+
+@Composable
+fun ForceImmersiveMode() {
+    val activity = LocalActivity.current
+    activity?.enableStickyImmersiveMode()
+    BackHandler {
+        activity?.enableStickyImmersiveMode()
     }
 }
