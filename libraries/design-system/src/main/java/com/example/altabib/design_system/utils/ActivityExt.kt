@@ -5,9 +5,6 @@ import android.os.Build
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
-import androidx.activity.compose.BackHandler
-import androidx.activity.compose.LocalActivity
-import androidx.compose.runtime.Composable
 
 fun Activity.enableStickyImmersiveMode() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -37,14 +34,5 @@ fun Activity.enableStickyImmersiveMode() {
                             or View.SYSTEM_UI_FLAG_FULLSCREEN
                     )
         }
-    }
-}
-
-@Composable
-fun ForceImmersiveMode() {
-    val activity = LocalActivity.current
-    activity?.enableStickyImmersiveMode()
-    BackHandler {
-        activity?.enableStickyImmersiveMode()
     }
 }
