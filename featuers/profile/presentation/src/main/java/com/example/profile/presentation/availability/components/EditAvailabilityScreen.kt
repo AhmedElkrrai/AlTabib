@@ -33,6 +33,7 @@ import com.example.profile.presentation.availability.AvailabilityAction
 import com.example.profile.presentation.availability.AvailabilityState
 import com.example.profile.presentation.profile.components.TimeWindowEditor
 import com.example.user.domain.entities.Availability
+import com.example.user.domain.entities.TimeWindow
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -53,102 +54,127 @@ fun EditAvailabilityScreen(
                     title = getLocalizedString(R.string.edit_availability),
                     onBackClick = { onAction(AvailabilityAction.Back) }
                 )
-            }
+            },
         ) { innerPadding ->
             FormatCompose {
-                Column(
+                LazyColumn(
                     modifier = modifier
                         .padding(innerPadding)
                         .fillMaxSize()
-                        .padding(16.dp),
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    LazyColumn {
-                        item {
-                            Text(
-                                getLocalizedString(R.string.select_days),
-                                style = MaterialTheme.typography.titleMedium
-                            )
-                            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                DayOfWeek.entries.forEach { day ->
-                                    val isSelected = day in selectedDays
-                                    val days = selectedDays.toMutableList()
-                                    if (isSelected) days.remove(day) else days.add(day)
-                                    FilterChip(
-                                        selected = isSelected,
-                                        onClick = {
-                                            onAction(
-                                                AvailabilityAction.OnAvailabilityChange(
-                                                    state.data.copy(
-                                                        days = days
-                                                    )
+                    item {
+                        Text(
+                            text = getLocalizedString(R.string.select_days),
+                            style = MaterialTheme.typography.titleMedium
+                        )
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            DayOfWeek.entries.forEach { day ->
+                                val isSelected = day in selectedDays
+                                val updatedDays = selectedDays.toMutableList().apply {
+                                    if (isSelected) remove(day) else add(day)
+                                }
+
+                                FilterChip(
+                                    selected = isSelected,
+                                    onClick = {
+                                        onAction(
+                                            AvailabilityAction.OnAvailabilityChange(
+                                                state.data.copy(
+                                                    days = updatedDays
                                                 )
                                             )
-                                        },
-                                        label = { Text(day.displayName()) }
-                                    )
-                                }
-                            }
-                        }
-
-                        item {
-                            HorizontalDivider()
-                        }
-
-                        item {
-                            Text(
-                                getLocalizedString(R.string.time_windows),
-                                style = MaterialTheme.typography.titleMedium
-                            )
-                        }
-
-                        itemsIndexed(timeWindows) { index, window ->
-                            TimeWindowEditor(
-                                window = window,
-                                onChange = {
-                                    //  timeWindows[index] = it
-                                },
-                                onDelete = {
-                                    // timeWindows.removeAt(index)
-                                }
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                        }
-
-                        item {
-                            Box(
-                                modifier = Modifier.fillMaxWidth(),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                AppOutlinedButton(
-                                    text = getLocalizedString(R.string.add_time_window),
-                                    onClick = {
-                                        //  timeWindows.add(TimeWindow())
-                                    }
+                                        )
+                                    },
+                                    label = { Text(day.displayName()) }
                                 )
                             }
                         }
                     }
 
-                    Box(
-                        modifier = modifier
-                            .fillMaxWidth()
-                            .weight(1f),
-                        contentAlignment = Alignment.BottomCenter
-                    ) {
-                        AppOutlinedButton(
-                            text = getLocalizedString(R.string.save),
-                            onClick = {
+                    item {
+                        HorizontalDivider()
+                    }
+
+                    item {
+                        Text(
+                            getLocalizedString(R.string.time_windows),
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    }
+
+                    itemsIndexed(timeWindows) { index, window ->
+                        TimeWindowEditor(
+                            window = window,
+                            onChange = { updatedWindow ->
+                                val updatedList = timeWindows.toMutableList().apply {
+                                    set(index, updatedWindow)
+                                }
                                 onAction(
-                                    AvailabilityAction.Save(
-                                        Availability(
-                                            days = selectedDays,
-                                            hours = timeWindows
-                                        )
+                                    AvailabilityAction.OnAvailabilityChange(
+                                        state.data.copy(hours = updatedList)
+                                    )
+                                )
+                            },
+                            onDelete = {
+                                val updatedList = timeWindows.toMutableList().apply {
+                                    removeAt(index)
+                                }
+                                onAction(
+                                    AvailabilityAction.OnAvailabilityChange(
+                                        state.data.copy(hours = updatedList)
                                     )
                                 )
                             }
                         )
+                        Spacer(modifier = Modifier.height(8.dp))
+                    }
+
+                    item {
+                        Box(
+                            modifier = Modifier.fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            AppOutlinedButton(
+                                text = getLocalizedString(R.string.add_time_window),
+                                onClick = {
+                                    val updatedList = timeWindows.toMutableList().apply {
+                                        add(TimeWindow())
+                                    }
+                                    onAction(
+                                        AvailabilityAction.OnAvailabilityChange(
+                                            state.data.copy(hours = updatedList)
+                                        )
+                                    )
+                                }
+                            )
+                        }
+                    }
+
+                    item {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            AppOutlinedButton(
+                                text = getLocalizedString(R.string.save),
+                                onClick = {
+                                    onAction(
+                                        AvailabilityAction.Save(
+                                            Availability(
+                                                days = selectedDays,
+                                                hours = timeWindows
+                                            )
+                                        )
+                                    )
+                                }
+                            )
+                        }
                     }
                 }
             }

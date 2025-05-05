@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import com.example.altabib.core.models.Period
 import com.example.altabib.design_system.utils.displayName
 
@@ -22,17 +23,28 @@ fun DropdownMenuBox(
 
     Box {
         OutlinedButton(onClick = { expanded = true }) {
-            Text(selected.displayName())
+            Text(
+                text = selected.displayName(),
+                color = Color.White
+            )
         }
 
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false }) {
             Period.entries.forEach {
-                DropdownMenuItem(onClick = {
-                    onSelected(it)
-                    expanded = false
-                }, text = { Text(it.displayName()) })
+                DropdownMenuItem(
+                    onClick = {
+                        onSelected(it)
+                        expanded = false
+                    },
+                    text = {
+                        Text(
+                            text = it.displayName(),
+                            color = Color.White
+                        )
+                    }
+                )
             }
         }
     }

@@ -84,6 +84,9 @@ class AvailabilityViewModel(
     private fun saveAvailability(value: Availability) {
         viewModelScope.launch {
             updateAvailability.invoke(value)
+                .onSuccess {
+                    _event.emit(AvailabilityEvent.Back)
+                }
                 .onError {
                     _event.emit(
                         AvailabilityEvent.ShowToast(DataError.FailedToUpdateData)

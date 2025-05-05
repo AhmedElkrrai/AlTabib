@@ -24,16 +24,14 @@ fun TimePickerField(
         OutlinedTextField(
             value = hourState.value,
             onValueChange = {
-                if (it.length <= 2 && it.toIntOrNull() in 1..12) {
-                    hourState.value = it
-                }
+                hourState.value = it
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true,
             label = { Text(text) },
-            modifier = Modifier.width(40.dp)
+            modifier = Modifier.width(50.dp)
         )
-        Spacer(modifier = Modifier.width(4.dp))
+        Spacer(modifier = Modifier.width(6.dp))
         DropdownMenuBox(
             selected = periodState.value,
             onSelected = { periodState.value = it }
