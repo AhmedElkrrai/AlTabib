@@ -92,6 +92,7 @@
     <string name="add_time_window">Add Time Window</string>
     <string name="from">From</string>
     <string name="to">To</string>
+    <string name="time_windows_maxed">Can not add more windows</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">Profile Updated</string>
     <string name="doctor_already_added">Doctor already in favorites</string>

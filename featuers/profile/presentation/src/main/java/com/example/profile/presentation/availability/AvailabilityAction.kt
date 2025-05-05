@@ -6,4 +6,5 @@ sealed interface AvailabilityAction {
     data class OnAvailabilityChange(val value: Availability) : AvailabilityAction
     data class Save(val value: Availability) : AvailabilityAction
     data object Back : AvailabilityAction
+    data object OnAddTimeWindowMaxed : AvailabilityAction
 }

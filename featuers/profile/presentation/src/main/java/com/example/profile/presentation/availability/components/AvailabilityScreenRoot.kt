@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
 import com.example.profile.presentation.availability.AvailabilityEvent
@@ -30,6 +31,13 @@ fun AvailabilityScreenRoot(
             is AvailabilityEvent.ShowToast -> {
                 Toast
                     .makeText(context, event.error.getMessage(context), Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            is AvailabilityEvent.ShowMessage -> {
+                val message = getLocalizedString(event.msgRes)
+                Toast
+                    .makeText(context, message, Toast.LENGTH_SHORT)
                     .show()
             }
         }

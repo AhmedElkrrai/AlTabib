@@ -1,5 +1,6 @@
 package com.example.profile.presentation.availability.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,6 +28,7 @@ import com.example.altabib.design_system.components.AppOutlinedButton
 import com.example.altabib.design_system.components.Loading
 import com.example.altabib.design_system.components.TopAppBarWithBackButton
 import com.example.altabib.design_system.localization.getLocalizedString
+import com.example.altabib.design_system.utils.ForceImmersiveMode
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.altabib.design_system.utils.displayName
 import com.example.profile.presentation.availability.AvailabilityAction
@@ -42,6 +44,8 @@ fun EditAvailabilityScreen(
     state: AvailabilityState,
     onAction: (AvailabilityAction) -> Unit
 ) {
+    ForceImmersiveMode()
+
     val selectedDays = state.data.days
     val timeWindows = state.data.hours
 
@@ -142,14 +146,21 @@ fun EditAvailabilityScreen(
                             AppOutlinedButton(
                                 text = getLocalizedString(R.string.add_time_window),
                                 onClick = {
-                                    val updatedList = timeWindows.toMutableList().apply {
-                                        add(TimeWindow())
-                                    }
-                                    onAction(
-                                        AvailabilityAction.OnAvailabilityChange(
-                                            state.data.copy(hours = updatedList)
+                                    if (timeWindows.size >= 3) {
+                                        onAction(
+                                            AvailabilityAction.OnAddTimeWindowMaxed
                                         )
-                                    )
+                                    } else {
+                                        val updatedList = timeWindows.toMutableList().apply {
+                                            add(TimeWindow())
+                                        }
+                                        onAction(
+                                            AvailabilityAction
+                                                .OnAvailabilityChange(
+                                                    state.data.copy(hours = updatedList)
+                                                )
+                                        )
+                                    }
                                 }
                             )
                         }

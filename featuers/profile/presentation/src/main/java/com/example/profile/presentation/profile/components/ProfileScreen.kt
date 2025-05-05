@@ -55,6 +55,7 @@ import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.models.City
 import com.example.altabib.design_system.models.Specialization
 import com.example.altabib.design_system.theme.Primary
+import com.example.altabib.design_system.utils.ForceImmersiveMode
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.profile.presentation.profile.ProfileAction
 import com.example.profile.presentation.profile.ProfileState
@@ -66,12 +67,11 @@ fun ProfileScreen(
     onAction: (ProfileAction) -> Unit
 ) {
     FormatCompose {
-        val scrollState = rememberScrollState()
-
+        ForceImmersiveMode()
         Column(
             modifier = modifier
                 .fillMaxSize()
-                .verticalScroll(scrollState)
+                .verticalScroll(rememberScrollState())
                 .padding(16.dp)
         ) {
             // Profile photo + name
@@ -242,8 +242,14 @@ fun ProfileScreen(
             ) {
                 Icon(Icons.Default.Schedule, contentDescription = null)
                 Spacer(Modifier.width(8.dp))
+                val textRes = if (
+                    state.doctor.availability.days.isEmpty()
+                    && state.doctor.availability.hours.isEmpty()
+                ) R.string.not_available
+                else R.string.available
+
                 Text(
-                    text = getLocalizedString(R.string.available),
+                    text = getLocalizedString(textRes),
                     modifier = Modifier.weight(1f)
                 )
                 TextButton(onClick = { onAction(ProfileAction.OnEditAvailabilityClick) }) {

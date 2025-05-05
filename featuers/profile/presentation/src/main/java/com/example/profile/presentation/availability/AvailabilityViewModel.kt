@@ -5,10 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.altabib.core.DataError
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
+import com.example.altabib.design.R
 import com.example.doctors.domain.usecases.GetDoctorUseCase
 import com.example.doctors.domain.usecases.UpdateAvailabilityUseCase
 import com.example.user.domain.entities.Availability
 import com.example.user.domain.usecases.GetUserUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -41,7 +43,12 @@ class AvailabilityViewModel(
         when (action) {
             is AvailabilityAction.OnAvailabilityChange -> updateAvailability(action.value)
             is AvailabilityAction.Save -> saveAvailability(action.value)
-            AvailabilityAction.Back -> dismiss()
+            is AvailabilityAction.Back -> dismiss()
+            is AvailabilityAction.OnAddTimeWindowMaxed -> {
+                viewModelScope.launch {
+                    _event.emit(AvailabilityEvent.ShowMessage(R.string.time_windows_maxed))
+                }
+            }
         }
     }
 
@@ -85,6 +92,8 @@ class AvailabilityViewModel(
         viewModelScope.launch {
             updateAvailability.invoke(value)
                 .onSuccess {
+                    _event.emit(AvailabilityEvent.ShowMessage(R.string.update_profile_msg))
+                    delay(100)
                     _event.emit(AvailabilityEvent.Back)
                 }
                 .onError {
