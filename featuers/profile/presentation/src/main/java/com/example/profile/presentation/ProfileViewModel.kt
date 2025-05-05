@@ -63,6 +63,7 @@ class ProfileViewModel(
             is ProfileAction.OnSpecializationClick -> openSpecializationDialog()
             is ProfileAction.OnSpecializationSelected -> onSpecializationSelected(action)
             is ProfileAction.OnQueueChanged -> onQueueChanged(action)
+            is ProfileAction.OnAvailabilityChanged -> onAvailabilityChanged(action)
         }
     }
 
@@ -150,41 +151,6 @@ class ProfileViewModel(
         }
     }
 
-    private fun saveProfile() {
-        viewModelScope.launch {
-            updateDoctorUseCase(state.value.doctor)
-                .onSuccess {
-                    _event.emit(
-                        ProfileEvent.ShowMessage(R.string.update_profile_msg)
-                    )
-                }
-                .onError {
-                    _event.emit(
-                        ProfileEvent.ShowToast(DataError.FailedToUpdateData)
-                    )
-                }
-        }
-    }
-
-    private fun logout() {
-        viewModelScope.launch {
-            try {
-                logoutUseCase.invoke()
-                _event.emit(ProfileEvent.Logout)
-            } catch (e: Exception) {
-                _event.emit(
-                    ProfileEvent.ShowToast(DataError.GeneralError)
-                )
-            }
-        }
-    }
-
-    private fun changeLanguage() {
-        viewModelScope.launch {
-            _event.emit(ProfileEvent.LanguageChanged)
-        }
-    }
-
     private fun showContactDevsDialog() {
         viewModelScope.launch {
             _event.emit(ProfileEvent.ContactDevs)
@@ -249,6 +215,55 @@ class ProfileViewModel(
                     )
                 )
             }
+        }
+    }
+
+    private fun onAvailabilityChanged(action: ProfileAction.OnAvailabilityChanged) {
+        viewModelScope.launch {
+            _state.update { state ->
+                state.copy(
+                    doctor = state.doctor.copy(
+                        availability = action.value
+                    )
+                )
+            }
+
+            saveProfile()
+        }
+    }
+
+    private fun logout() {
+        viewModelScope.launch {
+            try {
+                logoutUseCase.invoke()
+                _event.emit(ProfileEvent.Logout)
+            } catch (e: Exception) {
+                _event.emit(
+                    ProfileEvent.ShowToast(DataError.GeneralError)
+                )
+            }
+        }
+    }
+
+    private fun changeLanguage() {
+        viewModelScope.launch {
+            _event.emit(ProfileEvent.LanguageChanged)
+        }
+    }
+
+    private fun saveProfile() {
+        viewModelScope.launch {
+            updateDoctorUseCase(state.value.doctor)
+                .onSuccess {
+                    _event.emit(
+                        ProfileEvent.ShowMessage(R.string.update_profile_msg)
+                    )
+                }
+                .onError {
+                    _event.emit(
+                        ProfileEvent.ShowToast(DataError.FailedToUpdateData)
+                    )
+                }
         }
     }
 

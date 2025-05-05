@@ -5,10 +5,10 @@ import com.example.altabib.design_system.models.City
 import com.example.altabib.design_system.models.Specialization
 import com.example.doctors.domain.DoctorRepository
 import com.example.user.domain.entities.Availability
-import com.example.user.domain.entities.AvailableHour
-import com.example.user.domain.entities.DayOfWeek
+import com.example.altabib.core.models.AvailableHour
+import com.example.altabib.core.models.DayOfWeek
 import com.example.user.domain.entities.Doctor
-import com.example.user.domain.entities.Period
+import com.example.altabib.core.models.Period
 import com.example.user.domain.entities.Review
 import com.example.user.domain.entities.TimeWindow
 import kotlin.random.Random

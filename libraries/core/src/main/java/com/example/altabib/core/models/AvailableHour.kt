@@ -1,4 +1,4 @@
-package com.example.user.domain.entities
+package com.example.altabib.core.models
 
 data class AvailableHour(
     val time: Int = 1,

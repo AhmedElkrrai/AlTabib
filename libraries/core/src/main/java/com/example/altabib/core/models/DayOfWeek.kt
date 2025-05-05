@@ -1,4 +1,4 @@
-package com.example.user.domain.entities
+package com.example.altabib.core.models
 
 enum class DayOfWeek {
     MONDAY,

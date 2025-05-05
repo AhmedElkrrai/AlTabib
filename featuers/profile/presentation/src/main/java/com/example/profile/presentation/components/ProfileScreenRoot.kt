@@ -34,6 +34,7 @@ fun ProfileScreenRoot(
     val rootNavController = LocalNavController.current
     var showContactDialog by remember { mutableStateOf(false) }
     var showSpecializationDialog by remember { mutableStateOf(false) }
+    var showAvailabilityDialog by remember { mutableStateOf(false) }
 
     if (showContactDialog) {
         ContactUsDialog { showContactDialog = false }
@@ -46,6 +47,16 @@ fun ProfileScreenRoot(
             onSelect = {
                 viewModel.onAction(ProfileAction.OnSpecializationSelected(it))
                 showSpecializationDialog = false
+            }
+        )
+    }
+
+    if (showAvailabilityDialog) {
+        EditAvailabilityScreen(
+            availability = state.doctor.availability,
+            onDismiss = { showAvailabilityDialog = false },
+            onSave = {
+                viewModel.onAction(ProfileAction.OnAvailabilityChanged(it))
             }
         )
     }
@@ -94,7 +105,7 @@ fun ProfileScreenRoot(
             }
 
             is ProfileEvent.EditAvailability -> {
-                // TODO
+                showAvailabilityDialog = true
             }
         }
     }

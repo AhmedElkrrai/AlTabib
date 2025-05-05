@@ -1,6 +1,7 @@
 package com.example.profile.presentation
 
 import android.net.Uri
+import com.example.user.domain.entities.Availability
 
 sealed class ProfileAction {
     data class OnNameChange(val value: String) : ProfileAction()
@@ -12,6 +13,7 @@ sealed class ProfileAction {
     data class OnAvatarSelected(val uri: Uri) : ProfileAction()
     data class OnSpecializationSelected(val specKey: String) : ProfileAction()
     data class OnQueueChanged(val value: Int) : ProfileAction()
+    data class OnAvailabilityChanged(val value: Availability) : ProfileAction()
     data object OnSpecializationClick : ProfileAction()
     data object OnOpenImagePicker : ProfileAction()
     data object OnEditAvailabilityClick : ProfileAction()

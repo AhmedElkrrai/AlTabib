@@ -85,6 +85,14 @@
     <string name="change_language">Change Language</string>
     <string name="edit">Edit</string>
     <string name="choose_specialization">Choose Specialization</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_availability">Edit Availability</string>
+    <string name="select_days">Select Days:</string>
+    <string name="time_windows">Time Windows:</string>
+    <string name="add_time_window">Add Time Window</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">Profile Updated</string>
     <string name="doctor_already_added">Doctor already in favorites</string>

@@ -5,9 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.height
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,8 +16,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.altabib.design.R
 import com.example.altabib.design_system.localization.getLocalizedString
-import com.example.doctors.presentation.doctor.util.displayName
-import com.example.doctors.presentation.doctor.util.formatAvailableHour
+import com.example.altabib.design_system.utils.displayName
+import com.example.altabib.design_system.utils.formatAvailableHour
 import com.example.user.domain.entities.Availability
 
 @OptIn(ExperimentalLayoutApi::class)

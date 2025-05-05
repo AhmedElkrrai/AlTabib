@@ -1,11 +1,11 @@
-package com.example.doctors.presentation.doctor.util
+package com.example.altabib.design_system.utils
 
 import androidx.compose.runtime.Composable
 import com.example.altabib.design.R
 import com.example.altabib.design_system.localization.getLocalizedString
-import com.example.user.domain.entities.AvailableHour
-import com.example.user.domain.entities.DayOfWeek
-import com.example.user.domain.entities.Period
+import com.example.altabib.core.models.AvailableHour
+import com.example.altabib.core.models.DayOfWeek
+import com.example.altabib.core.models.Period
 
 @Composable
 fun formatAvailableHour(hour: AvailableHour): String {
