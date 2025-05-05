@@ -1,4 +1,4 @@
-package com.example.profile.presentation.components
+package com.example.profile.presentation.profile.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -56,8 +56,8 @@ import com.example.altabib.design_system.models.City
 import com.example.altabib.design_system.models.Specialization
 import com.example.altabib.design_system.theme.Primary
 import com.example.altabib.design_system.utils.FormatCompose
-import com.example.profile.presentation.ProfileAction
-import com.example.profile.presentation.ProfileState
+import com.example.profile.presentation.profile.ProfileAction
+import com.example.profile.presentation.profile.ProfileState
 
 @Composable
 fun ProfileScreen(

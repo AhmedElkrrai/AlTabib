@@ -8,8 +8,9 @@ import com.example.appointments.domain.usecases.SaveAppointmentUseCase
 import com.example.doctors.domain.usecases.GetDoctorUseCase
 import com.example.doctors.domain.usecases.GetDoctorsBySpecializationUseCase
 import com.example.doctors.domain.usecases.SearchDoctorsUseCase
-import com.example.doctors.domain.usecases.UpdateDoctorUseCase
+import com.example.doctors.domain.usecases.UpdateAvailabilityUseCase
 import com.example.doctors.domain.usecases.UpdateAvatarUseCase
+import com.example.doctors.domain.usecases.UpdateDoctorUseCase
 import com.example.favorites.domain.usecases.AddFavoriteUseCase
 import com.example.favorites.domain.usecases.GetFavoritesUseCase
 import com.example.favorites.domain.usecases.IsFavoriteUseCase
@@ -46,4 +47,5 @@ val useCaseModule = module {
     singleOf(::GetProfileViewsUseCase)
     singleOf(::UpdateProfileViewsUseCase)
     singleOf(::UpdateAvatarUseCase)
+    singleOf(::UpdateAvailabilityUseCase)
 }

@@ -4,4 +4,5 @@ sealed class DoctorScreen(val route: String) {
     data object Appointments : DoctorScreen("doctor_appointments")
     data object Analytics : DoctorScreen("doctor_analytics")
     data object Profile : DoctorScreen("doctor_profile")
+    data object EditAvailability : DoctorScreen("doctor_edit_availability")
 }

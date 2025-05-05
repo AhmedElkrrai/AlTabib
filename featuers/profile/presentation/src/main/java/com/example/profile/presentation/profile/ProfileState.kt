@@ -1,4 +1,4 @@
-package com.example.profile.presentation
+package com.example.profile.presentation.profile
 
 import com.example.user.domain.entities.Doctor
 

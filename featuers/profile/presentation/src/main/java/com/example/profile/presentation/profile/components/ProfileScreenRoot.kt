@@ -1,4 +1,4 @@
-package com.example.profile.presentation.components
+package com.example.profile.presentation.profile.components
 
 import android.net.Uri
 import android.widget.Toast
@@ -12,20 +12,22 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import com.example.altabib.design_system.components.ContactUsDialog
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.navigation.screen.Screen
 import com.example.altabib.design_system.navigation.utils.LocalNavController
 import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
-import com.example.profile.presentation.ProfileAction
-import com.example.profile.presentation.ProfileEvent
-import com.example.profile.presentation.ProfileViewModel
+import com.example.profile.presentation.profile.ProfileAction
+import com.example.profile.presentation.profile.ProfileEvent
+import com.example.profile.presentation.profile.ProfileViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ProfileScreenRoot(
     modifier: Modifier = Modifier,
+    navController: NavHostController,
     onLanguageChanged: @Composable () -> Unit,
     viewModel: ProfileViewModel = koinViewModel()
 ) {
@@ -34,7 +36,6 @@ fun ProfileScreenRoot(
     val rootNavController = LocalNavController.current
     var showContactDialog by remember { mutableStateOf(false) }
     var showSpecializationDialog by remember { mutableStateOf(false) }
-    var showAvailabilityDialog by remember { mutableStateOf(false) }
 
     if (showContactDialog) {
         ContactUsDialog { showContactDialog = false }
@@ -47,16 +48,6 @@ fun ProfileScreenRoot(
             onSelect = {
                 viewModel.onAction(ProfileAction.OnSpecializationSelected(it))
                 showSpecializationDialog = false
-            }
-        )
-    }
-
-    if (showAvailabilityDialog) {
-        EditAvailabilityScreen(
-            availability = state.doctor.availability,
-            onDismiss = { showAvailabilityDialog = false },
-            onSave = {
-                viewModel.onAction(ProfileAction.OnAvailabilityChanged(it))
             }
         )
     }
@@ -104,8 +95,8 @@ fun ProfileScreenRoot(
                 launcher.launch("image/*")
             }
 
-            is ProfileEvent.EditAvailability -> {
-                showAvailabilityDialog = true
+            is ProfileEvent.Navigate -> {
+                navController.navigate(event.route)
             }
         }
     }

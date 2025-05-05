@@ -3,6 +3,7 @@ package com.example.doctors.domain
 import com.example.altabib.core.DataError
 import com.example.user.domain.entities.Doctor
 import com.example.altabib.core.Result
+import com.example.user.domain.entities.Availability
 
 interface DoctorRepository {
     suspend fun searchDoctors(city: String, query: String): Result<List<Doctor>, DataError>
@@ -23,4 +24,9 @@ interface DoctorRepository {
         bytes: ByteArray,
         path: String?
     ): Result<String, DataError>
+
+    suspend fun updateAvailability(
+        userId: String,
+        availability: Availability
+    ): Result<Unit, DataError>
 }

@@ -9,7 +9,9 @@ import com.example.altabib.design_system.navigation.screen.DoctorScreen
 import com.example.altabib.utils.RestartApp
 import com.example.analytics.presentation.AnalyticsScreen
 import com.example.appointments.presentation.components.AppointmentsScreenRoot
-import com.example.profile.presentation.components.ProfileScreenRoot
+import com.example.profile.presentation.availability.components.AvailabilityScreenRoot
+import com.example.profile.presentation.availability.components.EditAvailabilityScreen
+import com.example.profile.presentation.profile.components.ProfileScreenRoot
 
 @Composable
 fun DoctorNavGraph(
@@ -25,9 +27,13 @@ fun DoctorNavGraph(
         }
         composable(DoctorScreen.Profile.route) {
             ProfileScreenRoot(
+                navController = navController,
                 modifier = modifier,
                 onLanguageChanged = { RestartApp() }
             )
+        }
+        composable(DoctorScreen.EditAvailability.route) {
+            AvailabilityScreenRoot(navController)
         }
     }
 }

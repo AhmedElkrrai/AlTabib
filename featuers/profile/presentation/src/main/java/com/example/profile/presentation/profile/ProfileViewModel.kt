@@ -1,4 +1,4 @@
-package com.example.profile.presentation
+package com.example.profile.presentation.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +7,7 @@ import com.example.altabib.core.LocalImageStorage
 import com.example.altabib.core.onError
 import com.example.altabib.core.onSuccess
 import com.example.altabib.design.R
+import com.example.altabib.design_system.navigation.screen.DoctorScreen
 import com.example.altabib.design_system.utils.ByteArrayConverter
 import com.example.doctors.domain.usecases.GetDoctorUseCase
 import com.example.doctors.domain.usecases.UpdateAvatarUseCase
@@ -63,7 +64,6 @@ class ProfileViewModel(
             is ProfileAction.OnSpecializationClick -> openSpecializationDialog()
             is ProfileAction.OnSpecializationSelected -> onSpecializationSelected(action)
             is ProfileAction.OnQueueChanged -> onQueueChanged(action)
-            is ProfileAction.OnAvailabilityChanged -> onAvailabilityChanged(action)
         }
     }
 
@@ -159,7 +159,7 @@ class ProfileViewModel(
 
     private fun showEditAvailabilityDialog() {
         viewModelScope.launch {
-            _event.emit(ProfileEvent.EditAvailability)
+            _event.emit(ProfileEvent.Navigate(DoctorScreen.EditAvailability.route))
         }
     }
 
@@ -215,20 +215,6 @@ class ProfileViewModel(
                     )
                 )
             }
-        }
-    }
-
-    private fun onAvailabilityChanged(action: ProfileAction.OnAvailabilityChanged) {
-        viewModelScope.launch {
-            _state.update { state ->
-                state.copy(
-                    doctor = state.doctor.copy(
-                        availability = action.value
-                    )
-                )
-            }
-
-            saveProfile()
         }
     }
 

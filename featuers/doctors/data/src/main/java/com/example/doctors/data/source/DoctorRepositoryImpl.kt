@@ -12,6 +12,7 @@ import com.example.doctors.data.source.remote.mappers.toDomain
 import com.example.doctors.data.source.remote.mappers.toDto
 import com.example.doctors.data.source.remote.models.DoctorDto
 import com.example.doctors.domain.DoctorRepository
+import com.example.user.domain.entities.Availability
 import com.example.user.domain.entities.Doctor
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -24,6 +25,7 @@ private const val CITY_FIELD = "city"
 private const val AVATARS = "avatars"
 private const val AVATAR_FIELD = "avatar"
 private const val REVIEWS_FIELD = "reviews"
+private const val AVAILABILITY_FIELD = "availability"
 private const val SPECIALIZATION_FIELD = "specialization"
 
 class DoctorRepositoryImpl(
@@ -208,6 +210,23 @@ class DoctorRepositoryImpl(
                 Log.e("DoctorRepo", "Local image save failed", e)
                 Result.Error(DataError.FailedToUpdateData)
             }
+        }
+    }
+
+    override suspend fun updateAvailability(
+        userId: String,
+        availability: Availability
+    ): Result<Unit, DataError> {
+        return try {
+            firestore.collection(DOCTORS_PATH)
+                .document(userId)
+                .update(AVAILABILITY_FIELD, availability.toDto())
+                .await()
+
+            Result.Success(Unit)
+        } catch (e: Exception) {
+            Log.e("DoctorRepo", "Error in updateAvailability", e)
+            Result.Error(DataError.FailedToUpdateData)
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.profile.presentation.components
+package com.example.profile.presentation.profile.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
