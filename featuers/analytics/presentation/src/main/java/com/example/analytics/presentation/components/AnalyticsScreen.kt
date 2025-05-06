@@ -19,14 +19,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.altabib.core.models.ViewData
 import com.example.altabib.design.R
 import com.example.altabib.design_system.components.Loading
 import com.example.altabib.design_system.components.ReviewCard
+import com.example.altabib.design_system.components.ViewsBarChart
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.analytics.presentation.AnalyticsAction
 import com.example.analytics.presentation.AnalyticsState
-import com.example.analytics.presentation.util.ViewData
+import com.example.analytics.presentation.util.processViewData
 
 @Composable
 fun AnalyticsScreen(
@@ -59,10 +61,10 @@ fun AnalyticsScreen(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 ViewsBarChart(
-                    viewData = dummyViews,
+                    viewData = processViewData(state.profile.views),
                     modifier = Modifier
                         .fillMaxSize()
-                        .weight(1f)
+                        .weight(1.5f)
                 )
 
                 Text(
@@ -103,27 +105,3 @@ fun AnalyticsScreen(
         }
     }
 }
-
-val dummyViews: List<ViewData> =
-    listOf(
-        ViewData(1, 10),
-        ViewData(2, 15),
-        ViewData(3, 20),
-        ViewData(4, 25),
-        ViewData(5, 30),
-        ViewData(6, 35),
-        ViewData(7, 40),
-        ViewData(8, 45),
-        ViewData(9, 50),
-        ViewData(10, 55),
-        ViewData(11, 60),
-        ViewData(12, 15),
-        ViewData(13, 70),
-        ViewData(14, 75),
-        ViewData(15, 80),
-        ViewData(16, 25),
-        ViewData(17, 90),
-        ViewData(18, 95),
-        ViewData(19, 33),
-        ViewData(20, 105),
-    )

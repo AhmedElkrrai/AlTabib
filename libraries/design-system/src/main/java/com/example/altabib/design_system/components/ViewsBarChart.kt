@@ -1,4 +1,4 @@
-package com.example.analytics.presentation.components
+package com.example.altabib.design_system.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.padding
@@ -11,28 +11,37 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
-import com.example.analytics.presentation.util.ViewData
+import androidx.compose.ui.unit.sp
+import com.example.altabib.core.models.ViewData
+import com.example.altabib.design_system.theme.Primary
 import kotlin.math.roundToInt
 
 @Composable
 fun ViewsBarChart(
     viewData: List<ViewData>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    barColor: Color = Primary,
 ) {
     if (viewData.isEmpty()) return // Don't draw if no data
 
     val textMeasurer = rememberTextMeasurer()
-    val textStyle = MaterialTheme.typography.bodySmall.copy(color = Color.Black)
+    // Reduce text size to prevent crowding, keep color white
+    val textStyle = MaterialTheme.typography.bodySmall.copy(
+        color = Color.White,
+        fontSize = 10.sp // Smaller font size for better fit
+    )
 
     Canvas(modifier = modifier.padding(16.dp)) {
-        val chartWidth = size.width - 60.dp.toPx() // Leave space for y-axis labels
-        val chartHeight = size.height - 40.dp.toPx() // Leave space for x-axis labels
+        val yAxisMargin = 10.dp.toPx()
+        val chartWidth = size.width - 10.dp.toPx() - yAxisMargin
+        val chartHeight = size.height - 40.dp.toPx() // Space for x-axis labels
         val barSpacing = 4.dp.toPx() // Space between bars
         val maxViews = viewData.maxOfOrNull { it.viewCount }?.toFloat() ?: 1f
         val barCount = viewData.size
-        val barWidth = (chartWidth - (barCount - 1) * barSpacing) / barCount
+        // Calculate bar width to span full chart width
+        val barWidth = (chartWidth - (barCount - 1) * barSpacing) / barCount.coerceAtLeast(1)
 
-        // Calculate y-axis steps (e.g., 0, 5, 10, 15, ...)
+        // Calculate y-axis steps
         val yStepCount = 5
         val yStepValue = (maxViews / yStepCount).coerceAtLeast(1f).roundToInt().toFloat()
         val maxYValue = (yStepValue * yStepCount).coerceAtLeast(maxViews)
@@ -43,29 +52,33 @@ fun ViewsBarChart(
             val y = chartHeight - (yValue / maxYValue) * chartHeight
             val text = yValue.toInt().toString()
             val textLayoutResult = textMeasurer.measure(text, textStyle)
+            // Position labels with enough space from left edge
             drawText(
                 textLayoutResult = textLayoutResult,
-                topLeft = Offset(0f, y - textLayoutResult.size.height / 2f)
+                topLeft = Offset(
+                    yAxisMargin - textLayoutResult.size.width - 4.dp.toPx(),
+                    y - textLayoutResult.size.height / 2f
+                )
             )
 
-            // Draw grid line
+            // Draw grid line across chart width
             drawLine(
                 color = Color.Gray.copy(alpha = 0.2f),
-                start = Offset(60.dp.toPx(), y),
-                end = Offset(60.dp.toPx() + chartWidth, y),
+                start = Offset(yAxisMargin, y),
+                end = Offset(yAxisMargin + chartWidth, y),
                 strokeWidth = 1.dp.toPx()
             )
         }
 
         // Draw bars and x-axis labels
         viewData.forEachIndexed { index, data ->
-            val x = 60.dp.toPx() + index * (barWidth + barSpacing)
+            val x = yAxisMargin + index * (barWidth + barSpacing) // Start at yAxisMargin
             val barHeight = (data.viewCount / maxYValue) * chartHeight
             val y = chartHeight - barHeight
 
             // Draw bar
             drawRect(
-                color = Color.Blue,
+                color = barColor,
                 topLeft = Offset(x, y),
                 size = Size(barWidth, barHeight)
             )
@@ -84,15 +97,15 @@ fun ViewsBarChart(
 
         // Draw axes
         drawLine(
-            color = Color.Black,
-            start = Offset(60.dp.toPx(), 0f),
-            end = Offset(60.dp.toPx(), chartHeight),
+            color = Color.DarkGray,
+            start = Offset(yAxisMargin, 0f),
+            end = Offset(yAxisMargin, chartHeight),
             strokeWidth = 2.dp.toPx()
         ) // Y-axis
         drawLine(
-            color = Color.Black,
-            start = Offset(60.dp.toPx(), chartHeight),
-            end = Offset(60.dp.toPx() + chartWidth, chartHeight),
+            color = Color.DarkGray,
+            start = Offset(yAxisMargin, chartHeight),
+            end = Offset(yAxisMargin + chartWidth, chartHeight),
             strokeWidth = 2.dp.toPx()
         ) // X-axis
     }
