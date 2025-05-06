@@ -10,7 +10,9 @@ import com.example.profile.presentation.profile.state.ProfileState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.flow.consumeAsFlow
@@ -30,13 +32,12 @@ class ProfileViewModel(
     private val _state = MutableStateFlow(ProfileState())
     val state = _state.asStateFlow()
 
-    private val _event = Channel<ProfileEvent>()
-    val event: Flow<ProfileEvent> get() = _event.consumeAsFlow()
+    private val _event = MutableSharedFlow<ProfileEvent>()
+    val event = _event.asSharedFlow()
 
     private val _action = Channel<ProfileAction>()
 
     init {
-        sendAction(ProfileAction.InitViewState)
         consumeActions()
     }
 
@@ -57,7 +58,7 @@ class ProfileViewModel(
                 .cancellable()
                 .collect { reducer ->
                     launch(defaultContext) { updateViewState(reducer) }
-                    reducer.event()?.let { _event.send(it) }
+                    reducer.event()?.let { _event.emit(it) }
                 }
         }
     }

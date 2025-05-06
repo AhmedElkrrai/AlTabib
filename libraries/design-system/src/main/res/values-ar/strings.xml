@@ -93,6 +93,9 @@
     <string name="from">من</string>
     <string name="to">الى</string>
     <string name="time_windows_maxed">لا يمكن إضافة المزيد من الفترات</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="appointments">الحجوزات</string>
+    <string name="analytics">البيانات</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">تم تحديث الملف الشخصي</string>
     <string name="doctor_already_added">هذا الطبيب موجود بالفعل في المفضلة</string>

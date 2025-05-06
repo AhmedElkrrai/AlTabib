@@ -93,6 +93,9 @@
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="time_windows_maxed">Can not add more windows</string>
+    <string name="profile">Profile</string>
+    <string name="appointments">Appointments</string>
+    <string name="analytics">Analytics</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">Profile Updated</string>
     <string name="doctor_already_added">Doctor already in favorites</string>
