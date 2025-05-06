@@ -57,14 +57,14 @@ import com.example.altabib.design_system.models.Specialization
 import com.example.altabib.design_system.theme.Primary
 import com.example.altabib.design_system.utils.ForceImmersiveMode
 import com.example.altabib.design_system.utils.FormatCompose
-import com.example.profile.presentation.profile.ProfileAction
-import com.example.profile.presentation.profile.ProfileState
+import com.example.profile.presentation.profile.actions.ProfileAction
+import com.example.profile.presentation.profile.state.ProfileState
 
 @Composable
 fun ProfileScreen(
     modifier: Modifier = Modifier,
     state: ProfileState,
-    onAction: (ProfileAction) -> Unit
+    sendAction: (ProfileAction) -> Unit
 ) {
     FormatCompose {
         ForceImmersiveMode()
@@ -79,7 +79,7 @@ fun ProfileScreen(
                 modifier = Modifier
                     .size(120.dp)
                     .align(Alignment.CenterHorizontally)
-                    .clickable { onAction(ProfileAction.OnOpenImagePicker) }
+                    .clickable { sendAction(ProfileAction.OnOpenImagePicker) }
             ) {
                 Image(
                     painter = rememberAsyncImagePainter(
@@ -109,7 +109,7 @@ fun ProfileScreen(
             // Name
             AppOutlinedTextFiled(
                 value = state.doctor.name,
-                onValueChange = { onAction(ProfileAction.OnNameChange(it)) },
+                onValueChange = { sendAction(ProfileAction.OnNameChange(it)) },
                 label = getLocalizedString(R.string.name),
                 leadingIcon = { Icon(Icons.Default.Person, null) },
             )
@@ -119,7 +119,7 @@ fun ProfileScreen(
             // Bio
             AppOutlinedTextFiled(
                 value = state.doctor.bio,
-                onValueChange = { onAction(ProfileAction.OnBioChange(it)) },
+                onValueChange = { sendAction(ProfileAction.OnBioChange(it)) },
                 label = getLocalizedString(R.string.bio),
                 placeholder = { Text(getLocalizedString(R.string.bio_hint)) },
                 leadingIcon = { Icon(Icons.Default.Info, null) },
@@ -130,7 +130,7 @@ fun ProfileScreen(
             // Price
             AppOutlinedTextFiled(
                 value = state.doctor.price.toString(),
-                onValueChange = { onAction(ProfileAction.OnPriceChange(it)) },
+                onValueChange = { sendAction(ProfileAction.OnPriceChange(it)) },
                 label = getLocalizedString(R.string.price),
                 leadingIcon = { Icon(Icons.Default.AttachMoney, null) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
@@ -141,7 +141,7 @@ fun ProfileScreen(
             // City
             CitySelector(
                 selectedCity = City.displayName(state.doctor.city),
-                onCitySelected = { onAction(ProfileAction.OnCityChange(it)) }
+                onCitySelected = { sendAction(ProfileAction.OnCityChange(it)) }
             )
 
             Spacer(Modifier.height(12.dp))
@@ -149,7 +149,7 @@ fun ProfileScreen(
             // Address
             AppOutlinedTextFiled(
                 value = state.doctor.address,
-                onValueChange = { onAction(ProfileAction.OnAddressChange(it)) },
+                onValueChange = { sendAction(ProfileAction.OnAddressChange(it)) },
                 label = getLocalizedString(R.string.address),
                 leadingIcon = { Icon(Icons.Default.Place, null) },
             )
@@ -159,7 +159,7 @@ fun ProfileScreen(
             // Contact
             AppOutlinedTextFiled(
                 value = state.doctor.contact,
-                onValueChange = { onAction(ProfileAction.OnContactChange(it)) },
+                onValueChange = { sendAction(ProfileAction.OnContactChange(it)) },
                 label = getLocalizedString(R.string.contact),
                 leadingIcon = { Icon(Icons.Default.Call, null) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
@@ -172,7 +172,7 @@ fun ProfileScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { onAction(ProfileAction.OnSpecializationClick) }
+                    .clickable { sendAction(ProfileAction.OnSpecializationClick) }
                     .padding(vertical = 8.dp)
             ) {
                 Icon(Icons.Default.Work, contentDescription = null)
@@ -210,7 +210,7 @@ fun ProfileScreen(
                     modifier = Modifier
                         .clickable {
                             if (state.doctor.inQueue > 0) {
-                                onAction(
+                                sendAction(
                                     ProfileAction.OnQueueChanged(state.doctor.inQueue - 1)
                                 )
                             }
@@ -228,7 +228,7 @@ fun ProfileScreen(
                 Icon(
                     imageVector = Icons.Default.ArrowUpward,
                     modifier = Modifier
-                        .clickable { onAction(ProfileAction.OnQueueChanged(state.doctor.inQueue + 1)) },
+                        .clickable { sendAction(ProfileAction.OnQueueChanged(state.doctor.inQueue + 1)) },
                     contentDescription = null
                 )
             }
@@ -252,7 +252,7 @@ fun ProfileScreen(
                     text = getLocalizedString(textRes),
                     modifier = Modifier.weight(1f)
                 )
-                TextButton(onClick = { onAction(ProfileAction.OnEditAvailabilityClick) }) {
+                TextButton(onClick = { sendAction(ProfileAction.OnEditAvailabilityClick) }) {
                     Text(
                         text = getLocalizedString(R.string.edit),
                         color = Primary
@@ -265,7 +265,7 @@ fun ProfileScreen(
             // Save button
             AppOutlinedButton(
                 text = getLocalizedString(R.string.save_profile),
-                onClick = { onAction(ProfileAction.OnSaveClick) },
+                onClick = { sendAction(ProfileAction.OnSaveClick(state.doctor)) },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -277,7 +277,7 @@ fun ProfileScreen(
 
             // Language / Contact Dev / Logout
             TextButton(
-                onClick = { onAction(ProfileAction.OnChangeLanguageClick) },
+                onClick = { sendAction(ProfileAction.OnChangeLanguageClick) },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
@@ -287,7 +287,7 @@ fun ProfileScreen(
             }
 
             TextButton(
-                onClick = { onAction(ProfileAction.OnContactDeveloperClick) },
+                onClick = { sendAction(ProfileAction.OnContactDeveloperClick) },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
@@ -297,7 +297,7 @@ fun ProfileScreen(
             }
 
             TextButton(
-                onClick = { onAction(ProfileAction.OnLogoutClick) },
+                onClick = { sendAction(ProfileAction.OnLogoutClick) },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.textButtonColors(contentColor = Color.Red)
             ) {

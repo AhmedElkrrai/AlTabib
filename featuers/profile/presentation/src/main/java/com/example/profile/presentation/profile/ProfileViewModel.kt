@@ -2,95 +2,67 @@ package com.example.profile.presentation.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.altabib.design_system.navigation.screen.DoctorScreen
-import kotlinx.coroutines.flow.MutableSharedFlow
+import com.example.profile.presentation.profile.actions.ProfileAction
+import com.example.profile.presentation.profile.actions.ProfileActionTransformer
+import com.example.profile.presentation.profile.state.ProfileEvent
+import com.example.profile.presentation.profile.state.ProfileReducer
+import com.example.profile.presentation.profile.state.ProfileState
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.cancellable
+import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.getAndUpdate
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 class ProfileViewModel(
-    private val reducer: ProfileReducer,
-    private val eventHandler: ProfileEventHandler
+    private val ioContext: CoroutineContext,
+    private val defaultContext: CoroutineContext,
+    private val transformer: ProfileActionTransformer,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(ProfileState())
-    val state = _state
-        .onStart {
-            eventHandler.initDoctorData(
-                updateState = { doctor ->
-                    _state.update { it.copy(doctor = doctor) }
-                },
-                emitEvent = { _event.emit(it) }
-            )
-        }
-        .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(3000L),
-            ProfileState()
-        )
+    val state = _state.asStateFlow()
 
-    private val _event = MutableSharedFlow<ProfileEvent>()
-    val event = _event.asSharedFlow()
+    private val _event = Channel<ProfileEvent>()
+    val event: Flow<ProfileEvent> get() = _event.consumeAsFlow()
 
-    fun onAction(action: ProfileAction) {
-        when (action) {
-            is ProfileAction.OnAddressChange,
-            is ProfileAction.OnBioChange,
-            is ProfileAction.OnCityChange,
-            is ProfileAction.OnContactChange,
-            is ProfileAction.OnNameChange,
-            is ProfileAction.OnPriceChange,
-            is ProfileAction.OnSpecializationSelected,
-            is ProfileAction.OnQueueChanged -> {
-                _state.update { reducer.reduce(it, action) }
-            }
+    private val _action = Channel<ProfileAction>()
 
-            is ProfileAction.OnAvatarSelected -> {
-                viewModelScope.launch {
-                    eventHandler.handleAvatarSelected(
-                        uri = action.uri,
-                        currentDoctor = state.value.doctor,
-                        emitEvent = { _event.emit(it) },
-                        updateState = { url ->
-                            _state.update { it.copy(doctor = it.doctor.copy(avatar = url)) }
-                        }
-                    )
-                }
-            }
+    init {
+        sendAction(ProfileAction.InitViewState)
+        consumeActions()
+    }
 
-            is ProfileAction.OnSaveClick -> {
-                viewModelScope.launch {
-                    eventHandler.saveProfile(
-                        doctor = state.value.doctor,
-                        emitEvent = { _event.emit(it) }
-                    )
-                }
-            }
-
-            is ProfileAction.OnLogoutClick -> {
-                viewModelScope.launch {
-                    eventHandler.logout { _event.emit(it) }
-                }
-            }
-
-            is ProfileAction.OnChangeLanguageClick -> emit(ProfileEvent.LanguageChanged)
-            is ProfileAction.OnContactDeveloperClick -> emit(ProfileEvent.ContactDevs)
-            is ProfileAction.OnEditAvailabilityClick -> emit(
-                ProfileEvent.Navigate(DoctorScreen.EditAvailability.route)
-            )
-
-            is ProfileAction.OnOpenImagePicker -> emit(ProfileEvent.OpenImagePicker)
-            is ProfileAction.OnSpecializationClick -> emit(ProfileEvent.OpenSpecializationDialog)
+    fun sendAction(action: ProfileAction) {
+        viewModelScope.launch {
+            _action.send(action)
         }
     }
 
-    private fun emit(event: ProfileEvent) {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private fun consumeActions() {
         viewModelScope.launch {
-            _event.emit(event)
+            _action.receiveAsFlow()
+                .flatMapConcat { action ->
+                    transformer.transform(action)
+                }
+                .flowOn(ioContext)
+                .cancellable()
+                .collect { reducer ->
+                    launch(defaultContext) { updateViewState(reducer) }
+                    reducer.event()?.let { _event.send(it) }
+                }
         }
+    }
+
+    private fun updateViewState(reducer: ProfileReducer) {
+        _state.getAndUpdate { reducer.reduce(it) }
     }
 }

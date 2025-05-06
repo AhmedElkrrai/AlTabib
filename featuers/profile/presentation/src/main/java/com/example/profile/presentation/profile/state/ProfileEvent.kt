@@ -1,4 +1,4 @@
-package com.example.profile.presentation.profile
+package com.example.profile.presentation.profile.state
 
 import com.example.altabib.core.DataError
 

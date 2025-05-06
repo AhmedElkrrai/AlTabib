@@ -19,8 +19,8 @@ import com.example.altabib.design_system.navigation.screen.Screen
 import com.example.altabib.design_system.navigation.utils.LocalNavController
 import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
-import com.example.profile.presentation.profile.ProfileAction
-import com.example.profile.presentation.profile.ProfileEvent
+import com.example.profile.presentation.profile.actions.ProfileAction
+import com.example.profile.presentation.profile.state.ProfileEvent
 import com.example.profile.presentation.profile.ProfileViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -46,7 +46,7 @@ fun ProfileScreenRoot(
             current = state.doctor.specKey,
             onDismiss = { showSpecializationDialog = false },
             onSelect = {
-                viewModel.onAction(ProfileAction.OnSpecializationSelected(it))
+                viewModel.sendAction(ProfileAction.OnSpecializationSelected(it))
                 showSpecializationDialog = false
             }
         )
@@ -56,7 +56,7 @@ fun ProfileScreenRoot(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         uri?.let {
-            viewModel.onAction(ProfileAction.OnAvatarSelected(it))
+            viewModel.sendAction(ProfileAction.OnAvatarSelected(it, state.doctor))
         }
     }
 
@@ -104,6 +104,6 @@ fun ProfileScreenRoot(
     ProfileScreen(
         modifier = modifier,
         state = state,
-        onAction = viewModel::onAction
+        sendAction = viewModel::sendAction
     )
 }
