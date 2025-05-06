@@ -26,6 +26,7 @@ import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.utils.FormatCompose
 import com.example.analytics.presentation.AnalyticsAction
 import com.example.analytics.presentation.AnalyticsState
+import com.example.analytics.presentation.util.ViewData
 
 @Composable
 fun AnalyticsScreen(
@@ -57,6 +58,13 @@ fun AnalyticsScreen(
                 )
                 Spacer(modifier = Modifier.height(24.dp))
 
+                ViewsBarChart(
+                    viewData = dummyViews,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f)
+                )
+
                 Text(
                     text = getLocalizedString(R.string.patients_reviews),
                     style = MaterialTheme.typography.titleMedium,
@@ -79,7 +87,7 @@ fun AnalyticsScreen(
                     LazyColumn(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(190.dp)
+                            .weight(1f)
                     ) {
                         itemsIndexed(
                             state.reviewList
@@ -89,9 +97,33 @@ fun AnalyticsScreen(
                         }
                     }
                 }
-            }
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
+            }
         }
     }
 }
+
+val dummyViews: List<ViewData> =
+    listOf(
+        ViewData(1, 10),
+        ViewData(2, 15),
+        ViewData(3, 20),
+        ViewData(4, 25),
+        ViewData(5, 30),
+        ViewData(6, 35),
+        ViewData(7, 40),
+        ViewData(8, 45),
+        ViewData(9, 50),
+        ViewData(10, 55),
+        ViewData(11, 60),
+        ViewData(12, 15),
+        ViewData(13, 70),
+        ViewData(14, 75),
+        ViewData(15, 80),
+        ViewData(16, 25),
+        ViewData(17, 90),
+        ViewData(18, 95),
+        ViewData(19, 33),
+        ViewData(20, 105),
+    )
