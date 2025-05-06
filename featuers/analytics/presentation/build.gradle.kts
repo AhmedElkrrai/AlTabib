@@ -10,4 +10,5 @@ android {
 dependencies {
     implementation(project(":featuers:user:domain"))
     implementation(project(":featuers:analytics:domain"))
+    implementation(project(":featuers:doctors:domain"))
 }

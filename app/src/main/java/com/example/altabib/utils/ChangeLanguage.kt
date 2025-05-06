@@ -7,7 +7,7 @@ import com.example.altabib.design_system.localization.LocaleHelper
 import com.example.altabib.home.presentation.MainActivity
 
 @Composable
-fun RestartApp(
+fun ChangeLanguage(
     language: LocaleHelper.Language = LocaleHelper.getOppositeLanguage()
 ) {
     val updatedContext = LocaleHelper.setLocale(LocalContext.current, language)

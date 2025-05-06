@@ -9,7 +9,7 @@ import com.example.altabib.core.DOCTOR_ID
 import com.example.altabib.core.SPECIALIZATION
 import com.example.altabib.design_system.navigation.screen.PatientScreen
 import com.example.favorites.presentation.components.FavoritesScreenRoot
-import com.example.altabib.utils.RestartApp
+import com.example.altabib.utils.ChangeLanguage
 import com.example.doctors.presentation.booking.components.BookingScreenRoot
 import com.example.doctors.presentation.dashboard.components.DashboardScreenRoot
 import com.example.doctors.presentation.doctor.components.DoctorDetailsScreenRoot
@@ -29,7 +29,7 @@ fun PatientNavGraph(
             FavoritesScreenRoot(navController)
         }
         composable(PatientScreen.Settings.route) {
-            SettingsScreenRoot { language -> RestartApp(language) }
+            SettingsScreenRoot { language -> ChangeLanguage(language) }
         }
         composable(PatientScreen.Specialization.route) { backStackEntry ->
             val specialization = backStackEntry.arguments?.getString(SPECIALIZATION)

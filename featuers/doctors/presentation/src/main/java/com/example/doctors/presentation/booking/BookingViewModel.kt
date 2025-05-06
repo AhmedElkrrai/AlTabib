@@ -14,7 +14,7 @@ import com.example.doctors.domain.usecases.UpdateDoctorUseCase
 import com.example.settings.domain.usecases.GetPatientUseCase
 import com.example.settings.domain.usecases.UpdatePatientUseCase
 import com.example.user.domain.entities.Patient
-import com.example.user.domain.entities.Review
+import com.example.altabib.core.models.Review
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

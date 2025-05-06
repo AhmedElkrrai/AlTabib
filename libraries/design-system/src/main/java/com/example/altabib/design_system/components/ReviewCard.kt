@@ -1,4 +1,4 @@
-package com.example.doctors.presentation.booking.components
+package com.example.altabib.design_system.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,7 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.user.domain.entities.Review
+import com.example.altabib.core.models.Review
 
 @Composable
 fun ReviewCard(review: Review) {

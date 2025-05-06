@@ -9,6 +9,7 @@
     <string name="local_data_error">Couldn\'t fetch data from local database.</string>
     <string name="firebase_error">Couldn\'t fetch data from Firebase.</string>
     <string name="reviews">reviews</string>
+    <string name="reviews_c">Reviews</string>
     <string name="select_city">Select City</string>
     <string name="favorites">Favorites</string>
     <string name="no_favorites">No favorite doctors yet.</string>
@@ -96,6 +97,10 @@
     <string name="profile">Profile</string>
     <string name="appointments">Appointments</string>
     <string name="analytics">Analytics</string>
+    <string name="rating">Rating</string>
+    <string name="patients_reviews">Patients Reviews</string>
+    <string name="premium">Premium</string>
+    <string name="your_analytics">Your Analytics</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">Profile Updated</string>
     <string name="doctor_already_added">Doctor already in favorites</string>

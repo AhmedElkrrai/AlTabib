@@ -1,5 +1,7 @@
 package com.example.user.domain.entities
 
+import com.example.altabib.core.models.Review
+
 data class Doctor(
     val id: String = "",
     val avatar: String = "",

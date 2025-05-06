@@ -23,6 +23,7 @@ import com.example.altabib.design.R
 import com.example.altabib.design_system.components.AppOutlinedButton
 import com.example.altabib.design_system.components.AppOutlinedTextFiled
 import com.example.altabib.design_system.components.Loading
+import com.example.altabib.design_system.components.ReviewCard
 import com.example.altabib.design_system.components.TopAppBarWithBackButton
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.utils.ForceImmersiveMode

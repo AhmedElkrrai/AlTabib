@@ -10,7 +10,7 @@ import com.example.altabib.core.models.AvailableHour
 import com.example.altabib.core.models.DayOfWeek
 import com.example.user.domain.entities.Doctor
 import com.example.altabib.core.models.Period
-import com.example.user.domain.entities.Review
+import com.example.altabib.core.models.Review
 import com.example.user.domain.entities.TimeWindow
 
 fun Doctor.toDto(): DoctorDto {

@@ -84,7 +84,9 @@ fun DoctorCard(
 
                     // Name
                     Text(
+                        modifier = Modifier.fillMaxWidth(),
                         text = doctor.name,
+                        maxLines = 1,
                         style = MaterialTheme.typography.bodyMedium,
                         textAlign = TextAlign.Center,
                         color = Color.White

@@ -1,5 +1,6 @@
 package com.example.altabib.di
 
+import com.example.analytics.presentation.AnalyticsViewModel
 import com.example.appointments.presentation.AppointmentsViewModel
 import com.example.doctors.presentation.booking.BookingViewModel
 import com.example.doctors.presentation.dashboard.DashboardViewModel
@@ -12,6 +13,7 @@ import com.example.settings.presentation.SettingsViewModel
 import com.example.user.presentation.auth.AuthViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.dsl.viewModel
+import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
 val viewModelModule = module {
@@ -24,6 +26,7 @@ val viewModelModule = module {
     viewModel { DoctorDetailsViewModel(get(), get(), get(), get()) }
     viewModel { AppointmentsViewModel(get(), get(), get()) }
     viewModel { AvailabilityViewModel(get(), get(), get()) }
+    viewModel { AnalyticsViewModel(get(), get(), get()) }
 
     viewModel {
         ProfileViewModel(
