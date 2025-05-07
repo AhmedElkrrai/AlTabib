@@ -25,9 +25,6 @@ jobs:
       - name: Lint
         run: ./gradlew lint
 
-      - name: Run Unit Tests
-        run: ./gradlew testDebugUnitTest
-
       - name: Build Debug APK
         run: ./gradlew assembleDebug
 

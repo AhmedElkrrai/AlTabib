@@ -17,16 +17,21 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun InfoRow(icon: ImageVector, text: String) {
+fun InfoRow(
+    icon: ImageVector,
+    text: String,
+    modifier: Modifier = Modifier
+) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp)
     ) {
         Icon(icon, contentDescription = null, modifier = Modifier.size(20.dp))
         Spacer(modifier = Modifier.width(8.dp))
         Text(
+            modifier = modifier.fillMaxWidth(),
             text = text,
             style = MaterialTheme.typography.bodyMedium
         )
