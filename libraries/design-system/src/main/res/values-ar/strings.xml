@@ -101,6 +101,9 @@
     <string name="rating">التقييم</string>
     <string name="patients_reviews">تعليقات المرضي</string>
     <string name="your_analytics">بياناتك</string>
+    <string name="disclaimer_1">يتم احتساب عرض الملف الشخصي في كل مرة يفتح فيها المريض ملفك.</string>
+    <string name="disclaimer_2">الحسابات المجانية محدودة بـ %1$d زيارات للملف الشخصي يوميًا.</string>
+    <string name="disclaimer_3">بعد ذلك، لن تظهر في نتائج البحث حتى اليوم التالي.</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">تم تحديث الملف الشخصي</string>
     <string name="doctor_already_added">هذا الطبيب موجود بالفعل في المفضلة</string>

@@ -8,5 +8,6 @@ data class AnalyticsState(
     val profile: ProfileView = ProfileView(),
     val rating: Float = 0f,
     val reviews: Int = 0,
+    val premium: Boolean = false,
     val reviewList: List<Review> = emptyList(),
 )

@@ -10,7 +10,7 @@ fun processViewData(
     month: String = getThisMonth()
 ): List<ViewData> {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-    views
+    val result = views
         .mapNotNull { (date, patientIds) ->
             try {
                 val localDate = LocalDate.parse(date, formatter)
@@ -24,7 +24,7 @@ fun processViewData(
             }
         }
         .sortedBy { it.day }
-
+    // TODO: return result instead of dummyViews
     return dummyViews
 }
 
@@ -38,18 +38,18 @@ fun viewsPerMonth(viewData: List<ViewData>): Int {
 
 val dummyViews: List<ViewData> =
     listOf(
-        ViewData(1, 10),
-        ViewData(2, 15),
-        ViewData(3, 20),
-        ViewData(4, 25),
-        ViewData(5, 30),
-        ViewData(6, 35),
+        ViewData(1, 80),
+        ViewData(2, 95),
+        ViewData(3, 30),
+        ViewData(4, 65),
+        ViewData(5, 50),
+        ViewData(6, 45),
         ViewData(7, 40),
         ViewData(8, 45),
-        ViewData(9, 50),
+        ViewData(9, 52),
         ViewData(10, 55),
         ViewData(11, 107),
-        ViewData(12, 15),
+        ViewData(12, 95),
         ViewData(13, 70),
         ViewData(14, 75),
         ViewData(15, 80),

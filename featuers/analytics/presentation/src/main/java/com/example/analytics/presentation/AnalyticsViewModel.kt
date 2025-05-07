@@ -28,7 +28,6 @@ class AnalyticsViewModel(
     fun onAction(action: AnalyticsAction) {
         when (action) {
             is AnalyticsAction.Fetch -> fetch()
-            is AnalyticsAction.Navigate -> navigate(action.route)
         }
     }
 
@@ -50,6 +49,7 @@ class AnalyticsViewModel(
                                     rating = doctor.rating,
                                     reviews = doctor.reviews,
                                     reviewList = doctor.reviewsList,
+                                    premium = doctor.premium,
                                     isLoading = false
                                 )
                             }
@@ -61,12 +61,6 @@ class AnalyticsViewModel(
                 .onError {
                     _event.emit(AnalyticsEvent.ShowToast(it))
                 }
-        }
-    }
-
-    private fun navigate(route: String) {
-        viewModelScope.launch {
-            _event.emit(AnalyticsEvent.Navigate(route))
         }
     }
 }

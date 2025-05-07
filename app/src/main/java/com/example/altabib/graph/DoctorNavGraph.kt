@@ -20,7 +20,6 @@ fun DoctorNavGraph(
     NavHost(navController, startDestination = DoctorScreen.Appointments.route) {
         composable(DoctorScreen.Analytics.route) {
             AnalyticsScreenRoot(
-                navController = navController,
                 modifier = modifier,
             )
         }

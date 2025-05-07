@@ -25,7 +25,6 @@ import com.example.altabib.design_system.components.ReviewCard
 import com.example.altabib.design_system.components.ViewsBarChart
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.utils.FormatCompose
-import com.example.analytics.presentation.AnalyticsAction
 import com.example.analytics.presentation.AnalyticsState
 import com.example.analytics.presentation.util.processViewData
 import com.example.analytics.presentation.util.viewsPerMonth
@@ -34,7 +33,6 @@ import com.example.analytics.presentation.util.viewsPerMonth
 fun AnalyticsScreen(
     state: AnalyticsState,
     modifier: Modifier = Modifier,
-    onAction: (AnalyticsAction) -> Unit,
 ) {
     val viewData = processViewData(state.profile.views)
     val views = viewsPerMonth(viewData)
@@ -55,12 +53,14 @@ fun AnalyticsScreen(
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Spacer(modifier = Modifier.height(4.dp))
+
             AnalyticsHeader(
                 reviews = state.reviews,
                 animatedRating = animatedRating,
                 views = views
             )
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             ViewsBarChart(
                 viewData = viewData,
@@ -70,6 +70,18 @@ fun AnalyticsScreen(
             )
 
             FormatCompose {
+                Spacer(modifier = Modifier.height(6.dp))
+
+                // TODO: pass cap from remote config
+                if (!state.premium) {
+                    Disclaimer(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        cap = 5
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(6.dp))
+
                 Text(
                     text = getLocalizedString(R.string.patients_reviews),
                     style = MaterialTheme.typography.titleMedium,

@@ -101,6 +101,9 @@
     <string name="rating">Rating</string>
     <string name="patients_reviews">Patients Reviews</string>
     <string name="your_analytics">Your Analytics</string>
+    <string name="disclaimer_1">A profile view is counted whenever a patient opens your profile. </string>
+    <string name="disclaimer_2">Free accounts are limited to %1$d profile views per day.</string>
+    <string name="disclaimer_3">After that, you will not appear in the search until the next day.</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">Profile Updated</string>
     <string name="doctor_already_added">Doctor already in favorites</string>

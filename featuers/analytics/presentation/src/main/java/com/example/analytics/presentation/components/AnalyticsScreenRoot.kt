@@ -7,7 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavHostController
 import com.example.altabib.design_system.localization.getLocalizedString
 import com.example.altabib.design_system.utils.ObserveEvents
 import com.example.altabib.design_system.utils.getMessage
@@ -18,7 +17,6 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AnalyticsScreenRoot(
-    navController: NavHostController,
     modifier: Modifier = Modifier,
     viewModel: AnalyticsViewModel = koinViewModel()
 ) {
@@ -32,10 +30,6 @@ fun AnalyticsScreenRoot(
 
     ObserveEvents(events = viewModel.event) { event ->
         when (event) {
-            is AnalyticsEvent.Navigate -> {
-                navController.navigate(event.route)
-            }
-
             is AnalyticsEvent.ShowToast -> {
                 Toast
                     .makeText(context, event.error.getMessage(context), Toast.LENGTH_SHORT)
@@ -53,7 +47,6 @@ fun AnalyticsScreenRoot(
 
     AnalyticsScreen(
         state = state,
-        onAction = viewModel::onAction,
         modifier = modifier
     )
 }
