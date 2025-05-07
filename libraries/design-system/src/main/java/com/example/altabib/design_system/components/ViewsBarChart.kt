@@ -3,6 +3,7 @@ package com.example.altabib.design_system.components
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.MaterialTheme
@@ -10,8 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
@@ -34,12 +37,12 @@ fun ViewsBarChart(
         fontSize = 10.sp
     )
 
-    // Calculate dynamic canvas width based on number of bars
-    val barWidth = 24.dp // Fixed bar width for readability
-    val barSpacing = 4.dp // Space between bars
+    // Calculate dynamic canvas width based on number of points
+    val pointWidth = 24.dp // Width per data point (replaces barWidth)
+    val pointSpacing = 4.dp // Space between points (replaces barSpacing)
     val yAxisMargin = 40.dp // Space for y-axis labels
     val canvasWidth =
-        yAxisMargin + (barWidth + barSpacing) * viewData.size // Total width for all bars
+        yAxisMargin + (pointWidth + pointSpacing) * viewData.size // Total width for all points
 
     // Create scroll state and scroll to start on initial composition
     val scrollState = rememberScrollState()
@@ -88,26 +91,57 @@ fun ViewsBarChart(
                 )
             }
 
-            // Draw bars and x-axis labels
+            // Draw wave-like path
+            val path = Path()
             viewData.forEachIndexed { index, data ->
-                val x = yAxisMargin.toPx() + index * (barWidth + barSpacing).toPx()
-                val barHeight = (data.viewCount / maxYValue) * chartHeight
-                val y = chartHeight - barHeight
+                val x =
+                    yAxisMargin.toPx() + index * (pointWidth + pointSpacing).toPx() + pointWidth.toPx() / 2
+                val y = chartHeight - (data.viewCount / maxYValue) * chartHeight
 
-                // Draw bar
-                drawRect(
-                    color = color,
-                    topLeft = Offset(x, y),
-                    size = Size(barWidth.toPx(), barHeight)
-                )
+                if (index == 0) {
+                    path.moveTo(x, y)
+                } else {
+                    // Use quadratic Bezier for smooth wave
+                    val prevX =
+                        yAxisMargin.toPx() + (index - 1) * (pointWidth + pointSpacing).toPx() + pointWidth.toPx() / 2
+                    val prevY =
+                        chartHeight - (viewData[index - 1].viewCount / maxYValue) * chartHeight
+                    val controlX = (prevX + x) / 2
+                    val controlY = (prevY + y) / 2
+                    path.quadraticBezierTo(controlX, controlY, x, y)
+                }
+            }
 
-                // Draw x-axis label (day)
+            // Draw the wave line
+            drawPath(
+                path = path,
+                color = color,
+                style = Stroke(width = 2.dp.toPx())
+            )
+
+            // Fill the area under the wave
+            val filledPath = Path().apply {
+                addPath(path)
+                lineTo(yAxisMargin.toPx() + chartWidth, chartHeight)
+                lineTo(yAxisMargin.toPx(), chartHeight)
+                close()
+            }
+            drawPath(
+                path = filledPath,
+                color = color.copy(alpha = 0.3f), // Semi-transparent fill
+                style = Fill
+            )
+
+            // Draw x-axis labels
+            viewData.forEachIndexed { index, data ->
+                val x =
+                    yAxisMargin.toPx() + index * (pointWidth + pointSpacing).toPx() + pointWidth.toPx() / 2
                 val text = data.day.toString()
                 val textLayoutResult = textMeasurer.measure(text, textStyle)
                 drawText(
                     textLayoutResult = textLayoutResult,
                     topLeft = Offset(
-                        x + barWidth.toPx() / 2 - textLayoutResult.size.width / 2,
+                        x - textLayoutResult.size.width / 2,
                         chartHeight + 8.dp.toPx()
                     )
                 )
