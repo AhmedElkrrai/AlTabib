@@ -28,6 +28,14 @@ fun processViewData(
     return dummyViews
 }
 
+fun viewsPerMonth(viewData: List<ViewData>): Int {
+    var totalViews = 0
+    viewData.forEach { view ->
+        totalViews += view.viewCount
+    }
+    return totalViews
+}
+
 val dummyViews: List<ViewData> =
     listOf(
         ViewData(1, 10),
@@ -50,5 +58,15 @@ val dummyViews: List<ViewData> =
         ViewData(18, 95),
         ViewData(19, 33),
         ViewData(20, 66),
+        ViewData(21, 44),
+        ViewData(22, 55),
+        ViewData(23, 66),
+        ViewData(24, 77),
+        ViewData(25, 88),
+        ViewData(26, 99),
+        ViewData(27, 10),
+        ViewData(28, 11),
+        ViewData(29, 12),
+        ViewData(30, 13),
     )
 

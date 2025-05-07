@@ -10,6 +10,7 @@
     <string name="firebase_error">Couldn\'t fetch data from Firebase.</string>
     <string name="reviews">reviews</string>
     <string name="reviews_c">Reviews</string>
+    <string name="visits">Visits this month</string>
     <string name="select_city">Select City</string>
     <string name="favorites">Favorites</string>
     <string name="no_favorites">No favorite doctors yet.</string>

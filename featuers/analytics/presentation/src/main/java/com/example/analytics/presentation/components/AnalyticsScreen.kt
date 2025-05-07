@@ -1,6 +1,7 @@
 package com.example.analytics.presentation.components
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.altabib.core.models.ViewData
 import com.example.altabib.design.R
 import com.example.altabib.design_system.components.Loading
 import com.example.altabib.design_system.components.ReviewCard
@@ -29,6 +29,7 @@ import com.example.altabib.design_system.utils.FormatCompose
 import com.example.analytics.presentation.AnalyticsAction
 import com.example.analytics.presentation.AnalyticsState
 import com.example.analytics.presentation.util.processViewData
+import com.example.analytics.presentation.util.viewsPerMonth
 
 @Composable
 fun AnalyticsScreen(
@@ -36,6 +37,9 @@ fun AnalyticsScreen(
     modifier: Modifier = Modifier,
     onAction: (AnalyticsAction) -> Unit,
 ) {
+    val viewData = processViewData(state.profile.views)
+    val views = viewsPerMonth(viewData)
+
     val animatedRating = animateFloatAsState(
         targetValue = state.rating,
         animationSpec = tween(durationMillis = 3000),
@@ -56,12 +60,13 @@ fun AnalyticsScreen(
                 AnalyticsHeader(
                     reviews = state.reviews,
                     isPremium = state.profile.premium == 1,
-                    animatedRating = animatedRating
+                    animatedRating = animatedRating,
+                    views = views
                 )
                 Spacer(modifier = Modifier.height(24.dp))
 
                 ViewsBarChart(
-                    viewData = processViewData(state.profile.views),
+                    viewData = viewData,
                     modifier = Modifier
                         .fillMaxSize()
                         .weight(1.5f)

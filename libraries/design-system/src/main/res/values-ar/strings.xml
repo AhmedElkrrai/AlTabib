@@ -10,6 +10,7 @@
     <string name="firebase_error">تعذر جلب البيانات من Firebase.</string>
     <string name="reviews">تقييم</string>
     <string name="reviews_c">تقييم</string>
+    <string name="visits">زيارات هذا الشهر</string>
     <string name="select_city">اختر المدينة</string>
     <string name="favorites">المفضلة</string>
     <string name="no_favorites">لا يوجد أطباء مفضلون.</string>

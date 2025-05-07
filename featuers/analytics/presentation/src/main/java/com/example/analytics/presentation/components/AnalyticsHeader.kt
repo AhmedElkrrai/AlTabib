@@ -31,7 +31,8 @@ import java.util.Locale
 fun AnalyticsHeader(
     reviews: Int,
     isPremium: Boolean,
-    animatedRating: State<Float>
+    animatedRating: State<Float>,
+    views: Int
 ) {
     Column(
         modifier = Modifier
@@ -80,6 +81,19 @@ fun AnalyticsHeader(
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = reviews.toString(),
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Medium
+                )
+            }
+
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = getLocalizedString(R.string.visits),
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = views.toString(),
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Medium
                 )
