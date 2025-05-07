@@ -69,7 +69,6 @@ class AnalyticsRepositoryImpl(
                     // First time view for this doctor
                     val newProfileView = ProfileView(
                         doctorId = doctorId,
-                        premium = premium.toInteger(),
                         views = mapOf(
                             today to listOf(patientId)
                         )

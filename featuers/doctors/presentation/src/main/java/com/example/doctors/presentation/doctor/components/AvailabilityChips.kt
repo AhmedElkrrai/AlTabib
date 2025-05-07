@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -48,10 +50,11 @@ fun AvailabilityChips(
     ) {
         // Day chips
         FlowRow(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.Center,
             verticalArrangement = Arrangement.spacedBy(1.dp)
         ) {
             availability.days.forEach { day ->
+                Spacer(modifier = modifier.width(1.dp))
                 AssistChip(
                     onClick = {},
                     label = {

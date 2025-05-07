@@ -31,5 +31,5 @@ fun InfoRow(icon: ImageVector, text: String) {
             style = MaterialTheme.typography.bodyMedium
         )
     }
-    Spacer(modifier = Modifier.height(10.dp))
+    Spacer(modifier = Modifier.height(8.dp))
 }

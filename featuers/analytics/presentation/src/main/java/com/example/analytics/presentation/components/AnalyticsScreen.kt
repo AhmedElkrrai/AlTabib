@@ -74,10 +74,7 @@ fun AnalyticsScreen(
 
                 // TODO: pass cap from remote config
                 if (!state.premium) {
-                    Disclaimer(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        cap = 5
-                    )
+                    Disclaimer(cap = 5)
                 }
 
                 Spacer(modifier = Modifier.height(6.dp))
