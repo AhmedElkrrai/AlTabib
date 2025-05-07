@@ -1,7 +1,6 @@
 package com.example.analytics.presentation.components
 
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,29 +48,28 @@ fun AnalyticsScreen(
     if (state.isLoading) {
         Loading()
     } else {
-        FormatCompose {
-            Column(
-                modifier = modifier
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            AnalyticsHeader(
+                reviews = state.reviews,
+                animatedRating = animatedRating,
+                views = views
+            )
+            Spacer(modifier = Modifier.height(24.dp))
+
+            ViewsBarChart(
+                viewData = viewData,
+                modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 16.dp)
-                    .verticalScroll(rememberScrollState()),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                AnalyticsHeader(
-                    reviews = state.reviews,
-                    isPremium = state.profile.premium == 1,
-                    animatedRating = animatedRating,
-                    views = views
-                )
-                Spacer(modifier = Modifier.height(24.dp))
+                    .weight(1.5f)
+            )
 
-                ViewsBarChart(
-                    viewData = viewData,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .weight(1.5f)
-                )
-
+            FormatCompose {
                 Text(
                     text = getLocalizedString(R.string.patients_reviews),
                     style = MaterialTheme.typography.titleMedium,
@@ -104,8 +102,6 @@ fun AnalyticsScreen(
                         }
                     }
                 }
-
-                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }

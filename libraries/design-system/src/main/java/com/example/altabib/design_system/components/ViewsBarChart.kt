@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -40,9 +41,15 @@ fun ViewsBarChart(
     val canvasWidth =
         yAxisMargin + (barWidth + barSpacing) * viewData.size // Total width for all bars
 
+    // Create scroll state and scroll to start on initial composition
+    val scrollState = rememberScrollState()
+    LaunchedEffect(Unit) {
+        scrollState.scrollTo(1) // Scroll to the day 1
+    }
+
     Box(
         modifier = modifier
-            .horizontalScroll(rememberScrollState()) // Enable horizontal scrolling
+            .horizontalScroll(scrollState) // Enable horizontal scrolling
             .width(canvasWidth) // Set canvas width dynamically
     ) {
         Canvas(
@@ -62,7 +69,7 @@ fun ViewsBarChart(
             repeat(yStepCount + 1) { i ->
                 val yValue = i * yStepValue
                 val y = chartHeight - (yValue / maxYValue) * chartHeight
-                val text = yValue.toInt().toString() // Use actual view count value
+                val text = yValue.toInt().toString()
                 val textLayoutResult = textMeasurer.measure(text, textStyle)
                 drawText(
                     textLayoutResult = textLayoutResult,

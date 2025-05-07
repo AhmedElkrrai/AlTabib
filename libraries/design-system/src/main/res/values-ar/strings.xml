@@ -100,7 +100,6 @@
     <string name="analytics">البيانات</string>
     <string name="rating">التقييم</string>
     <string name="patients_reviews">تعليقات المرضي</string>
-    <string name="premium">مشترك</string>
     <string name="your_analytics">بياناتك</string>
     <!-- ... Toast messages ... -->
     <string name="update_profile_msg">تم تحديث الملف الشخصي</string>
