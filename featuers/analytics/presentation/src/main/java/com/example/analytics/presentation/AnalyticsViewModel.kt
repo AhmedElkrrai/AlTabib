@@ -55,10 +55,12 @@ class AnalyticsViewModel(
                             }
                         }
                         .onError {
+                            _state.update { state -> state.copy(isLoading = false) }
                             _event.emit(AnalyticsEvent.ShowToast(it))
                         }
                 }
                 .onError {
+                    _state.update { state -> state.copy(isLoading = false) }
                     _event.emit(AnalyticsEvent.ShowToast(it))
                 }
         }

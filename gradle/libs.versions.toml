@@ -22,8 +22,8 @@ navigationCompose = "2.8.7"
 firebaseFirestoreKtx = "25.1.3"
 kotlinx = "1.10.1"
 jetbrainsKotlinJvm = "1.9.24"
-material = "1.12.0"
 firebaseStorageKtx = "21.0.1"
+androidxtest = "1.6.1"
 
 [libraries]
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
@@ -44,7 +44,6 @@ androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
@@ -63,8 +62,13 @@ annotation = "androidx.annotation:annotation:1.9.1"
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlinx-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
+mockk-core = "io.mockk:mockk:1.13.8"
+mockito-core = "org.mockito:mockito-core:5.15.2"
+robolectric-core = "org.robolectric:robolectric:4.10.3"
+kotlinx-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidxtest" }
+
 
 [plugins]
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
